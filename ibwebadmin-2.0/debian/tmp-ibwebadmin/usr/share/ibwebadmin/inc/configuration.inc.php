@@ -1,0 +1,1 @@
+/etc/ibwebadmin/configuration.inc.php

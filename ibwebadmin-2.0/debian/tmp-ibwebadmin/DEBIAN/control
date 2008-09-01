@@ -1,0 +1,18 @@
+Package: ibwebadmin
+Version: 2.0-1ubuntu0
+Architecture: all
+Maintainer: Popa Adrian Marius (Mariuz) <mapopa@gmail.com>
+Installed-Size: 1452
+Depends: apache2, php5 (>= 5.2.1) | libapache2-mod-php5, php5-interbase, ucf (>= 0.8)
+Suggests: firebird2.1-super-server | firebird2.1-classic
+Section: web
+Priority: extra
+Description: Web-based administration for the Firebird and Interbase database
+ ibWebAdmin is a web frontend for the InterBase and Firebird database
+ server. It makes the attempt to support all features which InterBase
+ and SQL are offering. Even if this goal is unattainable, quite a few
+ steps have already been done. By now ibWebAdmin has the basic
+ functions for creating, deleting, modifying databases, tables,
+ generators, triggers and domains. It lets you import, export, enter,
+ edit, delete, query, browse your data.
+Original-Maintainer: Debian QA Group <packages@qa.debian.org>
