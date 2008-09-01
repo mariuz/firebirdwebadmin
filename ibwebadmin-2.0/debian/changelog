@@ -1,3 +1,9 @@
+ibwebadmin (2.0-2ubuntu1) hardy; urgency=low
+
+  * imported into git also deleted some ib stuff 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Tue, 02 Sep 2008 02:21:26 +0300
+
 ibwebadmin (2.0-1ubuntu0) hardy; urgency=low
 
   * first ibwebadmin 2.0 version bumped Standards-Version: 3.8.0 and removed

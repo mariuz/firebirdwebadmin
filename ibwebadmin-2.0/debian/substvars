@@ -1,2 +1,0 @@
-ibwebadmin:Depends=ucf (>= 0.8)
-ucf:ibwebadmin:Depends=ucf (>= 0.8)
