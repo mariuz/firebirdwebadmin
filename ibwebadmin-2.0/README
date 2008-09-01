@@ -1,3 +1,14 @@
+phpfirebirdadmin 2.0 is based on ibWebAdmin 2.0 code 
+in fact i started with an  cvs import 
+http://www.firebirdnews.org/?p=1599
+then i modified to make work on ubuntu 
+http://sourceforge.net/forum/forum.php?thread_id=2031365&forum_id=79364
+and then i requested for commit access 
+http://sourceforge.net/forum/forum.php?thread_id=1965661&forum_id=79364
+but is faster to work on git 
+
+
+
 ibWebAdmin 0.98
 
   ibWebAdmin is a web frontend for the Firebird and InterBase
@@ -50,6 +61,11 @@ Documentation
   If you are struggling with getting the interbase support into your
   W/LAMP-setup, please read the Beginners guide to Firebird and PHP:
   http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_beginners_php
+  
+  Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.1
+
+  Firebird documentation is located on this page http://www.firebirdsql.org/index.php?op=doc
+
 
 
 
@@ -59,16 +75,16 @@ Requirements
   components are not or less tested. So if you got problems make sure
   you are not using older software components.
 
-  php4.36 and php5.0RC2 with compiled in support for InterBase and
-  pcre (but any version >= 4.02 should work)
+  php5.x with compiled in support for InterBase and
+  pcre (but any version >= 5.0 should work)
 
-  Firebird 1.5 SS for Linux and InterBase 7.1 for Linux
+  Firebird 2.1.x SS for Linux or Firebird 2.1.x Classic for Linux
         
-  Apache 1.3.28
+  Apache 2.x or lighttpd or nginx
 
-  Linux kernel 2.6.4, SuSE 9.1
+  Linux kernel 2.6.x - any distro 
 
-  Mozilla 1.5
+  firefox 2.x or konqueror or any webkit browser
 
 
 
