@@ -39,14 +39,6 @@ function get_preset_charsets($server_family=NULL, $server_version=NULL) {
                       'WIN1253', 
                       'WIN1254');
 
-    if ($server_family == 'IB'  &&  $server_version >= 70) {
-        $charsets = array_merge($charsets,
-                                array('ISO8859_2',
-                                      'ISO8859_15',
-                                      'KOI8R')
-                                );
-        asort($charset);
-    }
 
     if ($server_family == 'FB'  &&  $server_version >= 15) {
         $charsets = array_merge($charsets,
