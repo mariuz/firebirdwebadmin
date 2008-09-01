@@ -104,10 +104,7 @@ function get_datatypes($server_family=NULL, $server_version=NULL) {
                        261=> 'BLOB',
                        40 => 'CSTRING');
 
-    if ($server_family == 'IB'  &&  $server_version >= 70) {
-         $datatypes[17] = 'BOOLEAN';
-    }
-    elseif ($server_family == 'FB'  &&  $server_version >= 15) {
+    if ($server_family == 'FB'  &&  $server_version >= 15) {
          $datatypes[16] = 'BIGINT';
     }
 
@@ -126,10 +123,10 @@ $server_types = array('other',
                       'FB_1.0',
                       'FB_1.5',
                       'FB_2.0',
-                      'IB_6.0',
-                      'IB_6.5',
-                      'IB_7.0',
-                      'IB_7.1',
+                      'FB_2.5',
+                      'FB_3.0',
+                      'FB_3.5',
+                      'FB_4.0',
                       );
 
 
@@ -181,19 +178,7 @@ function get_reserved_words($server_family, $server_version) {
               'WEEKDAY', 'WHEN', 'WHENEVER', 'WHERE', 'WHILE', 'WITH', 'WORK', 'WRITE', 
               'YEAR', 'YEARDAY');
 
-    if ($server_family == 'IB') {
-        if ($server_version >= 65) {
-            $reserved_words = array_merge($reserved_words, array('PERCENT', 'ROWS', 'TIES'));
-        }
-        if ($server_version >= 70) {
-            $reserved_words = array_merge($reserved_words, array('BOOLEAN', 'TRUE', 'FALSE', 'UNKNOWN'));
-        }
-        if ($server_version >= 71) {
-            $reserved_words = array_merge($reserved_words, array('SAVEPOINT', 'RELEASE'));
-        }
-    }
-
-    elseif ($server_family == 'FB') {
+    if ($server_family == 'FB') {
         if ($server_version == 10) {
             $reserved_words = array_merge($reserved_words, array('BREAK', 'FIRST', 'IIF', 'SKIP', 'SUBSTRING'));
         }
