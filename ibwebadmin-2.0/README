@@ -8,7 +8,7 @@ http://sourceforge.net/forum/forum.php?thread_id=1965661&forum_id=79364
 but is faster to work on git 
 
 
-
+OLD README
 ibWebAdmin 0.98
 
   ibWebAdmin is a web frontend for the Firebird and InterBase
@@ -60,6 +60,7 @@ Documentation
 
   If you are struggling with getting the interbase support into your
   W/LAMP-setup, please read the Beginners guide to Firebird and PHP:
+
   http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_beginners_php
   
   Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.1
@@ -78,7 +79,7 @@ Requirements
   php5.x with compiled in support for InterBase and
   pcre (but any version >= 5.0 should work)
 
-  Firebird 2.1.x SS for Linux or Firebird 2.1.x Classic for Linux
+  Firebird 2.1.x SS or Firebird 2.1.x Classic for Linux
         
   Apache 2.x or lighttpd or nginx
 
