@@ -173,12 +173,7 @@ if (have_panel_permissions($s_login['user'], 'adm_dbstat', TRUE)) {
 // get server statistics via gds_lock_print / iblockpr
 //
 if (have_panel_permissions($s_login['user'], 'adm_server')) {
-
-    if (stristr(php_uname(), 'wind') !== FALSE) {
-        $exe = $s_login['server'] == 'FB_1.5' ? 'fb_lock_print' : 'iblockpr';
-    }
-    else {
-        $exe = $s_login['server'] == 'FB_1.5' ? 'fb_lock_print' : 'gds_lock_print';
+    $exe ='fb_lock_print';
     }
 
     // get the LOCK_HEADER BLOCK 
