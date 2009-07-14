@@ -1,0 +1,104 @@
+ibwebadmin (2.0-2ubuntu1) hardy; urgency=low
+
+  * imported into git also deleted some ib stuff 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Tue, 02 Sep 2008 02:21:26 +0300
+
+ibwebadmin (2.0-1ubuntu0) hardy; urgency=low
+
+  * first ibwebadmin 2.0 version bumped Standards-Version: 3.8.0 and removed
+    some useless Suggests
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Mon, 07 Apr 2008 16:13:18 +0300
+
+ibwebadmin (1.0.2-4ubuntu9) hardy; urgency=low
+
+  Maintainer change in control* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Thu, 28 Feb 2008 11:49:48 +0200
+
+ibwebadmin (1.0.2-4ubuntu8) hardy; urgency=low
+
+  modified the packages content* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Thu, 28 Feb 2008 10:59:16 +0200
+
+ibwebadmin (1.0.2-4ubuntu7) hardy; urgency=low
+
+  changed the maintainer field* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Thu, 28 Feb 2008 10:39:32 +0200
+
+ibwebadmin (1.0.2-4ubuntu6) hardy; urgency=low
+
+  i forgot that i'm not MOTU yet so i will add my-ppa to dput* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Wed, 27 Feb 2008 20:06:03 +0200
+
+ibwebadmin (1.0.2-4ubuntu5) hardy; urgency=low
+
+  fixed the lintian warning W: ibwebadmin source: ancient-standards-version 3.6.1 (current is 3.7.3)* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Wed, 27 Feb 2008 19:54:35 +0200
+
+ibwebadmin (1.0.2-4ubuntu4) hardy; urgency=low
+
+  fixed lintian warning 
+W: ibwebadmin source: ancient-standards-version 3.6.1 (current is 3.7.3) 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Wed, 27 Feb 2008 19:54:01 +0200
+
+ibwebadmin (1.0.2-4ubuntu3) hardy; urgency=low
+
+  changed the maintainer* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Wed, 27 Feb 2008 19:35:36 +0200
+
+ibwebadmin (1.0.2-4ubuntu2) hardy; urgency=low
+
+  updated the package* 
+
+ -- Popa Adrian Marius (Mariuz) <mapopa@gmail.com>  Wed, 27 Feb 2008 19:23:47 +0200
+
+ibwebadmin (0.98-4ubuntu1) gutsy; urgency=low
+
+  * Depends on PHP 5 packages (LP: 96384)
+  * Update maintainer field.
+
+ -- Luca Falavigna <dktrkranz@ubuntu.com>  Fri, 30 Mar 2007 23:46:29 +0200
+
+ibwebadmin (0.98-4) unstable; urgency=high
+
+  * QA upload.
+  * Rebuild with yada >= 0.40 in order to generate postrm with conditional
+    call to ucf (Closes: #413399)
+
+ -- Michael Ablassmeier <abi@debian.org>  Tue,  6 Mar 2007 13:02:00 +0100
+
+ibwebadmin (0.98-3) unstable; urgency=low
+
+  * QA Group upload orphaning this package
+
+ -- Andrew Pollock <apollock@debian.org>  Wed, 24 Aug 2005 09:15:21 +1000
+
+ibwebadmin (0.98-2) unstable; urgency=medium
+
+  * Suggest firebird2 packages instead of old firebird1 packages.
+    This should go into sarge as they no longer exist there.
+
+ -- Remco Seesink <raseesink@hotpop.com>  Thu,  9 Sep 2004 14:13:35 +0200
+
+ibwebadmin (0.98-1) unstable; urgency=low
+
+  * Initial upload. Closes: #248948
+  * The package is lintian-clean and used on a daily basis by three people.
+  * Resolved license incompatibilities:
+    - Added permission form JSRS author to use his software under BSD
+      license.
+    - Included e-mail with permission to change the license of
+      ibwebadmin concerning GPL linking exception. The exception is no longer
+      needed because of the license change of JSRS.
+  * Included a testpage to check your php installation.
+
+ -- Remco Seesink <raseesink@hotpop.com>  Sun,  1 Aug 2004 20:15:08 +0200
+

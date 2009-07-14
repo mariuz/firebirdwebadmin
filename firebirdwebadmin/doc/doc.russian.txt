@@ -1,0 +1,332 @@
+1 - Назначение и возможности ibWebAdmin
+2 - Системные требования
+3 - Инсталляция
+4 - Конфигурирование
+5 - Часто Задаваемые Вопросы
+6 - Благодарности, авторы и авторские права (напишет Lutz)
+
+1 - Назначение и возможности ibWebAdmin
+
+!!! Внимание !!! На настоящий момент ibWebAdmin находится в стадии разработки и может содержать серьёзные неполадки. Поэтому пока не рекомендуется пользоваться этой программой для работы с важными данными. Если вы хотите поработать с  ibWebAdmin, лучше создайте копию вашей базы и работайте с этой копией.
+
+	ibWebAdmin представляет собой вэб-интерфейс для управления серверами реляционных баз данных (СУБД) Interbase и Firebird. На настоящий момент с помощью ibWebAdmin можно выполнять следующие действия:
+
+	о создавать, удалять и изменять базы данных
+	о создавать, удалять, изменять таблицы, представления, генераторы, триггеры, домены, индексы, хранимые процедуры
+	о добавлять, удалять и управлять учётными записями пользователей и ролями баз данных
+	о выполнять SQL-запросы к базам данных и просматривать и сохранять в csv-файл полученные от этих запросов результаты
+	о экспортировать и импортировать данные в текстовые файлы в формате csv
+	о просматривать содержимое таблиц и представлений и отслеживать их изменения
+	о просматривая таблицы можно выделять одну или несколько строк и затем удалить или изменить выбранную строку
+	о добавлять, удалять и просматривать содержимое полей блобов
+	о просматривать системные таблицы баз данных
+	о генерировать и сохранять в текстовый файл метаданные баз данных 
+	о выполнять резервное сохранение и восстановление баз данных
+	о управлять базами данных и сервером Interbase/Firebird
+	о настраивать удобный внешний вид (цвета, содержание, язык) интерфейса ibWebAdmin
+
+Однако, часть функций (резервное сохранение и восстановление, управление БД) будет доступна только если сервер Interbase/Firebird и вэб-сервер установлены на одно и том же компьютере. Это является следствием того что эти функции требуют выполнения внешних команд (isql, gsec, gstat, gfix, gbak и др.).
+
+2 - Системные требования
+
+Для корректной работы ibWebAdmin необходимо следующее:
+	- вэб-сервер с поддержкой php, например Apache
+	- php версии 4.02 или выше со встроенной поддержкой Interbase и pcre
+	- сервер баз данных Firebird версии 1.0 или выше, Interbase версии 6.0 или выше; часть функций (резервное сохранение и восстановление, управление БД) будет доступна только если сервер Interbase/Firebird и вэб-сервер установлены на одно и том же компьютере
+	- в вашем браузере должна быть включена поддержка coockie и javascript
+
+	В частности, ibWebAdmin хорошо зарекомендовал себя в следующих системных конфигурациях:
+	 - Apache 1.3.28/php 4.33 с поддержкой Interbase и pcre, Firebird 1.5 RC6 SS для Linux и InterBase 7.1 для Linux, Apache 1.3.28, Linux kernel 2.4.20, SuSE 8.2, Mozilla 1.4
+	 - Apache 2.0.47 (win32)/php 4.3.2 с поддержкой Interbase и pcre, Firebird 1.0.0 для Windows, Windows 2000 SP1, Mozilla Firebird 0.7 и Internet Explorer 5.0
+
+3 - Инсталляция
+
+Чтобы установить ibWebAdmin распакуйте архив ibWebAdmin_x.xx.tar.gz и поместите его содержимое в папку с вэб-страничками вашего вэб-сервера, например /wwwroot/ibWebAdmin. Затем отредактируйте файл .../ibWebAdmin/inc/configuration.inc.php и установите в нём все необходимые вам настройки. Теперь откройте в вашем браузере страничку ibWebAdmin, например http://yourhostname/ibWebAdmin/, и пользуйтесь на здоровье.
+
+4 - Конфигурирование
+
+Все параметры конфигурации находятся в файле 'inc/configuration.inc.php'. Отредактируйте его и установите необходимые вам значения параметров. Ниже приведены описания всех параметров.
+
+* параметры отмеченные звёздочкой критичны. Для корректной работы ibWebAdmin необходимо правильно установить их значения.
+
+!!! Внимание !!! Указывая путь, используйте ТОЛЬКО прямую косую черту (slash), даже для Windows, например: define('BINPATH', 'C:/Program Files/Firebird/bin/'), обратную косую черту использовать не рекомендуется. В самом крайнем случае, если вы всё-таки её использовали, вы должны удвоить крайнюю справа обратную косую черту, например: define('BINPATH', 'C:\Program Files\Firebird\bin\\'), иначе ничего работать не будет.
+
+Следующая группа параметров отвечает за взаимодействие ibWebAdmin с сервером Interbase/Firebird.
+
+* 'BINPATH' string 
+Путь к исполняемым файлам Interbase/Firebird isql, gbak, gfix и пр.
+					пример для Windows: define('BINPATH', 'C:/Program Files/Firebird/bin/'); 
+					пример для Linux: define('BINPATH', '/usr/local/firebird/bin/'); 
+
+* 'SECURITY_DB' string 
+База данных безопасности Interbase/Firebird сервера, имя хост-машины здесь указывать не нужно. В зависимости от версии сервера по умолчанию используются 'isc4.gdb', 'admin.ib' или 'security.fdb'. 
+					пример для Windows: define('SECURITY_DB', 'C:/Program Files/Firebird/isc4.gdb'); 
+
+* 'TMPPATH' string 
+Папка для промежуточных (временных) файлов ibWebAdmin, она должна быть доступна на запись для вэб-сервера. Здесь нужно указать абсолютный путь.
+					пример для Windows: define('TMPPATH', 'C:/Program Files/Apache Group/Apache2/tmp/');                        
+
+
+'DEFAULT_USER' string 
+Имя пользователя по умолчанию.
+					пример: define('DEFAULT_USER',    'SYSDBA');
+
+'DEFAULT_DB' string 
+Файл базы данных по умолчанию; только имя файла без указания пути.
+					пример: define('DEFAULT_DB',      'radavita_db.fdb');
+
+'DEFAULT_PATH' string 
+Путь к файлу базы данных по умолчанию.
+					пример: define('DEFAULT_PATH',    'D:/Andrej/mywork/radavita_db/');
+
+'DEFAULT_HOST' string 
+Имя хост-машины по умолчанию.
+					пример: define('DEFAULT_HOST',    'localhost');
+
+'DEFAULT_ROLE' string 
+Роль по умолчанию.
+					пример: define('DEFAULT_ROLE', 'inspector');  
+
+'DEFAULT_CACHE' integer 
+Значение кэша по умолчанию.
+					пример: define('DEFAULT_CACHE',   75);
+
+'DEFAULT_CHARSET' string 
+Кодировка по умолчанию.
+					пример: define('DEFAULT_CHARSET', 'WIN1251');
+
+'DEFAULT_DIALECT' integer 
+Версия SQL-диалекта по умолчанию.
+					пример: define('DEFAULT_DIALECT', 3);
+
+'DEFAULT_SERVER' string 
+Версия Interbase/Firebird сервера по умолчанию. Допустимые значения: 'FB_1.0', 'FB_1.5', IB_6.0','IB_6.5', 'IB_7.0', 'IB_7.1' и 'other'.
+					пример: define('DEFAULT_SERVER',  'FB_1.0');
+
+'CONFIRM_DELETE' boolean 
+Этот параметр определяет запрашивать или нет подтверждение пользователя при удалении таблицы, строки или столбца.
+					пример: define('CONFIRM_DELETE', TRUE);
+
+$ALLOWED_DIRS array of string 
+Если этот параметр не пустой для ibWebAdmin будут доступны только перечисленные здесь папки, которые должны быть доступны для вэб-сервера по меньшей мере на чтение.  
+					пример для Linux: $ALLOWED_DIRS = array('/var/lib/interbase/',
+																									'/var/lib/firebird/',
+																									'/usr/local/firebird/examples/',
+																									'/tmp/');
+					пример: $ALLOWED_DIRS = array(); пустой массив, доступны любые папки
+
+$ALLOWED_FILES array of string 
+Если этот параметр не пустой для ibWebAdmin будут доступны только перечисленные в нём фалы баз данных. Если этот параметр установлен, то параметр $ALLOWED_DIRS игнорируется.
+					пример для Linux: $ALLOWED_FILES=array('/var/lib/firebird/ibwizard.gdb',
+																									'/var/lib/interbase/test.gdb');
+					пример: $ALLOWED_FILES=array(); пустой массив, нет ограничений на доступ к файлам
+
+$DATABASE_SUFFIXES array of string 
+Список расширений файлов баз данных Interbase/Firebird. ibWebAdmin будет работать с файлом базы данных только если он имеет одно из перечисленных расширений.
+					пример: $DATABASE_SUFFIXES = array('gdb', 'fdb', 'ib');
+
+'BACKUP_DIR' string 
+Этот параметр определяет папку, в которую ibWebAdmin будет размещать файлы резервного сохранения.
+					пример для Windows: define('BACKUP_DIR', 'C:/Program Files/Firebird/backup/');
+
+$SQL_DISABLE array of string 
+Перечислите в этом массиве операторы или комбинации операторов SQL запрещенные для выполнения в ibWebAdmin посредством панели SQL::Выполнение команды или скрипта SQL. 
+					пример: $SQL_DISABLE = array('CREATE DATABASE', 'CREATE SCHEMA','DROP'); В этом примере запрещено сознание баз данных и схем; добавлять сюда [ALTER|DROP] DATABASE не нужно, потому что эти команды в любом случае не будут работать через  панель SQL::Выполнение команды или скрипта SQL. Здесь также запрещено выполнение команд DROP.
+
+'SYSDBA_GET_ALL' boolean 
+Если этот параметр установлен TRUE, то параметры $HIDE_PANELS и $SQL_DISABLE не имеют силы для пользователя SYSDBA.
+					пример: define('SYSDBA_GET_ALL', TRUE);
+
+'WATCHTABLE_METHOD' hex 
+Большие наборы данных на страничке Данные::Просмотр таблицы показываются по частям. Для выделения необходимого кусочка данных ibWebAdmin может использовать четыре следующих метода:
+					- define('WT_SKIP_ROWS',        0x01); перематывать нужное количество записей средствами php, этот метод работает вне зависимости от сервера СУБД, но он самый медленный;
+					- define('WT_STORED_PROCEDURE', 0x02); использовать хранимую процедуру, работает быстрее чем 'WT_SKIP_ROWS', но в случае одновременного доступа двух или более пользователей будет работать некорректно;
+					- define('WT_FIREBIRD_SKIP',    0x04); использует команду Firebird 'SELECT FIRST x SKIP x', работает наиболее быстро, но доступен только для серверов Firebird;
+					- define('WT_IB65_ROWS',        0x08); использует команду Interbase 6.5 'ROWS x TO y', наиболее быстрый метод для серверов Interbase 6.5;
+					- define('WT_BEST_GUESS',       0x10); этот вариант позволяет ibWebAdmin самому выбрать наилучший из перечисленных выше методов.
+					пример: define('WATCHTABLE_METHOD', WT_BEST_GUESS);
+
+'IBWA_PREFIX' string 
+Этот параметр определяет префикс для создаваемых ibWebAdmin хранимых процедур.
+					пример: define('IBWA_PREFIX', 'IBWA_');
+
+'SP_LIMIT_NAME' string 
+Определяет имя для хранимой процедуры создаваемой ibWebAdmin для странички Данные::Просмотр таблицы.
+					пример: define('SP_LIMIT_NAME', IBWA_PREFIX.'LIMIT');
+
+'PERSISTANT_CONNECTIONS' boolean 
+Если установлено FALSE то используется обычное соединение с Interbase/Firebird сервером ibase_connect(), если TRUE непрерывное соединение ibase_pconnect(). Непрерывное соединение работает заметно быстрее, однако не может корректно выполнять некоторые действия, такие как 'ALTER TABLE ADD CONSTRAINT ...' и управление базой данных.
+					пример: define('PERSISTANT_CONNECTIONS', FALSE);
+
+Параметры отвечающие за вид интерфейса ibWebAdmin.
+
+'LANGUAGE' string 
+Определяет язык интерфейса ibWebAdmin. Доступные на текущий момент варианты: 'english', 'brazilian_portuguese', 'dutch', 'japanese', 'german' и 'russian-win1251'.
+					пример: define('LANGUAGE', 'russian-win1251');
+
+$HIDE_PANELS array of string 
+Перечислите в этом массиве названия панелей-подразделов интерфейса ibWebAdmin, которые вы хотите скрыть. 
+					пример: $HIDE_PANELS = array('db_systable', 'tb_show'); скрыты панели Базы Данных::Системные таблицы и Таблицы::Просмотр таблиц>
+					пример: $HIDE_PANELS = array(); пустой массив, будут видны все панели
+
+'TABMENU_STYLE', 'HTML' string 
+Этот параметр определяет способ создания меню вкладок. Это меню может быть html-таблицей с css-форматированием - значение параметра 'HTML'; может быть изображением с разметкой - 'IMAGE', в этом случае изображения берутся в папке 'data/menu_[LANGUAGE]' в зависимости от выбранного языка; эти изображения могут быть сгенерированы "на лету" - значение 'BUILD', в этом случае ваша установка php должна содержать библиотеку gd с поддержкой ttf и png.
+					пример: define('TABMENU_STYLE', 'HTML');
+
+'MENU_WIDTH' integer 
+Ширина генерируемых для меню вкладок изображений в пикселях. Не рекомендуется устанавливать значение меньшее 600.
+					пример: define('MENU_WIDTH', 900);	
+
+* 'DATAPATH' string 
+Путь к папке, в которой размещены изображения для меню вкладок, иконки, ttf-шрифты и другие вспомогательные данные ibWebAdmin.
+					define('DATAPATH','./data/');
+
+* 'TTF_FONT' string 
+Полное (с путем) имя файла ttf-шрифта используемого для генерации изображений меню вкладок. Необходимо только в случае define('TABMENU_STYLE', 'BUILD');
+					пример: define('TTF_FONT', DATAPATH.'Summersby.ttf');
+
+* 'TTF_SIZE' integer 
+Размер шрифта при генерации изображения для меню вкладок. Не рекомендуется устанавливать значение меньшее 8.
+					пример: define('TTF_SIZE', 14);
+
+'ICON_SIZE' string 
+Определяет размер иконок и элементов навигации. Допустимые значения 'big' или 'small'.
+					пример: define('ICON_SIZE', 'small');
+
+'COLOR_BACKGROUND' string 
+Определяет цвет фона страничек ibWebAdmin.
+					пример: define('COLOR_BACKGROUND',   '#F6F7C0');
+
+'COLOR_PANEL' string 
+Цвет панели главного меню и панелей разделов.
+					пример: define('COLOR_PANEL',        '#CAEA62');
+
+'COLOR_AREA' string 
+Цвет 
+					пример: define('COLOR_AREA',         '#FEFFE0');
+
+'COLOR_HEADLINE' string 
+Цвет
+					пример: define('COLOR_HEADLINE',     '#F0E68C');
+
+'COLOR_MENUBORDER' string 
+Цвет
+					пример: define('COLOR_MENUBORDER',   '#008000');
+
+'COLOR_LINK' string 
+Цвет
+					пример: define('COLOR_LINK',         '#0000CD');
+
+'COLOR_LINKHOVER' string 
+Цвет
+					пример: define('COLOR_LINKHOVER',    '#1E90FF');
+
+'COLOR_SELECTEDROW' string 
+Цвет
+					пример: define('COLOR_SELECTEDROW',  '#008000');
+
+ 'COLOR_SELECTEDINPUT' string 
+ Цвет
+					пример: define('COLOR_SELECTEDINPUT','#F2F2F2');
+
+ 'COLOR_FIRSTROW' string 
+ Цвет
+					пример: define('COLOR_FIRSTROW',     '#DFDFDF');
+
+'COLOR_SECONDROW' string 
+Цвет
+					пример: define('COLOR_SECONDROW',    '#EFEFEF');
+
+'BG_TRANSPARENT' boolean 
+Если установлено TRUE, то ibWebAdmin использует png-изображения прозрачным фоном. Это полезно если вы экспериментируете со цветами интерфейса ibWebAdmin, однако в Netscape 4 работать это не будет.
+					пример: define('BG_TRANSPARENT', TRUE);
+
+'SQL_AREA_COLS' integer 
+Определяет ширину в символах окна ввода текста на страничке SQL и панелях Триггеры, Хранимые процедуры и Представления.
+					пример: define('SQL_AREA_COLS', 80);
+
+'SQL_AREA_ROWS' integer 
+Определяет высоту в строках окна ввода текста на страничке SQL и панелях Триггеры, Хранимые процедуры и Представления.
+					пример: define('SQL_AREA_ROWS', 6);
+
+'SQL_MAXSAVE' integer 
+Максимальное сохраняемое количество строк в SQL-запросе на страничке SQL. Содержимое окошка ввода SQL-запроса сохраняется полностью если значение этого параметра 0. Если количество строк больше установленного в этом параметре - ничего не сохраняется.
+					пример: define('SQL_MAXSAVE', 100);
+
+'SQL_HISTORY_SIZE' integer 
+Число записей в буфере SQL-запросов на страничке SQL::Выполнение команды или скрипта SQL.
+					пример: define('SQL_HISTORY_SIZE', 25);
+
+'SHOW_OUTPUT_ROWS' integer 
+Определяет максимальное количество строк показываемых в разделе SQL::Просмотр вывода SQL, разумеется, если только не была нажата кнопка 'Показать все'.
+					пример: define('SHOW_OUTPUT_ROWS', 100);
+
+'DATA_MAXWIDTH' integer 
+Определяет максимальную длину полей в разделе Данные::Ввести данные.
+					пример: define('DATA_MAXWIDTH', 80);
+
+'MAX_CSV_LINE' integer 
+Максимальная длина строки считываемой из импортируемого csv-файла.
+					пример: define('MAX_CSV_LINE', 50000);
+
+'DEFAULT_ROWS' integer 
+Число строк показываемых в разделе Данные::Просмотр таблицы по умолчанию.
+					пример: define('DEFAULT_ROWS', 25);
+
+'BLOB_WINDOW_WIDTH' и 'BLOB_WINDOW_HEIGHT' integer 
+Ширина и высота, соответственно, окон для визуализации блобов, установленные по умолчанию.
+					пример: define('BLOB_WINDOW_WIDTH', 600);
+								define('BLOB_WINDOW_HEIGHT', 800	);
+
+Следующие несколько параметров определяют технические особенности генерации вэб-страниц.
+
+'PROTOCOL' string 
+Использовать обычное соединение или безопасное ssl-соединение, соответственно значение  'http' или 'https'. Чтобы работало 'https' ваш вэб-сервер должен поддерживать ssl-соединения.
+					пример: define('PROTOCOL', 'http');
+
+''USE_DHTML' boolean 
+					пример: define('USE_DHTML', TRUE);         // set FALSE if you have troubles with the dhtml in the datatype definition form
+                                   // or if you want to turn off the JavaScript remote scripting features
+
+'CACHE_STYLESHEET' boolean 
+Управляет кэшем css, если установлено FALSE стилевые страницы перезагружаются каждый раз при загрузке страницы.
+					пример: define('CACHE_STYLESHEET', TRUE);
+
+'TRANS_SID" boolean 
+Установите этот параметр TRUE если ваш php был скомпилирован с опцией '--enable-trans-sid'.
+					пример: define('TRANS_SID', FALSE);
+
+'SESSION_NAME' string 
+Имя сессии, используется для coockie.
+					пример: define('SESSION_NAME', 'ibwa');
+
+'META_REDIRECT' boolean 
+Определяет использовать перенаправление на стороне сервера (FALSE) или клиента (TRUE).
+					пример: define('META_REDIRECT', FALSE);
+
+Следующая группа параметров относиться к отладке кода ibWebAdmin. Изменять их вам может понадобиться если вы собираетесь внести вклад в разработку ibWebAdmin.
+
+'VERSION' string 
+Номер версии вашей копии ibWebAdmin. Этот параметр редактировать не стоит.
+
+'DEBUG' boolean 
+Если установлено TRUE выводит на панель Состояние отладочные сообщения.
+					пример: define('DEBUG', FALSE);
+
+'DEBUG_HTML' boolean 
+Если установлено TRUE записывает содержимое буфера вывода в файл TMPPATH/{название скрипта}.html прежде чем отправить его клиенту.
+					пример: define('DEBUG_HTML', FALSE);
+
+'DEBUG_COMMANDS' boolean 
+Если установлено TRUE показывает строку вызова внешних команд на панели Состояние.
+					пример: define('DEBUG_COMMANDS', FALSE);
+
+'DEBUG_FILES' boolean 
+Если установлено TRUE то промежуточные файлы создаваемые в папке TMPATH для выполнения посредством isql не удаляются после завершения работы с ними.
+					пример: define('DEBUG_FILES', FALSE);
+
+5 - Часто Задаваемые Вопросы
+
+6 - Благодарности, авторы и авторские права (напишет Lutz)
+
+7 - Как помочь разработчикам IbWebAdmin (напишет Lutz)
