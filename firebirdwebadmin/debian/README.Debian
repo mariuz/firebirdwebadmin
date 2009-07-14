@@ -1,4 +1,4 @@
-ibwebadmin for Debian
+FirebirdWebAdmin for Debian
 ---------------------
 INSTALLATION
   Make sure you configure php for apache. /usr/share/doc/php5 has hints on that.
@@ -11,7 +11,7 @@ INSTALLATION
 CONFIGURATION
   Have a look at /etc/ibwebadmin/configuration.inc.php
 
-  This package has been tuned for firebird 1.5.x. For older firebird versions you
+  This package has been tuned for firebird 2.1.x. For older firebird versions you
   need to change the configuration file.
 
 ISSUES
@@ -34,7 +34,7 @@ LEGAL
   
 USAGE
 
-  The application will be available at http://localhost/ibwebadmin/
+  The application will be available at http://localhost/firebirdwebadmin/
   after install.
 
  -- Remco Seesink <raseesink@hotpop.com>  Thu,  9 Sep 2004 14:13:35 +0200
