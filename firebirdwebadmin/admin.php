@@ -174,7 +174,6 @@ if (have_panel_permissions($s_login['user'], 'adm_dbstat', TRUE)) {
 //
 if (have_panel_permissions($s_login['user'], 'adm_server')) {
     $exe ='fb_lock_print';
-    }
 
     // get the LOCK_HEADER BLOCK 
     list($iblockpr_output, $binary_error) = exec_command($exe, ' -o');
