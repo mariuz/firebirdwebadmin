@@ -3,7 +3,7 @@ FirebirdWebAdmin for Debian
 INSTALLATION
   Make sure you configure php for apache. /usr/share/doc/php5 has hints on that.
   
-  Try http://localhost/ibwebadmin/test.php
+  Try http://localhost/firebirdwebadmin/test.php
   
   You should reach a web page with information about the php installation, if this
   doens't work ibwebadmin will not work.
