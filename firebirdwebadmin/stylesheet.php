@@ -12,10 +12,6 @@
 require('./inc/configuration.inc.php');
 require('./inc/functions.inc.php');
 
-// make sure output-compression is turned off,
-// oldish browsers like ns4.7 have problems with compressed stylesheet files
-ini_set('zlib.output_compression', 'Off');
-
 session_start();
 
 // don't send the stylesheet if 
