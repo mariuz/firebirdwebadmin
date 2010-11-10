@@ -6,10 +6,10 @@ INSTALLATION
   Try http://localhost/firebirdwebadmin/test.php
   
   You should reach a web page with information about the php installation, if this
-  doens't work ibwebadmin will not work.
+  doens't work firebirdwebadmin will not work.
 
 CONFIGURATION
-  Have a look at /etc/ibwebadmin/configuration.inc.php
+  Have a look at /etc/firebirdwebadmin/configuration.inc.php
 
   This package has been tuned for firebird 2.1.x. For older firebird versions you
   need to change the configuration file.
