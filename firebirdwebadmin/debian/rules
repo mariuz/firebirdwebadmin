@@ -115,23 +115,23 @@ debian/build-indep-stamp: debian/build-arch-stamp
 .PHONY: install-tree
 install-tree: install-tree-any
 install-tree-any: \
-	debian/tmp-ibwebadmin/DEBIAN/control
+	debian/tmp-firebirdwebadmin/DEBIAN/control
 
-debian/tmp-ibwebadmin/DEBIAN/control: debian/build-indep-stamp debian/control
-	rm -rf debian/tmp-ibwebadmin
-	umask 022 && install -d debian/tmp-ibwebadmin/DEBIAN
-	install -d debian/tmp-ibwebadmin/usr/share/doc/ibwebadmin
-	umask 022; yada generate copyright ibwebadmin \
-	  > debian/tmp-ibwebadmin/usr/share/doc/ibwebadmin/copyright
+debian/tmp-firebirdwebadmin/DEBIAN/control: debian/build-indep-stamp debian/control
+	rm -rf debian/tmp-firebirdwebadmin
+	umask 022 && install -d debian/tmp-firebirdwebadmin/DEBIAN
+	install -d debian/tmp-firebirdwebadmin/usr/share/doc/firebirdwebadmin
+	umask 022; yada generate copyright firebirdwebadmin \
+	  > debian/tmp-firebirdwebadmin/usr/share/doc/firebirdwebadmin/copyright
 	install -m 644 -p debian/changelog \
-	  debian/tmp-ibwebadmin/usr/share/doc/ibwebadmin/changelog.Debian
+	  debian/tmp-firebirdwebadmin/usr/share/doc/firebirdwebadmin/changelog.Debian
 	@umask 022 \
 	  && export pwd="$$(pwd)" \
-	  && export ROOT="$$(pwd)/debian/tmp-ibwebadmin" \
+	  && export ROOT="$$(pwd)/debian/tmp-firebirdwebadmin" \
 	  && export TMPROOT="$$(pwd)/debian/tmp" \
-	  && export CONTROL="$$(pwd)/debian/tmp-ibwebadmin/DEBIAN" \
-	  && export PACKAGE="ibwebadmin" \
-	  && export SOURCE="ibwebadmin" \
+	  && export CONTROL="$$(pwd)/debian/tmp-firebirdwebadmin/DEBIAN" \
+	  && export PACKAGE="firebirdwebadmin" \
+	  && export SOURCE="firebirdwebadmin" \
 	  && export VERSION="$(VERSION)" \
 	  && export DEB_HOST_GNU_CPU="$(DEB_HOST_GNU_CPU)" \
 	  && export DEB_HOST_GNU_TYPE="$(DEB_HOST_GNU_TYPE)" \
@@ -140,40 +140,40 @@ debian/tmp-ibwebadmin/DEBIAN/control: debian/build-indep-stamp debian/control
 	  && export DEB_BUILD_GNU_TYPE="$(DEB_BUILD_GNU_TYPE)" \
 	  && export DEB_BUILD_GNU_SYSTEM="$(DEB_BUILD_GNU_SYSTEM)" && (\
 	echo -E 'eval "yada () { perl $$(which yada) \"\$$@\"; }"; set -e; set -v';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin *.php index.html';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin/data data/*';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin/inc inc/*';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin/js js/*';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin/lang lang/*';\
-	echo -E 'yada copy -data -into /usr/share/ibwebadmin/panels panels/*';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin *.php index.html';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin/data data/*';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin/inc inc/*';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin/js js/*';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin/lang lang/*';\
+	echo -E 'yada copy -data -into /usr/share/firebirdwebadmin/panels panels/*';\
 	echo -E 'yada install -doc NEWS README';\
-	echo -E 'yada install -conf -ucf -subdir ibwebadmin inc/configuration.inc.php';\
-	echo -E 'yada remove -data -into /usr/share/ibwebadmin/inc inc/configuration.inc.php';\
-	echo -E 'yada symlink -into /usr/share/ibwebadmin/inc /etc/ibwebadmin/configuration.inc.php';\
-	echo -E 'yada symlink -into /var/www /usr/share/ibwebadmin';\
+	echo -E 'yada install -conf -ucf -subdir firebirdwebadmin inc/configuration.inc.php';\
+	echo -E 'yada remove -data -into /usr/share/firebirdwebadmin/inc inc/configuration.inc.php';\
+	echo -E 'yada symlink -into /usr/share/firebirdwebadmin/inc /etc/firebirdwebadmin/configuration.inc.php';\
+	echo -E 'yada symlink -into /var/www /usr/share/firebirdwebadmin';\
 	echo -E 'yada install -doc debian/README.Debian debian/linking_exception_permission.txt debian/jsrs_license_permission.txt') | /bin/sh
 	@umask 022 \
 	  && export pwd="$$(pwd)" \
-	  && export ROOT="$$(pwd)/debian/tmp-ibwebadmin" \
+	  && export ROOT="$$(pwd)/debian/tmp-firebirdwebadmin" \
 	  && export TMPROOT="$$(pwd)/debian/tmp" \
-	  && export CONTROL="$$(pwd)/debian/tmp-ibwebadmin/DEBIAN" \
-	  && export PACKAGE="ibwebadmin" \
-	  && export SOURCE="ibwebadmin" \
+	  && export CONTROL="$$(pwd)/debian/tmp-firebirdwebadmin/DEBIAN" \
+	  && export PACKAGE="firebirdwebadmin" \
+	  && export SOURCE="firebirdwebadmin" \
 	  && export VERSION="$(VERSION)" && (\
 	echo -E 'eval "yada () { perl $$(which yada) \"\$$@\"; }"; set -e; set -v';\
 	echo -E 'yada perl';\
 	echo -E 'yada python';\
 	echo -E 'yada strip';\
 	echo -E 'yada shlibdeps') | /bin/sh
-	yada compress ibwebadmin
-	yada generate maintscripts ibwebadmin
-	find debian/tmp-ibwebadmin -type f -print \
-	  | sed -n 's/^debian\/tmp-ibwebadmin\(\/etc\/.*\)$$/\1/p' \
-	  > debian/tmp-ibwebadmin/DEBIAN/conffiles
-	test -s debian/tmp-ibwebadmin/DEBIAN/conffiles || rm -f debian/tmp-ibwebadmin/DEBIAN/conffiles
+	yada compress firebirdwebadmin
+	yada generate maintscripts firebirdwebadmin
+	find debian/tmp-firebirdwebadmin -type f -print \
+	  | sed -n 's/^debian\/tmp-firebirdwebadmin\(\/etc\/.*\)$$/\1/p' \
+	  > debian/tmp-firebirdwebadmin/DEBIAN/conffiles
+	test -s debian/tmp-firebirdwebadmin/DEBIAN/conffiles || rm -f debian/tmp-firebirdwebadmin/DEBIAN/conffiles
 	yada rebuild control
-	yada generate substvars ibwebadmin
-	umask 022 && dpkg-gencontrol -isp -pibwebadmin -Pdebian/tmp-ibwebadmin
+	yada generate substvars firebirdwebadmin
+	umask 022 && dpkg-gencontrol -isp -pfirebirdwebadmin -Pdebian/tmp-firebirdwebadmin
 
 # Build package files
 
@@ -184,17 +184,17 @@ binary-arch: binary-arch-any
 .PHONY: binary-arch-any
 binary-arch-any:
 binary-indep: \
-	binary-package-ibwebadmin
+	binary-package-firebirdwebadmin
 
-.PHONY: binary-package-ibwebadmin
-binary-package-ibwebadmin: check-root debian/tmp-ibwebadmin/DEBIAN/control
+.PHONY: binary-package-firebirdwebadmin
+binary-package-firebirdwebadmin: check-root debian/tmp-firebirdwebadmin/DEBIAN/control
 	@[ -f $(shell which yada) -a -f debian/rules ]
-	chown -R 0.0 debian/tmp-ibwebadmin
-	chmod -R u=rwX,go=rX debian/tmp-ibwebadmin
-	@if [ -d debian/tmp-ibwebadmin/usr/doc/ibwebadmin ]; then \
-	  echo "*** Yada warning: /usr/doc/ibwebadmin should be /usr/share/doc/ibwebadmin";\
+	chown -R 0.0 debian/tmp-firebirdwebadmin
+	chmod -R u=rwX,go=rX debian/tmp-firebirdwebadmin
+	@if [ -d debian/tmp-firebirdwebadmin/usr/doc/firebirdwebadmin ]; then \
+	  echo "*** Yada warning: /usr/doc/firebirdwebadmin should be /usr/share/doc/firebirdwebadmin";\
 	fi
-	dpkg-deb --build debian/tmp-ibwebadmin ..
+	dpkg-deb --build debian/tmp-firebirdwebadmin ..
 
 .PHONY: check-root
 check-root:
