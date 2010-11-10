@@ -41,21 +41,21 @@ define('PROTOCOL', 'http');                        // change to 'https' to use s
 // the webserver process must have read access to this directories (pathnames _with_ trailing slashes)
 //
 $ALLOWED_DIRS = array('/var/lib/firebird/2.1/data/',
-                      '/var/lib/interbase/',
+                      '/var/lib/firebird/2.5/data/',
                       '/tmp/');
 // $ALLOWED_DIRS = array();
 
 // if $ALLOWED_FILES is not empty, only the listed databases are allowed to open;
 // if this is set the $ALLOWED_DIRS are ignored
 //
-// $ALLOWED_FILES=array('/var/lib/firebird/employee.fdb',
-//                      '/var/lib/interbase/test.gdb',
+// $ALLOWED_FILES=array('/var/lib/firebird/2.1/data/employee.fdb',
+//                      '/var/lib/firebird/2.1/data/test.gdb',
 //                      'employee.fdb'
 //                      );
 $ALLOWED_FILES=array();
 
 
-$DATABASE_SUFFIXES = array('gdb', 'fdb', 'ib');    // login into databases, creating and dropping of databases
+$DATABASE_SUFFIXES = array('gdb', 'fdb');    // login into databases, creating and dropping of databases
                                                    // is restricted to database files with this file extensions
 
 
