@@ -1,16 +1,4 @@
-phpfirebirdadmin 2.0 is based on ibWebAdmin 2.0 code 
-in fact i started with an  cvs import 
-http://www.firebirdnews.org/?p=1599
-then i modified to make work on ubuntu 
-http://sourceforge.net/forum/forum.php?thread_id=2031365&forum_id=79364
-and then i requested for commit access 
-http://sourceforge.net/forum/forum.php?thread_id=1965661&forum_id=79364
-but is faster to work on git 
-
-
-
-  FirebirdWebAdmin is a web frontend for the Firebird and InterBase
-  database servers.
+  FirebirdWebAdmin is a web frontend for the Firebird database server.
 
 
   By now it has the functionalities for
@@ -41,7 +29,7 @@ but is faster to work on git
   perform certain actions.
 
 
-  ibWebAdmin is under development and may contain serious bugs. 
+  FirebirdWebAdmin is under development and may contain serious bugs. 
   So make sure you never use it on any important datas. Use a copy of
   your database if you are working with this program.
 
@@ -50,8 +38,8 @@ but is faster to work on git
 Documentation
 
   There is no documentation available yet, but if you are familiar
-  with Firebird or InterBase you will have no troubles using
-  ibWebAdmin.
+  with Firebird  you will have no troubles using
+  FirebirdWebAdmin.
 
   For some basic configuration settings have a look to the file
   ./inc/configuration.inc.php befor you start the programm.
@@ -83,7 +71,7 @@ Requirements
 
   Linux kernel 2.6.x - any distro 
 
-  firefox 2.x or konqueror or any webkit browser
+  firefox 3.x or any webkit browser (chrome)
 
 
 
@@ -93,7 +81,7 @@ Copyright notice:
                               Kapellenstr. 1A
                               22117 Hamburg, Germany
 
-  ibWebAdmin is published under the terms of the GNU GPL v.2,
+  FirebirdWebAdmin is published under the terms of the GNU GPL v.2,
   please read the file LICENCE for details.
 
   This software is provided 'as-is', without any expressed or implied
