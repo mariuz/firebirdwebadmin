@@ -2,3 +2,10 @@
 http://www.trirand.com/jqgrid/jqgrid.html
 
 port it to jquery 
+
+
+2. implement some html5 ideas css1->3 cleanup , webworkers ...
+http://www.html5rocks.com
+
+3. monitoring canvas with stats (similar with task manager in gnome)
+
