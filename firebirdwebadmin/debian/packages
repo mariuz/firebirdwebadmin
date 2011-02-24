@@ -9,7 +9,7 @@ Standards-Version: 3.8.0
 #Bugs: <debbugs://bugs.debian.org>
 Build-Depends-Indep: debhelper (>= 4.0.0)
 # TODO: Find out how to get this url work with any version.
-Upstream-Source: <URL:http://prdownloads.sourceforge.net/firebirdwebadmin/firebirdwebadmin_1.0.2.tar.gz>
+Upstream-Source: <URL:https://github.com/mariuz/FirebirdWebAdmin>
 Copyright:.
  Copyright (C) 2001,2002,2003,2004 Lutz Brueckner <irie@gmx.de>
                                   Kapellenstr. 1A
@@ -58,7 +58,7 @@ Copyright:.
 Description: Web front end for the Firebird database
 #Build-Indep: sh
 #Clean: sh
-Home-Page: <URL:http://firebirdwebadmin.sourceforge.net/>
+Home-Page: <URL:https://github.com/mariuz/FirebirdWebAdmin>
 Upstream-Authors:
  (C) 2000,2001,2002,2003,2004 Lutz Brueckner <irie@gmx.de>
                               Kapellenstr. 1A
