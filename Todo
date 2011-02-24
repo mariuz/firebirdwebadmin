@@ -3,9 +3,11 @@ http://www.trirand.com/jqgrid/jqgrid.html
 
 port it to jquery 
 
-
 2. implement some html5 ideas css1->3 cleanup , webworkers ...
 http://www.html5rocks.com
 
 3. monitoring canvas with stats (similar with task manager in gnome)
+4. implement draw2d ER diagrams 
+http://www.draw2d.org/draw2d/
 
+5.use glue php http://gluephp.com/
