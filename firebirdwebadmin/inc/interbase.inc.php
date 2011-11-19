@@ -179,9 +179,6 @@ function get_reserved_words($server_family, $server_version) {
               'YEAR', 'YEARDAY');
 
     if ($server_family == 'FB') {
-        if ($server_version == 10) {
-            $reserved_words = array_merge($reserved_words, array('BREAK', 'FIRST', 'IIF', 'SKIP', 'SUBSTRING'));
-        }
         if ($server_version >= 15) {
             $reserved_words = array_merge($reserved_words, array('BIGINT', 'CASE', 'CURRENT_CONNECTION', 'CURRENT_ROLE', 'CURRENT_USER', 'CURRENT_TRANSACTION',
                                                                  'RECREATE', 'ROW_COUNT', 'RELEASE', 'SAVEPOINT', 'ABS', 'BOOLEAN', 'BOTH', 'CHAR_LENGTH',
@@ -202,9 +199,6 @@ function get_context_variables($server_family, $server_version) {
     $context_variables = array('USER', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP');
 
     if ($server_family == 'FB') {
-        if ($server_version == 10) {
-            $context_variables = array_merge($context_variables, array('CURRENT_USER', 'CURRENT_ROLE'));
-        }
         if ($server_version >= 15) {
             $context_variables = array_merge($context_variables, array('CURRENT_CONNECTION', 'CURRENT_TRANSACTION'));
         }
@@ -253,17 +247,6 @@ function get_system_tables($server_family, $server_version) {
               'RDB$USER_PRIVILEGES',
               'RDB$VIEW_RELATIONS');
 
-    if ($server_family == 'IB'  &&  $server_version >= 70) {
-         $system_tables = array_merge($system_tables,
-                                      array('TMP$ATTACHMENTS',
-                                            'TMP$DATABASE',
-                                            'TMP$POOLS',
-                                            'TMP$POOL_BLOCKS',
-                                            'TMP$PROCEDURES',
-                                            'TMP$RELATIONS',
-                                            'TMP$STATEMENTS',
-                                            'TMP$TRANSACTIONS')
-                                      );
     }
 
     return $system_tables;
