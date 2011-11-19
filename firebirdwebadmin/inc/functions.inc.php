@@ -605,7 +605,7 @@ function get_charsets() {
 //
 // check for existing dependecies of a db object which will cause dropping the object to fail
 //
-// Parameters: $type   see the object-type definitions in interbase.inc.php
+// Parameters: $type   see the object-type definitions in firebird.inc.php
 //             $name   object name in RDB$DEPENEDENCIES.RDB$DEPENDED_ON_NAME
 //             $fname  optional fieldname in  RDB$DEPENEDENCIES.RDB$FIELD_NAME
 //

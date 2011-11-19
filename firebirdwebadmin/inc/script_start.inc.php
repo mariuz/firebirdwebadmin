@@ -21,20 +21,15 @@ initialize_php();
 session_start();
 set_error_handler('error_handler');
 
-if (version_compare(phpversion(), '5.0', '<')) {
-    die(sprintf('At least php5 is required to execute ibWebAdmin %s!', VERSION));
-}
-else {
     require('./lang/' . (isset($_SESSION['s_cust']['language']) ? $_SESSION['s_cust']['language'] : LANGUAGE) . '.inc.php');
     require('./inc/session.inc.php');
-    require('./inc/interbase.inc.php');
+    require('./inc/firebird.inc.php');
     require('./inc/panel_elements.inc.php');
     require('./inc/javascript.inc.php');
 
     if (DEBUG  ||  DEBUG_HTML) {
         include('./inc/debug_funcs.inc.php');
     }
-}
 
 
 if (!in_array('interbase', get_loaded_extensions())) {

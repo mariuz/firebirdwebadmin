@@ -179,7 +179,7 @@ function detail_view($type, $name, $title) {
         case 'procedure':
 
             include('../inc/procedures.inc.php');
-            include('../inc/interbase.inc.php');
+            include('../inc/firebird.inc.php');
 
             if (empty($GLOBALS['s_procedures'][$name]['source'])) {
                 $GLOBALS['s_procedures'][$name]['source'] = get_procedure_source($name);
