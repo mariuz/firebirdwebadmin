@@ -3,7 +3,7 @@ Maintainer: Popa Adrian Marius (Mariuz) <mapopa@gmail.com>
 Section: web
 Priority: extra
 Standards-Version: 3.8.0
-Build-Depends: yada (>= 0.54)
+Build-Depends: yada (>= 0.55)
 Build-Depends-Indep: debhelper (>= 4.0.0)
 Xsbc-Original-Maintainer: Debian QA Group <packages@qa.debian.org>
 
