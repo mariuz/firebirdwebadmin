@@ -948,9 +948,6 @@ function guess_watchtable_method($server_family, $server_version) {
     if ($server_family == 'FB') {
         return WT_FIREBIRD_SKIP;
     }
-    if ($server_family == 'IB'  && $server_version >= 65) {
-        return WT_IB65_ROWS;
-    }
     return WT_SKIP_ROWS;
 }
 
@@ -1057,7 +1054,7 @@ function redirect($url) {
 //
 function ib_error($file='', $line='', $sql='') {
 
-    echo '<b>InterBase Error</b><br>'
+    echo '<b>Firebird Error</b><br>'
         .'file: '.$file.', line: '.$line.'<br>'
         .'statement: '.$sql.'<br>'
         .'ibase_errmsg: '.ibase_errmsg();
