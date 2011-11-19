@@ -354,7 +354,7 @@ function get_sysdba_pw() {
 
 
 //
-// return the html for a selectlist of the  FireBird/Interbase character sets.
+// return the html for a selectlist of the  FireBird character sets.
 //
 function get_charset_select($name, $sel=NULL, $empty=FALSE, $tags=array()) {
     
