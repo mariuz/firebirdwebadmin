@@ -54,7 +54,7 @@ function panel_array_names() {
 function build_title($str, $showdb=TRUE) {
     global $s_connected, $s_login;
     
-    $title = 'ibWebAdmin '.VERSION.' *** '.$str;
+    $title = 'FirebirdWebAdmin '.VERSION.' *** '.$str;
     if ($s_connected == TRUE  &&  $showdb)
         $title .= ': '.$s_login['database'];
 
@@ -243,18 +243,12 @@ function isql_execute($sql, $user=NULL, $pw=NULL, $db=NULL, $host=NULL) {
 
     $parameters =  sprintf(' -m %s %s -i %s %s', $u_str, $p_str, ibwa_escapeshellarg($sql_file), $d_str);
 
-    $result = exec_command('isql', $parameters);
+    $result = exec_command('isql-fb', $parameters);
 
     if (DEBUG_FILES !== TRUE) {
         unlink($sql_file);
     }
 
-    // Interbase 7+ retuns a line with the database and the username on success
-    if (defined('SERVER_FAMILY')
-    &&  SERVER_FAMILY == 'IB'  &&  SERVER_VERSION >=70
-    &&  count($result[0]) == 1  &&  strpos($result[0][0], 'Database') === 0) {
-        $result[0] = array();
-    }
 
     return $result;
 }
