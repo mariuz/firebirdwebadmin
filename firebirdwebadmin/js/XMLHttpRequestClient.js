@@ -26,23 +26,7 @@ function XMLHttpRequestClient(server_url) {
 
     this.Request = doRequest;
 
-    if (typeof XMLHttpRequest == "undefined") {
-        function XMLHttpRequest() {
-            try {
-                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (E) {
-                    xmlhttp = false;
-                }
-            }
-            return xmlhttp;
-        }
-    }
-    else if (!xmlreq) {
-        xmlreq = new XMLHttpRequest();
-    }
+    xmlreq = new XMLHttpRequest();
     return;
 
     function doRequest(handler, handler_parameters, callback, callback_parameters) {

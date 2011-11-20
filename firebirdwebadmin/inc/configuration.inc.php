@@ -18,20 +18,20 @@
 
 define('VERSION', '2.0pre1 alpha');
 
-define('BINPATH', '/usr/lib/firebird/2.1/bin/');           // path to the interbase tools (isql, etc.)
+define('BINPATH', '/usr/lib/firebird/2.5/bin/');           // path to the interbase tools (isql, etc.)
 
 define('TMPPATH', '/tmp/');                        // write temporary files here,
                                                    // must be writeable for the webserver, must be an absolute path
 
 define('DEFAULT_USER',    'SYSDBA');               // default settings for database login
 define('DEFAULT_DB',      'employee.fdb');
-define('DEFAULT_PATH',    '/var/lib/firebird/2.1/data/');
+define('DEFAULT_PATH',    '/var/lib/firebird/2.5/data/');
 define('DEFAULT_HOST',    'localhost');
 define('DEFAULT_ROLE',    '');  
 define('DEFAULT_CACHE',   75);
 define('DEFAULT_CHARSET', 'ISO8859_1');
 define('DEFAULT_DIALECT', 3);
-define('DEFAULT_SERVER',  'FB_2.0');               // FB_1.0', 'FB_1.5', 'FB_2.0', IB_6.0','IB_6.5', 'IB_7.0', 'IB_7.1' and 'other' are the valid options
+define('DEFAULT_SERVER',  'FB_2.5');               // 'FB_2.1', 'FB_2.5' and 'other' are the valid options
 
 
 define('PROTOCOL', 'http');                        // change to 'https' to use ssl
@@ -55,11 +55,11 @@ $ALLOWED_DIRS = array('/var/lib/firebird/2.1/data/',
 $ALLOWED_FILES=array();
 
 
-$DATABASE_SUFFIXES = array('gdb', 'fdb');    // login into databases, creating and dropping of databases
+$DATABASE_SUFFIXES = array('fdb');    // login into databases, creating and dropping of databases
                                                    // is restricted to database files with this file extensions
 
 
-define('BACKUP_DIR', '/var/lib/firebird/2.1/'); // define this to restrict the location for backup files
+define('BACKUP_DIR', '/var/lib/firebird/2.5'); // define this to restrict the location for backup files
 
 
 define('LANGUAGE', 'english');       // set the language to use; 'english', 'brazilian_portuguese', 'dutch',
