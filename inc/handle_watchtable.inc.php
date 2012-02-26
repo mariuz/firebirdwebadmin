@@ -217,7 +217,7 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
                             $s_wt['start'],
                             $s_wt['rows'])) {
 
-            ibase_close($dbhandle);
+            fbird_close($dbhandle);
             $dbhandle = db_connect()
                 or ib_error();
 
@@ -240,8 +240,8 @@ if (isset($_POST['confirm_yes'])) {
     if (preg_match('/row([0-9]+)/', $_POST['confirm_subject'], $matches)) {
         $instance = $matches[1];
         $sql = $s_confirmations['row'][$instance]['sql'];
-        @ibase_query($dbhandle, $sql)
-            or $ib_error = ibase_errmsg();
+        @fbird_query($dbhandle, $sql)
+            or $ib_error = fbird_errmsg();
         remove_confirm($instance);
 
         // cleanup the watchtable output buffer
@@ -361,11 +361,11 @@ function display_table($wt){
     $sql = 'SELECT COUNT(*) FROM ' . $quote . $wt['table'] . $quote;
     $sql .= $wt['condition'] != '' ? ' WHERE '.$wt['condition'] : '';
 
-    if (!($res = @ibase_query($dbhandle, $sql))) {
-        echo '<br><b>Error: '.ibase_errmsg().'</b><br>';
+    if (!($res = @fbird_query($dbhandle, $sql))) {
+        echo '<br><b>Error: '.fbird_errmsg().'</b><br>';
         return;
     }
-    $row = ibase_fetch_row($res);
+    $row = fbird_fetch_row($res);
     $rowcount = $row[0];
     if ($rowcount < $wt['start']) {
         $wt['start'] = $rowcount;
@@ -457,10 +457,10 @@ function print_rows_sp($wt) {
     $class      = 'wttr2';
 
     $sql = 'SELECT * FROM '.SP_LIMIT_NAME;
-    $res = ibase_query($dbhandle, $sql) 
-        or $ib_error = ibase_errmsg();
+    $res = fbird_query($dbhandle, $sql) 
+        or $ib_error = fbird_errmsg();
 
-    while ($row = ibase_fetch_row($res)) {
+    while ($row = fbird_fetch_row($res)) {
         unset($obj);
         foreach ($wt['columns'] as $idx => $colname) {
             $obj[$colname] = (isset($row[$idx])) ? $row[$idx] : '';
@@ -484,7 +484,7 @@ function print_rows_sp($wt) {
             echo "</tr>\n";
         }            
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 }
 
 
@@ -513,19 +513,19 @@ function print_rows_nosp($wt) {
         $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] -1);
     }
 
-    $res = @ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     // skip the rows until $start
     if (WT_METHOD == WT_SKIP_ROWS) {
         for ($i = 1; $i < $wt['start']; $i++) {
-            ibase_fetch_row($res);
+            fbird_fetch_row($res);
         }
     }
 
     $col_count = count($wt['columns']);
     echo "  <tbody>\n";
     for ($i = 0; $i < $wt['rows']; $i++) {
-        $obj = ibase_fetch_object($res);
+        $obj = fbird_fetch_object($res);
         // stop, if there are no more rows
         if (!is_object($obj)) { 
              break;
@@ -551,7 +551,7 @@ function print_rows_nosp($wt) {
     }
     echo "  </tbody>\n";
 
-    ibase_free_result($res);
+    fbird_free_result($res);
 }
 
 
@@ -577,11 +577,11 @@ function print_value($wt, $val, $type, $colname=NULL, $obj=NULL) {
         $inline_flag = FALSE;
         $data = '';
         if ($wt['tblob_inline'] == TRUE  &&  $wt['blob_as'][$colname] == 'text') {
-            $blob_handle = ibase_blob_open($val);
-            $blob_info   = ibase_blob_info($val);
+            $blob_handle = fbird_blob_open($val);
+            $blob_info   = fbird_blob_info($val);
             $blob_length = $blob_info[0];
-            $data = htmlspecialchars(ibase_blob_get($blob_handle, $wt['tblob_chars']));
-            ibase_blob_close($blob_handle);
+            $data = htmlspecialchars(fbird_blob_get($blob_handle, $wt['tblob_chars']));
+            fbird_blob_close($blob_handle);
             if ($blob_length > $wt['tblob_chars']) {
                 $data .= ' ...&nbsp;';
             }

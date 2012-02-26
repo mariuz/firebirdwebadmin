@@ -88,13 +88,13 @@ function sp_exist($name) {
     $sql = 'SELECT RDB$PROCEDURE_NAME'
            .' FROM RDB$PROCEDURES'
           ." WHERE RDB\$PROCEDURE_NAME='".$name."'";
-    $res = ibase_query($dbhandle, $sql) or ib_error();
-    if (ibase_fetch_row($res)) {
-        ibase_free_result($res);
+    $res = fbird_query($dbhandle, $sql) or ib_error();
+    if (fbird_fetch_row($res)) {
+        fbird_free_result($res);
 
         return TRUE;
     } else {
-        ibase_free_result($res);
+        fbird_free_result($res);
 
         return FALSE;
     }
@@ -108,10 +108,10 @@ function sp_remove($name) {
     global $dbhandle, $ib_error;
     
     $sql = 'DROP PROCEDURE '.$name;
-    $trans =  ibase_trans(TRANS_WRITE, $dbhandle);
-    $res = ibase_query($trans, $sql) 
-         or die(ibase_errmsg());
-    ibase_commit($trans);
+    $trans =  fbird_trans(TRANS_WRITE, $dbhandle);
+    $res = fbird_query($trans, $sql) 
+         or die(fbird_errmsg());
+    fbird_commit($trans);
 }
 
 

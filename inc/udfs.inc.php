@@ -30,10 +30,10 @@ function get_udfs($order=1, $dir='ASC') {
      .' INNER JOIN RDB$FUNCTION_ARGUMENTS A'
              .' ON F.RDB$FUNCTION_NAME=A.RDB$FUNCTION_NAME'
           .' ORDER BY '.$order.' '.$dir;
-    $res = ibase_query($dbhandle, $sql) or ib_error($sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error($sql);
 
     $udfs = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $fname = trim($obj->FNAME);
         $udfs[$fname]['module'] = trim($obj->MODULE);
         $udfs[$fname]['entrypoint'] = trim($obj->EPOINT);
@@ -136,8 +136,8 @@ function drop_udf($name) {
 
     $lsql = 'DROP EXTERNAL FUNCTION '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
     else {

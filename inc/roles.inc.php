@@ -23,8 +23,8 @@ function create_role($name) {
 
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)) {
@@ -50,8 +50,8 @@ function drop_role($name) {
 
     $lsql = 'DROP ROLE '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
     else {
@@ -74,8 +74,8 @@ function grant_role_to_user($role, $user) {
 
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)) {
@@ -103,8 +103,8 @@ function revoke_role_from_user($role, $user) {
 
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)  &&
@@ -134,11 +134,11 @@ function get_roles() {
              .' ON R.RDB$ROLE_NAME=P.RDB$RELATION_NAME'
             ." AND P.RDB\$PRIVILEGE='M'"
            .'ORDER BY R.RDB$ROLE_NAME';
-    $res = ibase_query($dbhandle, $sql) or ib_error();
+    $res = fbird_query($dbhandle, $sql) or ib_error();
 
     $roles = array();
     $lastone = '';
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $rname  = trim($obj->NAME);
         $member = (isset($obj->MEMBER)) ? trim($obj->MEMBER) : '';
 

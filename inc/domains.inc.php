@@ -32,10 +32,10 @@ function get_domain_definitions($olddomains){
            .' WHERE  (RDB$SYSTEM_FLAG=0 OR RDB$SYSTEM_FLAG IS NULL)'
              ." AND  RDB\$FIELD_NAME NOT STARTING WITH 'RDB\$'"
            .' ORDER  BY F.RDB$FIELD_NAME';
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $domains = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $dname = trim($obj->DNAME);
         $stype = (isset($obj->STYPE)) ? $obj->STYPE : 0;
         $domains[$dname]['type'] = get_datatype($obj->FTYPE, $stype);
@@ -77,7 +77,7 @@ function get_domain_definitions($olddomains){
         
         $domains[$dname]['status'] = (isset($olddomains[$dname])) ? $olddomains[$dname]['status'] : 'close';
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $domains;
 }
@@ -116,8 +116,8 @@ function create_domain($domdefs) {
           . $check_str
           . (!empty($domdefs['collate']) ? ' COLLATE ' . $domdefs['collate'] : '');    
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
     
@@ -133,8 +133,8 @@ function drop_domain($name) {
 
     $lsql = 'DROP DOMAIN '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
     else {
         unset($s_domains[$name]);
@@ -178,8 +178,8 @@ function modify_domain($olddef, $domdef) {
 
     foreach ($lsql as $sql) {
         if (DEBUG) add_debug($sql, __FILE__, __LINE__);
-        if (!@ibase_query($dbhandle, $sql)) {
-            $ib_error = ibase_errmsg() . "<br>\n>";
+        if (!@fbird_query($dbhandle, $sql)) {
+            $ib_error = fbird_errmsg() . "<br>\n>";
 
             return FALSE;
         }

@@ -26,15 +26,15 @@ function get_systable($s_systable) {
              .' AND RDB$FIELD_SOURCE=RDB$FIELDS.RDB$FIELD_NAME'
        .' ORDER BY RDB$FIELD_POSITION';
     
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     
     $table = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $type = (isset($row->FTYPE)) ? $row->FTYPE : NULL;
         $stype= (isset($row->STYPE)) ? $row->STYPE : NULL;
         $table[trim($row->FNAME)]['type'] = get_datatype($type, $stype);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     // get the table content
     $sql = 'SELECT *' //.implode(',', array_keys($table))
@@ -65,9 +65,9 @@ function get_systable($s_systable) {
     if (!empty($s_systable['order'])) {
         $sql .= ' ORDER BY '.$s_systable['order'].' '.$s_systable['dir'];
     }
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         foreach (array_keys($table) as $fname) {
             if ($row->$fname === 0) {
                 $table[$fname]['col'][] = '0';
@@ -83,7 +83,7 @@ function get_systable($s_systable) {
             }
         }
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $table;
 }
@@ -233,13 +233,13 @@ function systable_value_select($table, $field, $value=NULL) {
     global $dbhandle, $db_strings;
 
     $sql = 'SELECT DISTINCT '.$field.' AS FNAME FROM '.$table;
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $values = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $values[] = trim($row->FNAME);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return '<b>'.$db_strings['FValue']."</b><br>\n"
          . get_selectlist('db_sysvalue', $values, $value, TRUE);

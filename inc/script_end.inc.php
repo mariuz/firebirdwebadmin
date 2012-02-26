@@ -71,9 +71,9 @@ foreach ($panels as $nr => $panel) {
 
 // close the db connection
 if (isset($dbhandle)  &&  is_resource($dbhandle)) {
-    // ibase_close() chrashes the apache-process,
+    // fbird_close() chrashes the apache-process,
     // this was a bug in some revisions of the ibase-module
-    //    ibase_close($dbhandle);
+    //    fbird_close($dbhandle);
 }
 
 

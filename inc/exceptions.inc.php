@@ -20,10 +20,10 @@ function get_exceptions($order=1, $dir='ASC') {
                 .' E.RDB$MESSAGE AS MSG'
            .' FROM RDB$EXCEPTIONS E'
           .' ORDER BY '.$order.' '.$dir;
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $exceptions = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $exceptions[trim($obj->ENAME)] = trim($obj->MSG);
     }
 
@@ -88,8 +88,8 @@ function create_exception($exception_defs) {
     $lsql = 'CREATE EXCEPTION '.$exception_defs['name']." '".str_replace("'", "''", $exception_defs['msg'])."'";
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     return empty($ib_error);
@@ -105,8 +105,8 @@ function modify_exception($exception_defs) {
     $lsql = 'ALTER EXCEPTION '.$exception_defs['name']." '".str_replace("'", "''", $exception_defs['msg'])."'";
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     return empty($ib_error);
@@ -122,8 +122,8 @@ function drop_exception($name) {
 
     $lsql = 'DROP EXCEPTION '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
     else {

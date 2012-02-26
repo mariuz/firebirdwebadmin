@@ -218,19 +218,19 @@ function export_data($export) {
     foreach (export_queries($export) as $query) {
 
         if (DEBUG) add_debug($query, __FILE__, __LINE__);
-        $trans = ibase_trans(TRANS_READ, $dbhandle);
-        $res = @ibase_query($trans, $query);
+        $trans = fbird_trans(TRANS_READ, $dbhandle);
+        $res = @fbird_query($trans, $query);
         if ($res === FALSE) {
-            $ib_error = ibase_errmsg();
+            $ib_error = fbird_errmsg();
             $warning = '';
             
             return FALSE;
         }
 
         $columns = $col_types = $num_fields = array();
-        $num = ibase_num_fields($res);
+        $num = fbird_num_fields($res);
         for ($idx=0; $idx< $num; $idx++) {
-            $info = ibase_field_info($res, $idx);
+            $info = fbird_field_info($res, $idx);
             $columns[]    = $info['name'];
             $col_types[]  = $info['type'];
             $num_fields[] = is_number_type(substr($info['type'], 0, strcspn($info['type'], '(')));
@@ -257,8 +257,8 @@ function export_data($export) {
             echo 'Unsupported export format!';
         }
 
-        ibase_free_result($res);
-        ibase_commit($trans);
+        fbird_free_result($res);
+        fbird_commit($trans);
     }
 }
 
@@ -338,10 +338,10 @@ function export_csv_data($export) {
         echo csv_line($headline, $fields_terminator, $line_terminator);
     }
 
-    $num = ibase_num_fields($export['query']['result']);
+    $num = fbird_num_fields($export['query']['result']);
 
     // build one line for the csv file from every result object
-    while ($row = @ibase_fetch_row($export['query']['result'], IBASE_TEXT)) {
+    while ($row = @fbird_fetch_row($export['query']['result'], IBASE_TEXT)) {
         $line = '';
         for ($idx=0; $idx<$num; $idx++){
             $value = prepare_export_value($row[$idx], $export['query']['col_types'][$idx]);
@@ -406,10 +406,10 @@ function export_sql_data($export, $table) {
         $columns_list = '(' . $quote . implode($quote . ', ' . $quote, $export['query']['columns']) . $quote . ')';
     }
 
-    $num = ibase_num_fields($export['query']['result']);
+    $num = fbird_num_fields($export['query']['result']);
 
     // build one line for the csv file from every result object
-    while ($row = @ibase_fetch_row($export['query']['result'], IBASE_TEXT)) {
+    while ($row = @fbird_fetch_row($export['query']['result'], IBASE_TEXT)) {
         $values_list = '';
         for ($idx=0; $idx<$num; $idx++){
             if ($row[$idx] === NULL) {

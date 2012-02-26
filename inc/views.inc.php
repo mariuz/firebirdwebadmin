@@ -24,8 +24,8 @@ function create_view($viewdefs) {
 
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     return (empty($ib_error)) ? get_viewname($viewdefs['source']) : FALSE;
@@ -41,8 +41,8 @@ function drop_view($name) {
 
     $lsql = 'DROP VIEW '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
     else {
@@ -173,17 +173,17 @@ function get_view_source($name) {
     $sql = 'SELECT R.RDB$VIEW_SOURCE VSOURCE'
            .' FROM RDB$RELATIONS R'
           ." WHERE R.RDB\$RELATION_NAME='".$name."'";
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    $obj = ibase_fetch_object($res);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {
-        $bid = ibase_blob_open($obj->VSOURCE);
-        $arr = ibase_blob_info($obj->VSOURCE);
+        $bid = fbird_blob_open($obj->VSOURCE);
+        $arr = fbird_blob_info($obj->VSOURCE);
         // $arr[0] holds the blob length
-        $vsource = trim(ibase_blob_get($bid, $arr[0]));
-        ibase_blob_close($bid);
+        $vsource = trim(fbird_blob_get($bid, $arr[0]));
+        fbird_blob_close($bid);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $vsource;
 }

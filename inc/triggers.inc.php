@@ -26,10 +26,10 @@ function get_triggers($oldtriggers) {
            .' WHERE (RDB$SYSTEM_FLAG IS NULL  OR  RDB$SYSTEM_FLAG=0)'
              .' AND RDB$TRIGGER_NAME NOT IN (SELECT RDB$TRIGGER_NAME FROM RDB$CHECK_CONSTRAINTS)'
            .' ORDER BY RDB$TRIGGER_NAME';
-    $res = ibase_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
+    $res = fbird_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
 
     $triggers = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $name = trim($obj->NAME);
         $display = (isset($oldtriggers[$name])) ? $oldtriggers[$name]['display'] : 'close';
 
@@ -38,12 +38,12 @@ function get_triggers($oldtriggers) {
         if ((isset($oldtriggers[$name]) &&  $display == 'open')
         ||  isset($_POST['acc_trigger_mod'])) {
 
-            $bid = ibase_blob_open($obj->TSOURCE);
-            $arr = ibase_blob_info($obj->TSOURCE);
+            $bid = fbird_blob_open($obj->TSOURCE);
+            $arr = fbird_blob_info($obj->TSOURCE);
 
             // $arr[0] holds the blob length
-            $tsource = ibase_blob_get($bid, $arr[0]);
-            ibase_blob_close($bid);
+            $tsource = fbird_blob_get($bid, $arr[0]);
+            fbird_blob_close($bid);
 
             // discard the 'AS ' from the source-string
             $tsource = substr(trim($tsource), 3);
@@ -117,8 +117,8 @@ function drop_trigger($name) {
 
     $lsql = 'DROP TRIGGER '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
     else {
         unset($s_triggers[$name]);
@@ -184,21 +184,21 @@ function get_trigger_source($name) {
     $lsql = 'SELECT RDB$TRIGGER_SOURCE AS TSOURCE'
             .' FROM RDB$TRIGGERS'
            ." WHERE RDB\$TRIGGER_NAME='".$name."'";
-    $res = ibase_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
-    $obj = ibase_fetch_object($res);
+    $res = fbird_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
+    $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {
-        $bid = ibase_blob_open($obj->TSOURCE);
-        $arr = ibase_blob_info($obj->TSOURCE);
+        $bid = fbird_blob_open($obj->TSOURCE);
+        $arr = fbird_blob_info($obj->TSOURCE);
 
         // $arr[0] holds the blob length
-        $tsource = trim(ibase_blob_get($bid, $arr[0]));
-        ibase_blob_close($bid);
+        $tsource = trim(fbird_blob_get($bid, $arr[0]));
+        fbird_blob_close($bid);
 
         // discard the 'AS ' from the source-string
         $tsource = substr($tsource, 3);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $tsource;
 }

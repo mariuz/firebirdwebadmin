@@ -39,8 +39,8 @@ function drop_procedure($name) {
     global $dbhandle, $ib_error, $s_procedures;
 
     $lsql = 'DROP PROCEDURE '.$name;
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
     else {
          unset($s_procedures[$name]);
@@ -60,10 +60,10 @@ function get_procedures($oldprocedures) {
          .'  WHERE P.RDB$SYSTEM_FLAG IS NULL'
              .' OR P.RDB$SYSTEM_FLAG=0'
           .' ORDER BY RDB$PROCEDURE_NAME';
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $procs = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $pname = trim($obj->PNAME);
 
         $in = $out = array();
@@ -82,7 +82,7 @@ function get_procedures($oldprocedures) {
                                           'out'   => $out,
                                           'status'=> $status);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $procs;
 }
@@ -98,17 +98,17 @@ function get_procedure_source($name) {
     $sql = 'SELECT P.RDB$PROCEDURE_SOURCE PSOURCE'
            .' FROM RDB$PROCEDURES P'
           ." WHERE P.RDB\$PROCEDURE_NAME='".$name."'";
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    $obj = ibase_fetch_object($res);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {
-        $bid = ibase_blob_open($obj->PSOURCE);
-        $arr = ibase_blob_info($obj->PSOURCE);
+        $bid = fbird_blob_open($obj->PSOURCE);
+        $arr = fbird_blob_info($obj->PSOURCE);
         // $arr[2] holds the blob length
-        $psource = trim(ibase_blob_get($bid, $arr[0]));
-        ibase_blob_close($bid);
+        $psource = trim(fbird_blob_get($bid, $arr[0]));
+        fbird_blob_close($bid);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $psource;
 }
@@ -137,9 +137,9 @@ function get_procedure_parameters($name) {
           .' INNER JOIN RDB$FIELDS F ON P.RDB$FIELD_SOURCE=F.RDB$FIELD_NAME'
           ." WHERE P.RDB\$PROCEDURE_NAME='".$name."'";
 
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     $in = $out = array();
-    while  ($obj = ibase_fetch_object($res)) {
+    while  ($obj = fbird_fetch_object($res)) {
         $ptype = ($obj->PTYPE == 0) ? 'in' : 'out';
 
         $stype = (isset($obj->STYPE)) ? $obj->STYPE : NULL;

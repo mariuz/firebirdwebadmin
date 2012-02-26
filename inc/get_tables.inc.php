@@ -29,13 +29,13 @@ function get_tables() {
             .' FROM RDB$RELATIONS'
            .' WHERE RDB$SYSTEM_FLAG=0'
         .' ORDER BY RDB$RELATION_NAME';
-    $res = @ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     if (!is_resource($res)) {
        return FALSE;
     }
 
     // initialize $s_tables[]
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
 
         $tablename = trim($row->RNAME);
 
@@ -44,7 +44,7 @@ function get_tables() {
         $s_tables[$tablename]['owner']      = trim($row->OWNER);
         $s_tables[$tablename]['privileges'] = array();
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
     unset($previous);
 
     // get privileges on tables for the current user and for the role used at login
@@ -67,12 +67,12 @@ function get_tables() {
                  ." AND P1.RDB\$RELATION_NAME='".$s_login['role']."'"
                  ." AND (P1.RDB\$USER='".$s_login['user']."' OR P1.RDB\$USER='PUBLIC')";
     }
-    $res = @ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $s_tables[trim($row->RNAME)]['privileges'][] =  trim($row->PRIV);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
 
     // find the check, not null, unique, pk and fk and  constraints
@@ -93,7 +93,7 @@ function get_tables() {
      .' LEFT JOIN RDB$DEPENDENCIES DP'
             .' ON CC.RDB$TRIGGER_NAME=DP.RDB$DEPENDENT_NAME'
          .' ORDER BY RC.RDB$RELATION_NAME';
-    $res = @ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     // reset the index infos
     $s_foreigns  = array();
@@ -101,7 +101,7 @@ function get_tables() {
     $s_uniques   = array();
 
     $constraints = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $cname = trim($row->CNAME);
         switch (trim($row->RTYPE)) {
             case 'CHECK':
@@ -124,7 +124,7 @@ function get_tables() {
                 break;
         }
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
     
 //     debug_var($sql);
 //     debug_var($constraints);
@@ -154,11 +154,11 @@ function get_tables() {
        .' LEFT JOIN RDB$FIELD_DIMENSIONS D ON R.RDB$FIELD_SOURCE=D.RDB$FIELD_NAME'
            .' WHERE F.RDB$SYSTEM_FLAG=0'
        . ' ORDER BY R.RDB$FIELD_POSITION';
-    $res = @ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     //initialize $s_fields[]
     $idx = 0;
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $tname = trim($row->TNAME);
         $field = $s_fields[$tname][$idx]['name']  = trim($row->FNAME);
         if (strpos($row->DNAME, 'RDB$') !== 0){
@@ -238,12 +238,12 @@ function get_tables() {
         ||  ($properties['is_view'] == TRUE   &&  $s_views_counts  == TRUE)) {
 
             $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $name . $quote;
-            $res = ibase_query($dbhandle, $sql)
-                or $ib_error .= ibase_errmsg()."<br>\n";
+            $res = fbird_query($dbhandle, $sql)
+                or $ib_error .= fbird_errmsg()."<br>\n";
             if (is_resource($res)) {
-                $row = ibase_fetch_object($res);
+                $row = fbird_fetch_object($res);
                 $s_tables[$name]['count'] = $row->CNT;
-                ibase_free_result($res);
+                fbird_free_result($res);
             }
         }
     }

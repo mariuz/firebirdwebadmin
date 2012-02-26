@@ -18,9 +18,9 @@ function get_user() {
 
     $users = array();
 
-    if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
-        $users_info  = ibase_server_info($service, IBASE_SVC_GET_USERS); 
-        ibase_service_detach($service);
+    if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        $users_info  = fbird_server_info($service, IBASE_SVC_GET_USERS); 
+        fbird_service_detach($service);
         foreach ($users_info as $user) {
             $users[$user['user_name']] = array('FIRST_NAME'  => $user['first_name'],
                                                'MIDDLE_NAME' => $user['middle_name'],
@@ -29,7 +29,7 @@ function get_user() {
         }
     }
     else {
-        $GLOBALS['ib_error'] = ibase_errmsg();
+        $GLOBALS['ib_error'] = fbird_errmsg();
 
         return FALSE;
     }
@@ -60,14 +60,14 @@ function create_user($udata, $s_sysdba_pw) {
         return FALSE;
     }
 
-    if (($service = ibase_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
-        $ib_error = ibase_errmsg();
+    if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
+        $ib_error = fbird_errmsg();
     }
-    elseif (FALSE == ibase_add_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
+    elseif (FALSE == fbird_add_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
         $ib_error = 'Creating user failed!';
     }
     else {
-        ibase_service_detach($service);
+        fbird_service_detach($service);
     }
 
     return empty($ib_error);
@@ -92,14 +92,14 @@ function modify_user($udata, $s_sysdba_pw) {
         }
     }
 
-    if (($service = ibase_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
-        $ib_error = ibase_errmsg();
+    if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
+        $ib_error = fbird_errmsg();
     }
-    elseif (FALSE == ibase_modify_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
+    elseif (FALSE == fbird_modify_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
         $ib_error = 'Modifying user failed!';
     }
     else {
-        ibase_service_detach($service);
+        fbird_service_detach($service);
     }
 
     return empty($ib_error);
@@ -112,14 +112,14 @@ function modify_user($udata, $s_sysdba_pw) {
 function drop_user($uname, $s_sysdba_pw) {
     global $s_login, $ib_error;
 
-    if (($service = ibase_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
-        $ib_error = ibase_errmsg();
+    if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
+        $ib_error = fbird_errmsg();
     }
-    elseif (ibase_delete_user($service, $uname) == FALSE) {
-        $ib_error = ibase_errmsg();
+    elseif (fbird_delete_user($service, $uname) == FALSE) {
+        $ib_error = fbird_errmsg();
     }
     else {
-        ibase_service_detach($service);
+        fbird_service_detach($service);
     }
 
     return empty($ib_error);

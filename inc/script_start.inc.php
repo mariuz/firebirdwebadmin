@@ -84,7 +84,7 @@ if ($s_connected == TRUE  &&  !isset($_GET['unconnected'])) {
     $dbhandle = db_connect();
 
     if ($dbhandle === FALSE) {
-        $ib_error       = ibase_errmsg();
+        $ib_error       = fbird_errmsg();
         $s_connected    = FALSE;
         $s_tables_valid = FALSE;
         $s_wt['table']  = '';

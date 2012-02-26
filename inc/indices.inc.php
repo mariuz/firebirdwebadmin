@@ -25,8 +25,8 @@ function create_index() {
 
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
 
     if ((!isset($_POST['def_index_activ']) ||  $_POST['def_index_activ'] == FALSE)  &&
@@ -91,9 +91,9 @@ function modify_index($iname) {
         // drop the old index
         $lsql = 'DROP INDEX '.$iname;
         if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-        if (!@ibase_query($dbhandle, $lsql)) {
+        if (!@fbird_query($dbhandle, $lsql)) {
 
-            $ib_error = ibase_errmsg();
+            $ib_error = fbird_errmsg();
             return FALSE;
         }
 
@@ -112,9 +112,9 @@ function modify_index($iname) {
             $lsql .= $indices[$iname]['dir']." INDEX $iname ON "
                     .$indices[$iname]['table'].' ('.implode(',', $indices[$iname]['seg']).')';
             if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-            if (!@ibase_query($trans, $lsql)) {
-                ibase_rollback($trans);
-                $ib_error = ibase_errmsg();
+            if (!@fbird_query($trans, $lsql)) {
+                fbird_rollback($trans);
+                $ib_error = fbird_errmsg();
             }
 
             return FALSE;
@@ -133,9 +133,9 @@ function alter_index($iname, $state) {
 
     $lsql = "ALTER INDEX $iname $state";
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
+    if (!@fbird_query($dbhandle, $lsql)) {
 
-        $ib_error = ibase_errmsg();
+        $ib_error = fbird_errmsg();
         return FALSE;
     }
 
@@ -151,9 +151,9 @@ function drop_index($name) {
 
     $lsql = 'DROP INDEX '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@ibase_query($dbhandle, $lsql)) {
+    if (!@fbird_query($dbhandle, $lsql)) {
 
-        $ib_error = ibase_errmsg();
+        $ib_error = fbird_errmsg();
         return TRUE;
     }
     else {
@@ -186,11 +186,11 @@ function get_indices($order, $dir) {
              .'AND I.RDB$FOREIGN_KEY IS NULL '
              ."AND I.RDB\$INDEX_NAME NOT STARTING WITH 'RDB\$' "
            .'ORDER BY '.$order_field.' '.$dir;
-    $trans = ibase_trans(TRANS_READ, $dbhandle);
-    $res = ibase_query($trans, $sql) or ib_error();
+    $trans = fbird_trans(TRANS_READ, $dbhandle);
+    $res = fbird_query($trans, $sql) or ib_error();
 
     $indices = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         if (!isset($indices[$obj->INAME])) {
             $iname = trim($obj->INAME);
             $indices[$iname]['table'] = trim($obj->RNAME);
@@ -201,7 +201,7 @@ function get_indices($order, $dir) {
         }
         $indices[$iname]['seg'][$obj->POS] = trim($obj->FNAME);
     }
-    ibase_commit($trans);
+    fbird_commit($trans);
 
     return $indices;
 }

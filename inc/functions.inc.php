@@ -583,14 +583,14 @@ function get_charsets() {
           .' INNER JOIN RDB$COLLATIONS CO'
              .' ON CS.RDB$CHARACTER_SET_ID=CO.RDB$CHARACTER_SET_ID'
           .' ORDER BY CS.RDB$CHARACTER_SET_NAME, CO.RDB$COLLATION_NAME';
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $charsets = array();
-    while ($obj = ibase_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $charsets[$obj->ID]['name'] = trim($obj->NAME);
         $charsets[$obj->ID]['collations'][$obj->CID] = trim($obj->CNAME);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $charsets;
 }
@@ -632,14 +632,14 @@ function get_dependencies($type, $name, $fname=NULL) {
             .' AND NOT EXISTS (SELECT RDB$TRIGGER_NAME '
                               .' FROM RDB$CHECK_CONSTRAINTS C'
                              .' WHERE C.RDB$TRIGGER_NAME=D.RDB$DEPENDENT_NAME)';
-    $res = ibase_query($dbhandle, $sql)
+    $res = fbird_query($dbhandle, $sql)
         or ib_error(__FILE__, __LINE__, $sql);
     $dependencies = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $dependencies[] = array('type' => $row->DTYPE,
                                 'name' => $row->DNAME);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $dependencies;
 }
@@ -666,11 +666,11 @@ function db_connect() {
     global $s_login;
 
     $db_path = ($s_login['host'] == '') ? $s_login['database'] : $s_login['host'].':'.$s_login['database'];
-    $cfunc = (PERSISTANT_CONNECTIONS === TRUE) ? 'ibase_pconnect' : 'ibase_connect';
+    $cfunc = (PERSISTANT_CONNECTIONS === TRUE) ? 'fbird_pconnect' : 'fbird_connect';
 
     if ($s_login['server'] == 'FB_2.0') {
 
-        // hack for fb2.0 where, caused by a php bug, the charset cannot be set with ibase_connect()
+        // hack for fb2.0 where, caused by a php bug, the charset cannot be set with fbird_connect()
         $php_version      = phpversion();
         $php_majorversion = $php_version[0];
         if ($php_majorversion == '5') {
@@ -753,13 +753,13 @@ function is_allowed_db($filename) {
 function get_blob_content($sql) {
     global $dbhandle;
 
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    $row = ibase_fetch_row($res);
-    if ($blob_handle = @ibase_blob_open($row[0])) {
-        $blob_info   = ibase_blob_info($row[0]);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $row = fbird_fetch_row($res);
+    if ($blob_handle = @fbird_blob_open($row[0])) {
+        $blob_info   = fbird_blob_info($row[0]);
         $blob_length = $blob_info[0];
-        $blob = ibase_blob_get($blob_handle, $blob_length);
-        ibase_blob_close($blob_handle);
+        $blob = fbird_blob_get($blob_handle, $blob_length);
+        fbird_blob_close($blob_handle);
     }
     else {
         $blob = 'not a blob!';
@@ -845,13 +845,13 @@ function get_table_fields($name) {
            .' WHERE RDB$RELATION_NAME=\''.$name.'\''
        .' ORDER BY RDB$FIELD_NAME';
 
-    $res = ibase_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $columns = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $columns[] = trim($row->FNAME);
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $columns;
 }
@@ -865,13 +865,13 @@ function get_table_count($tablename) {
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
 
     $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $tablename . $quote;
-    $res = ibase_query($GLOBALS['dbhandle'], $sql)
-        or $ib_error .= ibase_errmsg()."<br>\n";
+    $res = fbird_query($GLOBALS['dbhandle'], $sql)
+        or $ib_error .= fbird_errmsg()."<br>\n";
     $count = FALSE;
     if (is_resource($res)) {
-        $row = ibase_fetch_row($res);
+        $row = fbird_fetch_row($res);
         $count = $row[0];
-        ibase_free_result($res);
+        fbird_free_result($res);
     }
 
     return $count;
@@ -890,11 +890,11 @@ function update_row($table, $cols, $values, $condition) {
           .' WHERE ' . $condition;
     if (DEBUG) add_debug('$sql: '.$sql, __FILE__, __LINE__);
 
-    $query = ibase_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
     $ib_error = '';
-    call_user_func_array('ibase_execute', array_merge(array($query), $values))
-        or $ib_error = ibase_errmsg();
-    ibase_free_query($query);
+    call_user_func_array('fbird_execute', array_merge(array($query), $values))
+        or $ib_error = fbird_errmsg();
+    fbird_free_query($query);
 
     return $ib_error;
 }
@@ -911,11 +911,11 @@ function insert_row($table, $cols, $values) {
          .' VALUES ('.substr(str_repeat('?, ', count($values)), 0, -2).')';
     if (DEBUG) add_debug('$sql: '.$sql, __FILE__, __LINE__);
 
-    $query = ibase_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
     $ib_error = '';
-    call_user_func_array('ibase_execute', array_merge(array($query), $values))
-        or $ib_error = ibase_errmsg();
-    ibase_free_query($query);
+    call_user_func_array('fbird_execute', array_merge(array($query), $values))
+        or $ib_error = fbird_errmsg();
+    fbird_free_query($query);
 
     return $ib_error;
 }
@@ -1044,14 +1044,14 @@ function redirect($url) {
 
 
 //
-// print ibase_errmsg() and stop the script
+// print fbird_errmsg() and stop the script
 //
 function ib_error($file='', $line='', $sql='') {
 
     echo '<b>Firebird Error</b><br>'
         .'file: '.$file.', line: '.$line.'<br>'
         .'statement: '.$sql.'<br>'
-        .'ibase_errmsg: '.ibase_errmsg();
+        .'fbird_errmsg: '.fbird_errmsg();
     exit;
 }
 

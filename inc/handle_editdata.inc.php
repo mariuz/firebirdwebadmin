@@ -68,7 +68,7 @@ foreach ($_POST as $name => $value) {
                         if (is_array($value)  &&  strlen(trim($value['name'])) > 0) {
                             $bfname = $value['tmp_name'];
                             $bfhandle = fopen($bfname, 'r') or die('cannot open file '.$bfname);
-                            $bstr = ibase_blob_import($dbhandle, $bfhandle);
+                            $bstr = fbird_blob_import($dbhandle, $bfhandle);
                             fclose($bfhandle);
                             $bindargs[] = $bstr;
                         }
@@ -79,9 +79,9 @@ foreach ($_POST as $name => $value) {
                         }
                         // blob from textarea
                         elseif (!empty($value)) {
-                            $bhandle = ibase_blob_create($dbhandle) or die('cannot create blob: '.__FILE__.', '.__LINE__);
-                            ibase_blob_add($bhandle, $value);
-                            $bstr = ibase_blob_close($bhandle);
+                            $bhandle = fbird_blob_create($dbhandle) or die('cannot create blob: '.__FILE__.', '.__LINE__);
+                            fbird_blob_add($bhandle, $value);
+                            $bstr = fbird_blob_close($bhandle);
                             $bindargs[] = $bstr;
                         }
                         else {

@@ -237,10 +237,10 @@ function detail_close($type, $name, $title) {
 function fk_values($table, $column, $value){
 
     $sql = sprintf("SELECT * FROM %s WHERE %s='%s'", $table, $column, $value);
-    $res = ibase_query($GLOBALS['dbhandle'], $sql) 
+    $res = fbird_query($GLOBALS['dbhandle'], $sql) 
         or ib_error(__FILE__, __LINE__, $sql);
 
-    if ($row = ibase_fetch_object($res)) {
+    if ($row = fbird_fetch_object($res)) {
         $close = "<a href='javascript:hide(\"fk\");'>[C]</a>";
         $html = "<table class=\"tsep\">\n<tr align=\"left\">\n<th colspan=\"2\"><nobr>".$close.'&nbsp;&nbsp;'.$sql."</nobr></th></tr>\n";
         foreach ($GLOBALS['s_fields'][$table] as $field) {
@@ -252,7 +252,7 @@ function fk_values($table, $column, $value){
     else {
             $html = "Error!\n";
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     header('Content-Type: text/html;charset='.$GLOBALS['charset']);
 

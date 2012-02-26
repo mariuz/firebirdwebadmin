@@ -29,10 +29,10 @@ function get_foreignkeys($tablename, $privilege=NULL) {
             ." AND RC.RDB\$CONSTRAINT_TYPE='FOREIGN KEY'"
             .' AND I1.RDB$SEGMENT_COUNT=1';
 
-    $res = @ibase_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $fk = array();
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $fktable = trim($row->FKTABLE);
         if (empty($privilege)  ||  in_array($privilege, $GLOBALS['s_tables'][$fktable]['privileges'])) {
             $fk[trim($row->TFIELD)] = array('table'  => $fktable,
@@ -40,7 +40,7 @@ function get_foreignkeys($tablename, $privilege=NULL) {
                                             );
         }
     }
-    ibase_free_result($res);
+    fbird_free_result($res);
 
     return $fk;
 }
@@ -78,13 +78,13 @@ function get_fk_lookups_data($tablename, $fk_lookups) {
         }
 
         $sql = 'SELECT '.$defs['column'].', '.$value_field.' FROM '.$defs['table'].' ORDER BY '.$value_field.' ASC';
-        $res = ibase_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+        $res = fbird_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
 
         $data = array();
-        while ($row = ibase_fetch_row($res)) {
+        while ($row = fbird_fetch_row($res)) {
             $data[trim($row[0])] = trim($row[1]);
         }
-        ibase_free_result($res);
+        fbird_free_result($res);
 
         $lookups_data[$colname] = array('table'  => $defs['table'],
                                         'column' => $defs['column'],

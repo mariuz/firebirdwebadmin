@@ -191,11 +191,11 @@ define('SP_LIMIT_NAME', IBWA_PREFIX.'LIMIT');  // name for the stored procedure 
 
 define('SESSION_NAME', 'ibwa');         // session name to use
 
-define('PERSISTANT_CONNECTIONS', FALSE); // whether to use ibase_pconnect() or ibase_connect();
+define('PERSISTANT_CONNECTIONS', FALSE); // whether to use fbird_pconnect() or fbird_connect();
                                          // although using persistant connections is significant faster, they cause
                                          // several tasks to fail (i.e. 'ALTER TABLE ADD CONSTRAINT ...', database maintenance)
 
-# transaction parameters used for the calls of ibase_trans()
+# transaction parameters used for the calls of fbird_trans()
 define('TRANS_READ', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_READ);
 define('TRANS_WRITE', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_WRITE);
 
