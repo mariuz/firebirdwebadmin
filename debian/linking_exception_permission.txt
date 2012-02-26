@@ -1,0 +1,16 @@
+From: Lutz Brückner <irie@gmx.de>
+To: Remco Seesink <r.a.seesink@alumnus.utwente.nl>
+Subject: Re: Users and groups and license
+Date: Mon, 07 Jun 2004 20:49:53 +0200
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040113
+
+Hi Remco,
+
+> Could you give me permission by e-mail to make the change? It's the last thing stopping
+> me from uploading and asking for comments. Sarge will release soon and it would be cool
+> if ibwebadmin could make it in.
+
+yes, please do the necessary changes and send me the modified LICENSE file.
+
+Thanks,  Lutz
+
