@@ -25,13 +25,9 @@
 
   Some of the features are only available if the database- and the
   web-server are running on the same machine. The reason is that php
-  have to call the interbase tools (isql, gsec, gstat, etc.) to
+  have to call the Firebird tools (isql, gsec, gstat, etc.) to
   perform certain actions.
 
-
-  FirebirdWebAdmin is under development and may contain serious bugs. 
-  So make sure you never use it on any important datas. Use a copy of
-  your database if you are working with this program.
 
 
 
@@ -52,7 +48,6 @@ Documentation
   Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.5
 
   Firebird documentation is located on this page http://www.firebirdsql.org/en/documentation/
-
 
 
 
