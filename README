@@ -1,0 +1,88 @@
+  FirebirdWebAdmin is a web frontend for the Firebird database server.
+
+
+  By now it has the functionalities for
+  
+  o creating, deleting, modifying databases, tables, generators,
+    views, triggers, domains, indices, stored procedures, udf's,
+    exceptions, roles and database users
+
+  o performing sql expressions on databases and display the results
+
+  o import and export of data through files in the csv format
+
+  o browsing through the contents of tables and views, watching them
+    growing while typing in data
+
+  o selecting data for deleting and editing while browsing tables
+
+  o inserting, deleting, displaying the contents of blob fields
+
+  o diplaying database metadata, browsing the interbase system tables
+
+  o database backup and restore, database maintenance
+
+
+  Some of the features are only available if the database- and the
+  web-server are running on the same machine. The reason is that php
+  have to call the interbase tools (isql, gsec, gstat, etc.) to
+  perform certain actions.
+
+
+  FirebirdWebAdmin is under development and may contain serious bugs. 
+  So make sure you never use it on any important datas. Use a copy of
+  your database if you are working with this program.
+
+
+
+Documentation
+
+  There is no documentation available yet, but if you are familiar
+  with Firebird  you will have no troubles using
+  FirebirdWebAdmin.
+
+  For some basic configuration settings have a look to the file
+  ./inc/configuration.inc.php befor you start the programm.
+
+  If you are struggling with getting the interbase support into your
+  W/LAMP-setup, please read the Beginners guide to Firebird and PHP:
+
+  http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_beginners_php
+  
+  Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.5
+
+  Firebird documentation is located on this page http://www.firebirdsql.org/index.php?op=doc
+
+
+
+
+Requirements
+
+  This is the environment I'm using for the development. Other
+  components are not or less tested. So if you got problems make sure
+  you are not using older software components.
+
+  php5.x with compiled in support for InterBase and
+  pcre (but any version >= 5.0 should work)
+
+  Firebird 2.1.x SS or Firebird 2.1.x Classic for Linux
+        
+  Apache 2.x or lighttpd or nginx
+
+  Linux kernel 2.6.x - any distro 
+  firefox or any webkit browser (chrome)
+
+
+
+Copyright notice:
+
+ (C) 2000,2001,2002,2003,2004 Lutz Brueckner <irie@gmx.de>
+                              Kapellenstr. 1A
+                              22117 Hamburg, Germany
+
+  FirebirdWebAdmin is published under the terms of the GNU GPL v.2,
+  please read the file LICENCE for details.
+
+  This software is provided 'as-is', without any expressed or implied
+  warranty.  In no event will the author be held liable for any 
+  damages arising from the use of this software.
