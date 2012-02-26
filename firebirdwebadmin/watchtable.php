@@ -92,8 +92,8 @@ elseif (isset($_GET['del'])) {
     }
 
     else {  
-        ibase_query($dbhandle, $sql)
-            or $ib_error = ibase_errmsg();
+        fbird_query($dbhandle, $sql)
+            or $ib_error = fbird_errmsg();
 
         // cleanup the watchtable output buffer
         $s_watch_buffer = '';
@@ -130,7 +130,7 @@ if (isset($_GET['go'])  ||  isset($_GET['order'])) {
 globalize_session_vars();
 
 if (!empty($dbhandle)) {
-    ibase_close($dbhandle);
+    fbird_close($dbhandle);
 }
 
 header ('Location: '.url_session($s_referer));
@@ -146,9 +146,9 @@ function init_edit_values($edit_where, $fields) {
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
     $sql = 'SELECT * FROM ' . $quote . $edit_where['table'] . $quote . ' ' . $edit_where['where'];
-    $res = ibase_query($GLOBALS['dbhandle'], $sql) or ib_error();
-    if ($row = ibase_fetch_assoc($res, IBASE_TEXT)) {
-        ibase_free_result($res);
+    $res = fbird_query($GLOBALS['dbhandle'], $sql) or ib_error();
+    if ($row = fbird_fetch_assoc($res, IBASE_TEXT)) {
+        fbird_free_result($res);
         foreach ($fields as $field) {
             if (isset($field['comp'])) {
                 $values[] = $field['csource'] ;

@@ -25,34 +25,34 @@ if ($job = get_iframejob($s_iframejobs, $key)) {
         break;
 
     case 'dbstat':
-        if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
-            $content  = ibase_db_info($service, $s_login['database'], $job['option']);
+        if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+            $content  = fbird_db_info($service, $s_login['database'], $job['option']);
             $content  = trim(str_replace(array(chr(0x01), "\n\n"), array('', "\n"), $content));
-            ibase_service_detach($service);
+            fbird_service_detach($service);
         }
         else {
-            $error = ibase_errmsg();
+            $error = fbird_errmsg();
         }
         break;
 
     case 'backup':
-        if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
 
-            $content = ibase_backup($service, $job['source'], $job['target'], $job['options'], TRUE);
+            $content = fbird_backup($service, $job['source'], $job['target'], $job['options'], TRUE);
             $content = str_replace(array(chr(0x01).chr(0x0a), 'gbak: '), '', $content);
-            ibase_service_detach($service);
+            fbird_service_detach($service);
         }
         else {
-            $error = ibase_errmsg();
+            $error = fbird_errmsg();
         }
         break;
 
     case 'restore':
-        if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
 
-            $content = ibase_restore($service, $job['source'], $job['target'], $job['options'], TRUE);
+            $content = fbird_restore($service, $job['source'], $job['target'], $job['options'], TRUE);
             $content = str_replace(array(chr(0x01).chr(0x0a), 'gbak: '), '', $content);
-            ibase_service_detach($service);
+            fbird_service_detach($service);
 
             // try to connect the restored database
             if ($job['connect']) {
@@ -69,7 +69,7 @@ if ($job = get_iframejob($s_iframejobs, $key)) {
                 }
                 else {
                     // connect failed 
-                    $content .= '<p><span class="err">' . $info_strings['IBError'] . ':</span>' . ibase_errmsg()."</p>\n";
+                    $content .= '<p><span class="err">' . $info_strings['IBError'] . ':</span>' . fbird_errmsg()."</p>\n";
                     $s_login['password'] = '';
                     $s_connected = FALSE;
                 }
@@ -77,7 +77,7 @@ if ($job = get_iframejob($s_iframejobs, $key)) {
             }
         }
         else {
-            $error = ibase_errmsg();
+            $error = fbird_errmsg();
         }
         break;
 

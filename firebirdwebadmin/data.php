@@ -182,15 +182,15 @@ if (have_panel_permissions($s_login['user'], 'dt_enter', TRUE)
             if (is_array($value)  &&  !empty($value['name'])) {
                 $bfname = $value['tmp_name'];
                 $bfhandle = fopen($bfname, 'r') or die('cannot open file '.$bfname);
-                $bstr = ibase_blob_import($dbhandle, $bfhandle);
+                $bstr = fbird_blob_import($dbhandle, $bfhandle);
                 fclose($bfhandle);
                 $bindargs[] = $bstr;
             }
             // blob from textarea
             elseif (!empty($value)) {
-                $bhandle = ibase_blob_create($dbhandle) or die('cannot create blob: '.__FILE__.', '.__LINE__);
-                ibase_blob_add($bhandle, $value);
-                $bstr = ibase_blob_close($bhandle);
+                $bhandle = fbird_blob_create($dbhandle) or die('cannot create blob: '.__FILE__.', '.__LINE__);
+                fbird_blob_add($bhandle, $value);
+                $bstr = fbird_blob_close($bhandle);
                 $bindargs[] = $bstr;
             }
             else {
@@ -321,9 +321,9 @@ if (have_panel_permissions($s_login['user'], 'dt_import', TRUE)
 
         $sql = 'INSERT INTO '.$itable. '('.implode(', ', $col_names).')'
                               .' VALUES ('.implode(', ',array_fill(0, count($col_names), '?')).')';
-        $query = ibase_prepare($sql) or ib_error(__FILE__, __LINE__, $sql);
+        $query = fbird_prepare($sql) or ib_error(__FILE__, __LINE__, $sql);
 
-        // string of variablenames needed for ibase_execute()
+        // string of variablenames needed for fbird_execute()
         $var_string = '';
         foreach (array_keys($col_names) as $idx) {
             $var_string .= '$data['.$idx.'],';
@@ -367,14 +367,14 @@ if (have_panel_permissions($s_login['user'], 'dt_import', TRUE)
                         $data[$idx] = NULL;
                     }
                     else {
-                        $blob_handle = ibase_blob_create($dbhandle) or ib_error(__FILE__, __LINE__);
-                        ibase_blob_add($blob_handle, $data[$idx]);
-                        $data[$idx] = ibase_blob_close($blob_handle) or ib_error(__FILE__, __LINE__);
+                        $blob_handle = fbird_blob_create($dbhandle) or ib_error(__FILE__, __LINE__);
+                        fbird_blob_add($blob_handle, $data[$idx]);
+                        $data[$idx] = fbird_blob_close($blob_handle) or ib_error(__FILE__, __LINE__);
                     }
                 }
             }
 
-            call_user_func_array('ibase_execute', array_merge(array($query), $data))
+            call_user_func_array('fbird_execute', array_merge(array($query), $data))
                 or $ib_error = ib_error(__FILE__, __LINE__, $query);
 
             // an error occurs during the import

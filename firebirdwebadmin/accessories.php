@@ -112,15 +112,15 @@ if (have_panel_permissions($s_login['user'], 'acc_gen', TRUE)) {
     // init array generators[]
     $lsql = 'SELECT RDB$GENERATOR_NAME AS GNAME FROM RDB$GENERATORS '
             .'WHERE RDB$SYSTEM_FLAG IS NULL OR RDB$SYSTEM_FLAG = 0';
-    $res = ibase_query($dbhandle, $lsql) or ib_error();
+    $res = fbird_query($dbhandle, $lsql) or ib_error();
 
-    while ($row = ibase_fetch_object($res)) {
+    while ($row = fbird_fetch_object($res)) {
         $lsql = 'SELECT gen_id(' . $quote . fb_escape_string($row->GNAME) . $quote . ', 0) AS VAL FROM RDB$DATABASE';
-        $res1 = ibase_query($dbhandle, $lsql) or ib_error();
-        $row1 = ibase_fetch_object($res1);
+        $res1 = fbird_query($dbhandle, $lsql) or ib_error();
+        $row1 = fbird_fetch_object($res1);
         $generators[] = array('name' => trim($row->GNAME),
                               'value' => (int)$row1->VAL);
-        ibase_free_result($res1);
+        fbird_free_result($res1);
     }
 
     // one of the Drop buttons on the generator panel was pushed
@@ -825,14 +825,14 @@ if (isset($_POST['confirm_no'])) {
 if ($sql != ''  &&  empty($ib_error)) {
     if (is_array($sql)) {
         foreach($sql as $idx => $cmd) {
-            if (!@ibase_query($dbhandle, $sql[$idx])) {
-                $ib_error .= ibase_errmsg()."<br>\n>";
+            if (!@fbird_query($dbhandle, $sql[$idx])) {
+                $ib_error .= fbird_errmsg()."<br>\n>";
             }
         }
     }
     else {
-        if (!@ibase_query($dbhandle, $sql)) {
-            $ib_error = ibase_errmsg();
+        if (!@fbird_query($dbhandle, $sql)) {
+            $ib_error = fbird_errmsg();
         }
     }
 }
@@ -909,8 +909,8 @@ function drop_generator($name) {
     global $generators, $dbhandle, $ib_error;
 
     $lsql = 'DELETE FROM RDB$GENERATORS WHERE RDB$GENERATOR_NAME=\'' . fb_escape_string($name) . "'"; 
-    if (!@ibase_query($dbhandle, $lsql)) {
-        $ib_error = ibase_errmsg();
+    if (!@fbird_query($dbhandle, $lsql)) {
+        $ib_error = fbird_errmsg();
     }
     else {
         // remove the dropped generator from the array

@@ -175,28 +175,28 @@ if (isset($_POST['sql_run'])  ||
         }
     }
 
-    // perform the query(s) by ibase_query()
+    // perform the query(s) by fbird_query()
     elseif ($s_connected == TRUE  &&  empty($error)) {
 
         $s_sql['more'] = FALSE;
         $results = array();
         foreach ($lines as $lnr => $cmd) {
             $cnt = 0;
-            $trans =  ibase_trans(TRANS_WRITE, $dbhandle);
-            $res = @ibase_query($trans, $cmd)
-                or $ib_error = ibase_errmsg();
+            $trans =  fbird_trans(TRANS_WRITE, $dbhandle);
+            $res = @fbird_query($trans, $cmd)
+                or $ib_error = fbird_errmsg();
 
             // if sql_output-panel is open         
             $idx = get_panel_index($s_sql_panels, 'sql_output');
             if ($s_sql_panels[$idx][2] == 'open') {     
 
                 // if the query have result rows
-                if (is_resource($res) && @ibase_num_fields($res) > 0) {
+                if (is_resource($res) && @fbird_num_fields($res) > 0) {
 
                     $fieldinfo[$lnr] = get_field_info($res);
 
                     // save the rows for the output in the sql_output panel
-                    while ($row = ibase_fetch_object($res)) {
+                    while ($row = fbird_fetch_object($res)) {
                         $results[$lnr][] = get_object_vars ($row);
                         $cnt++;
                         if ($cnt >= SHOW_OUTPUT_ROWS
@@ -207,7 +207,7 @@ if (isset($_POST['sql_run'])  ||
                     }
                 }
             }
-            ibase_commit($trans);
+            fbird_commit($trans);
         }
         if (!empty($results)) {
             $js_stack .= js_markable_table();
@@ -308,9 +308,9 @@ function sql_export_button($idx) {
 function get_field_info($res) {
 
     $info = array();
-    $num = ibase_num_fields($res);
+    $num = fbird_num_fields($res);
     for ($i=0; $i < $num; $i++) {
-        $info[] = ibase_field_info($res, $i); 
+        $info[] = fbird_field_info($res, $i); 
     }
 
     return $info;

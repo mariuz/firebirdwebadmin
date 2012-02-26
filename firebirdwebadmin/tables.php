@@ -400,17 +400,17 @@ if (isset($_POST['confirm_no'])
 //
 if ($sql != '') {
     if (DEBUG) add_debug('$sql: '.$sql, __FILE__, __LINE__);
-    $trans = ibase_trans(TRANS_WRITE, $dbhandle);
-    if (ibase_query($trans, $sql)) {
-        ibase_commit($trans);
+    $trans = fbird_trans(TRANS_WRITE, $dbhandle);
+    if (fbird_query($trans, $sql)) {
+        fbird_commit($trans);
         $s_tables_valid = FALSE;		     
         $s_create_table = '';
         $s_create_num = 0;
         $s_coldefs = array();
         $s_modify_col = '';
     } else {
-        $ib_error = ibase_errmsg();
-        ibase_rollback($trans);
+        $ib_error = fbird_errmsg();
+        fbird_rollback($trans);
         if (isset($mod_flag)  &&  $mod_flag == TRUE) {
             $col_mod_flag = TRUE;
         }
@@ -504,14 +504,14 @@ function get_column_fk_defs($cname, $iname) {
 
     $defs = array('fk_name' => $cname);
 
-    $trans = ibase_trans(TRANS_READ, $dbhandle);
+    $trans = fbird_trans(TRANS_READ, $dbhandle);
     $sql = 'SELECT RDB$UPDATE_RULE,'
                 .' RDB$DELETE_RULE'
            .' FROM RDB$REF_CONSTRAINTS'
           ." WHERE RDB\$CONSTRAINT_NAME='".$cname."'";
-    $res = @ibase_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    if ($res  && $row = ibase_fetch_row($res)) {
-        ibase_free_result($res);
+    $res = @fbird_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    if ($res  && $row = fbird_fetch_row($res)) {
+        fbird_free_result($res);
     }
     $defs['on_update'] = trim($row[0]);
     $defs['on_delete'] = trim($row[1]);
@@ -522,14 +522,14 @@ function get_column_fk_defs($cname, $iname) {
      .' INNER JOIN RDB$INDICES I2 ON I1.RDB$FOREIGN_KEY=I2.RDB$INDEX_NAME'
      .' INNER JOIN RDB$INDEX_SEGMENTS SE ON I2.RDB$INDEX_NAME=SE.RDB$INDEX_NAME'
           ." WHERE I1.RDB\$INDEX_NAME='".$iname."'";
-    $res = @ibase_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    if ($res  && $row = ibase_fetch_row($res)) {
-        ibase_free_result($res);
+    $res = @fbird_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    if ($res  && $row = fbird_fetch_row($res)) {
+        fbird_free_result($res);
     }
     $defs['fk_table']  = trim($row[0]);
     $defs['fk_column'] = trim($row[1]);
 
-    ibase_commit($trans);
+    fbird_commit($trans);
 
     return $defs;
 }

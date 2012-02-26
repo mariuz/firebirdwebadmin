@@ -17,7 +17,7 @@ require('./inc/script_start.inc.php');
 if (isset($_POST['db_login_doit'])){
     // close existing connection, if any
     if (!empty($dbhandle)) {
-        ibase_close($dbhandle);
+        fbird_close($dbhandle);
     }
     $s_login['database'] = $_POST['db_login_database'];
     $s_login['user']     = strtoupper($_POST['db_login_user']);
@@ -59,7 +59,7 @@ if (isset($_POST['db_login_doit'])){
             $s_charsets = get_charsets(SERVER_FAMILY, SERVER_VERSION);
         } else {
             // connect failed 
-            $ib_error = ibase_errmsg();
+            $ib_error = fbird_errmsg();
             $s_login['password'] = '';
             $s_connected = FALSE;
         }
@@ -74,7 +74,7 @@ if (isset($_POST['db_login_doit'])){
 if (isset($_POST['db_logout_doit'])){
 
     if (!empty($dbhandle)) {
-        ibase_close($dbhandle);
+        fbird_close($dbhandle);
     }
     remove_edit_panels();
     cleanup_session();
@@ -114,7 +114,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
 
     // close existing connection, if any
     if (!empty($dbhandle)  &&  empty($error)) {
-        ibase_close($dbhandle);
+        fbird_close($dbhandle);
     }
 
     // build a sql statement from the values
@@ -158,7 +158,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
                 cleanup_session();
                 $message = sprintf($MESSAGES['CREATE_DB_SUCCESS'], $s_create_db);
             } else {
-                $ib_error = ibase_errmsg();
+                $ib_error = fbird_errmsg();
             }
         }
     }
@@ -369,18 +369,18 @@ function drop_database($db, $login) {
     }
     else {
         $db_path = ($db['host'] == '') ? $db['database'] : $db['host'].':'.$db['database'];
-        if (($dbh = ibase_connect($db_path, $db['user'], $db['password'])) == FALSE) {
+        if (($dbh = fbird_connect($db_path, $db['user'], $db['password'])) == FALSE) {
 
-            $success = ibase_errmsg();
+            $success = fbird_errmsg();
         }
     }
 
     // drop it if we got a handle
     if (is_resource($dbh)  &&
-        ibase_drop_db($dbh) == FALSE) {
+        fbird_drop_db($dbh) == FALSE) {
 
-        $success = ibase_errmsg();
-        ibase_close($dbh);
+        $success = fbird_errmsg();
+        fbird_close($dbh);
     }
 
     return $success;

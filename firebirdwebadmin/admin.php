@@ -122,20 +122,20 @@ if (have_panel_permissions($s_login['user'], 'adm_gfix')) {
     }
 
     if (!empty($action)) {
-        if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
             if (empty($argument)) {
-                $result =  ibase_maintain_db($service, $s_login['database'], $action);
+                $result =  fbird_maintain_db($service, $s_login['database'], $action);
             }
             else{
-                $result =  ibase_maintain_db($service, $s_login['database'], $action, $argument);
+                $result =  fbird_maintain_db($service, $s_login['database'], $action, $argument);
             }
-            ibase_service_detach($service);
+            fbird_service_detach($service);
             if (!$result) {
-                $ib_error = ibase_errmsg();
+                $ib_error = fbird_errmsg();
             }
         }
         else {
-            $ib_error = ibase_errmsg();
+            $ib_error = fbird_errmsg();
         }
 
         if ($logout == TRUE) {
@@ -198,14 +198,14 @@ if (have_panel_permissions($s_login['user'], 'adm_server')) {
     }
 
     // get server version and implementation strings
-    if (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
-        $server_info  = ibase_server_info($service, IBASE_SVC_SERVER_VERSION) 
+    if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        $server_info  = fbird_server_info($service, IBASE_SVC_SERVER_VERSION) 
                       . ' / '
-                      . ibase_server_info($service, IBASE_SVC_IMPLEMENTATION);
-        ibase_service_detach($service);
+                      . fbird_server_info($service, IBASE_SVC_IMPLEMENTATION);
+        fbird_service_detach($service);
     }
     else {
-        $ib_error = ibase_errmsg();
+        $ib_error = fbird_errmsg();
     }
 }
 
@@ -261,14 +261,14 @@ if (have_panel_permissions($s_login['user'], 'adm_backup')) {
                                                      'options'   => $options,
                                                      'timestamp' => time());
         }
-        elseif (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+        elseif (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
 
-            $result = ibase_backup($service, $source_db, $target_file, $options, $s_backup['verbose']);
+            $result = fbird_backup($service, $source_db, $target_file, $options, $s_backup['verbose']);
             $message = nl2br(str_replace(array(chr(0x01).chr(0x0a), 'gbak: '), '', $result));
-            ibase_service_detach($service);
+            fbird_service_detach($service);
         }
         else {
-            $ib_error = ibase_errmsg();
+            $ib_error = fbird_errmsg();
         }
     }
 }
@@ -343,15 +343,15 @@ if (have_panel_permissions($s_login['user'], 'adm_restore')) {
                                                       'timestamp' => time());
             }
 
-            elseif (($service = ibase_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
+            elseif (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
 
-                ibase_restore($service, $source_file, $s_restore['target'], $options, $s_restore['verbose']);
+                fbird_restore($service, $source_file, $s_restore['target'], $options, $s_restore['verbose']);
                 $message = 'restore started';
-                ibase_service_detach($service);
+                fbird_service_detach($service);
             }
        
             else {
-                $ib_error = ibase_errmsg();
+                $ib_error = fbird_errmsg();
             }
         }
     }
