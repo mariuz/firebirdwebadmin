@@ -33,7 +33,7 @@ set_error_handler('error_handler');
 
 
 if (!in_array('interbase', get_loaded_extensions())) {
-    @dl('interbase.so')  ||  @dl('interbase.dll');
+    @dl('interbase.so')  ||  @dl('php_interbase.dll');
 }
 
 if (!isset($_SESSION['s_init'])
