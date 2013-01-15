@@ -1,5 +1,5 @@
 <?php
-// File           adm_gfix.php / ibWebAdmin
+// File           adm_gfix.php / FirebirdWebAdmin
 // Purpose        interface for the gfix command
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

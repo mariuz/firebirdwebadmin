@@ -1,5 +1,5 @@
 <?php
-// File           stylesheet.php / ibWebAdmin
+// File           stylesheet.php / FirebirdWebAdmin
 // Purpose        dynamic stylesheet generation
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

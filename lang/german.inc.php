@@ -1,5 +1,5 @@
 <?php
-// File           german.inc.php / ibWebAdmin
+// File           german.inc.php / FirebirdWebAdmin
 // Purpose        german strings definitions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -402,7 +402,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA Passwort',
                      'NoTrans'   => 'keine neuen Tansaktionen',
                      'Force'     => 'erzwingen',
                      'ForSeconds'=> 'für/nach %s Sekunden',
-                     'Reconnect' => 'ibWebAdmin nach dem Herunterfahren wieder verbinden',
+                     'Reconnect' => 'FirebirdWebAdmin nach dem Herunterfahren wieder verbinden',
                      'Rescind'   => 'Herunterfahren abbrechen',
                      'BTarget'   => 'Sichern nach',
                      'FDName'    => 'Datei- oder Gerätename',
@@ -425,7 +425,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA Passwort',
                      'IdxInact'  => 'während des Wiederherstellens die Indices deaktivieren',
                      'NoValidity'=> 'die Gültigkeitsbeschränkungen aus den Metadaten löschen',
                      'KillShad'  => 'vormals definiert Spiegeldateien nicht erstellen',
-                     'ConnAfter' => 'ibWebAdmin mit der wiederhergestellten Datenbank vebinden',
+                     'ConnAfter' => 'FirebirdWebAdmin mit der wiederhergestellten Datenbank vebinden',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analysieren'
                      );
@@ -445,9 +445,9 @@ $info_strings = array('Connected' => 'verbunden mit Datenbank',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Die Blob-Funktionen sind defekt (zumindest in php4.0.2 und php4.0.3).<br>\n"
                                             ."Wenn du  Blobs benutzen möchtest, aktualisiere bitte deine php-Installation.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin hat eine stored procedure mit dem Namen "'.SP_LIMIT_NAME.'", die für das Betrachten '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin hat eine stored procedure mit dem Namen "'.SP_LIMIT_NAME.'", die für das Betrachten '
                                             ."von Tabelleinhalten benutzt wird, in deiner Datenbank gespeichert.<br>\n"
-                                            .'Wenn ibWebAdmin von mehreren Personen gleichzeitig verwendet wird, ist es ratsam, '
+                                            .'Wenn FirebirdWebAdmin von mehreren Personen gleichzeitig verwendet wird, ist es ratsam, '
                                             ."in der Datei inc/configuration.in.php den Wert für WATCHTABLE_METHOD zu ändern.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Wenn das Bearbeiten erlaubt ist, müssen die Primary Key Felder für die Anzeige in der Tabelle ausgewählt sein.<br>\n" 
                                             ."Die Primary Key Felder wurden deshalb der Auswahl hinzugefügt.<br>\n",

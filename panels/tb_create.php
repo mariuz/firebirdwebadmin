@@ -1,5 +1,5 @@
 <?php
-// File           tb_create.php / ibWebAdmin
+// File           tb_create.php / FirebirdWebAdmin
 // Purpose        html sequence for the tb_create-panel in tables.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001,2002, 2003, 2004 by Lutz Brueckner,

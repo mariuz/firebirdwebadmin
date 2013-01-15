@@ -1,5 +1,5 @@
 <?php
-// File           acc_index.php / ibWebAdmin
+// File           acc_index.php / FirebirdWebAdmin
 // Purpose        html sequence for the indexes-panel in accessories.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

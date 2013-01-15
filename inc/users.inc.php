@@ -1,5 +1,5 @@
 <?php
-// File           users.inc.php / ibWebAdmin
+// File           users.inc.php / FirebirdWebAdmin
 // Purpose        functions working with users, included from user.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

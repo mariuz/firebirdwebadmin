@@ -1,5 +1,5 @@
 <?php
-// File           brazilian_portuguese.inc.php / ibWebAdmin
+// File           brazilian_portuguese.inc.php / FirebirdWebAdmin
 // Purpose        brazilian portuguese strings definitions
 // Author         Paulo Vaz <paulo@multi-informatica.com.br>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -402,7 +402,7 @@ $adm_strings = array('SysdbaPW'  => 'senha do SYSDBA',
                      'NoTrans'   => 'No New Transactions',
                      'Force'     => 'Force',
                      'ForSeconds'=> 'for/after %s seconds',
-                     'Reconnect' => 'Reconnect ibWebAdmin after the shutdown',
+                     'Reconnect' => 'Reconnect FirebirdWebAdmin after the shutdown',
                      'Rescind'   => 'Rescind Shutdown',
                      'BTarget'   => 'Backup Target',
                      'FDName'    => 'File or device name',
@@ -425,7 +425,7 @@ $adm_strings = array('SysdbaPW'  => 'senha do SYSDBA',
                      'IdxInact'  => 'Indexes inactive upon restore',
                      'NoValidity'=> 'Delete validity constraints from restored metadata',
                      'KillShad'  => 'Do not create previously defined shadow files',
-                     'ConnAfter' => 'Connect ibWebAdmin to the restored database',
+                     'ConnAfter' => 'Connect FirebirdWebAdmin to the restored database',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -445,9 +445,9 @@ $info_strings = array('Connected' => 'conectado ao Banco de Dados',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "O suporte à Blobs está quebrado (pelo menos no php4.0.2 e php4.0.3).<br>\n"
                                             ."Se você precisa suporte à Blobs você precisa atualizar sua instalação do php.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin criou uma stored procedure "'.SP_LIMIT_NAME.'" que será utilizada pela função Ver Tabela '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin criou uma stored procedure "'.SP_LIMIT_NAME.'" que será utilizada pela função Ver Tabela '
                                             ."e salvou isto em seu Banco de Dados.<br>\n"
-                                            .'Se muitas pessoas estiverem usando o ibWebAdmin ao mesmo tempo, por favor mude o valor '
+                                            .'Se muitas pessoas estiverem usando o FirebirdWebAdmin ao mesmo tempo, por favor mude o valor '
                                             ."de WATCHTABLE_METHOD no arquivo inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Se a edição estiver habilitada os campos da chave primária devem ser selecionados para exibição na configuração de Ver Tabela.<br>\n"
                                             ."O programa fez uma auto-selecção dos campos de índices primários necessários.",

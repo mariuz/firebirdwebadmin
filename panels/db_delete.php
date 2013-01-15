@@ -1,5 +1,5 @@
 <?php
-// File           db_delete.php / ibWebAdmin
+// File           db_delete.php / FirebirdWebAdmin
 // Purpose        html sequence for the db_delete-panel in database.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

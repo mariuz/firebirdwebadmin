@@ -1,5 +1,5 @@
 <?php
-// File           adm_server.php / ibWebAdmin
+// File           adm_server.php / FirebirdWebAdmin
 // Purpose        displays the gds_lock_print / iblockpr output for the selected database
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

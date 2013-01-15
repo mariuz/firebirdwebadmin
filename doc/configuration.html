@@ -3,7 +3,7 @@
   <head>
      <!-- $Id: configuration.html,v 1.3 2004/07/28 10:04:26 lbrueckner Exp $ -->
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>ibWebAdmin Documentation: Configuration</title>
+    <title>FirebirdWebAdmin Documentation: Configuration</title>
     <link rel="stylesheet" type="text/css" href="doc.css">
   </head>
   <body>
@@ -17,9 +17,9 @@
       <p>
         All configuration settings are done in the file <span class="pro">
           configuration.inc.php</span> which is located inside of the
-        <span class="pro">inc</span> directory of your ibWebAdmin installation.
+        <span class="pro">inc</span> directory of your FirebirdWebAdmin installation.
         Some settings are changeable by the users on the customizing panel
-        inside of ibWebAdmin. But the defaults for these settings are also
+        inside of FirebirdWebAdmin. But the defaults for these settings are also
         given in <span class="pro">inc/configuration.inc.php</span>. The 
         configuration file is an ordinary php file. So you have to pay
         attention for correct syntax or you will get parse errors on execution.
@@ -29,7 +29,7 @@
       </p>
       <h3>4.1 Substantial Settings</h3>
       <p>This are the settings you have to adjust according to your environment
-        before you will be able to run ibWebAdmin.
+        before you will be able to run FirebirdWebAdmin.
       </p>
       <p>
         <a name="BINPATH"></a><span class="pro"><b>BINPATH</b></span> The path
@@ -53,7 +53,7 @@
       <p>
         <a name="TMPPATH"></a><span class="pro"><b>TMPPATH</b></span> Insert
         the name of a directory where the webserver have write permissions. The
-        directory is used to place temporary files into it which ibWebAdmin is
+        directory is used to place temporary files into it which FirebirdWebAdmin is
         using for sql scripts. This scripts are necessary for database
         modelling tasks not available throught the php api, e.g. creating
         databases or stored procedures. Normally the temporary files are 
@@ -249,13 +249,13 @@
       <p>
         <a name="IBWA_PREFIX"></a><span class="pro"><b>IBWA_PREFIX</b></span>
         The prefix string used for the naming of database objects created by
-        ibWebAdmin for its own usage. By now it is only used for 
+        FirebirdWebAdmin for its own usage. By now it is only used for 
         <a href="#SP_LIMIT_NAME">SP_LIMIT_NAME</a>. Defaults to 
         <span class="pro">IBWA_</span>.
       </p>
       <p>
         <a name="SP_LIMIT_NAME"></a><span class="pro"><b>SP_LIMIT_NAME</b></span>
-        Name of the stored procedure created by ibWebAdmin and used by the
+        Name of the stored procedure created by FirebirdWebAdmin and used by the
         Watch Table panel if </a><span class="pro">WT_STORED_PROCEDURE</span>
         is selected as the <a href="#WATCHTABLE_METHOD">WATCHTABLE_METHOD</a>.
         Defaults to <span class="pro">IBWA_LIMIT</span>.
@@ -298,7 +298,7 @@
       <p>
         These settings are used during the development for tracking down errors
         by providing additional informations. So they may also be helpfull for
-        you if you are experiencing problems when using ibWebAdmin.
+        you if you are experiencing problems when using FirebirdWebAdmin.
       </p>
       <p>
         <a name="DEBUG"></a><span class="pro"><b>DEBUG</b></span> IF set to
@@ -321,7 +321,7 @@
         <a name="DEBUG_COMMANDS"></a><span class="pro"><b>DEBUG_COMMANDS</b></span>
         Set this one <span class="pro">TRUE</span> and you will get the
         external command calls (isql, gfix, etc.) displayed on the info-panel.
-        ibWebAdmin is using the external commands for a lot of tasks which are
+        FirebirdWebAdmin is using the external commands for a lot of tasks which are
         not available through php. If one of these tasks is failing it is a
         good idea to change this setting, cut &amp; paste the command to the
         command line and to execute it directly. Default value is

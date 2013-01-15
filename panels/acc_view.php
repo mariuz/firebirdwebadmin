@@ -1,5 +1,5 @@
 <?php
-// File           acc_view.php / ibWebAdmin
+// File           acc_view.php / FirebirdWebAdmin
 // Purpose        html sequence for the views-panel in accessories.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

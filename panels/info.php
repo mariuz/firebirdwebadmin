@@ -1,5 +1,5 @@
 <?php
-// File           info.php / ibWebAdmin
+// File           info.php / FirebirdWebAdmin
 // Purpose        html sequence for the info panel
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

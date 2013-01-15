@@ -1,5 +1,5 @@
 <?php
-// File           english.inc.php / ibWebAdmin
+// File           english.inc.php / FirebirdWebAdmin
 // Purpose        english strings definitions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
@@ -411,7 +411,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA password',
                      'NoTrans'   => 'No New Transactions',
                      'Force'     => 'Force',
                      'ForSeconds'=> 'for/after %s seconds',
-                     'Reconnect' => 'Reconnect ibWebAdmin after the shutdown',
+                     'Reconnect' => 'Reconnect FirebirdWebAdmin after the shutdown',
                      'Rescind'   => 'Rescind Shutdown',
                      'BTarget'   => 'Backup Target',
                      'FDName'    => 'File or device name',
@@ -434,7 +434,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA password',
                      'IdxInact'  => 'Indexes inactive upon restore',
                      'NoValidity'=> 'Delete validity constraints from restored metadata',
                      'KillShad'  => 'Do not create previously defined shadow files',
-                     'ConnAfter' => 'Connect ibWebAdmin to the restored database',
+                     'ConnAfter' => 'Connect FirebirdWebAdmin to the restored database',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -454,9 +454,9 @@ $info_strings = array('Connected' => 'connected to Database',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Blob support is broken (at least in php4.0.2 and php4.0.3).<br>\n"
                                             ."If you need blob support you have to update your php installation.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
                                             ."and saved this inside of your database.<br>\n"
-                                            .'If several people are using ibWebAdmin at the same time, please change the value '
+                                            .'If several people are using FirebirdWebAdmin at the same time, please change the value '
                                             ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             ."The program has auto-selected the necessary primary index fields.",

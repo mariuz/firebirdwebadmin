@@ -1,5 +1,5 @@
 <?php
-// File           admin.php / ibWebAdmin
+// File           admin.php / FirebirdWebAdmin
 // Purpose        panels for database administration tasks, gsec, gbak etc.
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

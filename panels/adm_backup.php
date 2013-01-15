@@ -1,5 +1,5 @@
 <?php
-// File           adm_backup.php / ibWebAdmin
+// File           adm_backup.php / FirebirdWebAdmin
 // Purpose        create a backup of the current database
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

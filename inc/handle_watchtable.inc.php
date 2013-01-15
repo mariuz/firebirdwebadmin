@@ -1,5 +1,5 @@
 <?php
-// File           inc/handle_watchtable.inc.php / ibWebAdmin
+// File           inc/handle_watchtable.inc.php / FirebirdWebAdmin
 // Purpose        provides the watch table handling for sql.php and data.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

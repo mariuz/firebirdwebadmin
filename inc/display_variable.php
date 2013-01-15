@@ -1,5 +1,5 @@
 <?php
-// File           inc/display_variable.php / ibWebAdmin
+// File           inc/display_variable.php / FirebirdWebAdmin
 // Purpose        print variable content for debugging purpose
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

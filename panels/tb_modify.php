@@ -1,5 +1,5 @@
 <?php
-// File           tb_modify.php / ibWebAdmin
+// File           tb_modify.php / FirebirdWebAdmin
 // Purpose        html sequence for the tb_modify-panel in table.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

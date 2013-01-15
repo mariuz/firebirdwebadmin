@@ -1,5 +1,5 @@
 <?php
-// File           tb_show.php / ibWebAdmin
+// File           tb_show.php / FirebirdWebAdmin
 // Purpose        html sequence for the tb_show-panel in tables.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

@@ -1,5 +1,5 @@
 <?php
-// File           toggle_fold_panel.php / ibWebAdmin
+// File           toggle_fold_panel.php / FirebirdWebAdmin
 // Purpose        set s_xyz_panels[][2]["open"|"close"] and redirect to $HTTP_REFERER
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

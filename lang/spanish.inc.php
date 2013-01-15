@@ -1,5 +1,5 @@
 <?php
-// File           spanish.inc.php / ibWebAdmin
+// File           spanish.inc.php / FirebirdWebAdmin
 // Purpose        spanish strings definitions
 // Author         Jose Pichardo <joel_pichardo@yahoo.com>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -401,7 +401,7 @@ $adm_strings = array('SysdbaPW'  => 'Contraseña del SYSDBA',
                      'NoTrans'   => 'No New Transactions',
                      'Force'     => 'Force',
                      'ForSeconds'=> 'for/after %s seconds',
-                     'Reconnect' => 'Reconnect ibWebAdmin after the shutdown',
+                     'Reconnect' => 'Reconnect FirebirdWebAdmin after the shutdown',
                      'Rescind'   => 'Rescind Shutdown',
                      'BTarget'   => 'Backup Target',
                      'FDName'    => 'File or device name',
@@ -424,7 +424,7 @@ $adm_strings = array('SysdbaPW'  => 'Contraseña del SYSDBA',
                      'IdxInact'  => 'Indexes inactive upon restore',
                      'NoValidity'=> 'Delete validity constraints from restored metadata',
                      'KillShad'  => 'Do not create previously defined shadow files',
-                     'ConnAfter' => 'Connect ibWebAdmin to the restored database',
+                     'ConnAfter' => 'Connect FirebirdWebAdmin to the restored database',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -444,9 +444,9 @@ $info_strings = array('Connected' => 'Conectado a la base de datos',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "La version de PHP no soporta Campos Blob(pelo menos no php4.0.2 e php4.0.3).<br>\n"
                                             ."Favor Actualizar la version de php.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin crea un stored procedure "'.SP_LIMIT_NAME.'" que será utilizada por la funcion Ver Tabla '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin crea un stored procedure "'.SP_LIMIT_NAME.'" que será utilizada por la funcion Ver Tabla '
                                             ."Este se guarda en su Base de Datos.<br>\n"
-                                            .'Se varias personas van a usar ibWebAdmin al mismo tiempo, por favor cambie el valor '
+                                            .'Se varias personas van a usar FirebirdWebAdmin al mismo tiempo, por favor cambie el valor '
                                             ."de WATCHTABLE_METHOD en el archivo inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Necesita crear un campo como Llave Primaria, Esto es necesario para poder accesar la tabla.<br>\n"
                                             ."Los programas seleccionan la Llave Primaria para el acceso a Datos.",

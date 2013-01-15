@@ -1,5 +1,5 @@
 <?php
-// File           inc/handle_editdata.inc.php / ibWebAdmin
+// File           inc/handle_editdata.inc.php / FirebirdWebAdmin
 // Purpose        provides the handling of the dt_edit-panel for sql.php and data.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

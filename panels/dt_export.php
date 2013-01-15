@@ -1,5 +1,5 @@
 <?php
-// File           dt_export.php / ibWebAdmin
+// File           dt_export.php / FirebirdWebAdmin
 // Purpose        html sequence for the export-panel in data.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

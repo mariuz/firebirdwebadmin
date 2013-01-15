@@ -1,5 +1,5 @@
 <?php                                 
-// File           polish.inc.php / ibWebAdmin
+// File           polish.inc.php / FirebirdWebAdmin
 // Purpose        polish strings definitions
 // Author         Matthias Hryniszak <matthias@hryniszak.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -402,7 +402,7 @@ $adm_strings = array('SysdbaPW'  => 'Has³o SYSDBA',
                      'NoTrans'   => 'Brak nowych transakcji',
                      'Force'     => 'Wymuœ',
                      'ForSeconds'=> 'na/po %s sekund(ach)',
-                     'Reconnect' => 'Po³¹cz ponownie ibWebAdmin po zamkniêciu',
+                     'Reconnect' => 'Po³¹cz ponownie FirebirdWebAdmin po zamkniêciu',
                      'Rescind'   => 'Rescind Shutdown',
                      'BTarget'   => 'Utwórz kopiê zapasow¹ celu',
                      'FDName'    => 'Nazwa pliku lub urz¹dzenia',
@@ -425,7 +425,7 @@ $adm_strings = array('SysdbaPW'  => 'Has³o SYSDBA',
                      'IdxInact'  => 'Indeksy maj¹ byæ nieaktywne podczas przywracaniu',
                      'NoValidity'=> 'Usuñ ograniczenia walidacji z przywróconych metadanych',
                      'KillShad'  => 'Nie twóz poprzednio utworzonych plików cieni',
-                     'ConnAfter' => 'Pod³¹cz ibWebAdmin do przywróconej bazy danych',
+                     'ConnAfter' => 'Pod³¹cz FirebirdWebAdmin do przywróconej bazy danych',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -445,9 +445,9 @@ $info_strings = array('Connected' => 'pod³¹czony do bazy danych',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Wsparcie dla Blobów jest zepsute (przynajmniej w php4.0.2 i php4.0.3).<br>\n"
                                             ."Je¿eli potrzebujesz wsparcia Blobów musisz zaktualizowaæ swoj¹ instalacjê PHP.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin utworzy³ zapamiêtan¹ procedurê "'.SP_LIMIT_NAME.'" która jest u¿ywana przy funkcji monitorowania tabel '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin utworzy³ zapamiêtan¹ procedurê "'.SP_LIMIT_NAME.'" która jest u¿ywana przy funkcji monitorowania tabel '
                                             ."i zapisa³ j¹ w twojej bazie danych.<br>\n"
-                                            .'Je¿eli wiele osób ko¿ysta z ibWebAdmin w tym samym czasie, zmieñ wartoœæ '
+                                            .'Je¿eli wiele osób ko¿ysta z FirebirdWebAdmin w tym samym czasie, zmieñ wartoœæ '
                                             ."WATCHTABLE_METHOD w pliku inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Je¿êli edycja jest w³¹czona pola klucza podstawowego musz¹ buæ zaznaczone do wybrania w konfiguracji monitorowania tabeli.<br>\n"
                                             ."Program automatycznie zaznaczy³ pola indeksu podstawowego.",

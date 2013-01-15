@@ -1,5 +1,5 @@
 <?php
-// File           inc/DataForm.php / ibWebAdmin
+// File           inc/DataForm.php / FirebirdWebAdmin
 // Purpose        form for editing and entering a dataset
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

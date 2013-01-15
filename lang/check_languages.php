@@ -1,5 +1,5 @@
 <?php
-// File           lang/check_languages.inc.php / ibWebAdmin
+// File           lang/check_languages.inc.php / FirebirdWebAdmin
 // Purpose        tool for finding inconsistencies in the language definition files
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

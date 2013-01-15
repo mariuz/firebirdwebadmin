@@ -1,5 +1,5 @@
 <?php
-// File           accessories.php / ibWebAdmin
+// File           accessories.php / FirebirdWebAdmin
 // Purpose        working with generators, triggers, domains, indexes, views,
 //                stored procedures, user defined functions and exceptions
 // Author         Lutz Brueckner <irie@gmx.de>

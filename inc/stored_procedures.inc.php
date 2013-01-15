@@ -1,6 +1,6 @@
 <?php
-// File           stored_procedures.inc.php / ibWebAdmin
-// Purpose        handle the stored procedures ibWebAdmin is using for its own needs
+// File           stored_procedures.inc.php / FirebirdWebAdmin
+// Purpose        handle the stored procedures FirebirdWebAdmin is using for its own needs
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,

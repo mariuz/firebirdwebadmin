@@ -1,5 +1,5 @@
 <?php
-// File           tb_delete.php / ibWebAdmin
+// File           tb_delete.php / FirebirdWebAdmin
 // Purpose        html sequence for the tb_delete-panel in table.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

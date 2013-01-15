@@ -1,5 +1,5 @@
 <?php
-// File           roles.inc.php / ibWebAdmin
+// File           roles.inc.php / FirebirdWebAdmin
 // Purpose        functions working with roles, included from user.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

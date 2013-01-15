@@ -1,5 +1,5 @@
 <?php
-// File           watchtable.php / ibWebAdmin
+// File           watchtable.php / FirebirdWebAdmin
 // Purpose        handling for the navigation elements on the watchtable-panel
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

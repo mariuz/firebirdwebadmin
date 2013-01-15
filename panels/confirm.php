@@ -1,5 +1,5 @@
 <?php
-// File           confirm.php / ibWebAdmin
+// File           confirm.php / FirebirdWebAdmin
 // Purpose        html sequence for the confirm-panel
 //                this is included by other panels to ask for confirmation of deleting
 //                a table, column or any other subjcet

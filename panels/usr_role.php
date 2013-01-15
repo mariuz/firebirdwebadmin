@@ -1,5 +1,5 @@
 <?php
-// File           usr_role.php / ibWebAdmin
+// File           usr_role.php / FirebirdWebAdmin
 // Purpose        html sequence for the roles-panel in user.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

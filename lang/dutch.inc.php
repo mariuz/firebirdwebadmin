@@ -1,5 +1,5 @@
 <?php
-// File           dutch.inc.php / ibWebAdmin
+// File           dutch.inc.php / FirebirdWebAdmin
 // Purpose        dutch strings definitions
 // Author         Michael van Canneyt <Michael.VanCanneyt@Wisa.be
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -404,7 +404,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA wachtwoord',
                      'NoTrans'   => 'Geen nieuwe transacties',
                      'Force'     => 'Forceren',
                      'ForSeconds'=> 'Na %s seconden',
-                     'Reconnect' => 'ibWebAdmin opnieuw verbinden na het afsluiten',
+                     'Reconnect' => 'FirebirdWebAdmin opnieuw verbinden na het afsluiten',
                      'Rescind'   => 'Afsluiten ongedaan maken',
                      'BTarget'   => 'Locatie back-up',
                      'FDName'    => 'Naam van bestand of apparaat',
@@ -427,7 +427,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA wachtwoord',
                      'IdxInact'  => 'Indexen deactiveren tijdens terugzetten',
                      'NoValidity'=> 'Consistentie checks verwijderen uit metadata',
                      'KillShad'  => 'Schadowbestanden niet opnieuw aanmaken',
-                     'ConnAfter' => 'Verbind ibWebAdmin met de teruggezette databank',
+                     'ConnAfter' => 'Verbind FirebirdWebAdmin met de teruggezette databank',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -447,8 +447,8 @@ $info_strings = array('Connected' => 'Aangemeld aan databank',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Blob functionaliteir is defect (minstens php4.0.2 en php4.0.3).<br>\n"
                                             ."Indien U blob functionaliteit nodig heeft, gelieve uw PHP installatie aan te passen.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin heeft in uw databank een stored procedure "'.SP_LIMIT_NAME.'" aangemaakt, gebruikt door de functie tabel bekijken.<br>\n'
-                                            .'Indien meerdere mensen ibWebAdmin tegelijkertijd gebruiken, gelieve de waarde van '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin heeft in uw databank een stored procedure "'.SP_LIMIT_NAME.'" aangemaakt, gebruikt door de functie tabel bekijken.<br>\n'
+                                            .'Indien meerdere mensen FirebirdWebAdmin tegelijkertijd gebruiken, gelieve de waarde van '
                                             ."WATCHTABLE_METHOD in het bestand inc/configuration.inc.php aan te passen.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Indien bewerken toegestaan is, moeten velden van de primaire sleutel gekozen worden in the tabel bekijken configuratie.<br>\n"
                                             ."Het programma heeft zelf de nodige primaire index velden gekozen.",

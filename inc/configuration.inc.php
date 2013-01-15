@@ -1,5 +1,5 @@
 <?php
-// File           inc/configuration.inc.php / ibWebAdmin
+// File           inc/configuration.inc.php / FirebirdWebAdmin
 // Purpose        basic config, set global constants
 //                this is the only file that is included in every script
 // Author         Lutz Brueckner <irie@gmx.de>
@@ -116,7 +116,7 @@ define('SYSDBA_GET_ALL', TRUE);           // if TRUE the $HIDE_PANELS and the $S
 
 define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting data rows or any database objects
 
-define('DATAPATH','./data/');             // the place where ibWebAdmin searches images, icons, etc
+define('DATAPATH','./data/');             // the place where FirebirdWebAdmin searches images, icons, etc
 
 define('ICON_SIZE', 'small');             // size of the icons and navigation elements;
                                           // 'big' and 'small' are valid settings
@@ -178,14 +178,14 @@ define('WT_FIREBIRD_SKIP',    0x04);    // use the Firebird 'SELECT FIRST x SKIP
                                         // only with the firebird server);
 define('WT_IB65_ROWS',        0x08);    // use the Interbase6.5 'ROWS x TO y' syntax (untestet, because I don't have
                                         // access to an ib65 server  *** please report any errors or success with this ***)
-define('WT_BEST_GUESS',       0x10);    // ibWebAdmin is checking the login Server setting
+define('WT_BEST_GUESS',       0x10);    // FirebirdWebAdmin is checking the login Server setting
                                         // and will use the best/fastest choice from the methods defined above
 
 # set the watchtable method of your choice
 define('WATCHTABLE_METHOD', WT_BEST_GUESS);
 
 
-define('IBWA_PREFIX', 'IBWA_');                // prefix for the names of ibWebAdmins own stored procedures
+define('IBWA_PREFIX', 'IBWA_');                // prefix for the names of FirebirdWebAdmins own stored procedures
 define('SP_LIMIT_NAME', IBWA_PREFIX.'LIMIT');  // name for the stored procedure used by the Watch Table panel
 
 

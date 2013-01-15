@@ -1,5 +1,5 @@
 <?php
-// File           script_end.inc.php / ibWebAdmin
+// File           script_end.inc.php / FirebirdWebAdmin
 // Purpose        output the whole html source for the page
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

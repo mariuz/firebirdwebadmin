@@ -1,5 +1,5 @@
 <?php
-// File           array_functions.inc.php / ibWebAdmin
+// File           array_functions.inc.php / FirebirdWebAdmin
 // Purpose        functions for juggling with arrays
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

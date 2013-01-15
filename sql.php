@@ -1,5 +1,5 @@
 <?php
-// File           sql.php / ibWebAdmin
+// File           sql.php / FirebirdWebAdmin
 // Purpose        perform sql commands/scripts on the selected database
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

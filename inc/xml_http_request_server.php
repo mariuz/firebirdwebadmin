@@ -1,5 +1,5 @@
 <?php
-// File           inc/xml_http_request_server.php / ibWebAdmin
+// File           inc/xml_http_request_server.php / FirebirdWebAdmin
 // Purpose        answers to the XMLHttpRequests
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

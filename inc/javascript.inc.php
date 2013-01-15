@@ -1,5 +1,5 @@
 <?php
-// File           javascript.inc.php / ibWebAdmin
+// File           javascript.inc.php / FirebirdWebAdmin
 // Purpose        inline JavaScript functions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

@@ -1,5 +1,5 @@
 <?php
-// File           russian-win1251.inc.php / ibWebAdmin
+// File           russian-win1251.inc.php / FirebirdWebAdmin
 // Purpose        russian strings definitions
 // Author         Andrej Surkov <sura@mail.ru>
 // Based on orginal File by Lutz Brueckner <irie@gmx.de>
@@ -403,7 +403,7 @@ $adm_strings = array('SysdbaPW'  => 'пароль пользователя SYSDBA',
                      'NoTrans'   => 'Запрет новых транзакций',
                      'Force'     => 'Принудительное',
                      'ForSeconds'=> 'на/через %s секунды',
-                     'Reconnect' => 'Восстановить соединение ibWebAdmin после выключения',
+                     'Reconnect' => 'Восстановить соединение FirebirdWebAdmin после выключения',
                      'Rescind'   => 'Отменить выключение',
                      'BTarget'   => 'Резервная копия',
                      'FDName'    => 'Имя файла или устройства',
@@ -426,7 +426,7 @@ $adm_strings = array('SysdbaPW'  => 'пароль пользователя SYSDBA',
                      'IdxInact'  => 'Индексы неактивны после восстановления',
                      'NoValidity'=> 'Удалить ограничения достоверности восстанавливаемых метаданных',
                      'KillShad'  => 'Не создавать ранее определённые файлы Тени Базы Данных',
-                     'ConnAfter' => 'Подключить ibWebAdmin к восстановленной базе данных',
+                     'ConnAfter' => 'Подключить FirebirdWebAdmin к восстановленной базе данных',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -446,9 +446,9 @@ $info_strings = array('Connected' => 'подключён к базе данных',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Поддержка blob не работает (по крайней мере в php4.0.2 и php4.0.3).<br>\n"
                                             ."Если вам необходима поддержка blob вы должны обновить вашу установку php.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin создал хранимую процедуру "'.SP_LIMIT_NAME.'" которая используется функцией Просмотр Таблицы '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin создал хранимую процедуру "'.SP_LIMIT_NAME.'" которая используется функцией Просмотр Таблицы '
                                             ."и сохранена в вашей Базе Данных.<br>\n"
-                                            .'Если несколько человек используют ibWebAdmin одновременно, пожалуйста, измените значение'
+                                            .'Если несколько человек используют FirebirdWebAdmin одновременно, пожалуйста, измените значение'
                                             ."переменной WATCHTABLE_METHOD в файле inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "Если включена возможность редактирования поля первичного ключа должны быть выбраны для показа в настройках функции Просмотр Таблицы.<br>\n"
                                             ."Программа автоматически выбрала необходимые поля первичного ключа.",

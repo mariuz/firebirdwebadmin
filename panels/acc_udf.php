@@ -1,5 +1,5 @@
 <?php
-// File           acc_udf.php / ibWebAdmin
+// File           acc_udf.php / FirebirdWebAdmin
 // Purpose        html sequence for the user defined functions panel in accessories.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

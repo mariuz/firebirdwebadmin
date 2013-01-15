@@ -1,5 +1,5 @@
 <?php
-// File           usr_user.php / ibWebAdmin
+// File           usr_user.php / FirebirdWebAdmin
 // Purpose        html sequence for the users-panel in user.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

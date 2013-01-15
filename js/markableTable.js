@@ -1,4 +1,4 @@
-// File           js/markableTable.js / ibWebAdmin
+// File           js/markableTable.js / FirebirdWebAdmin
 // Purpose        mark rows of a table with mouse clicks
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

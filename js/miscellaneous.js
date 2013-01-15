@@ -1,4 +1,4 @@
-// File           js/miscellaneous.js / ibWebAdmin
+// File           js/miscellaneous.js / FirebirdWebAdmin
 // Purpose        collection of javascript functions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

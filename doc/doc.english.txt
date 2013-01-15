@@ -1,6 +1,6 @@
 $Id: doc.english.txt,v 1.1 2004/01/12 20:06:40 lbrueckner Exp $
 
-1 - What is ibWebAdmin?
+1 - What is FirebirdWebAdmin?
 2 - System requirements
 3 - Installation
 4 - Configuration
@@ -8,13 +8,13 @@ $Id: doc.english.txt,v 1.1 2004/01/12 20:06:40 lbrueckner Exp $
 ?6 - Acknowledgements, authors and copyrights (Lutz, I think you can write this section much better than I)
 ?7 - How to contribute (Lutz, could you, please, write this section too)
 
-1 - What is ibWebAdmin?
+1 - What is FirebirdWebAdmin?
 
- !!! Warning !!! ibWebAdmin is under development and may contain serious bugs. 
+ !!! Warning !!! FirebirdWebAdmin is under development and may contain serious bugs. 
   So make sure you never use it on any important data. Use a copy of
   your database if you are working with this program.
 
-ibWebAdmin is a web frontend for the Firebird and InterBase
+FirebirdWebAdmin is a web frontend for the Firebird and InterBase
   database servers.
 
   By now it has the functionality for
@@ -44,23 +44,23 @@ ibWebAdmin is a web frontend for the Firebird and InterBase
   web-server are running on the same machine
 	o web-browser with enabled coockie and javascript
 
-For example, ibWebAdmin works fine in the next particular environments:
+For example, FirebirdWebAdmin works fine in the next particular environments:
 	- Apache 1.3.28/php 4.33 with support for Interbase and pcre, Firebird 1.5 RC6 SS for Linux or InterBase 7.1 for Linux, Apache 1.3.28, Linux kernel 2.4.20, SuSE 8.2, Mozilla 1.4
 	 - Apache 2.0.47 (win32)/php 4.3.2 with support for Interbase and pcre, Firebird 1.0.0 for Windows, Windows 2000 SP1, Mozilla Firebird 0.7 or Internet Explorer 5.0
 
 3 - Installation
 
-	First, unpack the distribution file  ibWebAdmin_x.xx.tar.gz and place it's contents in your webserver's document directory, for example /htdocs/ibWebAdmin. Then open the file .../ibWebAdmin/inc/configuration.inc.php in any text editor and set correct values for few required configuration parameters and other parameters you wish. Now launch your favourite browser and go to ibWebAdmin's url, say http://yourhostname/ibWebAdmin/, since now enjoy managing your databases with ibWebAdmin.
+	First, unpack the distribution file  FirebirdWebAdmin_x.xx.tar.gz and place it's contents in your webserver's document directory, for example /htdocs/FirebirdWebAdmin. Then open the file .../FirebirdWebAdmin/inc/configuration.inc.php in any text editor and set correct values for few required configuration parameters and other parameters you wish. Now launch your favourite browser and go to FirebirdWebAdmin's url, say http://yourhostname/FirebirdWebAdmin/, since now enjoy managing your databases with FirebirdWebAdmin.
 
 4 -Configuration
 
 	All the configuration parameters are placed in file 'inc/configuration.inc.php'. Edit it with any text editor to change any configuration parameter described below.
 
-* parameters signed by asterisk are critical. They must be set correctly for proper work of ibWebAdmin.
+* parameters signed by asterisk are critical. They must be set correctly for proper work of FirebirdWebAdmin.
 
-!!! Warning !!! Use ONLY slashes and no back-slashes in path parameters, even on Windows. For example, define('BINPATH', 'C:/Program Files/Firebird/bin/'). If by some reasons you can not use slashes or want use back- slashes then your have to double last backslash if the path like in the example define('BINPATH', 'C:\Program Files\Firebird\bin\\'), else ibWebAdmin will not work properly.
+!!! Warning !!! Use ONLY slashes and no back-slashes in path parameters, even on Windows. For example, define('BINPATH', 'C:/Program Files/Firebird/bin/'). If by some reasons you can not use slashes or want use back- slashes then your have to double last backslash if the path like in the example define('BINPATH', 'C:\Program Files\Firebird\bin\\'), else FirebirdWebAdmin will not work properly.
 
-Next group of parameters is about ibWebAdmin interaction with Interbase/Firebird server.
+Next group of parameters is about FirebirdWebAdmin interaction with Interbase/Firebird server.
 
 * 'BINPATH' string 
 Path to Interbase/Firebird executables such as isql, gbak, gfix etc.
@@ -129,15 +129,15 @@ If $ALLOWED_FILES is not empty then only specified database files may be used.  
 					example: $ALLOWED_FILES=array(); empty array, no file access restrictions in this case
 
 $DATABASE_SUFFIXES array of string 
-Interbase/Firebird database file extension list. ibWebAdmin will work with database file only if it's extension is one of specified in the list.
+Interbase/Firebird database file extension list. FirebirdWebAdmin will work with database file only if it's extension is one of specified in the list.
 					example: $DATABASE_SUFFIXES = array('gdb', 'fdb', 'ib');
 
 'BACKUP_DIR' string 
-This parameter defines directory where ibWebAdmin will store backup files.
+This parameter defines directory where FirebirdWebAdmin will store backup files.
 					example for Windows: define('BACKUP_DIR', 'C:/Program Files/Firebird/backup/');
 
 $SQL_DISABLE array of string 
-SQL operators and its combinations listed in this array are forbidden for execution by ibWebAdmin's panel SQL::Enter command or script.
+SQL operators and its combinations listed in this array are forbidden for execution by FirebirdWebAdmin's panel SQL::Enter command or script.
 					example: $SQL_DISABLE = array('CREATE DATABASE', 'CREATE SCHEMA','DROP'); in this example creation of databases and schemas is forbidden; specify here [ALTER|DROP] DATABASE is not necessary, because they just will not work for the panel; DROP is forbidden here also
 
 'SYSDBA_GET_ALL' boolean 
@@ -145,30 +145,30 @@ If this parameter is set TRUE then $HIDE_PANELS è $SQL_DISABLE have no effect fo
 					example: define('SYSDBA_GET_ALL', TRUE);
 
 'WATCHTABLE_METHOD' hex 
-This parameter affects listing of large datasets in the Watch Table panel. The method for generating pages, which are subsets of the showed dataset is defined by this parameter. You may choose one of four available methods or let ibWebAdmin choose the best one:
+This parameter affects listing of large datasets in the Watch Table panel. The method for generating pages, which are subsets of the showed dataset is defined by this parameter. You may choose one of four available methods or let FirebirdWebAdmin choose the best one:
 					- define('WT_SKIP_ROWS',        0x01); skip rows by looping using php facilities, this method is slowest, but works under all circumstances;
 					- define('WT_STORED_PROCEDURE', 0x02); use a stored procedure, it's  faster, but will cause trouble if more than one user will browse tables in the same database simultaneously;
 					- define('WT_FIREBIRD_SKIP',    0x04); use the Firebird 'SELECT FIRST x SKIP x' syntax, best for Firebird server;
 					- define('WT_IB65_ROWS',        0x08); use the Interbase6.5 'ROWS x TO y' syntax, best for Interbase 6.5 server;
-					- define('WT_BEST_GUESS',       0x10); recommended - let ibWebAdmin check the login Server settings and choose the best/fastest method of four listed above
+					- define('WT_BEST_GUESS',       0x10); recommended - let FirebirdWebAdmin check the login Server settings and choose the best/fastest method of four listed above
 					example: define('WATCHTABLE_METHOD', WT_BEST_GUESS);
 
 'IBWA_PREFIX' string 
-This parameter defines prefix for stored procedures created by ibWebAdmin itself.
+This parameter defines prefix for stored procedures created by FirebirdWebAdmin itself.
 					example: define('IBWA_PREFIX', 'IBWA_');
 
 'SP_LIMIT_NAME' string 
-This parameter defines prefix for stored procedure created by ibWebAdmin to be used for the Watch Table panel.
+This parameter defines prefix for stored procedure created by FirebirdWebAdmin to be used for the Watch Table panel.
 					example: define('SP_LIMIT_NAME', IBWA_PREFIX.'LIMIT');
 
 'PERSISTANT_CONNECTIONS' boolean 
 If set to TRUE then persistent connection ibase_pconnect() to Interbase/Firebird server is used in of ibase_connect(). Persistent connection is faster, but will deny some actions, such as 'ALTER TABLE ADD CONSTRAINT ...' and database  maintenance.
 					example: define('PERSISTANT_CONNECTIONS', FALSE);
 
-Next parameters are responsible for ibWebAdmin interface appearance.
+Next parameters are responsible for FirebirdWebAdmin interface appearance.
 
 'LANGUAGE' string 
-Defines ibWebAdmin interface language. Valid options are 'english', 'brazilian_portuguese', 'dutch', 'japanese', 'german' è 'russian-win1251'.
+Defines FirebirdWebAdmin interface language. Valid options are 'english', 'brazilian_portuguese', 'dutch', 'japanese', 'german' è 'russian-win1251'.
 					example: define('LANGUAGE', 'russian-win1251');
 
 $HIDE_PANELS array of string 
@@ -185,7 +185,7 @@ Width of the tabfolder menu bar in pixels, used if TABMENU_STYLE is set to IMAGE
 					example: define('MENU_WIDTH', 900);	
 
 * 'DATAPATH' string 
-This is the place where ibWebAdmin searches the graphics for the menu, icons, ttf-fonts etc.
+This is the place where FirebirdWebAdmin searches the graphics for the menu, icons, ttf-fonts etc.
 					define('DATAPATH','./data/');
 
 * 'TTF_FONT' string 
@@ -311,10 +311,10 @@ Session name to use, for cookie.
 Defines which redirection to use - server side (FALSE) or client side (TRUE).
 					example: define('META_REDIRECT', FALSE);
 
-Next group of parameters is about ibWebAdmin debugging. Try them if you suggests to contribute to ibWebAdmin developing.
+Next group of parameters is about FirebirdWebAdmin debugging. Try them if you suggests to contribute to FirebirdWebAdmin developing.
 
 'VERSION' string 
-ibWebAdmin version number, DO NOT edit this parameter.
+FirebirdWebAdmin version number, DO NOT edit this parameter.
 
 'DEBUG' boolean 
 If set TRUE then debug messages are shown on the Info panel.

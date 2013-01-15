@@ -1,5 +1,5 @@
 <?php
-// File           hungarian.inc.php / ibWebAdmin
+// File           hungarian.inc.php / FirebirdWebAdmin
 // Purpose        hungarian strings definitions
 // Author         Zoltán Miklovicz <zmiklovicz@vivamail.hu>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -402,7 +402,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA jelszó',
                      'NoTrans'   => 'Új tranzakció tiltása',
                      'Force'     => 'Force',
                      'ForSeconds'=> '%s másodperc után',
-                     'Reconnect' => 'Shutdown után ibWebAdmin újra kapcsolódik',
+                     'Reconnect' => 'Shutdown után FirebirdWebAdmin újra kapcsolódik',
                      'Rescind'   => 'Visszavont Shutdown',
                      'BTarget'   => 'Backup cél',
                      'FDName'    => 'Fájl vagy meghajtó neve',
@@ -425,7 +425,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA jelszó',
                      'IdxInact'  => 'Visszaállítás során az indexek passzívak',
                      'NoValidity'=> 'Delete validity constraints from restored metadata',
                      'KillShad'  => 'Nem hozza létre a korábban definiált shadow állományokat',
-                     'ConnAfter' => 'ibWebAdmin kapcsolódása a visszaállított adatbázishoz',
+                     'ConnAfter' => 'FirebirdWebAdmin kapcsolódása a visszaállított adatbázishoz',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -445,9 +445,9 @@ $info_strings = array('Connected' => 'Kapcsolódott adatbázis',
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "Blob nem támogatott (php4.0.2 és php4.0.3-tól).<br>\n"
                                             ."Amennyiben szükséges, telepítsen új PHP-t.<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdmin létrehozta a "'.SP_LIMIT_NAME.'" tárolt eljárást, amit a Watch Table funkció használ. '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin létrehozta a "'.SP_LIMIT_NAME.'" tárolt eljárást, amit a Watch Table funkció használ. '
                                             ."Az eljárás mentésre került.<br>\n"
-                                            .'Ha egyszerre többen használják az ibWebAdmin-t, kérem  állítsa be '
+                                            .'Ha egyszerre többen használják az FirebirdWebAdmin-t, kérem  állítsa be '
                                             ."a WATCHTABLE_METHOD változót az inc/configuration.inc.php állományban.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             ."The program has auto-selected the necessary primary index fields.",

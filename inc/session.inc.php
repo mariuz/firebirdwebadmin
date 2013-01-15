@@ -1,5 +1,5 @@
 <?php
-// File           session.inc.php / ibWebAdmin
+// File           session.inc.php / FirebirdWebAdmin
 // Purpose        session and fallback related functions, define all session variables
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

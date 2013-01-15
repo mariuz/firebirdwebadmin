@@ -1,5 +1,5 @@
 <?php
-// File           export.inc.php / ibWebAdmin
+// File           export.inc.php / FirebirdWebAdmin
 // Purpose        functions for the data export panel
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
@@ -438,7 +438,7 @@ function sql_export_info($export, $lf) {
 
     $db_str = ($s_login['host'] == '') ? $s_login['database'] : $s_login['host'].':'.$s_login['database'];
 
-    $info = '-- ibWebAdmin ' . VERSION . ' - SQL-Dump' . $lf
+    $info = '-- FirebirdWebAdmin ' . VERSION . ' - SQL-Dump' . $lf
           . '-- Dump generated: ' . strftime('%Y-%m-%d %H:%M:%S') . $lf
           . '--' . $lf
           . '-- Database: ' . $db_str . $lf;

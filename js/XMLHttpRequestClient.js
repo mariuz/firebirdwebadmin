@@ -1,4 +1,4 @@
-// File           js/XMLHttpRequestClient.js / ibWebAdmin
+// File           js/XMLHttpRequestClient.js / FirebirdWebAdmin
 // Purpose        javascript implementation of a client class for XMLHttpRequests
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

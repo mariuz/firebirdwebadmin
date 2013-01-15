@@ -1,5 +1,5 @@
 <?php
-// File           sql_output.php / ibWebAdmin
+// File           sql_output.php / FirebirdWebAdmin
 // Purpose        html sequence for the sql_output-panel in sql.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

@@ -1,5 +1,5 @@
 <?php
-// File           acc_procr.php / ibWebAdmin
+// File           acc_procr.php / FirebirdWebAdmin
 // Purpose        html sequence for the procedures panel on the accessories page
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

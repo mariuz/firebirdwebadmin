@@ -1,5 +1,5 @@
 <?php
-// File           data.php / ibWebAdmin
+// File           data.php / FirebirdWebAdmin
 // Purpose        working with data (import/export, type in, ...)
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

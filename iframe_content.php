@@ -1,5 +1,5 @@
 <?php
-// File           iframe_content.php / ibWebAdmin
+// File           iframe_content.php / FirebirdWebAdmin
 // Purpose        display output for backup, restore, metadata and dbstats processes
 //                ubside of an iframe
 // Author         Lutz Brueckner <irie@gmx.de>
@@ -111,7 +111,7 @@ function get_iframejob($iframejobs, $key) {
 
 function iframe_content($content, $error) {
 
-    return html_head('ibWebAdmin ' . VERSION)
+    return html_head('FirebirdWebAdmin ' . VERSION)
          . "<body class=\"if\">\n"
          . ($error ? '<p><span class="err">'.$GLOBALS['info_strings']['Error'].':</span> '.$error."</p>\n" : '')
          . "<pre>\n"

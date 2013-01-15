@@ -1,5 +1,5 @@
 <?php
-// File           get_tables.inc.php / ibWebAdmin
+// File           get_tables.inc.php / FirebirdWebAdmin
 // Purpose        function that gets the table properties for all tables in the database
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

@@ -1,5 +1,5 @@
 <?php
-// File           db_login.php / ibWebAdmin
+// File           db_login.php / FirebirdWebAdmin
 // Purpose        html sequence for the db_login-panel in database.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,

@@ -1,5 +1,5 @@
 <?php
-// File           debug_funcs.inc.php / ibWebAdmin
+// File           debug_funcs.inc.php / FirebirdWebAdmin
 // Purpose        provides functions for debuging purpose
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,

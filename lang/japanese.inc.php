@@ -1,5 +1,5 @@
 <?php
-// File           japanese.inc.php / ibWebAdmin
+// File           japanese.inc.php / FirebirdWebAdmin
 // Purpose        japanese strings definitions
 // Author         Shue Miula <shue@xdip.com>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -402,7 +402,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA パスワード',
                      'NoTrans'   => '新規接続を使用する',
                      'Force'     => '強制',
                      'ForSeconds'=> '%s 秒間待つ',
-                     'Reconnect' => 'シャットダウン後ibWebAdminを接続しなおす',
+                     'Reconnect' => 'シャットダウン後FirebirdWebAdminを接続しなおす',
                      'Rescind'   => 'シャットダウンを取り消します',
                      'BTarget'   => 'バックアップ先',
                      'FDName'    => 'ファイル名或いはデバイス名',
@@ -425,7 +425,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA パスワード',
                      'IdxInact'  => 'インデックスを無効化して復元',
                      'NoValidity'=> '復元先データベースからデータ規約を削除する',
                      'KillShad'  => '以前に定義されたシャドウファイルを作成しません',
-                     'ConnAfter' => '復元されたデータベースにibWebAdminで接続する',
+                     'ConnAfter' => '復元されたデータベースにFirebirdWebAdminで接続する',
                      'Verbose'   => 'Verbose',
                      'Analyze'   => 'Analyze'
                      );
@@ -445,9 +445,9 @@ $info_strings = array('Connected' => 'は次のデータベースに接続しま
 
 $MESSAGES = array('BLOB_BROKEN_INFO'      => "BLOBサポートは壊れています。 (php4.0.2 と php4.0.3)。<br>\n"
                                             ."もしもBLOBサポートが必要ならPHPをアップデートして下さい。<br>\n",
-                  'SP_CREATE_INFO'        => 'ibWebAdminはストアドプロシージャを作成しました "'.SP_LIMIT_NAME.'" Watch Table 関数により使用され '
+                  'SP_CREATE_INFO'        => 'FirebirdWebAdminはストアドプロシージャを作成しました "'.SP_LIMIT_NAME.'" Watch Table 関数により使用され '
                                             ."データベース内に保存されます。<br>\n"
-                                            .'もしも、数人がibWebAdminを同時に使用する場合 '
+                                            .'もしも、数人がFirebirdWebAdminを同時に使用する場合 '
                                             ."右のファイルのWATCHTABLE_METHODの値を変更して下さい。 inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY'      => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             ."プログラムは必要なプライマリーインデックスフィールドを自動選択します。",

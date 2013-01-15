@@ -1,5 +1,5 @@
 <?php
-// File           user.php / ibWebAdmin
+// File           user.php / FirebirdWebAdmin
 // Purpose        panels for user administration, roles, granting permissions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,

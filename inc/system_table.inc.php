@@ -1,5 +1,5 @@
 <?php
-// File           system_table.inc.php / ibWebAdmin
+// File           system_table.inc.php / FirebirdWebAdmin
 // Purpose        functions concerning $s_system_table, the table to display
 //                on the System Table panel
 // Author         Lutz Brueckner <irie@gmx.de>
