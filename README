@@ -43,7 +43,7 @@ Documentation
   If you are struggling with getting the interbase support into your
   W/LAMP-setup, please read the Beginners guide to Firebird and PHP:
 
-  http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_beginners_php
+  http://www.ibphoenix.com/resources/documents/how_to/doc_110
   
   Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.5
 
@@ -58,14 +58,14 @@ Requirements
   you are not using older software components.
 
   php5.x with compiled in support for InterBase and
-  pcre (but any version >= 5.0 should work)
+  pcre (but any version >= 5.3.x should work)
 
-  Firebird 2.1.x SS or Firebird 2.1.x Classic for Linux
+  Firebird 2.x.x SS or Firebird 2.x.x Classic for Linux
         
   Apache 2.x or lighttpd or nginx
 
-  Linux kernel 2.6.x - any distro 
-  firefox or any webkit browser (chrome)
+  Linux kernel 3.x.x - any distro 
+  firefox or any webkit browser (tested in chrome)
 
 
 
