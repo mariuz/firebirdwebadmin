@@ -347,7 +347,6 @@ function initialize_session() {
     }
 
     foreach ($session_vars as $key => $val) {
-        session_register($key);
         $_SESSION[$key] = $val;
     }
 
