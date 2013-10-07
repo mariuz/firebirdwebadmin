@@ -6,9 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <02/10/02 08:47:06 lb>
-//
-// $Id: admin.php,v 1.31 2006/03/22 21:26:43 lbrueckner Exp $
-
 
 require('./inc/script_start.inc.php');
 
