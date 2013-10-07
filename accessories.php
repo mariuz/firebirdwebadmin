@@ -7,8 +7,7 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <00/10/02 08:47:06 lb>
-//
-// $Id: accessories.php,v 1.50 2006/03/22 21:26:43 lbrueckner Exp $
+
 
 
 require('./inc/script_start.inc.php');
