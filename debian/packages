@@ -72,7 +72,7 @@ Depends: php5 (>= 5.2.1) | libapache2-mod-php5
 Depends: php5-interbase
 Depends: apache2
 Depends: []
-suggests: firebird2.5-super-server | firebird2.5-classic, []
+suggests: firebird2.5-super-server | firebird2.5-classic | firebird2.5-super-classic, []
 Description: Web-based administration for the Firebird and Interbase database
  firebirdwebadmin is a web frontend for the InterBase and Firebird database
  server. It makes the attempt to support all features which InterBase
@@ -96,4 +96,4 @@ Install: sh
  yada symlink -into /usr/share/firebirdwebadmin/inc /etc/firebirdwebadmin/configuration.inc.php 
  yada symlink -into /var/www /usr/share/firebirdwebadmin
  yada install -doc debian/README.Debian debian/linking_exception_permission.txt debian/jsrs_license_permission.txt 
-#TODO: Templates field for po-debconf
+
