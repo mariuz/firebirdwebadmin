@@ -15,9 +15,7 @@
 //
 function initialize_php() {
 
-    ini_set('magic_quotes_runtime', '0');
     ini_set('session.use_trans_sid', '0');
-    ini_set('zend.ze1_compatibility_mode', '0');
     ini_set('session.save_handler', 'files');
 }
 
@@ -668,22 +666,8 @@ function db_connect() {
     $db_path = ($s_login['host'] == '') ? $s_login['database'] : $s_login['host'].':'.$s_login['database'];
     $cfunc = (PERSISTANT_CONNECTIONS === TRUE) ? 'fbird_pconnect' : 'fbird_connect';
 
-    if ($s_login['server'] == 'FB_2.0') {
 
-        // hack for fb2.0 where, caused by a php bug, the charset cannot be set with fbird_connect()
-        $php_version      = phpversion();
-        $php_majorversion = $php_version[0];
-        if ($php_majorversion == '5') {
-            ini_set('ibase.default_charset', $s_login['charset']);
-        }
-
-        if ($dbh = @$cfunc($db_path, $s_login['user'], $s_login['password'], $s_login['charset'])) {
-     
-            return $dbh;
-        }
-    }
-
-    elseif ($dbh = $cfunc($db_path, $s_login['user'], $s_login['password'], $s_login['charset'], $s_login['cache'], $s_login['dialect'], $s_login['role'])) {
+    if ($dbh = $cfunc($db_path, $s_login['user'], $s_login['password'], $s_login['charset'], $s_login['cache'], $s_login['dialect'], $s_login['role'])) {
 
         return $dbh;
     }
