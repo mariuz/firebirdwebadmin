@@ -195,11 +195,7 @@ function xml_http_request_server_url() {
         $script = substr($script, 0, strrpos($script, '/')).'/inc/xml_http_request_server.php';
         $script = url_session($script);
 
-        $port_str = isset($_SERVER['SERVER_PORT'])  &&  !in_array($_SERVER['SERVER_PORT'], array(80, 443))
-            ? ':' . $_SERVER['SERVER_PORT'] 
-            : '';
-
-        $url = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $port_str . $script;
+        $url = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $script;
     }
 
     return $url;
