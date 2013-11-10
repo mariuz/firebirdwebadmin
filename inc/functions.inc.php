@@ -966,10 +966,15 @@ function html_head($title) {
         ."<html>\n"
         ."<head>\n"
         .'  <title>'.$title."</title>\n"
-        .'  <meta http-equiv="Content-type" content="text/html; charset='.$GLOBALS['charset']."\">\n"
-        .'  <link rel="stylesheet" type="text/css" href="'.url_session('./stylesheet.php')."\">\n"
+	.'  <meta http-equiv="Content-type" content="text/html; charset='.$GLOBALS['charset']."\">\n"
+	.'  <meta name="viewport" content="width=device-width, initial-scale=1.0">'
+	.'  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css"" rel="stylesheet">'
+	.'  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.css">'
+	.'  <link rel="stylesheet" type="text/css" href="'.url_session('./stylesheet.php')."\">\n"
+	.'  <script src="https://code.jquery.com/jquery.js"></script>'
+	.'  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.js"></script>'
         ."  <script src=\"./js/miscellaneous.js\" type=\"text/javascript\"></script>\n"
-        ."</head>\n";
+	."</head>\n";
 }
 
 

@@ -595,38 +595,6 @@ function get_tags_string($tags) {
 }
 
 
-function get_panel_navigation($index) {
-    global $ptitle_strings;
-
-    $panel_navigation = DATAPATH . (BG_TRANSPARENT == TRUE ? 'transparent/' : 'opaque/') . strtolower(ICON_SIZE) . '/panel_navigation.png';
-
-    $coords = array('big'   => array('up'     => '0,0,15,11',
-                                     'top'    => '16,0,32,11',
-                                     'bottom' => '33,0,49,11',
-                                     'down'   => '50,0,64,11'
-                                     ),
-                    'small' => array('up'     => '0,0,12,9',
-                                     'top'    => '13,0,25,9',
-                                     'bottom' => '26,0,38,9',
-                                     'down'   => '39,0,52,9'
-                                    )
-                   );
-
-    $up_url     = "javascript:movePanel(".$index.",'up')";
-    $top_url    = "javascript:movePanel(".$index.",'top')";
-    $bottom_url = "javascript:movePanel(".$index.",'bottom')";
-    $down_url   = "javascript:movePanel(".$index.",'down')";
-
-    return         '      <map name="Panel_Navi_'.$index."\">\n"
-          .sprintf('        <area shape="rect" coords="%1$s" href="%2$s" alt="%3$s" title="%3$s">'."\n", $coords[ICON_SIZE]['up'],     $up_url,     $ptitle_strings['Up'])
-          .sprintf('        <area shape="rect" coords="%1$s" href="%2$s" alt="%3$s" title="%3$s">'."\n", $coords[ICON_SIZE]['top'],    $top_url,    $ptitle_strings['Top'])
-          .sprintf('        <area shape="rect" coords="%1$s" href="%2$s" alt="%3$s" title="%3$s">'."\n", $coords[ICON_SIZE]['bottom'], $bottom_url, $ptitle_strings['Bottom'])
-          .sprintf('        <area shape="rect" coords="%1$s" href="%2$s" alt="%3$s" title="%3$s">'."\n", $coords[ICON_SIZE]['down'],   $down_url,   $ptitle_strings['Down'])
-                  ."      </map>\n"
-                  .'      <img src="'.$panel_navigation.'" align="right" usemap="#Panel_Navi_'.$index."\" border=\"0\" alt=\"\">\n";
-}
-
-
 //
 // return the html for a closed detail
 //
@@ -790,7 +758,6 @@ function get_closed_panel($title, $nr, $icon) {
            .'      '.sprintf('<a href="%1$s"><img src="%2$s" alt="%3$s" title="%3$s" border="0"></a>'."\n", $fold_url, $icon, $ptitle_strings['Open'])
            .'    <td width="100%"><a class="ptitle" href="'.$fold_url.'">'.$title."</a></td>\n"
            ."    <td width=\"65\">\n"
-           .'      '.get_panel_navigation($nr)."\n"
            ."    </td>\n"
            ."  </tr>\n"
            ."</table>\n";
@@ -813,7 +780,6 @@ function get_open_panel_start($title, $nr) {
          . "    </td>\n"
          . '    <td width="100%"><a class="ptitle" href="' . $fold_url . '">' . $title . "</a></td>\n"
          . "    <td>\n"
-         .        get_panel_navigation($nr)
          . "    </td>\n"
          . "  </tr>\n"
          . "  <tr>\n"

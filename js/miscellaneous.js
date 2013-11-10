@@ -77,77 +77,12 @@ function detailPrefix(type) {
     }
 }
 
-
-//
-// manipulate the DOM to rearrange panels without reloading the page
-//
-function movePanel(idx, where) {
-
-    var divs = getPanelDivs();
-    var last = divs.length -1;
-    var parent = divs[0].parentNode;
-    var html = '';
-
-    var req = new XMLHttpRequestClient(php_xml_http_request_server_url);
-    req.Request("move_panel", new Array(idx, where), '', new Array());
-
-    switch (where) {
-    case 'up':
-        if (idx == 0) return;
-        html = parent.removeChild(divs[idx]);
-        parent.insertBefore(html, divs[idx-1]);
-        divs.swap(idx, idx-1);
-        break;
-    case 'down':
-        if (idx == last) return;
-        html = parent.removeChild(divs[idx]);
-        if (idx == last-1) {
-            movePanelBottom(parent, divs[last], html);
-        }
-        else {
-            parent.insertBefore(html, divs[idx+2]);
-        }
-        divs.swap(idx, idx+1);
-        break;
-    case 'top':
-        if (idx == 0) return;
-        html = parent.removeChild(divs[idx]);
-        parent.insertBefore(html, divs[0]);
-        temp = divs[idx];
-        divs.splice(idx, 1);
-        divs.unshift(temp);
-        break;
-    case 'bottom':
-        if (idx == last) return;
-        html = parent.removeChild(divs[idx]);
-        movePanelBottom(parent, divs[last], html);
-        temp = divs[idx];
-        divs.splice(idx, 1);
-        divs.push(temp);
-        break;
-    }
-
-    adjustPanelIndices(divs);
-}
-
 Array.prototype.swap = function (one, two) {
     var temp = this[one];
     this[one] = this[two];
     this[two] = temp;
 }
 
-// place the panel-div stored in html at the bottom of the page
-function movePanelBottom(parent, lastpanel, html) {
-
-    // if there is a debug-div at the bottom, place the panel above
-    if (lastpanel.nextSibling) {
-        parent.insertBefore(html, lastpanel.nextSibling);
-    }
-    // make the panel-div the last child of <body>
-    else {
-        parent.appendChild(html);
-    }
-}
 
 // fix the panel index in the div ids and in the navigation links
 function adjustPanelIndices(divs) {

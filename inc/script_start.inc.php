@@ -38,7 +38,6 @@ set_error_handler('error_handler');
 
 if (!isset($_SESSION['s_init'])
 ||  ($_SESSION['s_cookies'] === 'untested')) {
-
     initialize_session();
     fallback_session();
 }
