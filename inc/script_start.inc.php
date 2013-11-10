@@ -32,17 +32,12 @@ set_error_handler('error_handler');
     }
 
 
-    if (!in_array('interbase', get_loaded_extensions())) {
+    if (!extension_loaded('interbase')) {
         die($ERRORS['NO_IBASE_MODULE']);
-
 	}
 
 if (!isset($_SESSION['s_init'])
 ||  ($_SESSION['s_cookies'] === 'untested')) {
-
-    if (!in_array('interbase', get_loaded_extensions())) {
-        die($ERRORS['NO_IBASE_MODULE']);
-    }
 
     initialize_session();
     fallback_session();
