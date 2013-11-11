@@ -106,12 +106,10 @@ $fk_actions = array(0 => 'NO ACTION',
                     3 => 'SET NULL'
                     );
 
-$pagesizes = array(1024, 2048, 4096, 8192, 16384);
+$pagesizes = array(4096, 8192, 16384);
 
 $server_types = array('other',
-                      'FB_1.0',
-                      'FB_1.5',
-                      'FB_2.0',
+                      'FB_2.1',
                       'FB_2.5',
                       'FB_3.0',
                       'FB_3.5',
