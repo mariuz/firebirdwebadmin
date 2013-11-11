@@ -18,7 +18,6 @@ if (DEBUG === TRUE) {
     include('./debug_funcs.inc.php');
 }
 
-initialize_php();
 session_start();
 localize_session_vars();
 
