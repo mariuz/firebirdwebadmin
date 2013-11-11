@@ -60,13 +60,13 @@ if (count($dbfiles) == 0) {
 </tr>
 <tr>
    <td>
-      <input type="submit" name="db_login_doit" value="<?php echo $button_strings['Login']; ?>">
+      <input class="btn btn-default" type="submit" name="db_login_doit" value="<?php echo $button_strings['Login']; ?>">
    </td>
    <td colspan="3">
 <?php
 
 if ($s_connected == TRUE) {
-    echo '      <input type="submit" name="db_logout_doit" value="'.$button_strings['Logout']."\">\n";
+    echo '      <input class="btn btn-default" type="submit" name="db_logout_doit" value="'.$button_strings['Logout']."\">\n";
 }
 else {
     echo "      &nbsp;\n";

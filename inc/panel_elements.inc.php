@@ -506,7 +506,7 @@ function get_indexed_selectlist($name, $arr, $sel=NULL, $empty=FALSE, $tags=arra
 
     $sel = is_array($sel) ? array_map('htmlspecialchars', $sel) : htmlspecialchars($sel);
 
-    $html = '<select name="' . $name . '" size="' . $size . '"' . get_tags_string($tags) . ">\n";
+    $html = '<select class="form-control" name="' . $name . '" size="' . $size . '"' . get_tags_string($tags) . ">\n";
     if ($empty == TRUE) {
         $html .= "<option />\n";
     }
@@ -546,7 +546,7 @@ function get_yesno_selectlist($name, $sel=NULL, $empty=FALSE, $tags=array()) {
 //
 function get_textfield($name, $size, $maxlength=NULL, $value=NULL, $type='text', $tags=array()) {
 
-    $html = '<input type="' . $type . '" name="' . $name . '" size="' . $size . '"';
+    $html = '<input class="form-control" type="' . $type . '" name="' . $name . '" size="' . $size . '"';
     if ($maxlength !== NULL) {
         $html .= ' maxlength="' . $maxlength . '"';
     }
