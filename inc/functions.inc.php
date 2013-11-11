@@ -991,24 +991,20 @@ function get_tabmenu($page) {
                          'Users'       => url_session('user.php'),
                          'Admin'       => url_session('admin.php'));
 
-    $html = "<table cellspacing=\"0\">\n"
-          . "  <tr>\n"
-          . "    <td class=\"menu-left\">&nbsp;</td>\n";
+    $html = "<ul class=\"nav nav-tabs\">\n";
 
     foreach ($menuentries as $item => $script) {
         if (count($_SESSION['s_'.strtolower($item).'_panels']) == 1) {
             continue;
         }
-        $class = $page == $item ? 'menu-entry' : 'menu-entry menu-passive';
+        $class = $page == $item ? 'active' : '';
 
-        $html .= '    <td class="'.$class."\">\n"
+        $html .= '    <li class="'.$class."\">\n"
                . '      <a class="menu-link" href="'.$script.'">'.$GLOBALS['menu_strings'][$item]."</a>\n"
-               . "    </td>\n";
+               . "    </li>\n";
     }
     
-    $html .= "    <td class=\"menu-right\">&nbsp;</td>\n"
-           . "  </tr>\n"
-           . "</table>\n";
+    $html .= "</ul>\n";
 
     return $html;
 }
