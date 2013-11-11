@@ -991,7 +991,7 @@ function get_tabmenu($page) {
                          'Users'       => url_session('user.php'),
                          'Admin'       => url_session('admin.php'));
 
-    $html = "<ul class=\"nav nav-tabs\">\n";
+    $html = "<ul class=\"nav nav-pills nav-justified\">\n";
 
     foreach ($menuentries as $item => $script) {
         if (count($_SESSION['s_'.strtolower($item).'_panels']) == 1) {
