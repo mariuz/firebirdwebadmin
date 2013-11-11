@@ -17,7 +17,6 @@ if (DEBUG) $start_time = @microtime();
 
 require('./inc/functions.inc.php');
 
-initialize_php();
 session_start();
 set_error_handler('error_handler');
 
