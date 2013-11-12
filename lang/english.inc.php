@@ -442,9 +442,7 @@ $info_strings = array('Connected' => 'connected to Database',
                       'PHPError'  => 'PHP Error'
                       );
 
-$MESSAGES = array('BLOB_BROKEN_INFO'      => "Blob support is broken (at least in php4.0.2 and php4.0.3).<br>\n"
-                                            ."If you need blob support you have to update your php installation.<br>\n",
-                  'SP_CREATE_INFO'        => 'FirebirdWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
+$MESSAGES = array('SP_CREATE_INFO'        => 'FirebirdWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
                                             ."and saved this inside of your database.<br>\n"
                                             .'If several people are using FirebirdWebAdmin at the same time, please change the value '
                                             ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",

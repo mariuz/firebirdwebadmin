@@ -104,13 +104,6 @@ if (isset($_POST['dt_enter_select'])) {
         $s_fields = get_table_computed_sources($s_enter_name, $s_fields);
 
         $s_enter_values = init_enter_values($s_fields[$s_enter_name]);
-
-        if (have_blob($s_enter_name)) {
-            $version_info = get_php_version();
-            if ((int)$version_info['VER'].$version_info['SUB'].$version_info['MIN'] < 404) {
-                $message .= $MESSAGES['BLOB_BROKEN_INFO'];
-            }
-        }
     }
 }
 
