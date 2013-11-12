@@ -165,21 +165,7 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
 
         $old_settings = $s_cust;
 
-        // color settings
-        foreach (get_colornames() as $cname) {
-            $s_cust['color'][$cname] = strtoupper(get_request_data('usr_cust_'.$cname));
-            if (!preg_match('/^[0-9A-F#]{7}$/i', $s_cust['color'][$cname])) {
-                $error = 'Bad Color!';
-                $s_cust['color'] = $old_settings['color'];
-                break;
-            }
-        }
-        
         $s_cust['language']     = get_request_data('usr_cust_language');
-        $s_cust['fontsize']     = (int)get_request_data('usr_cust_fontsize');
-        $s_cust['textarea']     = array('cols' => (int)get_request_data('usr_cust_tacols'),
-                                        'rows' => (int)get_request_data('usr_cust_tarows'));
-        $s_cust['iframeheight'] = (int)get_request_data('usr_cust_ifheight');
         $s_cust['askdel']       = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
 
         $settings_changed = TRUE;

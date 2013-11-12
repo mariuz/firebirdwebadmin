@@ -19,16 +19,6 @@ $menu_strings = array('Database'    => 'Database',
                       'Admin'       => 'Admin'       
                       );
 
-// the coordinates for the image area used by the tabfolder menu
-$menu_coords = array('Database'   => '8,0,89,31',
-                     'Tables'     => '91,0,152,31',
-                     'Accessories'=> '154,0,256,31',
-                     'SQL'        => '258,0,297,31',
-                     'Data'       => '299,0,344,31',
-                     'Users'      => '346,0,389,31',
-                     'Admin'      => '391,0,448,31',
-                     );
-
 // strings used as panel titles
 $ptitle_strings = array('info'        => 'Info', 
                         'db_login'    => 'Login to Database',  
@@ -521,6 +511,6 @@ $ERRORS   = array('CREATE_DB_FAILED'      => 'Creating of the database <b>%s</b>
                   );
 
 // charset encoding  for html output
-$charset = 'iso-8859-1';
+$charset = 'UTF-8';
 
 ?>
