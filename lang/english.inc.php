@@ -343,26 +343,6 @@ $usr_strings = array('CreateUsr' => 'Create New User',
                      'RoleSelDel'=> 'Select role to delete',
                      'RoleAdd'   => 'Add to role',
                      'RoleRem'   => 'Remove from role',
-                     'ColSet'    => 'Color Settings',
-                     'CBg'       => 'Background',
-                     'CPanel'    => 'Panel Frame',
-                     'CArea'     => 'Panel Background',
-                     'CHeadline' => 'Headline Background',
-                     'CMenubrd'  => 'Menuborder',
-                     'CIfBorder' => 'Iframe Border',
-                     'CIfBg'     => 'Iframe Background',
-                     'CLink'     => 'Links',
-                     'CHover'    => 'Links while Mouseover',
-                     'CSelRow'   => 'Selected Rows',
-                     'CSelInput' => 'Selected Input Fields',
-                     'CFirstRow' => 'Odd Table Rows',
-                     'CSecRow'   => 'Even Table Rows',
-                     'Appearance'=> 'Appearance',
-                     'Language'  => 'Language',
-                     'Fontsize'  => 'Fontsize in Points',
-                     'TACols'    => 'Textarea Columns',
-                     'TARows'    => 'Textarea Rows',
-                     'IFHeight'  => 'Iframe Height in Pixel', 
                      'Attitude'  => 'Attitude',
                      'AskDel'    => 'Confirm deletion of objects and data',
                      'Yes'       => 'Yes',
@@ -442,11 +422,7 @@ $info_strings = array('Connected' => 'connected to Database',
                       'PHPError'  => 'PHP Error'
                       );
 
-$MESSAGES = array('SP_CREATE_INFO'        => 'FirebirdWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
-                                            ."and saved this inside of your database.<br>\n"
-                                            .'If several people are using FirebirdWebAdmin at the same time, please change the value '
-                                            ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",
-                  'EDIT_ADD_PRIMARY'      => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
+$MESSAGES = array('EDIT_ADD_PRIMARY'      => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             ."The program has auto-selected the necessary primary index fields.",
                   'CSV_IMPORT_COUNT'      => "%1\$d rows imported to table %2\$s<br>\n",
                   'CONFIRM_TABLE_DELETE'  => 'Do you really want to delete the table %s?',
