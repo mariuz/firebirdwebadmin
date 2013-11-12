@@ -14,28 +14,28 @@ $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="sql_enter_form" enctype="multipart/form-data">
-   <table cellpadding="3" cellspacing="0">
+   <table class="table" cellpadding="3" cellspacing="0">
       <tr>
          <td colspan="5">
-            <textarea class=form-control name="sql_script" id="sql_script" wrap="virtual"><?php echo htmlspecialchars($sql_script); ?></textarea>
+            <textarea class="form-control" name="sql_script" id="sql_script" wrap="virtual"><?php echo htmlspecialchars($sql_script); ?></textarea>
          </td>
       </tr>
       <tr>
          <td colspan="5" align="right">
-            <input name="sql_file" type="file" size="50" maxlength="100000" accept="text/*" class="bgrp">
-            <input type="submit" name="sql_load" value="<?php echo $button_strings['Load']; ?>" class="bgrp">
-            <input type="submit" name="sql_execute" value="<?php echo $button_strings['Execute']; ?>" class="bgrp">
+            <input name="sql_file" type="file" size="50" maxlength="100000" accept="text/*">
+            <input class="btn btn-primary" type="submit" name="sql_load" value="<?php echo $button_strings['Load']; ?>">
+            <input class="btn btn-primary" type="submit" name="sql_execute" value="<?php echo $button_strings['Execute']; ?>">
          </td>
       </tr>
       <tr>
          <td>
-            <input type="submit" name="sql_run" value="<?php echo $button_strings['DoQuery']; ?>" class="bgrp">
-            <input type="reset" name="sql_reset" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-            <input type="button" name="sql_clear" value="<?php echo $button_strings['Clear']; ?>" onClick="document.sql_enter_form.sql_script.value=''" class="bgrp">
+            <input class="btn btn-success" type="submit" name="sql_run" value="<?php echo $button_strings['DoQuery']; ?>">
+            <input class="btn" type="reset" name="sql_reset" value="<?php echo $button_strings['Reset']; ?>">
+            <input class="btn" type="button" name="sql_clear" value="<?php echo $button_strings['Clear']; ?>" onClick="document.sql_enter_form.sql_script.value=''">
          </td>
          <td>&nbsp;</td>
          <td>
-            <input type="submit" name="sql_plan" value="<?php echo $button_strings['QueryPlan']; ?>">
+            <input class="btn btn-info" type="submit" name="sql_plan" value="<?php echo $button_strings['QueryPlan']; ?>">
          </td>
          <td>&nbsp;</td>
          <td align="right" valign="center">
