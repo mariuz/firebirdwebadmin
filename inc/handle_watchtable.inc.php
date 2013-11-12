@@ -470,9 +470,7 @@ function print_rows_nosp($wt) {
          $sql .= ' ORDER BY '.$wt['order'].' '.$wt['direction'];
     }
 
-    if (WT_METHOD == WT_FB25_ROWS) {
-        $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] -1);
-    }
+    $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] -1);
 
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
