@@ -21,11 +21,6 @@ if (${$parray}[$idx][2] == 'open'  &&  $s_connected == TRUE  &&  $s_tables_valid
 }
 
 
-// define the wathtable to use in this scripts routines and functions
-if ($s_connected == TRUE) {
-	define('WT_METHOD', WATCHTABLE_METHOD);
-}
-
 
 set_watch_table_title($s_wt['table']);
 
