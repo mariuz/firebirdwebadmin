@@ -19,7 +19,7 @@ include('./inc/session.inc.php');
 session_start();
 localize_session_vars();
 
-include('./lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
+include('./lang/english.inc.php');
 include('./inc/functions.inc.php');
 
 // some browsers may fail with the dynamically inserted html

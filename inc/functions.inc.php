@@ -280,7 +280,7 @@ function exec_command($cmd, $parameters, $stderr=FALSE) {
         $err = $GLOBALS['WARNINGS']['CAN_NOT_ACCESS_DIR'];
     }
     else {
-        $path_prefix = ($is_windows) ? '' : './';
+        $path_prefix = ($is_windows) ? '' : '';
 
         exec($path_prefix.$fcmd, $out, $retval);
 

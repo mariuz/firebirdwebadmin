@@ -21,7 +21,7 @@ if (DEBUG === TRUE) {
 session_start();
 localize_session_vars();
 
-require('../lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
+require('../lang/english.inc.php');
 
 $dbhandle = db_connect();
 
