@@ -576,7 +576,7 @@ function hidden_field($name, $value) {
 function get_checkbox($name, $value, $checked, $tags=array()) {
     
     $checked_str = $checked ?  ' checked' : '';
-    $html = '<input type="checkbox" name="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
+    $html = '<input  class="form-control" type="checkbox" name="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
 
     return $html;
 }

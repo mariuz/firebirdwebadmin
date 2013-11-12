@@ -253,7 +253,7 @@ function isql_get_metadata($user, $pw, $db, $host) {
 
     $parameters = ' -m -x' . $user_str . $pw_str . ' '. ibwa_escapeshellarg($db_str);
 
-    return exec_command('isql', $parameters);
+    return exec_command('isql-fb', $parameters);
 }
 
 

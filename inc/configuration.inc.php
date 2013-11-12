@@ -119,21 +119,6 @@ define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting 
 define('DATAPATH','./data/');             // the place where FirebirdWebAdmin searches images, icons, etc
 
 define('ICON_SIZE', 'small');             // size of the icons and navigation elements;
-                                          // 'big' and 'small' are valid settings
-
-define('COLOR_BACKGROUND',       '#F6F7C0');   // color settings
-define('COLOR_PANEL',            '#CAEA62');
-define('COLOR_AREA',             '#FEFFE0');
-define('COLOR_HEADLINE',         '#F0E68C');
-define('COLOR_MENUBORDER',       '#008000');
-define('COLOR_IFRAMEBORDER',     '#F6F7C0');
-define('COLOR_IFRAMEBACKGROUND', '#FFFFFF');
-define('COLOR_LINK',             '#0000CD');
-define('COLOR_LINKHOVER',        '#1E90FF');
-define('COLOR_SELECTEDROW',      '#008000');
-define('COLOR_SELECTEDINPUT',    '#F2F2F2');
-define('COLOR_FIRSTROW',         '#DFDFDF');
-define('COLOR_SECONDROW',        '#EFEFEF');
 
 define('BG_TRANSPARENT', TRUE);    // set TRUE to use png images with a transparent background;
                                    // this is not supported by NS4, but is looking much better with changed color settings
@@ -166,8 +151,6 @@ define('DEFAULT_ROWS', 25);        // number of rows to dispay in the watch-pane
 define('BLOB_WINDOW_WIDTH', 600);  // default dimensions for the blob displaying windows
 define('BLOB_WINDOW_HEIGHT', 800);
 
-define('CACHE_STYLESHEET', TRUE);  // set FALSE to force relaoding of the stylesheet with every request
-
 
 # four methods are selectable for use on the watchtable-panel
 # for skiping to the first row to display
@@ -177,7 +160,6 @@ define('WT_STORED_PROCEDURE', 0x02);    // use a stored procedure (faster, but w
 define('WT_FIREBIRD_SKIP',    0x04);    // use the Firebird 'SELECT FIRST x SKIP x' syntax (fastest, but available
                                         // only with the firebird server);
 define('WT_IB65_ROWS',        0x08);    // use the Interbase6.5 'ROWS x TO y' syntax (untestet, because I don't have
-                                        // access to an ib65 server  *** please report any errors or success with this ***)
 define('WT_BEST_GUESS',       0x10);    // FirebirdWebAdmin is checking the login Server setting
                                         // and will use the best/fastest choice from the methods defined above
 
