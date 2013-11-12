@@ -55,7 +55,7 @@ function build_title($str, $showdb=TRUE) {
 //
 function get_icon_path($datapath, $iconsize) {
 
-    return $datapath . (BG_TRANSPARENT == TRUE ? 'transparent/' : 'opaque/') . strtolower($iconsize) . '/';
+    return $datapath . ('transparent/') . strtolower($iconsize) . '/';
 }
 
 

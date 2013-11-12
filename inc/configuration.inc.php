@@ -40,8 +40,7 @@ define('PROTOCOL', 'http');                        // change to 'https' to use s
 // if $ALLOWED_DIRS is not empty, only database in this directories are allowed to open;
 // the webserver process must have read access to this directories (pathnames _with_ trailing slashes)
 //
-$ALLOWED_DIRS = array('/var/lib/firebird/2.1/data/',
-                      '/var/lib/firebird/2.5/data/',
+$ALLOWED_DIRS = array('/var/lib/firebird/2.5/data/',
                       '/tmp/');
 // $ALLOWED_DIRS = array();
 
@@ -119,10 +118,6 @@ define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting 
 define('DATAPATH','./data/');             // the place where FirebirdWebAdmin searches images, icons, etc
 
 define('ICON_SIZE', 'small');             // size of the icons and navigation elements;
-
-define('BG_TRANSPARENT', TRUE);    // set TRUE to use png images with a transparent background;
-                                   // this is not supported by NS4, but is looking much better with changed color settings
-
 
 define('SQL_AREA_COLS', 80);       // use this for the textarea on the SQL page (also used on the triggers,
 define('SQL_AREA_ROWS', 6);        // the stored procedures and the views panels)

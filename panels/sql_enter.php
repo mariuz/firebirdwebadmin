@@ -45,10 +45,10 @@ $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
             $go_event = " onClick=\"requestSqlBuffer(selectedElement($('sql_pointer')))\";";
             $button_type = 'button';
 
-            echo '&nbsp;<a href="'.$prev_url.'" id="sql_prev"><img src="'.DATAPATH . (BG_TRANSPARENT == TRUE ? 'transparent/' : 'opaque/') . "left_arrow.png\" border=\"0\"></a>\n";
+            echo '&nbsp;<a href="'.$prev_url.'" id="sql_prev"><img src="'.DATAPATH . ('transparent/') . "left_arrow.png\" border=\"0\"></a>\n";
             echo get_selectlist('sql_pointer', range(0, SQL_HISTORY_SIZE -1), $s_sql_pointer, FALSE, array('id' => 'sql_pointer'));
             echo '<input type="'.$button_type.'" name="sql_go" value="'.$button_strings['Go'].'"'.$go_event.'>';
-            echo '&nbsp;<a href="'.$next_url.'" id="sql_next"><img src="'.DATAPATH . (BG_TRANSPARENT == TRUE ? 'transparent/' : 'opaque/') . "right_arrow.png\" border=\"0\"></a>\n";
+            echo '&nbsp;<a href="'.$next_url.'" id="sql_next"><img src="'.DATAPATH . ('transparent/') . "right_arrow.png\" border=\"0\"></a>\n";
 ?>
          </td>
       </tr>
