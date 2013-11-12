@@ -909,18 +909,6 @@ function server_info($server_string) {
 
 
 //
-// guess and return the fastest method for browsing tables for a given database server
-//
-function guess_watchtable_method($server_family, $server_version) {
-
-    if ($server_family == 'FB') {
-        return WT_FIREBIRD_SKIP;
-    }
-    return WT_SKIP_ROWS;
-}
-
-
-//
 // send the http headers for a file download
 //
 function send_export_headers($mimetype, $filename) {

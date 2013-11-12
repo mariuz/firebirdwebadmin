@@ -147,19 +147,11 @@ define('BLOB_WINDOW_WIDTH', 600);  // default dimensions for the blob displaying
 define('BLOB_WINDOW_HEIGHT', 800);
 
 
-# four methods are selectable for use on the watchtable-panel
-# for skiping to the first row to display
-define('WT_SKIP_ROWS',        0x01);    // skip rows by looping (slowest, but works under all circumstances);
-define('WT_STORED_PROCEDURE', 0x02);    // use a stored procedure (faster, but will cause trouble if more than
-                                        // one user is browsing tables in a database by time);
-define('WT_FIREBIRD_SKIP',    0x04);    // use the Firebird 'SELECT FIRST x SKIP x' syntax (fastest, but available
-                                        // only with the firebird server);
-define('WT_IB65_ROWS',        0x08);    // use the Interbase6.5 'ROWS x TO y' syntax (untestet, because I don't have
-define('WT_BEST_GUESS',       0x10);    // FirebirdWebAdmin is checking the login Server setting
-                                        // and will use the best/fastest choice from the methods defined above
+define('WT_FB25_ROWS',        0x08);    // use the Firebird 2.x 'ROWS x TO y' syntax (fastest)
 
 # set the watchtable method of your choice
-define('WATCHTABLE_METHOD', WT_BEST_GUESS);
+define('WATCHTABLE_METHOD', WT_FB25_ROWS);
+
 
 
 define('IBWA_PREFIX', 'IBWA_');                // prefix for the names of FirebirdWebAdmins own stored procedures
@@ -179,10 +171,10 @@ define('TRANS_WRITE', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_WRITE);
 define('META_REDIRECT', FALSE);         // use server (FALSE) or client (TRUE) side redirection
 
 
-define('DEBUG', FALSE);                 // if TRUE print the $debug[] to the info-panel
+define('DEBUG', TRUE);                 // if TRUE print the $debug[] to the info-panel
 define('DEBUG_HTML', FALSE);            // if TRUE write the output_buffer to TMPPATH/{scriptname}.html before
                                         // sending it to the client
-define('DEBUG_COMMANDS', FALSE);        // if TRUE all calls of external commands are diplayed on the info-panel
+define('DEBUG_COMMANDS', TRUE);        // if TRUE all calls of external commands are diplayed on the info-panel
 define('DEBUG_FILES', FALSE);           // if TRUE the temporary files created in TMPATH for processing by isql
                                         // are not deleted when isql is finished
                                    

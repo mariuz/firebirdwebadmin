@@ -99,22 +99,6 @@ elseif (isset($_GET['del'])) {
         $s_watch_buffer = '';
     }
 }
-
-
-if (WATCHTABLE_METHOD == WT_STORED_PROCEDURE
-||  (WATCHTABLE_METHOD == WT_BEST_GUESS  &&  guess_watchtable_method(SERVER_FAMILY, SERVER_VERSION) == WT_STORED_PROCEDURE)) {
-    include('./inc/stored_procedures.inc.php');
-
-    sp_limit_create($s_wt['table'],
-                    $s_wt['columns'],
-                    $s_wt['order'],
-                    $s_wt['direction'],
-                    $s_wt['condition'],
-                    $s_wt['start'],
-                    $s_wt['rows']);
-}
-
-
 // cleanup the watchtable output buffer
 if (isset($_GET['go'])  ||  isset($_GET['order'])) {
     $s_watch_buffer = '';

@@ -23,12 +23,7 @@ if (${$parray}[$idx][2] == 'open'  &&  $s_connected == TRUE  &&  $s_tables_valid
 
 // define the wathtable to use in this scripts routines and functions
 if ($s_connected == TRUE) {
-    if (WATCHTABLE_METHOD == WT_BEST_GUESS) {
-        define('WT_METHOD', guess_watchtable_method(SERVER_FAMILY, SERVER_VERSION));
-    }
-    else {
-        define('WT_METHOD', WATCHTABLE_METHOD);
-    }
+	define('WT_METHOD', WATCHTABLE_METHOD);
 }
 
 
@@ -205,33 +200,6 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
     // cleanup the watchtable output buffer
     $s_watch_buffer = '';
 
-    if (WT_METHOD == WT_STORED_PROCEDURE) {
-
-        include ('./inc/stored_procedures.inc.php');
-
-        if (sp_limit_create($s_wt['table'],
-                            $s_wt['columns'],
-                            $s_wt['order'],
-                            $s_wt['direction'],
-                            $s_wt['condition'],
-                            $s_wt['start'],
-                            $s_wt['rows'])) {
-
-            fbird_close($dbhandle);
-            $dbhandle = db_connect()
-                or ib_error();
-
-            $s_procedures_valid = FALSE;
-
-            // for a reason I don't know the stored procedure
-            // is not available before a reload
-            globalize_session_vars();
-            $script = (!empty($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
-            $url = PROTOCOL.'://'.$_SERVER['SERVER_NAME'].url_session($script);
-
-            redirect($url);
-        }
-    }
 }
 
 
@@ -411,12 +379,7 @@ function display_table($wt){
 
     // rows
     if ($rowcount > 0) {
-        if (WT_METHOD == WT_STORED_PROCEDURE) {
-            print_rows_sp($wt); 
-        }
-        else {
             print_rows_nosp($wt); 
-        }
     }
     echo "</table>\n"
         .'<span id="tb_watch_mark_buttons" style="display:none;">'."\n"
@@ -499,9 +462,7 @@ function print_rows_nosp($wt) {
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
 
-    $sql = WT_METHOD == WT_FIREBIRD_SKIP 
-         ? 'SELECT FIRST '.$wt['rows'].' SKIP '.($wt['start'] > 0 ? $wt['start'] -1 : 0).' '
-         : 'SELECT ';
+    $sql ='SELECT ';
     $sql .= $quote . implode($quote.','.$quote, $wt['columns']) . $quote . ' FROM ' . $quote. $wt['table'] . $quote;
     $sql .= $wt['condition'] != '' ? ' WHERE '.$wt['condition'] : '';
 
@@ -509,18 +470,11 @@ function print_rows_nosp($wt) {
          $sql .= ' ORDER BY '.$wt['order'].' '.$wt['direction'];
     }
 
-    if (WT_METHOD == WT_IB65_ROWS) {
+    if (WT_METHOD == WT_FB25_ROWS) {
         $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] -1);
     }
 
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
-
-    // skip the rows until $start
-    if (WT_METHOD == WT_SKIP_ROWS) {
-        for ($i = 1; $i < $wt['start']; $i++) {
-            fbird_fetch_row($res);
-        }
-    }
 
     $col_count = count($wt['columns']);
     echo "  <tbody>\n";

@@ -16,7 +16,7 @@ if ($s_connected):
   <iframe src="<?php echo url_session('./iframe_content.php?key='.$iframekey_meta); ?>" width="98%" height="<?php echo $s_cust['iframeheight']; ?>" name="db_meta_iframe"></iframe>
 </div>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_meta_form">
-<table align="left" cellpadding="3">
+<table class="table" align="left" cellpadding="3">
   <tr>
     <td>
       <input type="submit" name="db_meta_save" value="<?php echo $button_strings['Save']; ?>">
