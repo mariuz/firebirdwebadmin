@@ -16,9 +16,9 @@
 // i.e define('BINPATH', 'c:/interbase/bin/');
 //
 
-define('VERSION', '2.0pre1 alpha');
+define('VERSION', '3.0');
 
-define('BINPATH', '/usr/lib/firebird/2.5/bin/');           // path to the interbase tools (isql, etc.)
+define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 
 define('TMPPATH', '/tmp/');                        // write temporary files here,
                                                    // must be writeable for the webserver, must be an absolute path
@@ -29,7 +29,7 @@ define('DEFAULT_PATH',    '/var/lib/firebird/2.5/data/');
 define('DEFAULT_HOST',    'localhost');
 define('DEFAULT_ROLE',    '');  
 define('DEFAULT_CACHE',   75);
-define('DEFAULT_CHARSET', 'ISO8859_1');
+define('DEFAULT_CHARSET', 'NONE');
 define('DEFAULT_DIALECT', 3);
 define('DEFAULT_SERVER',  'FB_2.5');               // 'FB_2.1', 'FB_2.5' and 'other' are the valid options
 
