@@ -17,7 +17,7 @@ $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
    <table cellpadding="3" cellspacing="0">
       <tr>
          <td colspan="5">
-            <textarea name="sql_script" id="sql_script" rows="<?php echo $s_cust['textarea']['rows']; ?>" cols="<?php echo $s_cust['textarea']['cols']; ?>" wrap="virtual"><?php echo htmlspecialchars($sql_script); ?></textarea>
+            <textarea class=form-control name="sql_script" id="sql_script" wrap="virtual"><?php echo htmlspecialchars($sql_script); ?></textarea>
          </td>
       </tr>
       <tr>
