@@ -1103,11 +1103,7 @@ function set_customize_cookie($customize) {
     }
 
     $settings = get_customize_cookie_version()."\n"
-              . implode('|', $customize['color'])."\n"
               . $customize['language']."\n"
-              . $customize['fontsize']."\n"
-              . implode('|', $customize['textarea'])."\n"
-              . $customize['iframeheight']."\n"
               . $customize['askdel']."\n"
               . implode('|', $customize['enter'])."\n";
 
@@ -1165,19 +1161,10 @@ function set_customize_settings($cookie_string) {
     }
 
     $colors = explode('|', $settings[1]);
-    $cnames = get_colornames();
-    foreach ($colors as $idx => $color) {
-        $customize['color'][$cnames[$idx]] = $color;
-    }
     
     $customize['language'] = $settings[2];
-    $customize['fontsize'] = $settings[3];
 
     list ($cols, $rows) = explode('|', $settings[4]);;
-    $customize['textarea']['cols'] = $cols;
-    $customize['textarea']['rows'] = $rows;
-
-    $customize['iframeheight'] = $settings[5];
 
     $customize['askdel'] = $settings[6];
 
@@ -1229,41 +1216,6 @@ function get_customize_cookie_version() {
 function get_customize_cookie_name() {
 
     return 'ibwa_customize2';
-}
-
-
-//
-// restore the panel states from the cookie values
-//
-function rearrange_panels($session_vars, $cookie_string) {
-
-    // start index for the panel settings
-    $offset = 10;
-
-    $settings = explode("\n", $cookie_string);
-    $settings = array_slice ($settings, $offset);
-
-    $offset = $pstate_offset = 0;
-
-    foreach (panel_array_names() as $aname) {
-        $panels = array();
-        $panelorder = explode('|', $settings[$offset++]);
-
-        if (count($panelorder) != count($session_vars[$aname])) {
-            // cookie is out of date
-            continue;
-        }
-
-        foreach ($panelorder as $panelname) {
-            $idx = get_panel_index($session_vars[$aname], $panelname);
-            $panels[] = $session_vars[$aname][$idx];
-            $panels[count($panels) -1][2] = $settings[7][$pstate_offset++] == 1 ? 'open' : 'close';
-        }
-
-        $session_vars[$aname] = $panels;
-    }
-
-    return $session_vars;
 }
 
 
@@ -1328,7 +1280,7 @@ function get_colornames() {
 //
 function get_customize_languages() {
 
-    return array('brazilian_portuguese', 'czech', 'dutch', 'english', 'hungarian', 'japanese', 'german', 'polish', 'russian-win1251', 'spanish');
+    return array('brazilian_portuguese', 'dutch', 'english', 'hungarian', 'japanese', 'german', 'polish', 'russian-win1251', 'spanish');
 }
 
 
