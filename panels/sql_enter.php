@@ -6,8 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <00/09/12 09:10:18 lb>
-//
-// $Id: sql_enter.php,v 1.17 2006/07/08 17:23:27 lbrueckner Exp $
 
 
 $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');

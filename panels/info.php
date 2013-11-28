@@ -6,8 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <00/09/09 19:43:36 lb>
-//
-// $Id: info.php,v 1.21 2006/07/08 17:22:16 lbrueckner Exp $
 
 
 if ($s_connected == TRUE) {
@@ -31,12 +29,6 @@ if ($s_connected == TRUE) {
         </tr>
       </table>
      </td>
-<!--
-     <td align="right">
-       <b><a href="./doc/index.html" target="_blank">[Docs]</a></b>
-       <b><a href="./doc/about.html" target="_blank">[About]</a></b>
-     </td>
-//-->
   </tr>
 </table>
 <table>

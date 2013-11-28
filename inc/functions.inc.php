@@ -6,8 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <00/09/09 19:09:16 lb>       
-//
-// $Id: functions.inc.php,v 1.86 2006/07/08 17:26:59 lbrueckner Exp $
 
 
 //

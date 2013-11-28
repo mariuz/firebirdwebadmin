@@ -1,8 +1,0 @@
-1. Implement jqgrid in data area (port it to jquery )
-http://www.trirand.com/jqgrid/jqgrid.html
-
-2. Implement some html5 ideas css1->3 cleanup , webworkers ...
-http://www.html5rocks.com
-3. Monitoring canvas with stats (similar with task manager in gnome)
-4. Implement canvas based ER diagrams http://neyric.github.com/wireit/
-5. Use glue php http://gluephp.com/

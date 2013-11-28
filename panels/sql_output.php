@@ -6,8 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <00/09/12 15:03:13 lb>
-//
-// $Id: sql_output.php,v 1.12 2006/03/14 21:12:50 lbrueckner Exp $
 
 
 // Variables      $results   :   array holding the results from the ibase_query calls
