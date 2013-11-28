@@ -360,15 +360,6 @@ function js_request_sql_buffer() {
 
     function putSqlBuffer(sql, idx) {
         $("sql_script").value = sql;
-        $("sql_pointer").options[idx].selected = true;
-
-        var next = $("sql_next").href;
-        var nidx = parseInt(idx) == $history_size -1 ? 0 : parseInt(idx) +1;
-        $("sql_next").href = next.replace(/\d+/, nidx);
-
-        var prev = $("sql_prev").href;
-        var pidx = parseInt(idx) == 0 ? $history_size -1 : parseInt(idx) -1;
-        $("sql_prev").href = next.replace(/\d+/, pidx);
     }
     </script>
 
@@ -533,7 +524,6 @@ function js_global_variables() {
          . js_javascript_variable('string', 'php_session_name', session_name())
          . js_javascript_variable('string', 'php_session_id', session_id())
          . js_javascript_variable('string', 'php_xml_http_request_server_url', xml_http_request_server_url())
-         . js_javascript_variable('string', 'php_charset', $GLOBALS['charset'])
          . "</script>\n";
 }
 

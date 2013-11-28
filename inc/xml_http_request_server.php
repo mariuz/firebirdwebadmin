@@ -103,7 +103,7 @@ function column_config_form($fk_table, $table, $column) {
           . '<input type="submit" name="dt_column_config_save" value="'.$button_strings['Save']."\" class=\"bgrp\">\n"
           . '<input type="button" name="dt_column_config_cancel" onClick="javascript:hide(this.parentNode.id);" value="'.$button_strings['Cancel']."\" class=\"bgrp\">\n";
 
-    header('Content-Type: text/html;charset='.$GLOBALS['charset']);
+	header('Content-Type: text/html;charset=utf-8');
 
     echo $html;
 }
@@ -122,13 +122,8 @@ function closed_panel($idx){
     $icon = get_icon_path(DATAPATH, ICON_SIZE) . 'open.png';
     $html = get_closed_panel($GLOBALS[$pvar][$idx][1], $idx, $icon);
 
-    // work around for a Mozilla bug 
-    if ($GLOBALS['s_useragent']['ns6up'] == TRUE) {
-        $html = str_replace('&amp;', '&', $html);
-    }
-
     set_customize_cookie($GLOBALS['s_cust']);
-    header('Content-Type: text/html;charset='.$GLOBALS['charset']);
+    header('Content-Type: text/html;charset=utf-8');
 
     echo $html;
 }
