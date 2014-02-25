@@ -45,7 +45,6 @@ $server_functions = array('column_config_form',
                           'set_export_target',
                           'set_export_source',
                           'comment_area',
-                          'move_panel',
                           'markable_watchtable_report'
                           );
 
@@ -401,43 +400,6 @@ function comment_area($type, $name) {
     echo $html;
 }
 
-
-//
-// update the session with the new panel positions 
-//
-function move_panel($idx, $where) {
-
-    include('./array_functions.inc.php');
-
-    //calculate the panel name
-    $pvar = 's_'.strtolower($GLOBALS['s_page']).'_panels';
-
-    // change the order in the panel-array
-    switch ($where) {
-    case 'up':
-        if ($idx > 0) {
-            $GLOBALS[$pvar] = array_swap_elements($GLOBALS[$pvar], $idx, $idx-1);
-        }
-        break;
-    case 'down':
-        if ($idx < count($GLOBALS[$pvar]) - 1) {
-            $GLOBALS[$pvar] = array_swap_elements($GLOBALS[$pvar], $idx, $idx+1);
-        }
-        break;
-    case 'top':
-        if ($idx != 0) {
-            $GLOBALS[$pvar] = array_moveto_top($GLOBALS[$pvar], $idx);
-        }
-        break;
-    case 'bottom':
-          if ($idx != count($GLOBALS[$pvar]) - 1) {
-            $GLOBALS[$pvar] = array_moveto_end($GLOBALS[$pvar], $idx);
-        }
-        break;
-    }
-    
-    set_customize_cookie($GLOBALS['s_cust']);
-}
 
 
 function markable_watchtable_report($a, $b) {
