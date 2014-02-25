@@ -86,11 +86,6 @@ if (DEBUG === TRUE) {
 //     echo 'cookie size: '.strlen($_COOKIE[get_customize_cookie_name()])."<br>\n";
 //     debug_var($_COOKIE[get_customize_cookie_name()]);
 
-    // see http://xdebug.derickrethans.nl/
-    if (function_exists('xdebug_memory_usage')) {
-        echo 'memory usage: '.xdebug_memory_usage()."<br>\n";
-    }
-
     // display links to display the session, post or get variables
     $session_url = url_session('./inc/display_variable.php?var=SESSION');
     echo '<a href="'.$session_url.'" target="_blank">[ Session ]</a>'."\n";
