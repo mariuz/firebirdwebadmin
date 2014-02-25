@@ -652,7 +652,7 @@ function db_connect() {
     global $s_login;
 
     $db_path = ($s_login['host'] == '') ? $s_login['database'] : $s_login['host'].':'.$s_login['database'];
-    $cfunc = (PERSISTANT_CONNECTIONS === TRUE) ? 'fbird_pconnect' : 'fbird_connect';
+    $cfunc ='fbird_connect';
 
 
     if ($dbh = $cfunc($db_path, $s_login['user'], $s_login['password'], $s_login['charset'], $s_login['cache'], $s_login['dialect'], $s_login['role'])) {

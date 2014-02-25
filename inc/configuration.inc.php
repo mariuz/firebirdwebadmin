@@ -142,11 +142,7 @@ define('DEFAULT_ROWS', 25);        // number of rows to dispay in the watch-pane
 define('BLOB_WINDOW_WIDTH', 600);  // default dimensions for the blob displaying windows
 define('BLOB_WINDOW_HEIGHT', 800);
 
-define('SESSION_NAME', 'ibwa');         // session name to use
-
-define('PERSISTANT_CONNECTIONS', FALSE); // whether to use fbird_pconnect() or fbird_connect();
-                                         // although using persistant connections is significant faster, they cause
-                                         // several tasks to fail (i.e. 'ALTER TABLE ADD CONSTRAINT ...', database maintenance)
+define('SESSION_NAME', 'firebirdwebadmin');         // session name to use
 
 # transaction parameters used for the calls of fbird_trans()
 define('TRANS_READ', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_READ);
@@ -155,7 +151,7 @@ define('TRANS_WRITE', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_WRITE);
 define('META_REDIRECT', FALSE);         // use server (FALSE) or client (TRUE) side redirection
 
 
-define('DEBUG', FALSE);                 // if TRUE print the $debug[] to the info-panel
+define('DEBUG', TRUE);                 // if TRUE print the $debug[] to the info-panel
 define('DEBUG_HTML', FALSE);            // if TRUE write the output_buffer to TMPPATH/{scriptname}.html before
                                         // sending it to the client
 define('DEBUG_COMMANDS', FALSE);        // if TRUE all calls of external commands are diplayed on the info-panel
