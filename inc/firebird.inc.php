@@ -29,7 +29,7 @@ function get_preset_charsets($server_family=NULL, $server_version=NULL) {
                       'WIN1254');
 
 
-    if ($server_family == 'FB'  &&  $server_version >= 15) {
+    
         $charsets = array_merge($charsets,
                                 array('DOS737',
                                       'DOS775',
@@ -52,7 +52,7 @@ function get_preset_charsets($server_family=NULL, $server_version=NULL) {
                                       'ISO8859_13')
                                 );
         asort($charsets);
-    }
+    
 
     return $charsets;
 }
@@ -92,10 +92,8 @@ function get_datatypes($server_family=NULL, $server_version=NULL) {
                        35 => 'TIMESTAMP',
                        261=> 'BLOB',
                        40 => 'CSTRING');
-
-    if ($server_family == 'FB'  &&  $server_version >= 15) {
          $datatypes[16] = 'BIGINT';
-    }
+    
 
     return $datatypes;
 }
@@ -164,14 +162,11 @@ function get_reserved_words($server_family, $server_version) {
               'VALUES', 'VARCHAR', 'VARIABLE', 'VARYING', 'VERSION', 'VIEW', 'WAIT',
               'WEEKDAY', 'WHEN', 'WHENEVER', 'WHERE', 'WHILE', 'WITH', 'WORK', 'WRITE', 
               'YEAR', 'YEARDAY');
-
-    if ($server_family == 'FB') {
-        if ($server_version >= 15) {
             $reserved_words = array_merge($reserved_words, array('BIGINT', 'CASE', 'CURRENT_CONNECTION', 'CURRENT_ROLE', 'CURRENT_USER', 'CURRENT_TRANSACTION',
                                                                  'RECREATE', 'ROW_COUNT', 'RELEASE', 'SAVEPOINT', 'ABS', 'BOOLEAN', 'BOTH', 'CHAR_LENGTH',
                                                                  'CHARCTER_LENGTH', 'FALSE', 'LEADING', 'OCTET_LENGTH', 'TRIM', 'TRAILING', 'TRUE', 'UNKNOWN')
                                           );
-        }
+        
     }
 
     return $reserved_words;
@@ -184,11 +179,8 @@ function get_reserved_words($server_family, $server_version) {
 function get_context_variables($server_family, $server_version) {
 
     $context_variables = array('USER', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP');
-
-    if ($server_family == 'FB') {
-        if ($server_version >= 15) {
-            $context_variables = array_merge($context_variables, array('CURRENT_CONNECTION', 'CURRENT_TRANSACTION'));
-        }
+    $context_variables = array_merge($context_variables, array('CURRENT_CONNECTION', 'CURRENT_TRANSACTION'));
+    
     }
 
     return $context_variables;
