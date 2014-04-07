@@ -1,13 +1,10 @@
 <?php
-// File           watchtable.php / FirebirdWebAdmin
+
 // Purpose        handling for the navigation elements on the watchtable-panel
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/02/03 19:58:28 lb>
-//
-// $Id: watchtable.php,v 1.23 2005/10/01 08:18:05 lbrueckner Exp $
 
 
 // do not overwrite $s_referer in script_start.inc.php
