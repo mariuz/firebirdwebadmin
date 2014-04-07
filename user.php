@@ -1,13 +1,9 @@
 <?php
-// File           user.php / FirebirdWebAdmin
 // Purpose        panels for user administration, roles, granting permissions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/05/26 10:07:22 lb>
-//
-// $Id: user.php,v 1.17 2006/03/22 21:26:43 lbrueckner Exp $
 
 
 require('./inc/script_start.inc.php');
