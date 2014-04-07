@@ -165,7 +165,7 @@ if (have_panel_permissions($s_login['user'], 'adm_dbstat', TRUE)) {
 
 
 //
-// get server statistics via gds_lock_print / iblockpr
+// get server statistics via fb_lock_print
 //
 if (have_panel_permissions($s_login['user'], 'adm_server')) {
     $exe ='fb_lock_print';
