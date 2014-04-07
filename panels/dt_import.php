@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/15 18:09:49 lb>
-//
-// $Id: dt_import.php,v 1.1 2005/10/05 11:12:17 lbrueckner Exp $
-
 
 if ($s_connected):
 
