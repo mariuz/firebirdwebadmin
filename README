@@ -40,12 +40,7 @@ Documentation
   For some basic configuration settings have a look to the file
   ./inc/configuration.inc.php befor you start the programm.
 
-  If you are struggling with getting the interbase support into your
-  W/LAMP-setup, please read the Beginners guide to Firebird and PHP:
-
-  http://www.ibphoenix.com/resources/documents/how_to/doc_110
-  
-  Here is how to use and install it on Ubuntu https://help.ubuntu.com/community/Firebird2.5
+    Here is how to use and install on Ubuntu https://help.ubuntu.com/community/Firebird2.5
 
   Firebird documentation is located on this page http://www.firebirdsql.org/en/documentation/
 
@@ -60,7 +55,7 @@ Requirements
   php5.x with compiled in support for InterBase and
   pcre (but any version >= 5.3.x should work)
 
-  Firebird 2.x.x SS or Firebird 2.x.x Classic for Linux
+  Firebird 2.x.x for Linux
         
   Apache 2.x or lighttpd or nginx
 
