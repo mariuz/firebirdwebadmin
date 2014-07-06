@@ -170,7 +170,6 @@ function get_reserved_words($server_family, $server_version) {
     }
 
     return $reserved_words;
-}
 
 
 //
@@ -184,7 +183,6 @@ function get_context_variables($server_family, $server_version) {
     }
 
     return $context_variables;
-}
 
 
 //
