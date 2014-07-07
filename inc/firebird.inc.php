@@ -91,10 +91,9 @@ function get_datatypes($server_family=NULL, $server_version=NULL) {
                        13 => 'TIME',
                        35 => 'TIMESTAMP',
                        261=> 'BLOB',
-                       40 => 'CSTRING');
-         $datatypes[16] = 'BIGINT';
-    
-
+                       40 => 'CSTRING',
+                       16 => 'BIGINT'
+                       );
     return $datatypes;
 }
 
@@ -167,7 +166,7 @@ function get_reserved_words($server_family, $server_version) {
                                                                  'CHARCTER_LENGTH', 'FALSE', 'LEADING', 'OCTET_LENGTH', 'TRIM', 'TRAILING', 'TRUE', 'UNKNOWN')
                                           );
         
-    }
+   
 
     return $reserved_words;
 }
@@ -178,11 +177,7 @@ function get_reserved_words($server_family, $server_version) {
 //
 function get_context_variables($server_family, $server_version) {
 
-    $context_variables = array('USER', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP');
-    $context_variables = array_merge($context_variables, array('CURRENT_CONNECTION', 'CURRENT_TRANSACTION'));
-    
-    }
-
+    $context_variables = array('USER', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP', 'CURRENT_CONNECTION', 'CURRENT_TRANSACTION');
     return $context_variables;
 }
 
