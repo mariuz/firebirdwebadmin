@@ -160,11 +160,10 @@ function get_reserved_words($server_family, $server_version) {
               'UNCOMMITTED', 'UNION', 'UNIQUE', 'UPDATE', 'UPPER', 'USER', 'USING', 'VALUE',
               'VALUES', 'VARCHAR', 'VARIABLE', 'VARYING', 'VERSION', 'VIEW', 'WAIT',
               'WEEKDAY', 'WHEN', 'WHENEVER', 'WHERE', 'WHILE', 'WITH', 'WORK', 'WRITE', 
-              'YEAR', 'YEARDAY');
-            $reserved_words = array_merge($reserved_words, array('BIGINT', 'CASE', 'CURRENT_CONNECTION', 'CURRENT_ROLE', 'CURRENT_USER', 'CURRENT_TRANSACTION',
-                                                                 'RECREATE', 'ROW_COUNT', 'RELEASE', 'SAVEPOINT', 'ABS', 'BOOLEAN', 'BOTH', 'CHAR_LENGTH',
-                                                                 'CHARCTER_LENGTH', 'FALSE', 'LEADING', 'OCTET_LENGTH', 'TRIM', 'TRAILING', 'TRUE', 'UNKNOWN')
-                                          );
+              'YEAR', 'YEARDAY','BIGINT', 'CASE', 'CURRENT_CONNECTION', 'CURRENT_ROLE', 'CURRENT_USER', 'CURRENT_TRANSACTION',
+              'RECREATE', 'ROW_COUNT', 'RELEASE', 'SAVEPOINT', 'ABS', 'BOOLEAN', 'BOTH', 'CHAR_LENGTH',
+              'CHARCTER_LENGTH', 'FALSE', 'LEADING', 'OCTET_LENGTH', 'TRIM', 'TRAILING', 'TRUE', 'UNKNOWN'
+               );
         
    
 
