@@ -6,8 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        Thu Aug 31 14:12:47 CEST 2000
-//
-// $Id: database.php,v 1.41 2006/03/22 21:26:43 lbrueckner Exp $
 
 require('./inc/script_start.inc.php');
 
