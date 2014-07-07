@@ -6,8 +6,7 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 // Created        <05/10/02 14:48:31 lb>
-//
-// $Id: export.inc.php,v 1.4 2006/03/22 21:21:45 lbrueckner Exp $
+
 
 
 //
