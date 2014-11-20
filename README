@@ -1,6 +1,5 @@
   FirebirdWebAdmin is a web frontend for the Firebird database server.
 
-
   By now it has the functionalities for
   
   o creating, deleting, modifying databases, tables, generators,
@@ -18,7 +17,7 @@
 
   o inserting, deleting, displaying the contents of blob fields
 
-  o diplaying database metadata, browsing the interbase system tables
+  o diplaying database metadata, browsing the firebird system tables
 
   o database backup and restore, database maintenance
 
@@ -52,17 +51,12 @@ Requirements
   components are not or less tested. So if you got problems make sure
   you are not using older software components.
 
-  php5.x with compiled in support for InterBase and
+  php5.x with compiled in support for Firebird/InterBase and
   pcre (but any version >= 5.3.x should work)
 
   Firebird 2.x.x for Linux
         
   Apache 2.x or lighttpd or nginx
-
-  Linux kernel 3.x.x - any distro 
-  firefox or any webkit browser (tested in chrome)
-
-
 
 Copyright notice:
 
