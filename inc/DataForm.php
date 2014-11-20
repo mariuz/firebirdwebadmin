@@ -1,13 +1,9 @@
 <?php
-// File           inc/DataForm.php / FirebirdWebAdmin
 // Purpose        form for editing and entering a dataset
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/02/03 16:42:38 lb>
-//
-// $Id: DataForm.php,v 1.7 2007/05/28 08:34:14 lbrueckner Exp $
 
 
 /*
