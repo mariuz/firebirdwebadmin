@@ -37,7 +37,7 @@ function XMLHttpRequestClient(server_url) {
         var sep = serverUrl.search(/\?/) == -1 ? '?' : '&';
         xmlreq.onreadystatechange = ProcessReqChange;
         xmlreq.open(method, serverUrl + sep + 'f=' + handler + _getUrlParameters(handler_parameters), true);
-        xmlreq.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
+        xmlreq.setRequestHeader('Content-Type', 'text/xml; charset=' + php_charset);
         xmlreq.send(null);
     }
 
