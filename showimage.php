@@ -22,7 +22,7 @@ require('./inc/session.inc.php');
 session_start();
 localize_session_vars();
 
-require('./lang/english.inc.php');
+require('./lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
 require('./inc/functions.inc.php');
 
 $dbhandle = db_connect()

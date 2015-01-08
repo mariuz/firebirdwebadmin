@@ -18,9 +18,7 @@
 
 define('VERSION', '3.0');
 
-define('SBINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
-define('BINPATH', '/usr/bin/');           // path to the interbase tools (isql, etc.)
-
+define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 
 define('TMPPATH', '/tmp/');                        // write temporary files here,
                                                    // must be writeable for the webserver, must be an absolute path
@@ -61,6 +59,12 @@ $DATABASE_SUFFIXES = array('fdb');    // login into databases, creating and drop
 
 
 define('BACKUP_DIR', '/var/lib/firebird/2.5'); // define this to restrict the location for backup files
+
+
+define('LANGUAGE', 'english');       // set the language to use; 'english', 'brazilian_portuguese', 'dutch',
+                                     // 'japanese', 'russian-win1251', 'spanish' and 'german' are valid options
+
+
 
 // uncomment the corresponding line for every panel
 // you want to not appear in the application
