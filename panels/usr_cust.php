@@ -24,6 +24,15 @@ else:
     <td valign="top">
       <table border cellpadding="3" cellspacing="0">
         <tr>
+          <th colspan="2" align="left"><?php echo $usr_strings['Appearance']; ?></th>
+        </tr>
+        <tr>
+          <td><?php echo $usr_strings['Language']; ?></td>
+          <td align="right"><?php echo get_selectlist('usr_cust_language', get_customize_languages(), $s_cust['language']); ?></td>
+        </tr>
+      </table>
+      <table border cellpadding="3" cellspacing="0">
+        <tr>
           <th colspan="2" align="left"><?php echo $usr_strings['Attitude']; ?></th>
         </tr>
         <tr>

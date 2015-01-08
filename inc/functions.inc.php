@@ -1017,6 +1017,22 @@ function ib_error($file='', $line='', $sql='') {
     exit;
 }
 
+
+//
+// examine the version of the running php interpreter
+//
+function get_php_version() {
+
+    preg_match('/^([0-9]+).([0-9]+).([0-9]+)/', phpversion(), $matches);
+
+    $vinfo = array ('VER' => $matches[1],
+                    'SUB' => ((strlen($matches[2]) > 0) ? $matches[2] : 0),
+                    'MIN' => ((strlen($matches[3]) > 0) ? $matches[3] : 0)
+                    );
+    return $vinfo;
+}
+
+
 //
 // adjust language-specific items to a new LANGUAGE setting
 //
@@ -1195,8 +1211,22 @@ function get_customize_cookie_name() {
 //
 function get_customize_defaults($useragent) {
 
-	return array(
-		'textarea'     => array('cols' => SQL_AREA_COLS,
+    return array('color' => array('background'       => COLOR_BACKGROUND,
+                                  'panel'            => COLOR_PANEL,
+                                  'area'             => COLOR_AREA,    
+                                  'headline'         => COLOR_HEADLINE,
+                                  'menuborder'       => COLOR_MENUBORDER,
+                                  'iframeborder'     => COLOR_IFRAMEBORDER,
+                                  'iframebackground' => COLOR_IFRAMEBACKGROUND,
+                                  'link'             => COLOR_LINK,
+                                  'linkhover'        => COLOR_LINKHOVER,
+                                  'selectedrow'      => COLOR_SELECTEDROW,
+                                  'selectedinput'    => COLOR_SELECTEDINPUT,
+                                  'firstrow'         => COLOR_FIRSTROW,
+                                  'secondrow'        => COLOR_SECONDROW),
+                 'language'     => LANGUAGE,
+                 'fontsize'     => ($useragent['ie'] ? 8 : 11),
+                 'textarea'     => array('cols' => SQL_AREA_COLS,
                                         'rows' => SQL_AREA_ROWS),
                  'iframeheight' => IFRAME_HEIGHT,
 
