@@ -31,24 +31,9 @@ $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
             <input class="btn" type="reset" name="sql_reset" value="<?php echo $button_strings['Reset']; ?>">
             <input class="btn" type="button" name="sql_clear" value="<?php echo $button_strings['Clear']; ?>" onClick="document.sql_enter_form.sql_script.value=''">
          </td>
-         <td>&nbsp;</td>
          <td>
             <input class="btn btn-info" type="submit" name="sql_plan" value="<?php echo $button_strings['QueryPlan']; ?>">
          </td>
-         <td>&nbsp;</td>
-         <td align="right" valign="center">
-<?php
-            $next_url = "javascript:requestSqlBuffer('".($s_sql_pointer < SQL_HISTORY_SIZE -1 ? $s_sql_pointer +1 : 0)."')";
-            $prev_url = "javascript:requestSqlBuffer('".($s_sql_pointer == 0 ? SQL_HISTORY_SIZE -1 : $s_sql_pointer -1)."')";
-            $go_event = " onClick=\"requestSqlBuffer(selectedElement($('sql_pointer')))\";";
-            $button_type = 'button';
-
-            echo '&nbsp;<a href="'.$prev_url.'" id="sql_prev"><img src="'.DATAPATH . ('transparent/') . "left_arrow.png\" border=\"0\"></a>\n";
-            echo get_selectlist('sql_pointer', range(0, SQL_HISTORY_SIZE -1), $s_sql_pointer, FALSE, array('id' => 'sql_pointer'));
-            echo '<input type="'.$button_type.'" name="sql_go" value="'.$button_strings['Go'].'"'.$go_event.'>';
-            echo '&nbsp;<a href="'.$next_url.'" id="sql_next"><img src="'.DATAPATH . ('transparent/') . "right_arrow.png\" border=\"0\"></a>\n";
-?>
-         </td>
       </tr>
-   </table>   
+   </table>
 </form>

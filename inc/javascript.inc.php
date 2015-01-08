@@ -5,17 +5,15 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/20 17:42:18 lb>
-//
-// $Id: javascript.inc.php,v 1.22 2006/07/08 17:09:54 lbrueckner Exp $
+
 
 
 
 //
 // print a JavaScript function that checks the settings for 'Not Null',
 // 'Unique' and 'Primary' in a col_def_defination field
-// 
-// -> only one of 'Unique' and 'Primary' can be selected 
+//
+// -> only one of 'Unique' and 'Primary' can be selected
 // -> if 'Unique' or 'Primary' is selected, autoselect 'Not Null'
 //
 // opt   : name of the selected checkbox
@@ -59,7 +57,7 @@ function checkColConstraint(form, opt, index) {
             }
             else {
                   eval("cd_def_primary" + index).checked = false;
-            }             
+            }
         }
     }
 }
@@ -185,7 +183,7 @@ function js_markable_table() {
 }
 
 //
-// return the URL of the server-script for the XMLHttpRequests 
+// return the URL of the server-script for the XMLHttpRequests
 //
 function xml_http_request_server_url() {
     static $url;
@@ -240,7 +238,7 @@ function js_request_close_panel() {
 
 EOT;
 
-    return $js; 
+    return $js;
 }
 
 
@@ -360,15 +358,6 @@ function js_request_sql_buffer() {
 
     function putSqlBuffer(sql, idx) {
         $("sql_script").value = sql;
-        $("sql_pointer").options[idx].selected = true;
-
-        var next = $("sql_next").href;
-        var nidx = parseInt(idx) == $history_size -1 ? 0 : parseInt(idx) +1;
-        $("sql_next").href = next.replace(/\d+/, nidx);
-
-        var prev = $("sql_prev").href;
-        var pidx = parseInt(idx) == 0 ? $history_size -1 : parseInt(idx) -1;
-        $("sql_prev").href = next.replace(/\d+/, pidx);
     }
     </script>
 
@@ -400,7 +389,7 @@ function js_data_export() {
                 ele.value = filename.substring(0, filename.lastIndexOf(".") + 1) + format;
             }
         }
-    } 
+    }
 
     function setExportTarget(target) {
         var req = new XMLHttpRequestClient("$server_url");

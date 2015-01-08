@@ -121,11 +121,6 @@ function closed_panel($idx){
     $icon = get_icon_path(DATAPATH, ICON_SIZE) . 'open.png';
     $html = get_closed_panel($GLOBALS[$pvar][$idx][1], $idx, $icon);
 
-    // work around for a Mozilla bug 
-    if ($GLOBALS['s_useragent']['ns6up'] == TRUE) {
-        $html = str_replace('&amp;', '&', $html);
-    }
-
     set_customize_cookie($GLOBALS['s_cust']);
     header('Content-Type: text/html;charset='.$GLOBALS['charset']);
 
@@ -141,7 +136,7 @@ function detail_view($type, $name, $title) {
     $url         = fold_detail_url($type, 'open', $name, $title);
     $comment_url = "javascript:requestCommentArea('" . $type . "', '" . $name . "');";
     $comment_div = detail_div_prefix($type) . 'c_' . $name;
-    
+
     switch ($type) {
         case 'table':
             if ($GLOBALS['s_tables_def'] == TRUE) {
@@ -235,7 +230,7 @@ function detail_close($type, $name, $title) {
 function fk_values($table, $column, $value){
 
     $sql = sprintf("SELECT * FROM %s WHERE %s='%s'", $table, $column, $value);
-    $res = fbird_query($GLOBALS['dbhandle'], $sql) 
+    $res = fbird_query($GLOBALS['dbhandle'], $sql)
         or ib_error(__FILE__, __LINE__, $sql);
 
     if ($row = fbird_fetch_object($res)) {
@@ -244,7 +239,7 @@ function fk_values($table, $column, $value){
         foreach ($GLOBALS['s_fields'][$table] as $field) {
             $value = ($field['type'] == 'BLOB') ? '<i>BLOB</i>' : trim($row->$field['name']);
             $html .= sprintf("<tr>\n<td class=\"wttr wttr1\">%s:</td><td class=\"wttr2\"><nobr>%s</nobr></td>\n</tr>\n", $field['name'] ,$value);
-        } 
+        }
         $html .= "</table>\n";
     }
     else {
@@ -399,7 +394,7 @@ function comment_area($type, $name) {
         case 'procedure':
             break;
     }
-    
+
     header('Content-Type: text/html;charset='.$GLOBALS['charset']);
 
     echo $html;
