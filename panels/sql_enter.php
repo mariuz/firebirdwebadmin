@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/12 09:10:18 lb>
-
-
 $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
 
 ?>
