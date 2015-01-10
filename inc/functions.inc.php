@@ -945,10 +945,10 @@ function html_head($title) {
           <title>$title</title>
 	  <meta http-equiv="Content-type" content="text/html;charset={$GLOBALS['charset']}">
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.css" rel="stylesheet">
+	  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
 	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.css">
 	  <script src="https://code.jquery.com/jquery.js"></script>
-	  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.js"></script>
+	  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
           <script src="./js/miscellaneous.js" type="text/javascript"></script>
 	</head>
 EOT;
