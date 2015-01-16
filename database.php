@@ -5,7 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        Thu Aug 31 14:12:47 CEST 2000
 
 require('./inc/script_start.inc.php');
 
