@@ -69,15 +69,12 @@ function url_session($url) {
 function initialize_session() {
     global $ptitle_strings, $adm_strings;
 
-    $useragent = guess_useragent();
-
     $session_vars =
         array('s_init' => TRUE,                           // indicates that the session is already initialized
               's_cookies' => 'untested',
               's_stylesheet_etag' => '',
               's_connected' => FALSE,                     // TRUE if successfilly connected toa database
               's_binpath' => FALSE,                       // becomes TRUE if isql was found in BINPATH
-              's_useragent' => $useragent,                // see comments at function guess_useragent()
               's_referer' => '',                          // replacement for $_SERVER['HTTP_REFERER']
               's_page'    => '',                          // indicator for the active page
 
@@ -330,7 +327,7 @@ function initialize_session() {
 
     $cookie = get_customize_cookie_name();
     if (isset($_COOKIE[$cookie])) {
-        $session_vars['s_cust'] = set_customize_settings($_COOKIE[$cookie]);        
+        $session_vars['s_cust'] = set_customize_settings($_COOKIE[$cookie]);
     }
 
     // take care for the $HIDE_PANELS config setting
@@ -543,68 +540,6 @@ function cleanup_session() {
         $GLOBALS['s_wt']['direction'] = $wt['dir'];
         $GLOBALS['s_wt']['columns']   = FALSE;
     }
-}
-
-
-//
-// try to identify the users browser;
-// the expressions are stolen from pear::Net/UserAgent/Detect.php
-// and http://www.mozilla.org/docs/web-developer/sniffer/browser_type.html
-//
-// returns an array with the found informations
-//
-function guess_useragent() {
-
-    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
-    preg_match(';^([[:alpha:]]+)[ /\(]*[[:alpha:]]*([\d]*)\.([\d\.]*);', $agent, $matches);
-    list($null, $null, $majorversion, $subversion) = $matches;
-
-    $ua = array('majorversion' => $majorversion,
-                'subversion'   => $subversion);
-
-    $ua['konq'] = strpos($agent, 'konqueror') !== false;
-    $ua['text'] = strpos($agent, 'links') !== false || strpos($agent, 'lynx') !== false || strpos($agent, 'w3m') !== false;
-    $ua['ns']   = strpos($agent, 'mozilla') !== false && !strpos($agent, 'spoofer') !== false && !strpos($agent, 'compatible') !== false
-                  && !strpos($agent, 'hotjava') !== false && !strpos($agent, 'opera') !== false && !strpos($agent, 'webtv') !== false;
-    $ua['ns2']  = $ua['ns'] && $majorversion == 2;
-    $ua['ns3']  = $ua['ns'] && $majorversion == 3;
-    $ua['ns4']  = $ua['ns'] && $majorversion == 4;
-    $ua['ns4up']= $ua['ns'] && $majorversion >= 4;
-    $ua['ns4down']= $ua['ns'] && $majorversion <= 4;
-    $ua['nav']  = $ua['ns'] && (strpos($agent, ';nav') !== false || (strpos($agent, '; nav') !== false));
-    $ua['ns6']  = !$ua['konq'] && $ua['ns'] && $majorversion == 5;
-    $ua['ns6up']= $ua['ns6'] && $majorversion >= 5;
-    $ua['gecko']= strpos($agent, 'gecko') !== false;
-    $ua['ie']   = strpos($agent, 'msie') !== false && !strpos($agent, 'opera') !== false;
-    $ua['ie3']  = $ua['ie'] && $majorversion < 4;
-    $ua['ie4']  = $ua['ie'] && $majorversion == 4 && (strpos($agent, 'msie 4') !== false);
-    $ua['ie4up']= $ua['ie'] && $majorversion >= 4;
-    $ua['ie5']  = $ua['ie'] && $majorversion == 4 && (strpos($agent, 'msie 5.0') !== false);
-    $ua['ie5_5']= $ua['ie'] && $majorversion == 4 && (strpos($agent, 'msie 5.5') !== false);
-    $ua['ie5up']= $ua['ie'] && !$ua['ie3'] && !$ua['ie4'];
-    $ua['ie5_5up']= $ua['ie'] && !$ua['ie3'] && !$ua['ie4'] && !$ua['ie5'];
-    $ua['ie6']    = $ua['ie'] && $majorversion == 4 && (strpos($agent, 'msie 6.') !== false);
-    $ua['ie6up']  = $ua['ie'] && !$ua['ie3'] && !$ua['ie4'] && !$ua['ie5'] && !$ua['ie5_5'];
-    $ua['opera']  = strpos($agent, 'opera') !== false;
-    $ua['opera2'] = strpos($agent, 'opera 2') !== false || strpos($agent, 'opera/2') !== false;
-    $ua['opera3'] = strpos($agent, 'opera 3') !== false || strpos($agent, 'opera/3') !== false;
-    $ua['opera4'] = strpos($agent, 'opera 4') !== false || strpos($agent, 'opera/4') !== false;
-    $ua['opera5'] = strpos($agent, 'opera 5') !== false || strpos($agent, 'opera/5') !== false;
-    $ua['opera5up'] = $ua['opera'] && !$ua['opera2'] && !$ua['opera3'] && !$ua['opera4'];
-    $ua['aol']    = strpos($agent, 'aol') !== false;
-    $ua['aol3']   = $ua['aol'] && $ua['ie3'];
-    $ua['aol4']   = $ua['aol'] && $ua['ie4'];
-    $ua['aol5']   = strpos($agent, 'aol 5') !== false;
-    $ua['aol6']   = strpos($agent, 'aol 6') !== false;
-    $ua['aol7']   = strpos($agent, 'aol 7') !== false;
-    $ua['webtv']  = strpos($agent, 'webtv') !== false;
-    $ua['tvnavigator'] = strpos($agent, 'navio') !== false || strpos($agent, 'navio_aoltv') !== false;
-    $ua['aoltv']  = $ua['tvnavigator'];
-    $ua['hotjava'] = strpos($agent, 'hotjava') !== false;
-    $ua['hotjava3'] = $ua['hotjava'] && $majorversion == 3;
-    $ua['hotjava3up'] = $ua['hotjava'] && $majorversion >= 3;
-
-    return $ua;
 }
 
 ?>
