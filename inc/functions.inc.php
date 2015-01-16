@@ -88,7 +88,7 @@ function password_stars($pw) {
 
 
 //
-// determine the InterBase datatype from the given $type/$subtype
+// determine the Firebird datatype from the given $type/$subtype
 //
 function get_datatype($type, $subtype) {
 

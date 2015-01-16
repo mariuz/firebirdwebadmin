@@ -465,7 +465,7 @@ function build_index_options() {
 
 //
 // output the <option> list for a selectlist
-// for the interbase users in isc4.gdb
+// for the firebird users in security db
 // of the selected database
 //
 function build_user_options($with_sysdba=TRUE) {
