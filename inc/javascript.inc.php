@@ -447,7 +447,7 @@ EOT;
 
 
 //
-// auto-refresh feature on thy systables panel for IB7 temporary system tables
+// auto-refresh feature on thy systables panel for Firebird temporary system tables
 //
 // TODO: this is left to change for using XMLHttpRequests
 function js_refresh_systable() {

@@ -35,7 +35,7 @@ if (isset($_POST['db_login_doit'])){
     $s_login['charset'] = !empty($_POST['db_login_charset']) ? $_POST['db_login_charset'] : '';
     $s_login['dialect'] = !empty($_POST['db_login_dialect']) ? $_POST['db_login_dialect'] : '';
     $s_login['server']  = !empty($_POST['db_login_server'])  ? $_POST['db_login_server']  : '';
-    
+
     if ($s_login['database'] == '') {
         $error = $ERRORS['NO_DB_SELECTED'];
     }
@@ -49,13 +49,13 @@ if (isset($_POST['db_login_doit'])){
     if (empty($error)) {
         if ($dbhandle = db_connect()) {
 
-            // connected successfully  
+            // connected successfully
             $s_connected = TRUE;
 
             remove_edit_panels();
             $s_charsets = get_charsets(SERVER_FAMILY, SERVER_VERSION);
         } else {
-            // connect failed 
+            // connect failed
             $ib_error = fbird_errmsg();
             $s_login['password'] = '';
             $s_connected = FALSE;
@@ -66,7 +66,7 @@ if (isset($_POST['db_login_doit'])){
 
 
 //
-// the Logout-Button from the login-panel 
+// the Logout-Button from the login-panel
 //
 if (isset($_POST['db_logout_doit'])){
 
@@ -93,7 +93,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
     $s_create_host = trim($_POST['db_create_host']);
     $s_create_user = trim($_POST['db_create_user']);
 
-    // dont set $s_create_pw if it contains only stars 
+    // dont set $s_create_pw if it contains only stars
     // (from function password_stars() )
     $pw = $_POST['db_create_password'];
     if (strspn($pw, '*') != strlen($pw))
@@ -196,7 +196,7 @@ if (have_panel_permissions($s_login['user'], 'db_delete')
     }
 
     elseif ($s_cust['askdel'] == TRUE) {
-        $s_confirmations['database'] = 
+        $s_confirmations['database'] =
             array('msg' => sprintf($MESSAGES['CONFIRM_DB_DELETE'], $s_delete_db['database']));
     }
 }
@@ -249,7 +249,7 @@ if (have_panel_permissions($s_login['user'], 'db_meta', TRUE)) {
 
         if (empty($binary_error)  &&  count($metadata) > 0) {
 
-            send_export_headers('application/octet-stream', 'meta.sql');          
+            send_export_headers('application/octet-stream', 'meta.sql');
             print (implode("\n", $metadata));
             exit();
         }
@@ -259,7 +259,7 @@ if (have_panel_permissions($s_login['user'], 'db_meta', TRUE)) {
 
 //
 // something happened on the System Tables panel
-// 
+//
 if (isset($_POST['db_systable_select'])) {
 
     if ($s_systable['table'] != $_POST['db_systable']) {
@@ -287,7 +287,7 @@ if (have_panel_permissions($s_login['user'], 'db_systable', TRUE)) {
 
     $js_stack .= js_request_filter_fields();
 
-    if (FALSE  &&  $s_use_jsrs == TRUE  &&  strpos($s_systable['table'], 'TMP$') === 0) {  
+    if (FALSE  &&  strpos($s_systable['table'], 'TMP$') === 0) {
         // DISABLED !
 
         $have_refresh =  TRUE;
@@ -330,7 +330,7 @@ elseif (isset($ALLOWED_DIRS)  &&  count($ALLOWED_DIRS) > 0) {
             $dirhandle = opendir($dir);
             while ($filename = readdir($dirhandle)){
                 if (have_db_suffix($filename)) {
-                    $dbfiles[] = $dir.$filename;            
+                    $dbfiles[] = $dir.$filename;
                 }
             }
             closedir($dirhandle);
