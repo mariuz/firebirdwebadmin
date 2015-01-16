@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/05/26 11:29:40 lb>
-//
-// $Id: roles.inc.php,v 1.7 2005/08/27 16:42:32 lbrueckner Exp $
-
 
 //
 // create a role called $name
@@ -121,7 +117,7 @@ function revoke_role_from_user($role, $user) {
 
 
 //
-// return an array with the properties of the defined indeces 
+// return an array with the properties of the defined indeces
 //
 function get_roles() {
     global $dbhandle;

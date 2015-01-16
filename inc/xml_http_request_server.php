@@ -5,9 +5,7 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/02/01 18:18:44 lb>
-//
-// $Id: xml_http_request_server.php,v 1.9 2006/07/08 17:16:27 lbrueckner Exp $
+
 
 require('./configuration.inc.php');
 require('./session.inc.php');

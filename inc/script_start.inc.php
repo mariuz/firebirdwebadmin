@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/18 09:22:43 lb>
-//
-// $Id: script_start.inc.php,v 1.36 2005/10/05 20:28:43 lbrueckner Exp $
 
 //apd_set_pprof_trace();
 

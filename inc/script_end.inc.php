@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/18 09:12:24 lb>
-//
-// $Id: script_end.inc.php,v 1.29 2006/03/22 21:11:22 lbrueckner Exp $
 
 
 // Varibles:   $title    title string for the page
@@ -82,7 +79,7 @@ if (DEBUG === TRUE) {
     echo "<div align=\"left\">\n";
 
     show_time_consumption($start_time, microtime());
-    
+
 //     echo 'cookie size: '.strlen($_COOKIE[get_customize_cookie_name()])."<br>\n";
 //     debug_var($_COOKIE[get_customize_cookie_name()]);
 

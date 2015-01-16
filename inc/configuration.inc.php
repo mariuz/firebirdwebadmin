@@ -6,14 +6,12 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/11 21:20:58 lb>
-//
-// $Id: configuration.inc.php.dist,v 1.1 2006/07/08 17:41:18 lbrueckner Exp $
+
 
 
 //
 // For the defines of paths you have to use slashes, even in a windows environment!
-// i.e define('BINPATH', 'c:/interbase/bin/');
+// i.e define('BINPATH', 'c:/firebirid/bin/');
 //
 
 define('VERSION', '3.0');
@@ -27,7 +25,7 @@ define('DEFAULT_USER',    'SYSDBA');               // default settings for datab
 define('DEFAULT_DB',      'employee.fdb');
 define('DEFAULT_PATH',    '/var/lib/firebird/2.5/data/');
 define('DEFAULT_HOST',    'localhost');
-define('DEFAULT_ROLE',    '');  
+define('DEFAULT_ROLE',    '');
 define('DEFAULT_CACHE',   75);
 define('DEFAULT_CHARSET', 'NONE');
 define('DEFAULT_DIALECT', 3);
@@ -161,7 +159,7 @@ define('DEBUG_HTML', FALSE);            // if TRUE write the output_buffer to TM
 define('DEBUG_COMMANDS', FALSE);        // if TRUE all calls of external commands are diplayed on the info-panel
 define('DEBUG_FILES', TRUE);           // if TRUE the temporary files created in TMPATH for processing by isql
                                         // are not deleted when isql is finished
-                                   
+
 
 if ('' != SESSION_NAME) session_name(SESSION_NAME);
 

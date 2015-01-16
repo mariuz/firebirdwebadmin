@@ -5,15 +5,11 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/11 21:45:25 lb>
-//
-// $Id: panel_elements.inc.php,v 1.75 2006/03/22 21:17:31 lbrueckner Exp $
 
 
-//
 // output the html for the part of a table/form where the definitions
 // for a <datatype> statement can be entered; used for columns and domains
-// 
+//
 // Variables:     $i        index in $s_coldefs[] for this coldef
 //                $title    headline string
 //                $rowspan  span the name field over so much rows
@@ -84,7 +80,7 @@ function get_datatype_definition($idx, $title, $rowspan = 1, $collate=FALSE) {
            . '      '.get_charset_select('cd_def_charset'.$idx, $charset_pre, TRUE, $charset_tags)
            . "    </td>\n";
 
-    if ($collate == TRUE) {            
+    if ($collate == TRUE) {
         $html .= "    <td>\n"
                . '      <b>'.$tb_strings['Collation']."</b><br>\n"
                . '      '.get_collation_select('cd_def_collate'.$idx, $collate_pre, TRUE)
@@ -219,19 +215,19 @@ function get_column_constraint_definition($coldefs, $idx) {
         if (isset($coldefs['primary'])  &&  $coldefs['primary_cols'] == 1) {
             $checked_str = $coldefs['pk_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_pk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropPK']."</b>\n" 
+                            .'                  <input type="checkbox" name="cd_def_pk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropPK']."</b>\n"
                             ."                </td>\n";
         }
         if (isset($coldefs['unique'])  &&  $coldefs['unique_cols'] == 1) {
             $checked_str = $coldefs['uq_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_uq_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropUq']."</b>\n" 
+                            .'                  <input type="checkbox" name="cd_def_uq_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropUq']."</b>\n"
                             ."                </td>\n";
         }
         if (isset($coldefs['foreign'])  &&  $coldefs['foreign_cols'] == 1) {
             $checked_str = $coldefs['fk_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_fk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropFK']."</b>\n" 
+                            .'                  <input type="checkbox" name="cd_def_fk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropFK']."</b>\n"
                             ."                </td>\n";
         }
 
@@ -339,7 +335,7 @@ function get_sysdba_pw() {
         return $GLOBALS['s_login']['password'];
     }
 
-    if (isset($_POST['sysdba_pw'])  
+    if (isset($_POST['sysdba_pw'])
     &&  strlen(trim($_POST['sysdba_pw'])) != 0) {
         $pw = trim($_POST['sysdba_pw']);
         if (strspn($pw, '*') != strlen($GLOBALS['s_sysdba_pw'])
@@ -357,7 +353,7 @@ function get_sysdba_pw() {
 // return the html for a selectlist of the  FireBird character sets.
 //
 function get_charset_select($name, $sel=NULL, $empty=FALSE, $tags=array()) {
-    
+
     $charset_names = array();
     if (!empty($GLOBALS['s_charsets'])) {
         foreach($GLOBALS['s_charsets'] as $cs) {
@@ -431,7 +427,7 @@ function get_table_selectlist($name, $restrictions=array(), $sel=NULL, $empty=FA
 
         $tables[] = $tablename;
     }
-    
+
     return get_selectlist($name, $tables, $sel, $empty, $tags, $size);
 }
 
@@ -574,7 +570,7 @@ function hidden_field($name, $value) {
 // return the html for a checkbox element
 //
 function get_checkbox($name, $value, $checked, $tags=array()) {
-    
+
     $checked_str = $checked ?  ' checked' : '';
     $html = '<input  class="form-control" type="checkbox" name="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
 
@@ -617,7 +613,7 @@ function get_closed_detail($title, $url, $curl='', $cdiv='') {
 }
 
 //
-// build the url for a link to open/close a detail 
+// build the url for a link to open/close a detail
 //
 function fold_detail_url($type, $status, $name, $title) {
 
@@ -637,7 +633,7 @@ function detail_div_prefix($type) {
                               'view'      => 'v',
                               'trigger'   => 'r',
                               'procedure' => 'p');
-        
+
         return $div_prefixes[$type];
 }
 
@@ -673,7 +669,7 @@ EOT;
 
     foreach($s_fields[$name] as $field) {
         $type_str = isset($field['domain']) ? $field['type'] : get_type_string($field);
-        $type_str .=isset($field['lower_bound']) ? '['.$field['lower_bound'].':'.$field['upper_bound'].']' : ''; 
+        $type_str .=isset($field['lower_bound']) ? '['.$field['lower_bound'].':'.$field['upper_bound'].']' : '';
         $char_str = isset($field['charset']) ? $field['charset']  : '&nbsp;';
         $coll_str = isset($field['collate']) ? $field['collate']  : '&nbsp;';
         $comp_str = table_column_detail_string(ifsetor($field['comp']), ifsetor($field['csource']), $GLOBALS['s_tables_comp']);

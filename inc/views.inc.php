@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/01/13 20:52:58 lb>
-//
-// $Id: views.inc.php,v 1.14 2005/08/27 21:07:40 lbrueckner Exp $
-
 
 //
 // create a view from the values in viewdefs array
@@ -87,7 +83,7 @@ EOT;
 
 //
 // find the name of a view in its source code
-// 
+//
 function get_viewname($viewsource) {
 
     $chunks = preg_split("/[\s]+/", $viewsource, 4);
@@ -144,7 +140,7 @@ EOT;
     }
     $html .= "            </table>\n          </td>\n";
 
-    $html .= "         <td>&nbsp;</td>\n"  
+    $html .= "         <td>&nbsp;</td>\n"
            ."          <td valign=\"top\">\n"
            ."            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
            ."              <tr align=\"left\">\n"
@@ -152,7 +148,7 @@ EOT;
            ."              </tr>\n"
            ."              <tr>\n"
            .'                <td class="detail"><pre>'.$source."</pre></td>\n"
-           ."              </tr>\n" 
+           ."              </tr>\n"
            ."            </table>\n"
            ."          </tr>\n"
            ."        </td>\n"

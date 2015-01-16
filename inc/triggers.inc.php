@@ -5,13 +5,10 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/01/19 15:52:24 lb>
-//
-// $Id: triggers.inc.php,v 1.23 2005/08/27 21:07:40 lbrueckner Exp $
 
 
 //
-// get the properties for all defined triggers 
+// get the properties for all defined triggers
 //
 function get_triggers($oldtriggers) {
     global $dbhandle;
@@ -33,7 +30,7 @@ function get_triggers($oldtriggers) {
         $name = trim($obj->NAME);
         $display = (isset($oldtriggers[$name])) ? $oldtriggers[$name]['display'] : 'close';
 
-        // get the source code for the open triggers 
+        // get the source code for the open triggers
         $tsource = '';
         if ((isset($oldtriggers[$name]) &&  $display == 'open')
         ||  isset($_POST['acc_trigger_mod'])) {
@@ -66,7 +63,7 @@ function get_triggers($oldtriggers) {
 //
 function create_trigger($triggerdefs) {
     global $s_login, $isql, $binary_output, $binary_error;
-    
+
     $isql = trigger_create_source($triggerdefs);
 
     if (DEBUG) add_debug('isql', __FILE__, __LINE__);
@@ -86,7 +83,7 @@ function trigger_create_source($triggerdefs) {
     if ($triggerdefs['pos'] != 0) {
         $isql .= ' POSITION '.$triggerdefs['pos'];
     }
-    
+
     $isql .= " AS\n".$triggerdefs['source']."\n"
              ."SET TERM ; !!\n";
 
@@ -260,7 +257,7 @@ function get_trigger_phase($int) {
 
 
 //
-// outputs a html-table with a form to define/modify a trigger 
+// outputs a html-table with a form to define/modify a trigger
 //
 // Variables:    $title     headline-string for the table
 function get_trigger_definition($title) {
@@ -377,7 +374,7 @@ function toggle_all_triggers($triggers, $status) {
 //
 function have_active_trigger($triggers, $table, $phase, $type=NULL) {
 
-    $func = 'return $a["table"]=="' . $table . '"  && $a["status"] == "Active" && $a["phase"]=="' . $phase . '"' 
+    $func = 'return $a["table"]=="' . $table . '"  && $a["status"] == "Active" && $a["phase"]=="' . $phase . '"'
           . ($type != NULL ? ' && in_array("'.$type.'", $a["type"])' : '')
           . ';';
 

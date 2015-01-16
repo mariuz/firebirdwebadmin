@@ -6,9 +6,6 @@
 // Copyright      (c) 2001-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/09/06 21:48:07 lb>
-//
-// $Id: system_table.inc.php,v 1.22 2006/03/22 21:19:41 lbrueckner Exp $
 
 //
 // return an array to display an the System Table panel
@@ -25,9 +22,9 @@ function get_systable($s_systable) {
            .' WHERE RDB$RELATION_NAME=\''.$s_systable['table'].'\''
              .' AND RDB$FIELD_SOURCE=RDB$FIELDS.RDB$FIELD_NAME'
        .' ORDER BY RDB$FIELD_POSITION';
-    
+
     $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
-    
+
     $table = array();
     while ($row = fbird_fetch_object($res)) {
         $type = (isset($row->FTYPE)) ? $row->FTYPE : NULL;
@@ -166,7 +163,7 @@ function get_systable_html($table, $s_systable) {
 //
 function systable_textblobs() {
 
-    return 
+    return
         array('RDB$CHARACTER_SETS'       => array('columns' => array('RDB$DESCRIPTON'),
                                                   'indices' => array('RDB$RDB$CHARACTER_SET_NAME')
                                                   ),
@@ -175,7 +172,7 @@ function systable_textblobs() {
                                                   ),
               'RDB$DATABASE'             => array('columns' => array('RDB$DESCRIPTION'),
                                                   'indices' => array('RDB$RELATION_ID')
-                                                  ),                            
+                                                  ),
               'RDB$EXCEPTIONS'           => array('columns' => array('RDB$DESCRIPTION'),
                                                   'indices' => array('RDB$EXCEPTION_NAME')
                                                   ),
@@ -196,7 +193,7 @@ function systable_textblobs() {
                                                   'indices' => array('RDB$PROCEDURE_NAME', 'RDB$PARAMETER_NAME')
                                                   ),
               'RDB$PROCEDURES'           => array('columns' => array('RDB$DESCRIPTION', 'RDB$PROCEDURE_SOURCE'),
-                                                  'indices' => array('RDB$PROCEDURE_NAME') 
+                                                  'indices' => array('RDB$PROCEDURE_NAME')
                                                   ),
               'RDB$RELATION_FIELDS'      => array('columns' => array('RDB$DESCRIPTION', 'RDB$DEFAULT_SOURCE'),
                                                   'indices' => array('RDB$FIELD_SOURCE', 'RDB$RELATION_NAME')

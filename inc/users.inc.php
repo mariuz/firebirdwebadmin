@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/06/13 20:44:12 lb>
-//
-// $Id: users.inc.php,v 1.14 2006/03/22 21:23:39 lbrueckner Exp $
 
 
 //
@@ -19,7 +16,7 @@ function get_user() {
     $users = array();
 
     if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
-        $users_info  = fbird_server_info($service, IBASE_SVC_GET_USERS); 
+        $users_info  = fbird_server_info($service, IBASE_SVC_GET_USERS);
         fbird_service_detach($service);
         foreach ($users_info as $user) {
             $users[$user['user_name']] = array('FIRST_NAME'  => $user['first_name'],
@@ -127,7 +124,7 @@ function drop_user($uname, $s_sysdba_pw) {
 
 
 //
-// output a html-table with a form to define/modify an user 
+// output a html-table with a form to define/modify an user
 //
 // Variables:  $uname  name of the user to modify or NULL to create a new one
 //             $title  headline-string for the table

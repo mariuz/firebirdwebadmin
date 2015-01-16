@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001,2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/10/16 15:53:01 lb>
-//
-// $Id: procedures.inc.php,v 1.17 2005/08/27 21:07:40 lbrueckner Exp $
-
 
 //
 // create a stored procedure from the values in the procedure form
@@ -49,7 +45,7 @@ function drop_procedure($name) {
 
 
 //
-// return an array with the properties of the defined procedures 
+// return an array with the properties of the defined procedures
 //
 function get_procedures($oldprocedures) {
     global $dbhandle;
@@ -159,7 +155,7 @@ function get_procedure_parameters($name) {
                           'stype'   => $stype,
                           'size'    => (in_array($type, array('VARCHAR', 'CHARACTER'))) ? $obj->FLEN : NULL,
                           'charset' => (isset($obj->CHARID)) ? $s_charsets[$obj->CHARID]['name'] : NULL,
-                          'collate' => (isset($obj->COLLID)  &&  $obj->COLLID != 0) 
+                          'collate' => (isset($obj->COLLID)  &&  $obj->COLLID != 0)
                                             ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID] : NULL,
                           'prec'    => $prec,
                           'scale'   => $scale,
@@ -172,7 +168,7 @@ function get_procedure_parameters($name) {
 
 //
 // find the name of a procedure in its source code
-// 
+//
 function get_procedure_name($source) {
 
     $chunks = preg_split("/[\s]+/", $source, 4);
@@ -223,7 +219,7 @@ function procedure_parameters($typedefs) {
 
 
 //
-// output a html-table with a form to define/modify a stored procedure 
+// output a html-table with a form to define/modify a stored procedure
 //
 // Parameters:  $indexname  name of the index to modify
 //              $title      headline-string for the table
@@ -374,7 +370,7 @@ function procedure_modify_source($procedure) {
              .procedure_return_list($procedure['out'])
              ."AS\n"
              .$procedure['source'].' !!';
-    
+
     return $source;
 }
 

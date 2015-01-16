@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/12/21 18:27:30 lb>
-//
-// $Id: udfs.inc.php,v 1.6 2005/08/27 19:44:34 lbrueckner Exp $
 
 
 //

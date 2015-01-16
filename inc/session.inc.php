@@ -5,15 +5,12 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/12/16 12:48:45 lb>
-//
-// $Id: session.inc.php,v 1.72 2006/03/22 21:09:28 lbrueckner Exp $
 
 
 //
 // fallback to get-/post-session-mode if the client accept no cookies
 // set $s_cookies = TRUE if the client accept cookies
-// 
+//
 function fallback_session() {
 
     // check if we got a valid session-id, redirect if not
@@ -74,7 +71,7 @@ function initialize_session() {
 
     $useragent = guess_useragent();
 
-    $session_vars = 
+    $session_vars =
         array('s_init' => TRUE,                           // indicates that the session is already initialized
               's_cookies' => 'untested',
               's_stylesheet_etag' => '',
@@ -95,7 +92,7 @@ function initialize_session() {
                                  'charset'  => DEFAULT_CHARSET,
                                  'dialect'  => DEFAULT_DIALECT,
                                  'server'   => DEFAULT_SERVER),
-                                
+
               's_create_db' => '',                        // set by the db_create panel
               's_create_user' => '',
               's_create_pw' => '',
@@ -115,10 +112,10 @@ function initialize_session() {
                                     'fvalue'  => '',      // filter value
                                     'sysdata' => TRUE,    // show system data in the system tables if TRUE
                                     'refresh' => 15),
-              's_system_table' => '',        
-              's_system_data' => TRUE,       
-              's_systbl_order' => '',        
-              's_systbl_dir' => 'ASC',       
+              's_system_table' => '',
+              's_system_data' => TRUE,
+              's_systbl_order' => '',
+              's_systbl_dir' => 'ASC',
 
               's_tables' => array(),         // set by the tb_show panel
               's_fields' => array(),
@@ -126,10 +123,10 @@ function initialize_session() {
               's_primaries' => array(),
               's_uniques'   => array(),
 
-              's_tables_valid'  => FALSE,    // indicates that $s_tables[]['name'] is setup properly  
+              's_tables_valid'  => FALSE,    // indicates that $s_tables[]['name'] is setup properly
 
               's_tables_counts' => FALSE,    // whether to display the record counts    on the tb_show panel
-              's_tables_cnames' => FALSE,    //           "            constraint names         "           
+              's_tables_cnames' => FALSE,    //           "            constraint names         "
               's_tables_def'    => FALSE,    //           "            default values           "
               's_tables_comp'   => FALSE,    //           "            computed values          "
               's_tables_comment'=> FALSE,
@@ -145,7 +142,7 @@ function initialize_session() {
               's_modify_col'  => '',
 
               's_enter_name' => '',          // set by the dt_enter-panel
-              's_enter_values' => array(),   
+              's_enter_values' => array(),
 
               's_domains' => array(),        // $s_domains properties
               's_domains_valid' => FALSE,
@@ -211,8 +208,8 @@ function initialize_session() {
 
               's_confirmations' => array(),   // this gets an array-entry for every panel in confirmation-state,
                                               // possible indices are 'table', 'column';
-                                              // the array-elements carrying the elements 
-                                              // 'msg' which appears on the confirm-panel and 
+                                              // the array-elements carrying the elements
+                                              // 'msg' which appears on the confirm-panel and
                                               // 'sql' the sql-statement to evaluate when confirmed
 
               's_sysdba_pw' => '',            // set by the users-panel
@@ -273,7 +270,7 @@ function initialize_session() {
               's_POST' => array(),            // if DEBUG = TRUE the post and get variables are
               's_GET'  => array(),            // stored here for the inc/display_variable.php script
 
-              
+
               // the $s_xyz_panels are arrays containing one array per panel
               // on the page it describes
               // $array[0] : panel name
@@ -298,8 +295,8 @@ function initialize_session() {
               's_accessories_panels'=>array(array('info',      $ptitle_strings['info'],       'open'),
                                             array('acc_index', $ptitle_strings['acc_index'],  'close'),
                                             array('acc_gen',   $ptitle_strings['acc_gen'],    'close'),
-                                            array('acc_trigger',$ptitle_strings['acc_trigger'],'close'), 
-                                            array('acc_proc',  $ptitle_strings['acc_proc'],   'close'), 
+                                            array('acc_trigger',$ptitle_strings['acc_trigger'],'close'),
+                                            array('acc_proc',  $ptitle_strings['acc_proc'],   'close'),
                                             array('acc_domain',$ptitle_strings['acc_domain'], 'close'),
                                             array('acc_view',  $ptitle_strings['acc_view'],   'close'),
                                             array('acc_exc',   $ptitle_strings['acc_exc'],    'close'),
@@ -478,7 +475,7 @@ function globalize_session_vars() {
 function cleanup_session() {
 
     $GLOBALS['s_modify_table'] = '';
-    $GLOBALS['s_enter_name'] = ''; 
+    $GLOBALS['s_enter_name'] = '';
     $GLOBALS['s_tables'] = array();
     $GLOBALS['s_fields'] = array();
     $GLOBALS['s_foreigns'] = array();
@@ -486,13 +483,13 @@ function cleanup_session() {
     $GLOBALS['s_uniques'] = array();
     $GLOBALS['s_tables_valid'] = FALSE;
     $GLOBALS['s_create_table'] = '';
-    $GLOBALS['s_create_num'] = ''; 
+    $GLOBALS['s_create_num'] = '';
     $GLOBALS['s_coldefs'] = array();
     $GLOBALS['s_modify_name'] = '';
     $GLOBALS['s_modify_col']  = '';
-    $GLOBALS['s_enter_name'] = ''; 
+    $GLOBALS['s_enter_name'] = '';
     $GLOBALS['s_enter_values'] =  array();
-    $GLOBALS['s_mod_domain'] = '';  
+    $GLOBALS['s_mod_domain'] = '';
     $GLOBALS['s_domains'] = array();
     $GLOBALS['s_domains_valid'] = FALSE;
     $GLOBALS['s_triggers'] = array();
@@ -503,8 +500,8 @@ function cleanup_session() {
     $GLOBALS['s_udfs_valid'] = FALSE;
     $GLOBALS['s_exceptions'] = array();
     $GLOBALS['s_exceptions_valid'] = FALSE;
-    $GLOBALS['s_exception_defs'] = array();    
-    $GLOBALS['s_mod_index'] = '';  
+    $GLOBALS['s_exception_defs'] = array();
+    $GLOBALS['s_mod_index'] = '';
     $GLOBALS['s_wt'] = array('table'      => '',
                              'columns'    => array(),
                              'blob_links' => array(),
@@ -524,12 +521,12 @@ function cleanup_session() {
     $GLOBALS['s_sql'] = array('queries' => array(),
                               'buffer'  => '',
                               'more'    => FALSE);
-    $GLOBALS['s_edit_idx'] = 0;    
+    $GLOBALS['s_edit_idx'] = 0;
     $GLOBALS['s_edit_where'] = array();
     $GLOBALS['s_edit_values'] = array();
     $GLOBALS['s_confirm_message'] = '';
     $GLOBALS['s_confirm_return'] = '';
-    $GLOBALS['s_sysdba_pw'] = '';  
+    $GLOBALS['s_sysdba_pw'] = '';
     $GLOBALS['s_user_name'] = '';
     $GLOBALS['s_procedures'] = array();
     $GLOBALS['s_proceduredefs'] = array();
@@ -538,7 +535,7 @@ function cleanup_session() {
                                    'source' => '',
                                    'check'  => 'no');
     $GLOBALS['s_iframejobs'] = array();
-        
+
     if ($GLOBALS['s_login']['database']  &&  isset($GLOBALS['s_cust']['wt'][$GLOBALS['s_login']['database']])) {
         $wt = $GLOBALS['s_cust']['wt'][$GLOBALS['s_login']['database']];
         $GLOBALS['s_wt']['table']     = $wt['table'];
@@ -566,9 +563,9 @@ function guess_useragent() {
     $ua = array('majorversion' => $majorversion,
                 'subversion'   => $subversion);
 
-    $ua['konq'] = strpos($agent, 'konqueror') !== false; 
+    $ua['konq'] = strpos($agent, 'konqueror') !== false;
     $ua['text'] = strpos($agent, 'links') !== false || strpos($agent, 'lynx') !== false || strpos($agent, 'w3m') !== false;
-    $ua['ns']   = strpos($agent, 'mozilla') !== false && !strpos($agent, 'spoofer') !== false && !strpos($agent, 'compatible') !== false 
+    $ua['ns']   = strpos($agent, 'mozilla') !== false && !strpos($agent, 'spoofer') !== false && !strpos($agent, 'compatible') !== false
                   && !strpos($agent, 'hotjava') !== false && !strpos($agent, 'opera') !== false && !strpos($agent, 'webtv') !== false;
     $ua['ns2']  = $ua['ns'] && $majorversion == 2;
     $ua['ns3']  = $ua['ns'] && $majorversion == 3;
