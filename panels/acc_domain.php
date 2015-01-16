@@ -5,9 +5,7 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/11 12:37:33 lb>
-//
-// $Id: acc_domain.php,v 1.19 2004/11/09 17:16:16 lbrueckner Exp $
+
 
 if (isset($s_confirmations['domain'])):
     $subject = 'domain';
