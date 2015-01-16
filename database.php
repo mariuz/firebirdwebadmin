@@ -93,7 +93,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
     $s_create_host = trim($_POST['db_create_host']);
     $s_create_user = trim($_POST['db_create_user']);
 
-    // dont set $s_create_pw if it contains only starts 
+    // dont set $s_create_pw if it contains only stars 
     // (from function password_stars() )
     $pw = $_POST['db_create_password'];
     if (strspn($pw, '*') != strlen($pw))
