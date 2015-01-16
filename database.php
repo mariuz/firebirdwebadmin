@@ -1,5 +1,5 @@
 <?php
-// File           database.php / FirebirdWebAdmin
+
 // Purpose        do all the tasks concerning databases
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
