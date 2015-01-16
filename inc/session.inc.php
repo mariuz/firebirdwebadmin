@@ -94,7 +94,7 @@ function initialize_session() {
               's_create_user' => '',
               's_create_pw' => '',
               's_create_host' => '',
-              's_create_pagesize' => 1024,
+              's_create_pagesize' => 4096,
               's_create_charset' => 'NONE',
 
               's_delete_db' => array('database' => '',    // set by the db_delete panel

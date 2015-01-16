@@ -126,8 +126,8 @@ if (have_panel_permissions($s_login['user'], 'db_create')
             if (strlen($s_create_pw) > 0)
                 $sql .= ' PASSWORD "'.$s_create_pw.'"';
         }
-        if ($s_create_pagesize != 1024) {
-            // 1024 is the default page size
+        if ($s_create_pagesize !=   4096) {
+            //  4096 is the default page size
             $sql .= ' PAGE_SIZE = '.$s_create_pagesize;
         }
 
