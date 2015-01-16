@@ -5,7 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/09 19:09:16 lb>       
 
 
 //
@@ -39,7 +38,7 @@ function panel_array_names() {
 //
 function build_title($str, $showdb=TRUE) {
     global $s_connected, $s_login;
-    
+
     $title = 'FirebirdWebAdmin '.VERSION.' *** '.$str;
     if ($s_connected == TRUE  &&  $showdb)
         $title .= ': '.$s_login['database'];
@@ -145,7 +144,7 @@ function get_type_string($field) {
         }
         break;
     }
- 
+
     return $str;
 }
 
@@ -163,14 +162,14 @@ function table_columns($table) {
 
     return $columns;
 }
-        
+
 
 //
 // return TRUE if the table $tablename contains a blob column
 //
 function have_blob($tablename) {
     global $s_fields;
-    
+
     foreach($s_fields[$tablename] as $field) {
         if ($field['type'] == 'BLOB') {
 
@@ -209,7 +208,7 @@ function build_sql_file($sql){
 
     if ($fp = fopen ($tmp_name, 'a')) {
         fwrite($fp, $sql);
-        fclose($fp); 
+        fclose($fp);
     }
 
     return $tmp_name;
@@ -293,7 +292,7 @@ function exec_command($cmd, $parameters, $stderr=FALSE) {
 
 
 //
-// return the index for the panel $name in the $panelarray[], 
+// return the index for the panel $name in the $panelarray[],
 // which is one of the $s_xyz_panels[]
 //
 function get_panel_index($panelarray, $name) {
@@ -314,11 +313,11 @@ function remove_edit_panels() {
     for ($i=1; $i<=$s_edit_idx; $i++) {
         $idx = get_panel_index($s_data_panels, 'dt_edit'.$i);
         if ($idx !== FALSE) {
-            array_splice($s_data_panels, $idx, 1); 
+            array_splice($s_data_panels, $idx, 1);
         }
         $idx = get_panel_index($s_sql_panels, 'dt_edit'.$i);
         if ($idx !== FALSE) {
-            array_splice($s_sql_panels, $idx, 1); 
+            array_splice($s_sql_panels, $idx, 1);
         }
     }
     $s_edit_where = array();
@@ -419,7 +418,7 @@ function datatype_is_modified($olddef, $coldef) {
 function column_fk_is_modified($olddef, $coldef) {
 
     $varnames = array('fk_name', 'on_update', 'on_delete', 'fk_table', 'fk_column');
-    foreach ($varnames as $name) { 
+    foreach ($varnames as $name) {
         if ((isset($olddef[$name])  &&  $olddef[$name]  !=  $coldef[$name])
         ||  (!isset($coldef[$name]) && !empty($olddef[$name]))
         ||  (!isset($olddef[$name]) && !empty($coldef[$name]))) {
@@ -593,7 +592,7 @@ function get_charsets() {
 //                the entries are array with a 'type' and a 'name' index
 function get_dependencies($type, $name, $fname=NULL) {
     global $dbhandle;
-    
+
     switch ($type) {
     case OT_RELATION:
         $ignore = array(OT_COMPUTED_FIELD);
@@ -635,7 +634,7 @@ function get_dependencies($type, $name, $fname=NULL) {
 // build the part of a message string from a dependecies array
 //
 function dependencies_string($dependencies) {
-    
+
     $str = '<br>';
     foreach ($dependencies as $dep) {
         $str .= $dep['type'] .' : '. $dep['name'] ."<br>\n";
@@ -681,7 +680,7 @@ function have_db_suffix($filename) {
 
         return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -897,10 +896,10 @@ function insert_row($table, $cols, $values) {
 // determine the server type and version from the server setting from the login panel
 //
 function server_info($server_string) {
-    
+
     preg_match('/([A-Z]+)_([0-9]+).([0-9]+)/', $server_string , $matches);
     $family  = count($matches) == 4 ? $matches[1] : '';
-    $version = count($matches) == 4 ? $matches[2].$matches[3] : 0; 
+    $version = count($matches) == 4 ? $matches[2].$matches[3] : 0;
 
     return array($family, $version);
 }
@@ -980,7 +979,7 @@ function get_tabmenu($page) {
                . '      <a class="menu-link" href="'.$script.'">'.$GLOBALS['menu_strings'][$item]."</a>\n"
                . "    </li>\n";
     }
-    
+
     $html .= "</ul>\n";
 
     return $html;
@@ -1067,7 +1066,7 @@ function error_handler($errno, $errmsg, $file, $line, $errstack) {
     if (!(error_reporting() & $errno)) {
         return;
     }
-    
+
     if (E_ERROR & $errno) {
         $php_error .= "$errmsg<br>\n"
                     . "in file: $file, line $line<br>\n";
@@ -1148,7 +1147,7 @@ function set_customize_settings($cookie_string) {
     }
 
     $colors = explode('|', $settings[1]);
-    
+
     $customize['language'] = $settings[2];
 
     list ($cols, $rows) = explode('|', $settings[4]);;
@@ -1213,7 +1212,7 @@ function get_customize_defaults($useragent) {
 
     return array('color' => array('background'       => COLOR_BACKGROUND,
                                   'panel'            => COLOR_PANEL,
-                                  'area'             => COLOR_AREA,    
+                                  'area'             => COLOR_AREA,
                                   'headline'         => COLOR_HEADLINE,
                                   'menuborder'       => COLOR_MENUBORDER,
                                   'iframeborder'     => COLOR_IFRAMEBORDER,

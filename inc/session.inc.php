@@ -330,8 +330,7 @@ function initialize_session() {
 
     $cookie = get_customize_cookie_name();
     if (isset($_COOKIE[$cookie])) {
-        $session_vars['s_cust'] = set_customize_settings($_COOKIE[$cookie]);
-        $session_vars = rearrange_panels($session_vars, $_COOKIE[$cookie]);
+        $session_vars['s_cust'] = set_customize_settings($_COOKIE[$cookie]);        
     }
 
     // take care for the $HIDE_PANELS config setting
