@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/20 18:46:55 lb>
-//
-// $Id: db_meta.php,v 1.10 2005/09/25 16:36:16 lbrueckner Exp $
 
 if ($s_connected):
 

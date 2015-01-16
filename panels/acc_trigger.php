@@ -5,10 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/28 20:10:29 lb>
-//
-// $Id: acc_trigger.php,v 1.17 2006/03/14 21:07:04 lbrueckner Exp $
-
 
 if (isset($s_confirmations['trigger'])):
     $subject = 'trigger';
@@ -31,7 +27,7 @@ elseif (isset($trigger_mod_flag)):
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="modify_trigger_form">
-<?php 
+<?php
       echo get_trigger_definition(sprintf($acc_strings['ModTrig'], $s_triggerdefs['name']));
 ?>
 <input type="submit" name="acc_trigger_mod_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
@@ -71,7 +67,7 @@ elseif ($s_connected):
         if (count($s_triggers) > 1) {
             echo '<input type="submit" name="acc_trigger_open" value="'.$button_strings['OpenAll']."\">&nbsp;&nbsp;&nbsp;\n";
             echo '<input type="submit" name="acc_trigger_close" value="'.$button_strings['CloseAll']."\">\n";
-            
+
         }
         echo "<br><br>\n";
     }

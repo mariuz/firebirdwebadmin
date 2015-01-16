@@ -5,11 +5,9 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/12 15:03:13 lb>
-
 
 // Variables      $results   :   array holding the results from the ibase_query calls
-//                $isql_flag :   TRUE if the query was done by isql, FALSE if by php 
+//                $isql_flag :   TRUE if the query was done by isql, FALSE if by php
 //                $binary_output : output lines from isql
 
 ?>

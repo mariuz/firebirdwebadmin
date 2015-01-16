@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/11/29 16:12:21 lb>
-//
-// $Id: tb_watch.php,v 1.19 2005/02/24 20:34:12 lbrueckner Exp $
-
 
 if (!isset($tb_watch_cfg_flag)  &&  $s_connected):
 
@@ -33,7 +29,7 @@ if (!isset($tb_watch_cfg_flag)  &&  $s_connected):
     }
 ?>
   </tr>
-</table> 
+</table>
 <table>
   <tr>
     <td>

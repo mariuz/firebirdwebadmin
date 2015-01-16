@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/12/26 12:55:40 lb>
-//
-// $Id: adm_backup.php,v 1.7 2005/10/01 08:22:38 lbrueckner Exp $
 
 if ($s_connected == TRUE):
 

@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/09/28 22:06:09 lb>
-//
-// $Id: db_systable.php,v 1.18 2006/03/20 07:48:42 lbrueckner Exp $
 
 
 // Variables      $s_system_table: name of the selected system table
@@ -28,7 +25,7 @@ if ($s_connected === TRUE) {
   </td>
   <td align="center">
     <b><?php echo $db_strings['SysData']; ?></b><br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="checkbox" name="db_sysdata" <?php if ($s_systable['sysdata'] == TRUE) echo 'checked'; ?>> 
+    <input type="checkbox" name="db_sysdata" <?php if ($s_systable['sysdata'] == TRUE) echo 'checked'; ?>>
   </td>
   <td>&nbsp;&nbsp;</td>
   <td>

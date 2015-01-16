@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/17 16:23:44 lb>
-//
-// $Id: db_delete.php,v 1.9 2004/11/10 21:43:04 lbrueckner Exp $
 
 
 if (isset($s_confirmations['database'])):

@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001,2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/08 18:58:27 lb>
-//
-// $Id: tb_create.php,v 1.16 2004/11/09 17:16:16 lbrueckner Exp $
-
 
 if ($s_connected && (!isset($s_create_num) || empty($s_create_num))):
 
@@ -17,7 +13,7 @@ if ($s_connected && (!isset($s_create_num) || empty($s_create_num))):
 <table cellpadding="3" cellspacing="0">
 <tr>
    <td><b><?php echo $tb_strings['TbName']; ?></b><br>
-     <?php 
+     <?php
          $value = (isset($s_create_table)) ? $s_create_table : '';
          echo get_textfield('tb_create_table', 30, 31, $value)
      ?>
@@ -62,6 +58,6 @@ elseif ($s_connected && $s_create_num > 0):     // $s_create_num > 0
 </form>
 <?php
 
-endif;    
+endif;
 
 ?>

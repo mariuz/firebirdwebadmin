@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/12/26 12:59:02 lb>
-//
-// $Id: adm_restore.php,v 1.9 2006/03/14 21:09:23 lbrueckner Exp $
 
 if ($s_connected == TRUE):
 

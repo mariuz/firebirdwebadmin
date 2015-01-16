@@ -5,17 +5,13 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/12/21 16:21:44 lb>
-//
-// $Id: acc_udf.php,v 1.5 2004/10/08 20:36:55 lbrueckner Exp $
-
 
 if (isset($s_confirmations['udf'])) {
     $subject = 'udf';
     include('./panels/confirm.php');
 }
 
-elseif ($s_connected == TRUE) { 
+elseif ($s_connected == TRUE) {
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_udf_form">
 <?php
@@ -46,4 +42,3 @@ elseif ($s_connected == TRUE) {
 }
 
 ?>
-

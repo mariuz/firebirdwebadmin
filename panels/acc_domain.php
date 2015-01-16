@@ -6,7 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-
 if (isset($s_confirmations['domain'])):
     $subject = 'domain';
     include('./panels/confirm.php');

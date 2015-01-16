@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created:       <00/09/17 16:24:36 lb>
-//
-// $Id: db_login.php,v 1.15 2005/08/31 21:54:45 lbrueckner Exp $
-
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_login_form">

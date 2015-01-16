@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/13 16:54:55 lb>
-//
-// $Id: tb_delete.php,v 1.9 2004/10/08 20:36:55 lbrueckner Exp $
-
 
 if (isset($s_confirmations['table'])) {
     $subject = 'table';

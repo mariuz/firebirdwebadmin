@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/01/13 17:47:05 lb>
-//
-// $Id: acc_view.php,v 1.12 2006/03/14 21:07:04 lbrueckner Exp $
 
 if (isset($s_confirmations['view'])) {
     $subject = 'view';
@@ -71,11 +68,11 @@ elseif (isset($view_add_flag)) {
 <input type="checkbox" name="acc_show_counts" value="yes"<?php if ($s_views_counts == TRUE) echo ' checked'; ?>>
 <?php echo $tb_strings['DispCounts']; ?><br />
 <input type="submit" name="acc_show_reload" value="<?php echo $button_strings['Reload']; ?>">&nbsp;&nbsp;&nbsp;
-<?php 
+<?php
      if ($vcnt > 1) {
          echo '<input type="submit" name="acc_view_open" value="'.$button_strings['OpenAll']."\" class=\"bgrp\">\n";
          echo '<input type="submit" name="acc_view_close" value="'.$button_strings['CloseAll']."\" class=\"bgrp\">\n";
-         
+
         }
         echo "<br><br>\n";
     }

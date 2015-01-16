@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/04 19:37:59 lb>
-//
-// $Id: dt_enter.php,v 1.16 2005/02/12 12:58:19 lbrueckner Exp $
-
 
 if ($s_connected == TRUE  &&  $s_enter_name == ''):
 

@@ -5,10 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/10/16 14:23:19 lb>
-//
-// $Id: acc_proc.php,v 1.9 2006/03/14 21:07:04 lbrueckner Exp $
-
 
 if (isset($s_confirmations['procedure'])):
     $subject = 'procedure';
@@ -31,7 +27,7 @@ elseif (isset($proc_mod_flag)):
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="modify_proc_form">
-<?php 
+<?php
       echo get_procedure_definition(sprintf($acc_strings['ModProc'], $s_proceduredefs['name']),
                                     $s_proceduredefs['source']
                                     );

@@ -5,9 +5,7 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/08 12:12:25 lb>
-//
-// $Id: tb_show.php,v 1.22 2006/03/14 21:14:52 lbrueckner Exp $
+
 
 $tcnt = 0;
 if ($s_connected == TRUE && is_array($s_tables)):

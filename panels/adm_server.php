@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/05/26 19:27:38 lb>
-//
-// $Id: adm_server.php,v 1.5 2005/07/09 15:49:16 lbrueckner Exp $
 
 if ($s_connected  &&  count($iblockpr_output) > 0) {
 

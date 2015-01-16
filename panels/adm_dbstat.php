@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/05/26 19:05:20 lb>
-//
-// $Id: adm_dbstat.php,v 1.5 2005/10/01 08:22:38 lbrueckner Exp $
 
 if ($s_connected):
 
@@ -16,7 +13,7 @@ if ($s_connected):
 <table cellpadding="3">
   <tr>
     <td>
-      <?php 
+      <?php
             echo '<b>'.$adm_strings['Analyze']."</b><br>\n";
             echo get_indexed_selectlist('db_stat_option', database_statistic_options(), $s_dbstat_option); ?>
     </td>

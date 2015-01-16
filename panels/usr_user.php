@@ -6,7 +6,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-
 if (isset($s_confirmations['user'])):
     $subject = 'user';
     include_once('./panels/confirm.php');
@@ -15,7 +14,7 @@ elseif (isset($user_add_flag)):
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="usr_user_form">
-<?php 
+<?php
 
     echo user_definition($udata, $usr_strings['CreateUsr']);
 ?>

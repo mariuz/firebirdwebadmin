@@ -7,9 +7,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/02/03 13:24:11 lb>
-//
-// $Id: confirm.php,v 1.5 2004/10/08 20:36:55 lbrueckner Exp $
 
 if ($subject == 'row') {
     $question = $s_confirmations[$subject][$instance]['msg'];

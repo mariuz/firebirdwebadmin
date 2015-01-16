@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/09/28 18:14:41 lb>
-//
-// $Id: usr_cust.php,v 1.8 2005/09/25 17:01:07 lbrueckner Exp $
 
 if (empty($_COOKIE)):
 

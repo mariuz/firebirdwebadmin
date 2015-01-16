@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/05/26 11:10:48 lb>
-//
-// $Id: usr_role.php,v 1.9 2004/10/08 20:36:55 lbrueckner Exp $
-
 
 if (isset($s_confirmations['role'])) {
     $subject = 'role';
@@ -62,10 +58,10 @@ if (!empty($roles)) {
    <th align="left"><b><?php echo $usr_strings['RoleSelDel']; ?></b></th>
    <td><b><?php echo $usr_strings['Name']; ?></b><br>
      <select name="usr_role_dname">
-     <?php 
+     <?php
 
          $selected = (isset($_POST['usr_role_dname'])) ? $_POST['usr_role_dname'] : '';
-         build_roles_options($roles, $selected); 
+         build_roles_options($roles, $selected);
 
      ?>
      </select>
@@ -82,18 +78,18 @@ if (!empty($roles)) {
    <td>
       <b><?php echo $usr_strings['Role']; ?></b><br>
       <select name="usr_role_addname">
-      <?php 
+      <?php
 
          $selected = (isset($_POST['usr_role_addname'])) ? $_POST['usr_role_addname'] : '';
-         build_roles_options($roles, $selected); 
+         build_roles_options($roles, $selected);
       ?>
       </select>
    </td>
    <td>
       <b><?php echo $usr_strings['User']; ?></b><br>
-      <?php 
+      <?php
 
-          $pre = (isset($_POST['usr_role_adduser'])) ? $_POST['usr_role_adduser'] : NULL;         
+          $pre = (isset($_POST['usr_role_adduser'])) ? $_POST['usr_role_adduser'] : NULL;
           if (!empty($users)) {
               $user_options = array_keys($users);
               array_push($user_options, 'PUBLIC');
@@ -114,18 +110,18 @@ if (!empty($roles)) {
    <td>
       <b><?php echo $usr_strings['Role']; ?></b><br>
       <select name="usr_role_removename">
-      <?php 
+      <?php
 
          $selected = (isset($_POST['usr_role_removename'])) ? $_POST['usr_role_removename'] : '';
-         build_roles_options($roles, $selected); 
+         build_roles_options($roles, $selected);
       ?>
       </select>
    </td>
    <td>
       <b><?php echo $usr_strings['User']; ?></b><br>
-      <?php 
+      <?php
 
-          $pre = (!empty($_POST['usr_role_removeuser'])) ? $_POST['usr_role_removeuser'] : NULL;         
+          $pre = (!empty($_POST['usr_role_removeuser'])) ? $_POST['usr_role_removeuser'] : NULL;
           if (!empty($users)) {
               echo get_selectlist('usr_role_removeuser', $user_options, $pre, TRUE);
           }

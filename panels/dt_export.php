@@ -5,10 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/10/02 12:24:39 lb>
-//
-// $Id: dt_export.php,v 1.4 2006/07/08 17:19:13 lbrueckner Exp $
-
 
 if ($s_connected):
 
@@ -82,7 +78,7 @@ if ($s_connected):
 <table border="0" cellpadding="3" cellspacing="0" style="margin-top:0px;">
   <tr>
     <td valign="top" id="dt_export_format_options">
-      <?php echo export_format_options_table($s_export); ?> 
+      <?php echo export_format_options_table($s_export); ?>
     </td>
     <td valign="top">
       <table border="1" cellpadding="3" cellspacing="0">

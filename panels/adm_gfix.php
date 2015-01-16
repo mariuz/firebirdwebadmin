@@ -5,15 +5,12 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <02/11/04 22:28:01 lb>
-//
-// $Id: adm_gfix.php,v 1.10 2005/09/10 18:31:41 lbrueckner Exp $
 
 if ($s_connected == TRUE):
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_gfix_form">
-<?php 
+<?php
 
     echo hidden_field('gfix_doit', '1');
 
@@ -174,7 +171,7 @@ if ($s_connected == TRUE):
   </tr>
   <tr>
     <td colspan="5" align="right">
-      <?php echo  $adm_strings['Rescind']; ?>&nbsp;    
+      <?php echo  $adm_strings['Rescind']; ?>&nbsp;
     </td>
     <td width="20">&nbsp;</td>
     <td>

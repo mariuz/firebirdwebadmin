@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/13 16:52:51 lb>
-//
-// $Id: tb_modify.php,v 1.18 2004/11/09 17:16:16 lbrueckner Exp $
 
 
 if (isset($s_confirmations['column'])):
@@ -71,7 +68,7 @@ elseif ($s_connected && isset($s_modify_name)):
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modify_form">
 <table border cellpadding="3" cellspacing="0">
 <tr>
-  <th colspan="2" align="left"> 
+  <th colspan="2" align="left">
     <b><?php echo $tb_strings['AddCol']; ?></b>
   </th>
   <td>

@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <04/03/06 16:09_08 lb>
-//
-// $Id: acc_exc.php,v 1.4 2004/11/09 17:16:16 lbrueckner Exp $
 
 
 if (isset($s_confirmations['exc'])) {
@@ -63,7 +60,7 @@ elseif (isset($exc_add_flag)) {
 </form>
 <?php
 
-} elseif ($s_connected == TRUE) { 
+} elseif ($s_connected == TRUE) {
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_exc_form">
@@ -113,4 +110,3 @@ elseif (isset($exc_add_flag)) {
 }
 
 ?>
-

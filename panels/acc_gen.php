@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/03 13:51:00 lb>
-//
-// $Id: acc_gen.php,v 1.7 2004/10/08 20:36:55 lbrueckner Exp $
 
 
 if (isset($s_confirmations['generator'])) {

@@ -5,13 +5,11 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/09 19:43:36 lb>
-
 
 if ($s_connected == TRUE) {
     $dstr = (!empty($s_login['host'])) ? $s_login['host'] . ':' . $s_login['database'] : $s_login['database'];
     $rstr = !empty($s_login['role']) ? '&nbsp;(' . $s_login['role'] . ')' : '';
-    $ustr = '     <td>' . $s_login['user'] . $rstr . "</td>\n"; 
+    $ustr = '     <td>' . $s_login['user'] . $rstr . "</td>\n";
 } else {
     $dstr = '&lt;none&gt;';
     $ustr = '';
