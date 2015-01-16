@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/10/10 21:24:42 lb>
-//
-// $Id: usr_user.php,v 1.10 2005/02/06 18:03:33 lbrueckner Exp $
 
 
 if (isset($s_confirmations['user'])):
