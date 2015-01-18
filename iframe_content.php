@@ -1,14 +1,10 @@
 <?php
-// File           iframe_content.php / FirebirdWebAdmin
 // Purpose        display output for backup, restore, metadata and dbstats processes
 //                ubside of an iframe
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/09/25 10:38:17 lb>
-//
-// $Id: iframe_content.php,v 1.3 2006/03/12 21:38:55 lbrueckner Exp $
 
 // do not overwrite $s_referer in script_start.inc.php
 $no_session_referer = TRUE;

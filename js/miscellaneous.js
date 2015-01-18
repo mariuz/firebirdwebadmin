@@ -1,12 +1,8 @@
-// File           js/miscellaneous.js / FirebirdWebAdmin
 // Purpose        collection of javascript functions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/05/01 17:25:01 lb>
-//
-// $Id: miscellaneous.js,v 1.9 2006/07/08 17:14:43 lbrueckner Exp $
 
 
 function $() {
