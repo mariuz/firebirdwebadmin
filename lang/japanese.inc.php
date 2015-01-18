@@ -433,7 +433,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA パスワード',
 // strings for the info-panel
 $info_strings = array('Connected' => 'は次のデータベースに接続しました：',
                       'ExtResult' => '次のコマンドの戻り値：',
-                      'IBError'   => '次のエラー：',
+                      'FBError'   => '次のエラー：',
                       'ExtError'  => '次の外部コマンドエラー：',
                       'Error'     => 'エラー：',
                       'Warning'   => '警告：',

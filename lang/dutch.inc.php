@@ -435,7 +435,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA wachtwoord',
 // strings for the info-panel
 $info_strings = array('Connected' => 'Aangemeld aan databank',
                       'ExtResult' => 'Resultaat van extern commando',
-                      'IBError'   => 'InterBase fout',
+                      'FBError'   => 'InterBase fout',
                       'ExtError'  => 'Fout van extern commando',
                       'Error'     => 'Fout',
                       'Warning'   => 'Waarschuwing',

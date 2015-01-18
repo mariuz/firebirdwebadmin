@@ -65,7 +65,7 @@ if ($job = get_iframejob($s_iframejobs, $key)) {
                 }
                 else {
                     // connect failed 
-                    $content .= '<p><span class="err">' . $info_strings['IBError'] . ':</span>' . fbird_errmsg()."</p>\n";
+                    $content .= '<p><span class="err">' . $info_strings['FBError'] . ':</span>' . fbird_errmsg()."</p>\n";
                     $s_login['password'] = '';
                     $s_connected = FALSE;
                 }

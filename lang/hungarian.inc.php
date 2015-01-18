@@ -433,7 +433,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA jelszó',
 // strings for the info-panel
 $info_strings = array('Connected' => 'Kapcsolódott adatbázis',
                       'ExtResult' => 'Külsõ parancs eredménye',
-                      'IBError'   => 'InterBase Hiba',
+                      'FBError'   => 'InterBase Hiba',
                       'ExtError'  => 'Hiba külsõ parancsból',
                       'Error'     => 'Hiba',
                       'Warning'   => 'Figyelmeztetés',

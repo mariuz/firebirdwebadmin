@@ -433,7 +433,7 @@ $adm_strings = array('SysdbaPW'  => 'senha do SYSDBA',
 // strings for the info-panel
 $info_strings = array('Connected' => 'conectado ao Banco de Dados',
                       'ExtResult' => 'Resultado de um comando externo',
-                      'IBError'   => 'Erro do Firebird',
+                      'FBError'   => 'Erro do Firebird',
                       'ExtError'  => 'Erro de um comando externo',
                       'Error'     => 'Erro',
                       'Warning'   => 'Atenção',

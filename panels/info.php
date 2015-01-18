@@ -1,5 +1,4 @@
 <?php
-// File           info.php / FirebirdWebAdmin
 // Purpose        html sequence for the info panel
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
@@ -42,7 +41,7 @@ if  (isset($binary_output)  &&  count($binary_output) > 0  &&  $s_page != 'SQL'
 }
 
 if ($ib_error != '') {
-    echo '<tr><td class="err">'.$info_strings['IBError'].":</td></tr>\n";
+    echo '<tr><td class="err">'.$info_strings['FBError'].":</td></tr>\n";
     echo "<tr><td>\n";
     echo $ib_error;
     echo "</td></tr>\n";

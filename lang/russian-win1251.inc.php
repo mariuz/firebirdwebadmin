@@ -434,7 +434,7 @@ $adm_strings = array('SysdbaPW'  => 'пароль пользователя SYSDBA',
 // strings for the info-panel
 $info_strings = array('Connected' => 'подключён к базе данных',
                       'ExtResult' => 'Результат от внешней команды',
-                      'IBError'   => 'Ошибка InterBase',
+                      'FBError'   => 'Ошибка InterBase',
                       'ExtError'  => 'Ошибка от внешней комманды',
                       'Error'     => 'Ошибка',
                       'Warning'   => 'Предупреждение',

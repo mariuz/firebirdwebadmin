@@ -433,7 +433,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA Passwort',
 // strings for the info-panel
 $info_strings = array('Connected' => 'verbunden mit Datenbank',
                       'ExtResult' => 'Ergebnis von externem Befehl',
-                      'IBError'   => 'InterBase-Fehler',
+                      'FBError'   => 'InterBase-Fehler',
                       'ExtError'  => 'Fehler von externem Befehl',
                       'Error'     => 'Fehler',
                       'Warning'   => 'Warnmeldung',

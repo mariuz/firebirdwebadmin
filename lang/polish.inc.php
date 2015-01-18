@@ -433,7 +433,7 @@ $adm_strings = array('SysdbaPW'  => 'Has³o SYSDBA',
 // strings for the info-panel
 $info_strings = array('Connected' => 'pod³¹czony do bazy danych',
                       'ExtResult' => 'Rezultat zewnêtrznej komendy',
-                      'IBError'   => 'B³¹d InterBase',
+                      'FBError'   => 'B³¹d InterBase',
                       'ExtError'  => 'B³¹d z zewnêtrznej komendy',
                       'Error'     => 'B³¹d',
                       'Warning'   => 'Ostrze¿enie',

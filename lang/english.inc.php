@@ -429,7 +429,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA password',
 // strings for the info-panel
 $info_strings = array('Connected' => 'connected to Database',
                       'ExtResult' => 'Result from extern command',
-                      'IBError'   => 'Firebird Error',
+                      'FBError'   => 'Firebird Error',
                       'ExtError'  => 'Error from extern command',
                       'Error'     => 'Error',
                       'Warning'   => 'Warning',
