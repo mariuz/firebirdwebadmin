@@ -287,7 +287,7 @@ if (have_panel_permissions($s_login['user'], 'db_systable', TRUE)) {
 
     $js_stack .= js_request_filter_fields();
 
-    if (FALSE  &&  strpos($s_systable['table'], 'TMP$') === 0) {
+    if (FALSE  &&  strpos($s_systable['table'], 'MON$') === 0) {
         // DISABLED !
 
         $have_refresh =  TRUE;
