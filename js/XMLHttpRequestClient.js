@@ -1,17 +1,13 @@
-// File           js/XMLHttpRequestClient.js / FirebirdWebAdmin
 // Purpose        javascript implementation of a client class for XMLHttpRequests
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/02/01 24:14:51 lb>
-//
-// $Id: XMLHttpRequestClient.js,v 1.4 2006/07/08 17:12:25 lbrueckner Exp $
 
 
 /*
    by defining the request object in the global scope
-   it is reusable for multible calls on mozilla browsers
+   it is reusable for multiple calls on mozilla browsers
 */
 var xmlreq   = false;
 

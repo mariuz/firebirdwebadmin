@@ -359,7 +359,7 @@ function drop_database($db, $login) {
     $success = '';
 
     // make a connection to the selected database
-    // or use the global dbhandle if it is the one ibwebadmin is currently connected to
+    // or use the global dbhandle if it is the one firebirdwebadmin is currently connected to
     if ($db['database'] == $login['database']  &&
         $db['host']  == $login['host']) {
         $dbh = $GLOBALS['dbhandle'];
