@@ -1,5 +1,4 @@
 <?php
-// File           db_login.php / FirebirdWebAdmin
 // Purpose        html sequence for the db_login-panel in database.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
@@ -48,7 +47,7 @@ if (count($dbfiles) == 0) {
       <?php echo get_charset_select('db_login_charset', $s_login['charset']); ?>
     </td>
    <td><b><?php echo $db_strings['Dialect']; ?></b><br>
-      <?php echo get_selectlist('db_login_dialect', array(1, 2, 3), $s_login['dialect'], TRUE); ?>
+      <?php echo get_selectlist('db_login_dialect', array(1, 3), $s_login['dialect'], TRUE); ?>
    </td>
    <td><b><?php echo $db_strings['Server']; ?></b><br>
       <?php echo get_selectlist('db_login_server', $server_types, $s_login['server'], TRUE); ?>
