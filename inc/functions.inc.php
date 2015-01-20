@@ -1,5 +1,4 @@
 <?php
-// File           inc/functions.inc.php / FirebirdWebAdmin
 // Purpose        collection of little helpers etc.
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
