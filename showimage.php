@@ -1,13 +1,10 @@
 <?php
-// File           showimage.php / FirebirdWebAdmin
 // Purpose        called by showblob to load the given blob and display the data as an image
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/10/25 21:36:41 lb>
-//
-// $Id: showimage.php,v 1.7 2004/10/08 20:35:19 lbrueckner Exp $
+
 
 
 // GET-Variables specifying the blob
