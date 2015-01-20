@@ -1,5 +1,4 @@
 <?php
-// File           english.inc.php / FirebirdWebAdmin
 // Purpose        english strings definitions
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
