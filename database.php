@@ -53,7 +53,7 @@ if (isset($_POST['db_login_doit'])){
             $s_connected = TRUE;
 
             remove_edit_panels();
-            $s_charsets = get_charsets(SERVER_FAMILY, SERVER_VERSION);
+            $s_charsets = get_charsets();
         } else {
             // connect failed
             $ib_error = fbird_errmsg();
