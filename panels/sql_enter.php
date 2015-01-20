@@ -1,5 +1,4 @@
 <?php
-// File           sql_enter.php / FirebirdWebAdmin
 // Purpose        html sequence for the sql_enter-panel in sql.php
 // Author         Lutz Brueckner <irie@gmx.de>
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
