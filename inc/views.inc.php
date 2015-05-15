@@ -9,7 +9,8 @@
 //
 // create a view from the values in viewdefs array
 //
-function create_view($viewdefs) {
+function create_view($viewdefs)
+{
     global $dbhandle;
     global $ib_error, $lsql;
 
@@ -31,19 +32,19 @@ function create_view($viewdefs) {
 //
 // drop the view $name off the database
 //
-function drop_view($name) {
+function drop_view($name)
+{
     global $dbhandle, $s_tables;
     global $ib_error, $lsql;
 
-    $lsql = 'DROP VIEW '.$name;
+    $lsql = 'DROP VIEW ' . $name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
         return FALSE;
-    }
-    else {
-         unset($s_tables[$name]);
-         return TRUE;
+    } else {
+        unset($s_tables[$name]);
+        return TRUE;
     }
 }
 
@@ -51,11 +52,12 @@ function drop_view($name) {
 //
 // return the html for the form elements to create or alter a view
 //
-function view_definition($title, $viewdefs) {
+function view_definition($title, $viewdefs)
+{
     global $acc_strings, $s_cust;
 
     $html = <<<EOT
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-hover">
   <tr>
     <th align="left">$title</th>
   </tr>
@@ -74,17 +76,18 @@ function view_definition($title, $viewdefs) {
 
 EOT;
     return sprintf($html,
-                   $s_cust['textarea']['rows'],
-                   $s_cust['textarea']['cols'],
-                   ($viewdefs['check'] == 'yes' ? ' checked' : '')
-                   );
+        $s_cust['textarea']['rows'],
+        $s_cust['textarea']['cols'],
+        ($viewdefs['check'] == 'yes' ? ' checked' : '')
+    );
 }
 
 
 //
 // find the name of a view in its source code
 //
-function get_viewname($viewsource) {
+function get_viewname($viewsource)
+{
 
     $chunks = preg_split("/[\s]+/", $viewsource, 4);
 
@@ -95,10 +98,11 @@ function get_viewname($viewsource) {
 //
 // deliver the html for an opened view on the views panel
 //
-function get_opened_view($name, $title, $url) {
+function get_opened_view($name, $title, $url)
+{
     global $dbhandle, $s_fields, $tb_strings, $acc_strings, $ptitle_strings;
 
-    $source       = get_view_source($name);
+    $source = get_view_source($name);
     $red_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'red_triangle.png';
 
     $html = <<<EOT
@@ -106,25 +110,25 @@ function get_opened_view($name, $title, $url) {
           <a href="$url" class="dtitle"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7">$title</a>
         </nobr>
         <nobr>
-        <table>
+        <table class="table table-hover">
           <tr>
             <td width="26">
             </td>
             <td valign="top">
-              <table border="1" cellpadding="0" cellspacing="0">
+              <table class="table table-bordered">
 EOT;
 
     $cols = array('Name', 'Type', 'Length', 'Prec', 'Scale', 'Charset', 'Collate');
     $html .= "              <tr align=\"left\">\n";
     foreach ($cols as $idx) {
-        $html .= '                <th class="detail"><nobr>'.$tb_strings[$idx]."</nobr></th>\n";
+        $html .= '                <th class="detail"><nobr>' . $tb_strings[$idx] . "</nobr></th>\n";
     }
     $html .= "              </tr>\n";
 
     foreach ($s_fields[$name] as $field) {
         $size_str = ($field['type'] == 'VARCHAR' || $field['type'] == 'CHARACTER') ? $field['size'] : '&nbsp;';
         $prec_str = (isset($field['prec'])) ? $field['prec'] : '&nbsp;';
-        $scale_str= (isset($field['scale'])) ? $field['scale'] : '&nbsp;';
+        $scale_str = (isset($field['scale'])) ? $field['scale'] : '&nbsp;';
         $char_str = (isset($field['charset'])) ? $field['charset'] : '&nbsp;';
         $coll_str = (isset($field['collate'])) ? $field['collate'] : '&nbsp;';
 
@@ -141,19 +145,19 @@ EOT;
     $html .= "            </table>\n          </td>\n";
 
     $html .= "         <td>&nbsp;</td>\n"
-           ."          <td valign=\"top\">\n"
-           ."            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
-           ."              <tr align=\"left\">\n"
-           .'                <th class="detail">'.$acc_strings['Source']."</th>\n"
-           ."              </tr>\n"
-           ."              <tr>\n"
-           .'                <td class="detail"><pre>'.$source."</pre></td>\n"
-           ."              </tr>\n"
-           ."            </table>\n"
-           ."          </tr>\n"
-           ."        </td>\n"
-           ."      </table>\n"
-           ."    </nobr>\n";
+        . "          <td valign=\"top\">\n"
+        . "            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
+        . "              <tr align=\"left\">\n"
+        . '                <th class="detail">' . $acc_strings['Source'] . "</th>\n"
+        . "              </tr>\n"
+        . "              <tr>\n"
+        . '                <td class="detail"><pre>' . $source . "</pre></td>\n"
+        . "              </tr>\n"
+        . "            </table>\n"
+        . "          </tr>\n"
+        . "        </td>\n"
+        . "      </table>\n"
+        . "    </nobr>\n";
 
     return $html;
 }
@@ -162,13 +166,14 @@ EOT;
 //
 // return the sourcecode of the definition for $view
 //
-function get_view_source($name) {
+function get_view_source($name)
+{
     global $dbhandle;
 
     $vsource = '';
     $sql = 'SELECT R.RDB$VIEW_SOURCE VSOURCE'
-           .' FROM RDB$RELATIONS R'
-          ." WHERE R.RDB\$RELATION_NAME='".$name."'";
+        . ' FROM RDB$RELATIONS R'
+        . " WHERE R.RDB\$RELATION_NAME='" . $name . "'";
     $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     $obj = fbird_fetch_object($res);
 
@@ -188,7 +193,8 @@ function get_view_source($name) {
 //
 // mark all views as opened or closed in $s_tables
 //
-function toggle_all_views($tables, $status) {
+function toggle_all_views($tables, $status)
+{
 
     foreach (array_keys($tables) as $name) {
         if ($tables[$name]['is_view']) {

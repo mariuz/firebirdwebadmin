@@ -254,7 +254,7 @@ require('./inc/script_end.inc.php');
 //
 function get_result_table($result, $fieldinfo, $idx) {
 
-    $table = '<table class="table" id="resulttable_'.$idx."\" border=\"1\" cellspacing=\"0\">\n"
+    $table = '<table class="table table-bordered table-hover" id="resulttable_'.$idx."\">\n"
             ."   <tr align=\"left\">\n"
             .'      <th>'.implode('</th><th>', array_keys($result[0]))."</th>\n"
             ."   </tr>\n";
@@ -294,7 +294,7 @@ function sql_export_button($idx) {
 
     $name = 'sql_export_'.$idx;
 
-    return sprintf('<input type="submit" name="%s" value="%s"><br>', $name, $button_strings['Export'])."\n";
+    return sprintf('<input type="submit" class="btn btn-success" name="%s" value="%s"><br>', $name, $button_strings['Export'])."\n";
 }
 
 

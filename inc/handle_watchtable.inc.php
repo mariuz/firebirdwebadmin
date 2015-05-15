@@ -11,15 +11,14 @@
 
 
 // initialize $s_tables[] and $s_fields[] if necessary
-$idx    = get_panel_index($s_sql_panels, 'tb_watch');
+$idx = get_panel_index($s_sql_panels, 'tb_watch');
 $parray = get_panel_array($_SERVER['SCRIPT_NAME']);
-if (${$parray}[$idx][2] == 'open'  &&  $s_connected == TRUE  &&  $s_tables_valid == FALSE) {
+if (${$parray}[$idx][2] == 'open' && $s_connected == TRUE && $s_tables_valid == FALSE) {
     include('./inc/get_tables.inc.php');
-    if (get_tables()){
+    if (get_tables()) {
         $s_tables_valid = TRUE;
     }
 }
-
 
 
 set_watch_table_title($s_wt['table']);
@@ -37,19 +36,20 @@ if (isset($_GET['wcfg'])) {
 // the Select button on the Watch Table panel was clicked
 //
 if (isset($_POST['tb_watch_select'])
-&&  $_POST['tb_watch_table'] != ''
-&&  $_POST['tb_watch_table'] != $s_wt['table']) {
+    && $_POST['tb_watch_table'] != ''
+    && $_POST['tb_watch_table'] != $s_wt['table']
+) {
 
-    $s_wt['table']      = get_request_data('tb_watch_table');
-    $s_wt['columns']    = set_watch_all();
+    $s_wt['table'] = get_request_data('tb_watch_table');
+    $s_wt['columns'] = set_watch_all();
     $s_wt['blob_links'] = set_watch_blinks();
-    $s_wt['blob_as']    = set_watch_blobas();
-    $s_wt['start']      = 1;
-    $s_wt['order']      = '';
-    $s_wt['direction']  = 'ASC';
-    $s_wt['delete']     = ($s_login['user'] == 'SYSDBA'  ||  in_array('R', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
-    $s_wt['edit']       = ($s_login['user'] == 'SYSDBA'  ||  in_array('U', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
-    $s_wt['condition']  = '';
+    $s_wt['blob_as'] = set_watch_blobas();
+    $s_wt['start'] = 1;
+    $s_wt['order'] = '';
+    $s_wt['direction'] = 'ASC';
+    $s_wt['delete'] = ($s_login['user'] == 'SYSDBA' || in_array('R', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
+    $s_wt['edit'] = ($s_login['user'] == 'SYSDBA' || in_array('U', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
+    $s_wt['condition'] = '';
 
     set_watch_table_title($s_wt['table']);
     $wt_changed = TRUE;
@@ -59,12 +59,12 @@ if (isset($_POST['tb_watch_select'])
 //
 // some attributes are restored from $s_cust['wt']
 // 
-if (!empty($s_wt['table'])  &&  $s_wt['columns'] == FALSE  &&  is_array($s_fields[$s_wt['table']])) {
-    $s_wt['columns']    = set_watch_all();
+if (!empty($s_wt['table']) && $s_wt['columns'] == FALSE && is_array($s_fields[$s_wt['table']])) {
+    $s_wt['columns'] = set_watch_all();
     $s_wt['blob_links'] = set_watch_blinks();
-    $s_wt['blob_as']    = set_watch_blobas();
-    $s_wt['delete']     = ($s_login['user'] == 'SYSDBA'  ||  in_array('R', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
-    $s_wt['edit']       = ($s_login['user'] == 'SYSDBA'  ||  in_array('U', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
+    $s_wt['blob_as'] = set_watch_blobas();
+    $s_wt['delete'] = ($s_login['user'] == 'SYSDBA' || in_array('R', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
+    $s_wt['edit'] = ($s_login['user'] == 'SYSDBA' || in_array('U', $s_tables[$s_wt['table']]['privileges'])) ? TRUE : FALSE;
 }
 
 
@@ -72,44 +72,40 @@ if (!empty($s_wt['table'])  &&  $s_wt['columns'] == FALSE  &&  is_array($s_field
 // the Done button on Config Watch Table panel was clicked
 //
 if (isset($_POST['tb_watch_cfg_doit'])) {
-    if (isset($_POST['columns'])  &&  count($_POST['columns']) > 0) {
+    if (isset($_POST['columns']) && count($_POST['columns']) > 0) {
         $s_wt['columns'] = $_POST['columns'];
-    }
-    else {
+    } else {
         $s_wt['columns'] = set_watch_all();
     }
 
     if (isset($_POST['bloblinks'])) {
         $s_wt['blob_links'] = $_POST['bloblinks'];
-    }
-    else {
+    } else {
         $s_wt['blob_links'] = array();
     }
 
     if (isset($_POST['blobas'])) {
         $s_wt['blob_as'] = $_POST['blobas'];
-    }
-    else {
+    } else {
         $s_wt['blob_as'] = array();
     }
 
-    if ((int) $_POST['tb_watch_rows'] != 0) {
+    if ((int)$_POST['tb_watch_rows'] != 0) {
         $s_wt['rows'] = abs($_POST['tb_watch_rows']);
     }
-    if ((int) $_POST['tb_watch_start'] != 0) {
+    if ((int)$_POST['tb_watch_start'] != 0) {
         $s_wt['start'] = abs($_POST['tb_watch_start']);
     }
     if (!empty($_POST['radiobox'])) {
         $s_wt['order'] = $_POST['radiobox'];
-    }
-    else {
+    } else {
         $s_wt['order'] = '';
     }
-    $s_wt['direction']    = $_POST['tb_watch_direction'] == $sql_strings['Asc'] ? 'ASC' : 'DESC';
-    $s_wt['delete']       = $_POST['tb_watch_del']  == 'Yes' ? TRUE : FALSE;
-    $s_wt['edit']         = $_POST['tb_watch_edit'] == 'Yes' ? TRUE : FALSE;
+    $s_wt['direction'] = $_POST['tb_watch_direction'] == $sql_strings['Asc'] ? 'ASC' : 'DESC';
+    $s_wt['delete'] = $_POST['tb_watch_del'] == 'Yes' ? TRUE : FALSE;
+    $s_wt['edit'] = $_POST['tb_watch_edit'] == 'Yes' ? TRUE : FALSE;
     $s_wt['tblob_inline'] = $_POST['tb_watch_tblob_inline'] == 'Yes' ? TRUE : FALSE;
-    $s_wt['tblob_chars']  = abs($_POST['tb_watch_tblob_chars']);
+    $s_wt['tblob_chars'] = abs($_POST['tb_watch_tblob_chars']);
 
     if (isset($_POST['tb_watch_condition'])) {
         $s_wt['condition'] = get_request_data('tb_watch_condition');
@@ -119,22 +115,22 @@ if (isset($_POST['tb_watch_cfg_doit'])) {
 }
 
 
-if (isset($wt_changed)  &&  $s_connected == TRUE) {
+if (isset($wt_changed) && $s_connected == TRUE) {
 
     // editing/deleting from views is not supported now
     if ($s_tables[$s_wt['table']]['is_view']) {
-        $s_wt['edit']   = FALSE;
+        $s_wt['edit'] = FALSE;
         $s_wt['delete'] = FALSE;
         $message = $MESSAGES['NO_VIEW_SUPPORT'];
     }
 
     // disable the 'del' and 'edit' links if the user have no remove/update permissions
     // for the selected table
-    if ($s_wt['delete']  &&  $s_login['user'] != 'SYSDBA'  &&  !in_array('R', $s_tables[$s_wt['table']]['privileges'])) {
+    if ($s_wt['delete'] && $s_login['user'] != 'SYSDBA' && !in_array('R', $s_tables[$s_wt['table']]['privileges'])) {
         $warning = sprintf($WARNINGS['DEL_NO_PERMISSON'], $s_wt['table']);
         $s_wt['delete'] = FALSE;
     }
-    if ($s_wt['edit']  &&  $s_login['user'] != 'SYSDBA'  &&  !in_array('U', $s_tables[$s_wt['table']]['privileges'])) {
+    if ($s_wt['edit'] && $s_login['user'] != 'SYSDBA' && !in_array('U', $s_tables[$s_wt['table']]['privileges'])) {
         $warning = sprintf($WARNINGS['EDIT_NO_PERMISSON'], $s_wt['table']);
         $s_wt['edit'] = FALSE;
     }
@@ -142,10 +138,11 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
     if ($warning == '') {
         // for editing or deleting the table must have a primary key or an unique key
         $have_primary = FALSE;
-        if ($s_wt['edit']  ||  $s_wt['delete']) {
+        if ($s_wt['edit'] || $s_wt['delete']) {
             foreach ($s_fields[$s_wt['table']] as $field) {
-                if ((isset($field['primary'])  &&  !empty($field['primary']))  ||
-                    (isset($field['unique'])  &&  !empty($field['unique']))) {
+                if ((isset($field['primary']) && !empty($field['primary'])) ||
+                    (isset($field['unique']) && !empty($field['unique']))
+                ) {
 
                     $have_primary = TRUE;
                     break;
@@ -154,13 +151,13 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
         }
 
         // avoid editing of tables without a primary key
-        if (!$have_primary  &&  $s_wt['edit']) {
+        if (!$have_primary && $s_wt['edit']) {
             $s_wt['edit'] = FALSE;
             $warning .= $WARNINGS['CAN_NOT_EDIT_TABLE'];
         }
 
         // avoid deleting of tables without a primary key
-        if (!$have_primary  &&  $s_wt['delete']) {
+        if (!$have_primary && $s_wt['delete']) {
             $s_wt['delete'] = FALSE;
             $warning .= $WARNINGS['CAN_NOT_DEL_TABLE'];
         }
@@ -170,8 +167,9 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
     if ($s_wt['edit']) {
         $add_primary = FALSE;
         foreach ($s_fields[$s_wt['table']] as $field) {
-            if ((isset($field['primary']) &&  $field['primary'] == 'Yes')  &&
-                (!in_array($field['name'], $wt['columns']))) {
+            if ((isset($field['primary']) && $field['primary'] == 'Yes') &&
+                (!in_array($field['name'], $wt['columns']))
+            ) {
 
                 $s_wt['columns'][] = $field['name'];
                 $add_primary = TRUE;
@@ -179,7 +177,7 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
         }
         if ($add_primary) {
             $message .= $MESSAGES['EDIT_ADD_PRIMARY'];
-        }               
+        }
     }
 
     // get foreign key definititions
@@ -187,11 +185,11 @@ if (isset($wt_changed)  &&  $s_connected == TRUE) {
 
     // update the customize cookie
     $s_cust['wt'][$s_login['database']] = array('table' => $s_wt['table'],
-                                                'start' => $s_wt['start'],
-                                                'order' => $s_wt['order'],
-                                                'dir'   => $s_wt['direction']);
+        'start' => $s_wt['start'],
+        'order' => $s_wt['order'],
+        'dir' => $s_wt['direction']);
     set_customize_cookie($s_cust);
-    
+
     // cleanup the watchtable output buffer
     $s_watch_buffer = '';
 
@@ -204,7 +202,7 @@ if (isset($_POST['confirm_yes'])) {
         $instance = $matches[1];
         $sql = $s_confirmations['row'][$instance]['sql'];
         @fbird_query($dbhandle, $sql)
-            or $ib_error = fbird_errmsg();
+        or $ib_error = fbird_errmsg();
         remove_confirm($instance);
 
         // cleanup the watchtable output buffer
@@ -231,15 +229,16 @@ if (!empty($s_wt['table'])) {
 
 
 // remove the confirm panel
-function remove_confirm($instance) {
+function remove_confirm($instance)
+{
     global $s_confirmations, $s_delete_idx;
 
     $panels_arrayname = get_panel_array($_SERVER['SCRIPT_NAME']);
-    $name = 'dt_delete'.$instance;
+    $name = 'dt_delete' . $instance;
     $idx = get_panel_index($GLOBALS[$panels_arrayname], $name);
-    array_splice($GLOBALS[$panels_arrayname], $idx, 1); 
+    array_splice($GLOBALS[$panels_arrayname], $idx, 1);
     unset($s_confirmations['row'][$instance]);
-            
+
     if (count($s_confirmations['row']) == 0) {
         unset($s_confirmations['row']);
         $s_delete_idx = 0;
@@ -250,10 +249,11 @@ function remove_confirm($instance) {
 //
 // preselect all fields from $s_wt[table]
 //
-function set_watch_all() {
+function set_watch_all()
+{
 
     $columns = array();
-    foreach($GLOBALS['s_fields'][$GLOBALS['s_wt']['table']] as $field) {
+    foreach ($GLOBALS['s_fields'][$GLOBALS['s_wt']['table']] as $field) {
         $columns[] = $field['name'];
     }
 
@@ -264,7 +264,8 @@ function set_watch_all() {
 //
 // preselect 'Blob As Link' for all blob fields
 //
-function set_watch_blinks() {
+function set_watch_blinks()
+{
 
     $blinks = array();
     foreach ($GLOBALS['s_fields'][$GLOBALS['s_wt']['table']] as $field) {
@@ -280,7 +281,8 @@ function set_watch_blinks() {
 //
 // preselect blob type 'text' if subtype is 1, 'hex' for all other blob fields
 //
-function set_watch_blobas() {
+function set_watch_blobas()
+{
 
     $blobas = array();
     foreach ($GLOBALS['s_fields'][$GLOBALS['s_wt']['table']] as $field) {
@@ -295,10 +297,11 @@ function set_watch_blobas() {
 //
 // set the title for the Watch Table panel regarding $s_wt[table]
 //
-function set_watch_table_title($table) {
+function set_watch_table_title($table)
+{
     global $ptitle_strings;
 
-    $title = (!isset($table) or $table == '') ? $ptitle_strings['tb_watch'] : $ptitle_strings['tb_watch'].': '.$table;
+    $title = (!isset($table) or $table == '') ? $ptitle_strings['tb_watch'] : $ptitle_strings['tb_watch'] . ': ' . $table;
     set_panel_title('tb_watch', $title);
 }
 
@@ -306,26 +309,27 @@ function set_watch_table_title($table) {
 //
 // print the watch table
 //
-function display_table($wt){
+function display_table($wt)
+{
     global $dbhandle, $sql_strings, $button_strings, $s_watch_buffer, $s_cust;;
 
-    if ($wt['table'] == ''  ||  !is_array($wt['columns'])) {
+    if ($wt['table'] == '' || !is_array($wt['columns'])) {
         return;
     }
 
     // if the buffer is filled, just display its content
     if (!empty($s_watch_buffer)) {
         echo $s_watch_buffer;
-        echo '('.$sql_strings['DisplBuf'].')';
+        echo '(' . $sql_strings['DisplBuf'] . ')';
         return;
     }
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
     $sql = 'SELECT COUNT(*) FROM ' . $quote . $wt['table'] . $quote;
-    $sql .= $wt['condition'] != '' ? ' WHERE '.$wt['condition'] : '';
+    $sql .= $wt['condition'] != '' ? ' WHERE ' . $wt['condition'] : '';
 
     if (!($res = @fbird_query($dbhandle, $sql))) {
-        echo '<br><b>Error: '.fbird_errmsg().'</b><br>';
+        echo '<br><b>Error: ' . fbird_errmsg() . '</b><br>';
         return;
     }
     $row = fbird_fetch_row($res);
@@ -339,49 +343,49 @@ function display_table($wt){
     // navigation
     echo "<table>\n<tr>\n";
     if ($wt['start'] > 1) {
-        echo '<td><a href="'.url_session('watchtable.php?go=start').'" class="act">&lt;&lt; '.$sql_strings['Start']."</a></td>\n";
-        echo '<td><a href="'.url_session('watchtable.php?go=prev').'" class="act">&lt; '.$sql_strings['Prev']."</a></td>\n";
+        echo '<td><a href="' . url_session('watchtable.php?go=start') . '" class="act">&lt;&lt; ' . $sql_strings['Start'] . "</a></td>\n";
+        echo '<td><a href="' . url_session('watchtable.php?go=prev') . '" class="act">&lt; ' . $sql_strings['Prev'] . "</a></td>\n";
     }
-    $end = (($wt['start'] + $wt['rows'] >= $rowcount)) ? $rowcount : $wt['start'] + $wt['rows'] - 1; 
+    $end = (($wt['start'] + $wt['rows'] >= $rowcount)) ? $rowcount : $wt['start'] + $wt['rows'] - 1;
     $cinfo = sprintf('<b>%d - %d (%d %s)</b>', $wt['start'], $end, $rowcount, $sql_strings['Total']);
-    echo '<td>&nbsp;</td><td>'.$cinfo."</td><td>&nbsp;</td>\n";
+    echo '<td>&nbsp;</td><td>' . $cinfo . "</td><td>&nbsp;</td>\n";
     if ($rowcount >= $wt['start'] + $wt['rows']) {
-        echo '<td><a href="'.url_session('watchtable.php?go=next').'" class="act">'.$sql_strings['Next']." &gt;</a></td>\n";
-        $laststart = floor(($rowcount-1) / $wt['rows']) * $wt['rows'] + 1;
-        echo '<td><a href="'.url_session('watchtable.php?go='.$laststart).'" class="act">'.$sql_strings['End']." &gt;&gt;</a></td>\n";
+        echo '<td><a href="' . url_session('watchtable.php?go=next') . '" class="act">' . $sql_strings['Next'] . " &gt;</a></td>\n";
+        $laststart = floor(($rowcount - 1) / $wt['rows']) * $wt['rows'] + 1;
+        echo '<td><a href="' . url_session('watchtable.php?go=' . $laststart) . '" class="act">' . $sql_strings['End'] . " &gt;&gt;</a></td>\n";
     }
     echo "</tr>\n</table>\n";
 
     // table head
-    echo '<table id="watchtable" cellpadding="2" class="tsep">'."\n"
-       . "  <thead>\n"
-       . "    <tr>\n";
+    echo '<table id="watchtable" class="table table-bordered tsep">' . "\n"
+        . "  <thead>\n"
+        . "    <tr>\n";
     foreach ($wt['columns'] as $col) {
-        $url = url_session('watchtable.php?order='.$col);
+        $url = url_session('watchtable.php?order=' . $col);
         if ($col == $wt['order']) {
-            $col = $wt['direction'] == 'ASC' ? '*&nbsp;'.$col : $col.'&nbsp;*';
+            $col = $wt['direction'] == 'ASC' ? '*&nbsp;' . $col : $col . '&nbsp;*';
         }
-        echo '      <th><a href="'.$url.'">'.$col."</a></th>\n";
+        echo '      <th><a href="' . $url . '">' . $col . "</a></th>\n";
     }
     if ($wt['edit'] == TRUE) {
-        echo '      <th style="background-color: '.$s_cust['color']['area']."\">&nbsp;</th>\n"; 
+        echo '      <th style="background-color: ' . $s_cust['color']['area'] . "\">&nbsp;</th>\n";
     }
     if ($wt['delete'] == TRUE) {
-        echo '      <th style="background-color: '.$s_cust['color']['area']."\">&nbsp;</th>\n"; 
+        echo '      <th style="background-color: ' . $s_cust['color']['area'] . "\">&nbsp;</th>\n";
     }
     echo "    </tr>\n"
-       . "  </thead>\n";
+        . "  </thead>\n";
 
     // rows
     if ($rowcount > 0) {
-            print_rows_nosp($wt); 
+        print_rows_nosp($wt);
     }
     echo "</table>\n"
-        .'<span id="tb_watch_mark_buttons" style="display:none;">'."\n"
-        .'<input type="submit" name="tb_watch_export" id="tb_watch_export" value="'.$button_strings['Export']." (0)\" class=\"bgrp\">\n"
-        .'<input type="button" name="tb_watch_unmark" id="tb_watch_unmark" value="'.$button_strings['Unmark']."\" onClick=\"mwt.unmarkAll();\">\n"
+        . '<span id="tb_watch_mark_buttons" style="display:none;">' . "\n"
+        . '<input type="submit" name="tb_watch_export" id="tb_watch_export" value="' . $button_strings['Export'] . " (0)\" class=\"bgrp\">\n"
+        . '<input type="button" name="tb_watch_unmark" id="tb_watch_unmark" value="' . $button_strings['Unmark'] . "\" onClick=\"mwt.unmarkAll();\">\n"
         . "</span>\n"
-        . js_javascript("mwt = new markableWatchtable('watchtable',".wt_leave_columns($wt).");");
+        . js_javascript("mwt = new markableWatchtable('watchtable'," . wt_leave_columns($wt) . ");");
 
     // save the resulting table in the session
     $s_watch_buffer = ob_get_contents();
@@ -392,14 +396,15 @@ function display_table($wt){
 //
 // return a js array containing the column indices which shouldn't be markeable by the markableWatchtable
 //
-function wt_leave_columns($wt) {
- 
+function wt_leave_columns($wt)
+{
+
     $cols = count($wt['columns']);
     $str = '['
-         . ($wt['edit'] ? $cols++ : '')
-         . ($wt['edit']  &&  $wt['delete'] ? ',' : '')
-         . ($wt['delete'] ? $cols : '')
-         . ']';
+        . ($wt['edit'] ? $cols++ : '')
+        . ($wt['edit'] && $wt['delete'] ? ',' : '')
+        . ($wt['delete'] ? $cols : '')
+        . ']';
 
     return $str;
 }
@@ -407,16 +412,17 @@ function wt_leave_columns($wt) {
 //
 // output the table rows, use the stored procedure generated by sp_limit_create()
 //
-function print_rows_sp($wt) {
+function print_rows_sp($wt)
+{
     global $dbhandle, $ib_error;
 
-    $types     = get_column_types($wt['table'], $wt['columns']);
+    $types = get_column_types($wt['table'], $wt['columns']);
     $col_count = count($wt['columns']);
-    $class      = 'wttr2';
+    $class = 'wttr2';
 
-    $sql = 'SELECT * FROM '.SP_LIMIT_NAME;
-    $res = fbird_query($dbhandle, $sql) 
-        or $ib_error = fbird_errmsg();
+    $sql = 'SELECT * FROM ' . SP_LIMIT_NAME;
+    $res = fbird_query($dbhandle, $sql)
+    or $ib_error = fbird_errmsg();
 
     while ($row = fbird_fetch_row($res)) {
         unset($obj);
@@ -426,21 +432,20 @@ function print_rows_sp($wt) {
         settype($obj, 'object');
 
         $class = $class == 'wttr1' ? 'wttr2' : 'wttr1';
-        echo '<tr class="wttr '.$class.'">';
+        echo '<tr class="wttr ' . $class . '">';
         for ($k = 0; $k < $col_count; $k++) {
             if (!isset($row[$k])) {
                 print_value($wt, NULL, NULL);
-            }
-            else {
+            } else {
                 print_value($wt, $row[$k], $types[$wt['columns'][$k]], $wt['columns'][$k], $obj);
             }
         }
 
         // get parameter for the edit and/or del link
-        if ($wt['edit'] == TRUE  ||  $wt['delete'] == TRUE) {
+        if ($wt['edit'] == TRUE || $wt['delete'] == TRUE) {
             build_editdel_links($obj, $wt['edit'], $wt['delete']);
             echo "</tr>\n";
-        }            
+        }
     }
     fbird_free_result($res);
 }
@@ -449,7 +454,8 @@ function print_rows_sp($wt) {
 //
 // output the table rows, skip all rows<$start and rows>$start+$cols
 //
-function print_rows_nosp($wt) {
+function print_rows_nosp($wt)
+{
     global $dbhandle;
 
     $types = get_column_types($wt['table'], $wt['columns']);
@@ -457,15 +463,15 @@ function print_rows_nosp($wt) {
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
 
-    $sql ='SELECT ';
-    $sql .= $quote . implode($quote.','.$quote, $wt['columns']) . $quote . ' FROM ' . $quote. $wt['table'] . $quote;
-    $sql .= $wt['condition'] != '' ? ' WHERE '.$wt['condition'] : '';
+    $sql = 'SELECT ';
+    $sql .= $quote . implode($quote . ',' . $quote, $wt['columns']) . $quote . ' FROM ' . $quote . $wt['table'] . $quote;
+    $sql .= $wt['condition'] != '' ? ' WHERE ' . $wt['condition'] : '';
 
-    if(!empty($wt['order'])) {
-         $sql .= ' ORDER BY '.$wt['order'].' '.$wt['direction'];
+    if (!empty($wt['order'])) {
+        $sql .= ' ORDER BY ' . $wt['order'] . ' ' . $wt['direction'];
     }
 
-    $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] -1);
+    $sql .= ' ROWS ' . $wt['start'] . ' TO ' . ($wt['start'] + $wt['rows'] - 1);
 
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
@@ -474,26 +480,25 @@ function print_rows_nosp($wt) {
     for ($i = 0; $i < $wt['rows']; $i++) {
         $obj = fbird_fetch_object($res);
         // stop, if there are no more rows
-        if (!is_object($obj)) { 
-             break;
+        if (!is_object($obj)) {
+            break;
         }
 
         $class = ($class == 'wttr1') ? 'wttr2' : 'wttr1';
-        echo '    <tr class="wttr '.$class.'">';
+        echo '    <tr class="wttr ' . $class . '">';
         $arr = get_object_vars($obj);
         for ($k = 0; $k < $col_count; $k++) {
             if (!isset($arr[$wt['columns'][$k]])) {
                 print_value($wt, NULL, NULL);
-            }
-            else {
+            } else {
                 print_value($wt, $arr[$wt['columns'][$k]], $types[$wt['columns'][$k]], $wt['columns'][$k], $obj);
             }
         }
 
         // get parameter for the edit and/or del link
-        if ($wt['edit'] == TRUE  ||  $wt['delete'] == TRUE) {
+        if ($wt['edit'] == TRUE || $wt['delete'] == TRUE) {
             build_editdel_links($obj, $wt['edit'], $wt['delete']);
-        }            
+        }
         echo "    </tr>\n";
     }
     echo "  </tbody>\n";
@@ -502,83 +507,81 @@ function print_rows_nosp($wt) {
 }
 
 
-function print_value($wt, $val, $type, $colname=NULL, $obj=NULL) {
+function print_value($wt, $val, $type, $colname = NULL, $obj = NULL)
+{
 
     if ($val === NULL) {
-        $data= '<i>NULL</i>';
+        $data = '<i>NULL</i>';
         $align = 'center';
-    }        
-    elseif (strlen(trim($val)) == 0) {
+    } elseif (strlen(trim($val)) == 0) {
         $data = '&nbsp;';
         $align = '';
-    }
-    elseif (in_array($type, array('CHARACTER', 'VARCHAR'))) {
+    } elseif (in_array($type, array('CHARACTER', 'VARCHAR'))) {
         $data = htmlspecialchars(trim($val));
         $align = 'left';
-    }        
-    elseif ($type != 'BLOB') { 
+    } elseif ($type != 'BLOB') {
         $data = trim($val);
         $align = 'right';
-    }
-    else {
+    } else {
         $inline_flag = FALSE;
         $data = '';
-        if ($wt['tblob_inline'] == TRUE  &&  $wt['blob_as'][$colname] == 'text') {
+        if ($wt['tblob_inline'] == TRUE && $wt['blob_as'][$colname] == 'text') {
             $blob_handle = fbird_blob_open($val);
-            $blob_info   = fbird_blob_info($val);
+            $blob_info = fbird_blob_info($val);
             $blob_length = $blob_info[0];
             $data = htmlspecialchars(fbird_blob_get($blob_handle, $wt['tblob_chars']));
             fbird_blob_close($blob_handle);
             if ($blob_length > $wt['tblob_chars']) {
                 $data .= ' ...&nbsp;';
-            }
-            else {
+            } else {
                 $inline_flag = TRUE;
                 $align = 'left';
             }
         }
-        if (in_array($colname, $wt['blob_links'])  && !$inline_flag) {
+        if (in_array($colname, $wt['blob_links']) && !$inline_flag) {
             $align = empty($data) ? 'center' : 'left';
-            $url   = url_session('showblob.php?where='.get_where_str($obj).'&table='.$wt['table'].'&col='.$colname);
-            $data .= '<i><a href="'.$url.'" target="_blank">BLOB</a></i>';
+            $url = url_session('showblob.php?where=' . get_where_str($obj) . '&table=' . $wt['table'] . '&col=' . $colname);
+            $data .= '<i><a href="' . $url . '" target="_blank">BLOB</a></i>';
         }
 
         if ($data == '') {
             $align = 'center';
-            $data  = '<i>BLOB</i>';
+            $data = '<i>BLOB</i>';
         }
     }
 
     if (isset($wt['fks'][$colname])) {
         $link = sprintf("javascript:requestFKValues('%s', '%s', '%s')",
-                        $wt['fks'][$colname]['table'],
-                        $wt['fks'][$colname]['column'],
-                        $data);
-        $data = '<a href="'.$link.'">'.$data.'</a>' ;
+            $wt['fks'][$colname]['table'],
+            $wt['fks'][$colname]['column'],
+            $data);
+        $data = '<a href="' . $link . '">' . $data . '</a>';
     }
 
     echo '<td' . (!empty($align) ? ' align="' . $align . '"' : '') . '>' . $data . '</td>';
 }
 
 
-function build_editdel_links($obj, $edit, $delete) {
-    global $sql_strings; 
+function build_editdel_links($obj, $edit, $delete)
+{
+    global $sql_strings;
 
     $where = get_where_str($obj);
     // build the Edit-Link
     if ($edit == TRUE) {
-        $url = url_session('watchtable.php?edit='.$where);
-        echo '<td><a href="'.$url.'" class="act">'.$sql_strings['Edit'].'</a></td>';
+        $url = url_session('watchtable.php?edit=' . $where);
+        echo '<td><a href="' . $url . '" class="act">' . $sql_strings['Edit'] . '</a></td>';
     }
     // build the Del-link
     if ($delete == TRUE) {
-        $url = url_session('watchtable.php?del='.$where);
-        echo '<td><a href="'.$url.'" class="act">'.$sql_strings['Delete'].'</a></td>';   
-   }
+        $url = url_session('watchtable.php?del=' . $where);
+        echo '<td><a href="' . $url . '" class="act">' . $sql_strings['Delete'] . '</a></td>';
+    }
 }
 
 
-function get_where_str($obj) {
+function get_where_str($obj)
+{
 
     static $quote;
     if (!isset($quote)) {
@@ -587,16 +590,17 @@ function get_where_str($obj) {
 
     $where = 'WHERE ';
     foreach ($GLOBALS['s_fields'][$GLOBALS['s_wt']['table']] as $field) {
-        if ((isset($field['primary'])  &&  !empty($field['primary']))  ||
-            (isset($field['unique'])  &&  !empty($field['unique']))) {
+        if ((isset($field['primary']) && !empty($field['primary'])) ||
+            (isset($field['unique']) && !empty($field['unique']))
+        ) {
 
             $where .= $quote . $field['name'] . $quote . '=';
-            $where .= (is_number($field)) 
-                    ? $obj->{$field['name']} 
-                    : "'".str_replace("'", "''", $obj->{$field['name']})."'";
+            $where .= (is_number($field))
+                ? $obj->{$field['name']}
+                : "'" . str_replace("'", "''", $obj->{$field['name']}) . "'";
             $where .= ' AND ';
         }
-    } 
+    }
     $where = substr($where, 0, -5);
     $where = urlencode($where);
 
@@ -604,7 +608,8 @@ function get_where_str($obj) {
 }
 
 
-function get_column_types($table, $cols) {
+function get_column_types($table, $cols)
+{
 
     $types = array();
     foreach ($GLOBALS['s_fields'][$table] as $field) {
@@ -620,32 +625,33 @@ function get_column_types($table, $cols) {
 //
 // display a table with the elements to configure the watchtable for $table
 //
-function watchtable_column_options($table, $show_cols, $sort_col, $bloblinks, $blobas) {
+function watchtable_column_options($table, $show_cols, $sort_col, $bloblinks, $blobas)
+{
     global $sql_strings;
 
-    echo "<table border>\n";
-    echo '<tr><th>'.$sql_strings['Column'].'</th>'
-            .'<th>'.$sql_strings['Show'].'</th>'
-            .'<th>'.$sql_strings['Sort'].'</th>'
-            .'<th>'.$sql_strings['BlobLink'].'</th>'
-            .'<th>'.$sql_strings['BlobType'].'</th>'
-        ."</tr>\n";
+    echo "<table class=\"table table-bordered\">\n";
+    echo '<tr><th>' . $sql_strings['Column'] . '</th>'
+        . '<th>' . $sql_strings['Show'] . '</th>'
+        . '<th>' . $sql_strings['Sort'] . '</th>'
+        . '<th>' . $sql_strings['BlobLink'] . '</th>'
+        . '<th>' . $sql_strings['BlobType'] . '</th>'
+        . "</tr>\n";
 
-    foreach($GLOBALS['s_fields'][$table] as $field) {
+    foreach ($GLOBALS['s_fields'][$table] as $field) {
         echo "<tr>\n";
 
         // column names
-        echo '<td>'.$field['name']."</td>\n";
+        echo '<td>' . $field['name'] . "</td>\n";
 
         // 'Show' checkboxes
-        echo '<td align="center"><input type="checkbox" name="columns[]" value="'.$field['name'].'"';
+        echo '<td align="center"><input type="checkbox" name="columns[]" value="' . $field['name'] . '"';
         if (in_array($field['name'], $show_cols)) {
             echo ' checked';
         }
         echo "></td>\n";
 
         // 'Sort' radioboxes
-        echo '<td align="center"><input type="radio" name="radiobox" value="'.$field['name'].'"';
+        echo '<td align="center"><input type="radio" name="radiobox" value="' . $field['name'] . '"';
         if ($field['name'] == $sort_col) {
             echo ' checked';
         }
@@ -654,13 +660,12 @@ function watchtable_column_options($table, $show_cols, $sort_col, $bloblinks, $b
         // 'Blob as Link' checkboxes
         echo '<td align="center">';
         if ($field['type'] == 'BLOB') {
-            echo '<input type="checkbox"  name="bloblinks[]" value="'.$field['name'].'"';
+            echo '<input type="checkbox"  name="bloblinks[]" value="' . $field['name'] . '"';
             if (in_array($field['name'], $bloblinks)) {
                 echo ' checked';
             }
             echo '>';
-        }
-        else {
+        } else {
             echo '&nbsp;';
         }
         echo "</td>\n";
@@ -669,9 +674,8 @@ function watchtable_column_options($table, $show_cols, $sort_col, $bloblinks, $b
         echo '<td align="center">';
         if ($field['type'] == 'BLOB') {
             $sel = (isset($blobas[$field['name']])) ? $blobas[$field['name']] : NULL;
-            echo get_selectlist('blobas['.$field['name'].']', $GLOBALS['blob_types'], $sel, TRUE);
-        }
-        else {
+            echo get_selectlist('blobas[' . $field['name'] . ']', $GLOBALS['blob_types'], $sel, TRUE);
+        } else {
             echo '&nbsp;';
         }
         echo "</td>\n";

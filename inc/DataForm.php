@@ -98,10 +98,10 @@ class DataForm {
         $blobs_flag = have_blob($this->table);
 
         $html = '<form method="post" action="'.url_session($this->formaction).'" name="'.$this->_name('form').'"'.($blobs_flag ? ' enctype="multipart/form-data"' : '').">\n"
-              . '<table border="0" cellpadding="0" cellspacing="0">'."\n"
+              . '<table>'."\n"
               . "  <tr>\n"
               . "    <td>\n"
-              . '      <table border="1" cellpadding="3" cellspacing="0">'."\n";
+              . '      <table class="table table-bordered">'."\n";
         if (!empty($this->headline)) {
             $html .= "        <tr>\n"
                    . '          <th colspan="2" align="left">'.$this->headline."</th>\n"

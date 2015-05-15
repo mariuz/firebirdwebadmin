@@ -239,7 +239,7 @@ function get_column_constraint_definition($coldefs, $idx) {
 
     $html = "  <tr>\n"
            ."    <td colspan=\"8\">\n"
-           ."      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n"
+           ."      <table class=\"table table-bordered\">\n"
                     .$drop_element
            ."        <tr>\n"
            ."          <td colspan=\"7\">\n"
@@ -312,7 +312,7 @@ function get_form_name($idx) {
 function sysdba_pw_textfield($caption, $explain, $pw) {
 
 ?>
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered">
 <tr>
   <th align="left"><?php echo $caption; ?></th>
      <td><input type="password"  size="20" maxlength="32" name="sysdba_pw" value="<?php echo password_stars($pw); ?>">&nbsp;
@@ -656,7 +656,7 @@ function get_opened_table($name, $title, $url, $curl='', $cdiv='') {
             <td width="26">
             </td>
             <td>
-              <table border cellpadding="0" cellspacing="0">
+              <table class="table table-bordered">
 
 EOT;
     $cols = array('Name', 'Type', 'Charset', 'Collate', 'Computed', 'Default',
@@ -748,7 +748,7 @@ function get_closed_panel($title, $nr, $icon) {
 
     $fold_url = url_session('toggle_fold_panel.php?p='.$nr.'&d=open');
 
-    return "<table width=\"100%\" cellpadding=\"5\" cellspacing=\"0\" border=\"0\">\n"
+    return "<table class='table table-hover' width=\"100%\" cellpadding=\"5\" cellspacing=\"0\" border=\"0\">\n"
            ."  <tr class=\"panel\">\n"
            ."    <td width=\"25\" align=\"center\">\n"
            .'      '.sprintf('<a href="%1$s"><img src="%2$s" alt="%3$s" title="%3$s" border="0"></a>'."\n", $fold_url, $icon, $ptitle_strings['Open'])
@@ -769,7 +769,7 @@ function get_open_panel_start($title, $nr) {
     $fold_url   = sprintf("javascript:requestClosedPanel('%d')", $nr);
     $close_icon = get_icon_path(DATAPATH, ICON_SIZE) . 'close.png';
 
-    return '<table width="100%" class="area" cellpadding="5" cellspacing="0" border="0">'."\n"
+    return '<table width="100%" class="area">'."\n"
          . "  <tr class=\"panel\">\n"
          . '    <td rowspan="2" width="25" align="center" valign="top">'."\n"
          . '      ' . sprintf('<a href="%1$s"><img src="%2$s" alt="%3$s" title="%3$s" border="0"></a>'."\n", $fold_url, $close_icon, $ptitle_strings['Close'])."\n"

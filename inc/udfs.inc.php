@@ -74,7 +74,7 @@ function get_udf_table($udfs, $order, $dir) {
 
     $heads = array('Name', 'Module', 'EPoint', 'IParams', 'Returns');
 
-    $html = "<table cellpadding=\"0\" cellspacing=\"0\" border>\n"
+    $html = "<table>\n"
            ."  <tr align=\"left\">\n";
 
     foreach ($heads as $idx => $head) {

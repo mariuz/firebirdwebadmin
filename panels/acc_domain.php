@@ -13,36 +13,37 @@ if (isset($s_confirmations['domain'])):
 elseif (isset($dom_add_flag)):
 
     echo js_collations($s_charsets);
-?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_domain_form">
-<table border cellpadding="3" cellspacing="0">
-<?php
+    ?>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_domain_form">
+        <table class="table table-bordered"
+        ">
+        <?php
 
-    echo get_datatype_definition('dom', $acc_strings['CreateDom'], 1, TRUE);
-    echo get_domain_constraint($s_coldefs['dom']);
-?>
-</table>
-<input type="submit" name="acc_dom_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
-<input type="reset" name="acc_dom_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-<input type="submit" name="acc_dom_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
-</form>
+        echo get_datatype_definition('dom', $acc_strings['CreateDom'], 1, TRUE);
+        echo get_domain_constraint($s_coldefs['dom']);
+        ?>
+        </table>
+        <input type="submit" name="acc_dom_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
+        <input type="reset" name="acc_dom_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
+        <input type="submit" name="acc_dom_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+    </form>
 <?php
 
 elseif (isset($dom_mod_flag)):
 
-?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_moddom_form">
-<table border cellpadding="5">
-<?php
+    ?>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_moddom_form">
+        <table class="table table-bordered" cellpadding="5">
+            <?php
 
-    echo get_datatype_definition('dom', sprintf($acc_strings['ModDomain'], $s_mod_domain));
-    echo get_domain_constraint($s_coldefs['dom'], FALSE);
-?>
-</table>
-<input type="submit" name="acc_moddom_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
-<input type="reset" name="acc_dommod_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-<input type="submit" name="acc_moddom_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
-</form>
+            echo get_datatype_definition('dom', sprintf($acc_strings['ModDomain'], $s_mod_domain));
+            echo get_domain_constraint($s_coldefs['dom'], FALSE);
+            ?>
+        </table>
+        <input type="submit" name="acc_moddom_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
+        <input type="reset" name="acc_dommod_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
+        <input type="submit" name="acc_moddom_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+    </form>
 <?php
 
 elseif ($s_connected):
@@ -52,14 +53,14 @@ elseif ($s_connected):
         echo get_domain_table($s_domains);
     }
 
-    echo '<form method="post" action="'.url_session($_SERVER['PHP_SELF'])."\" name=\"acc_domain_form\">\n";
+    echo '<form method="post" action="' . url_session($_SERVER['PHP_SELF']) . "\" name=\"acc_domain_form\">\n";
 
     if (count($s_domains) > 0) {
-        echo '<input type="submit" name="acc_domain_reload" value="'.$button_strings['Reload']."\">&nbsp;&nbsp;&nbsp;\n";
+        echo '<input type="submit" name="acc_domain_reload" value="' . $button_strings['Reload'] . "\">&nbsp;&nbsp;&nbsp;\n";
         echo "<br><br>\n";
     }
-?>
-<table border cellpadding="3" cellspacing="0">
+    ?>
+<table class="table table-bordered">
 <tr>
   <th colspan="2" align="left"><?php echo $acc_strings['CreateDom']; ?></th>
   <td><input type="submit" name="acc_domain_create" value="<?php echo $button_strings['Create']; ?>"></td>

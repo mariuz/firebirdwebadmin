@@ -185,7 +185,7 @@ function get_procedure_name($source) {
 function procedure_parameters($typedefs) {
     global $acc_strings;
 
-    $str = "<table border cellpadding=\"0\" cellspacing=\"0\">\n"
+    $str = "<table class=\"table table-bordered\">\n"
           .'  <tr align="left">'
           .'    <th class="detail">'.$acc_strings['Name']."</th>\n"
           .'    <th class="detail">'.$acc_strings['Type']."</th>\n"
@@ -233,7 +233,7 @@ function get_procedure_definition($title, $source) {
     $source = htmlentities($source);
 
     $html = <<<EOT
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered">
   <tr>
     <th align="left">$title</th>
   </tr>
@@ -276,7 +276,7 @@ function get_opened_procedure($name, $procedure, $url) {
         <nobr>
           <a href="$url" class="dtitle"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7">$name</a>
         </nobr>
-        <table cellpadding="0" cellspacing="0" border="0">
+        <table>
           <tr>
             <td width="26" rowspan="$rowspan">
             </td>
@@ -286,7 +286,7 @@ EOT;
     if (!empty($in)) {
         $html .=<<<EOT
           <td>
-            <table border cellpadding="3" cellspacing="0">
+            <table class="table table-bordered">
               <tr>
                 <th align="left">${acc_strings['Param']}</th>
               </tr>
@@ -305,7 +305,7 @@ EOT;
         $html .=<<<EOT
         $out_start
           <td>
-            <table border cellpadding="3" cellspacing="0">
+            <table class="table table-bordered">
               <tr>
                 <th align="left">${acc_strings['Return']}</th>
               </tr>
@@ -323,7 +323,7 @@ EOT;
     $html .= <<<EOT
         $src_start
           <td>
-            <table border cellpadding="3" cellspacing="0">
+            <table>
               <tr>
                 <th align="left">${acc_strings['Source']}</th>
               </tr>

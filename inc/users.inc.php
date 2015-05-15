@@ -10,22 +10,22 @@
 //
 // get an array with the users information from the security database
 //
-function get_user() {
+function get_user()
+{
     global $dbhandle, $s_login;
 
     $users = array();
 
     if (($service = fbird_service_attach($s_login['host'], $s_login['user'], $s_login['password'])) != FALSE) {
-        $users_info  = fbird_server_info($service, IBASE_SVC_GET_USERS);
+        $users_info = fbird_server_info($service, IBASE_SVC_GET_USERS);
         fbird_service_detach($service);
         foreach ($users_info as $user) {
-            $users[$user['user_name']] = array('FIRST_NAME'  => $user['first_name'],
-                                               'MIDDLE_NAME' => $user['middle_name'],
-                                               'LAST_NAME'   => $user['last_name']
-                                               );
+            $users[$user['user_name']] = array('FIRST_NAME' => $user['first_name'],
+                'MIDDLE_NAME' => $user['middle_name'],
+                'LAST_NAME' => $user['last_name']
+            );
         }
-    }
-    else {
+    } else {
         $GLOBALS['ib_error'] = fbird_errmsg();
 
         return FALSE;
@@ -38,7 +38,8 @@ function get_user() {
 //
 // create the user from the values posted by the user-form
 //
-function create_user($udata, $s_sysdba_pw) {
+function create_user($udata, $s_sysdba_pw)
+{
     global $s_login, $ib_error, $warning, $WARNINGS;
 
     if (empty($udata['uname'])) {
@@ -52,18 +53,17 @@ function create_user($udata, $s_sysdba_pw) {
     }
 
     if (empty($udata['pw_repeat'])
-    || $udata['pw_repeat'] != $udata['password']) {
+        || $udata['pw_repeat'] != $udata['password']
+    ) {
         $warning = $WARNINGS['PW_WRONG_REPEAT'];
         return FALSE;
     }
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
         $ib_error = fbird_errmsg();
-    }
-    elseif (FALSE == fbird_add_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
+    } elseif (FALSE == fbird_add_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
         $ib_error = 'Creating user failed!';
-    }
-    else {
+    } else {
         fbird_service_detach($service);
     }
 
@@ -74,28 +74,27 @@ function create_user($udata, $s_sysdba_pw) {
 //
 // modify the user $uname according the values posted by the user-form
 //
-function modify_user($udata, $s_sysdba_pw) {
+function modify_user($udata, $s_sysdba_pw)
+{
     global $s_login, $ib_error, $WARNINGS, $warning;
 
     if (!empty($udata['password'])) {
         if (empty($udata['pw_repeat'])
-        || $udata['pw_repeat'] != $udata['password']) {
+            || $udata['pw_repeat'] != $udata['password']
+        ) {
             $warning = $WARNINGS['PW_WRONG_REPEAT'];
 
             return FALSE;
-        }
-        else {
+        } else {
             $change_pw = TRUE;
         }
     }
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
         $ib_error = fbird_errmsg();
-    }
-    elseif (FALSE == fbird_modify_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
+    } elseif (FALSE == fbird_modify_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
         $ib_error = 'Modifying user failed!';
-    }
-    else {
+    } else {
         fbird_service_detach($service);
     }
 
@@ -106,16 +105,15 @@ function modify_user($udata, $s_sysdba_pw) {
 //
 // remove the user $uname
 //
-function drop_user($uname, $s_sysdba_pw) {
+function drop_user($uname, $s_sysdba_pw)
+{
     global $s_login, $ib_error;
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == FALSE) {
         $ib_error = fbird_errmsg();
-    }
-    elseif (fbird_delete_user($service, $uname) == FALSE) {
+    } elseif (fbird_delete_user($service, $uname) == FALSE) {
         $ib_error = fbird_errmsg();
-    }
-    else {
+    } else {
         fbird_service_detach($service);
     }
 
@@ -128,13 +126,14 @@ function drop_user($uname, $s_sysdba_pw) {
 //
 // Variables:  $uname  name of the user to modify or NULL to create a new one
 //             $title  headline-string for the table
-function user_definition($udata, $title, $modify=FALSE) {
+function user_definition($udata, $title, $modify = FALSE)
+{
     global $usr_strings;
 
     $readonly_str = $modify ? 'readonly="readonly"' : '';
 
     $html = <<<EOT
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered">
   <tr>
     <th colspan="3" align="left">$title</th>
   </tr>
@@ -177,15 +176,16 @@ EOT;
 //
 // return an array filled with the data posted by the userdefinition_form
 //
-function get_posted_user_data() {
+function get_posted_user_data()
+{
 
-    return array('uname'    => get_request_data('def_user_name'),
-                 'password' => get_request_data('def_user_pw'),
-                 'pw_repeat'=> get_request_data('def_user_pwa'),
-                 'fname'    => get_request_data('def_user_fname'),
-                 'mname'    => get_request_data('def_user_mname'),
-                 'lname'    => get_request_data('def_user_lname')
-                 );
+    return array('uname' => get_request_data('def_user_name'),
+        'password' => get_request_data('def_user_pw'),
+        'pw_repeat' => get_request_data('def_user_pwa'),
+        'fname' => get_request_data('def_user_fname'),
+        'mname' => get_request_data('def_user_mname'),
+        'lname' => get_request_data('def_user_lname')
+    );
 }
 
 ?>

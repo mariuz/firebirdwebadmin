@@ -91,7 +91,7 @@ function get_systable($s_systable) {
 //
 function get_systable_html($table, $s_systable) {
 
-    $html = "<table id=\"systable\" class=\"tsep\" cellpadding=\"2\">\n<tr>\n";
+    $html = "<table id=\"systable\" class=\"table table-bordered tsep\" cellpadding=\"2\">\n<tr>\n";
     foreach (array_keys($table) as $colname) {
         if ($s_systable['order'] == $colname) {
             $headstr = ($s_systable['dir'] == 'ASC') ? '*&nbsp;'.$colname : $colname.'&nbsp;*';

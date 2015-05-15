@@ -13,7 +13,7 @@ if ($s_connected  &&  count($iblockpr_output) > 0) {
 <div style="padding:3px 0px 6px;">
 <?php echo $server_info; ?>
 </div>
-<table cellpadding="3" border>
+<table class="table table-bordered">
 <tr>
   <th>LOCK HEADER BLOCK</th>
 </tr>
@@ -22,7 +22,7 @@ if ($s_connected  &&  count($iblockpr_output) > 0) {
 </tr>
 </table>
 
-<table cellpadding="3" border>
+<table class="table table-bordered">
 <tr>
   <th>&nbsp;</th><th>last sec</th><th>average</th>
 </tr>

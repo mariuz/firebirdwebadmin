@@ -13,42 +13,42 @@ if (isset($s_confirmations['database'])):
 
 else:
 
-?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_delete_form">
-<table cellpadding="3" cellspacing="0">
-<tr>
-   <td><b><?php echo $db_strings['DelDB']; ?></b><br>
-<?php
+    ?>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_delete_form">
+        <table class="table table-bordered">
+            <tr>
+                <td><b><?php echo $db_strings['DelDB']; ?></b><br>
+                    <?php
 
-    if (count($dbfiles) == 0):
-?>
-       <input type="text" size="35" maxlength="255" name="db_delete_database" value="<?php echo $s_delete_db['database']; ?>">
-<?php
+                    if (count($dbfiles) == 0):
+                        ?>
+                        <input type="text" class="form-control" size="35" maxlength="255" name="db_delete_database" value="<?php echo $s_delete_db['database']; ?>">
+                    <?php
 
-    else:
-        echo get_selectlist('db_delete_database', $dbfiles, $s_delete_db['database'], TRUE);
-    endif;
-?>
-   </td>
-   <td>
-      <b><?php echo $db_strings['Host']; ?></b><br>
-      <input type="text" size="35" maxlength="255" name="db_delete_host" value="<?php echo $s_delete_db['host']; ?>">
-   </td>
+                    else:
+                        echo get_selectlist('db_delete_database', $dbfiles, $s_delete_db['database'], TRUE);
+                    endif;
+                    ?>
+                </td>
+                <td>
+                    <b><?php echo $db_strings['Host']; ?></b><br>
+                    <input type="text" class="form-control" size="35" maxlength="255" name="db_delete_host" value="<?php echo $s_delete_db['host']; ?>">
+                </td>
 
-</tr>
-<tr>
-  <td>
-      <b><?php echo $db_strings['Username']; ?></b><br>
-      <input type="text" size="35" maxlength="32" name="db_delete_user" value="<?php echo $s_delete_db['user']; ?>">
-  </td>
-  <td>
-      <b><?php echo $db_strings['Password']; ?></b><br>
-      <input type="password" size="35" maxlength="32" name="db_delete_password" value="<?php echo password_stars($s_delete_db['password']); ?>">
-  </td>
-</tr>
-</table>
-<input type="submit" name="db_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
-</form>
+            </tr>
+            <tr>
+                <td>
+                    <b><?php echo $db_strings['Username']; ?></b><br>
+                    <input type="text" class="form-control" size="35" maxlength="32" name="db_delete_user" value="<?php echo $s_delete_db['user']; ?>">
+                </td>
+                <td>
+                    <b><?php echo $db_strings['Password']; ?></b><br>
+                    <input type="password" class="form-control" size="35" maxlength="32" name="db_delete_password" value="<?php echo password_stars($s_delete_db['password']); ?>">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-danger" name="db_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
+    </form>
 <?php
 
 endif;

@@ -5,21 +5,21 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-if ($s_connected == TRUE  &&  $s_enter_name == ''):
+if ($s_connected == TRUE && $s_enter_name == ''):
 
-?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="dt_enter_form">
-<table cellpadding="3" cellspacing="0">
-<tr>
-   <td colspan="2"><b><?php echo $dt_strings['SelTable']; ?></b><br>
-      <?php echo get_table_selectlist('dt_enter_name', array('noviews', 'insert'), NULL, TRUE); ?>
-   </td>
-   <td valign="bottom">
-      <input type="submit" name="dt_enter_select" value="<?php echo $button_strings['Select']; ?>">
-   </td>
-</tr>
-</table>
-</form>
+    ?>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="dt_enter_form">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2"><b><?php echo $dt_strings['SelTable']; ?></b><br>
+                    <?php echo get_table_selectlist('dt_enter_name', array('noviews', 'insert'), NULL, TRUE); ?>
+                </td>
+                <td valign="bottom">
+                    <input type="submit" class="btn btn-default" name="dt_enter_select" value="<?php echo $button_strings['Select']; ?>">
+                </td>
+            </tr>
+        </table>
+    </form>
 <?php
 
 elseif ($s_connected == TRUE):

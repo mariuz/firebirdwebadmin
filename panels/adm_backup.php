@@ -17,7 +17,7 @@ if ($s_connected == TRUE):
     }
 
 ?>
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered">
 <tr>
    <th colspan="2" align="left"><?php echo $adm_strings['BTarget']; ?></th>
 </tr>
@@ -32,7 +32,7 @@ if ($s_connected == TRUE):
 </tr>
 </table>
 
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered">
 <tr>
    <th colspan="2" align="left"><?php echo $adm_strings['Options']; ?></th>
 </tr>
@@ -91,7 +91,7 @@ if (isset($iframekey_backup)):
 
     endif;
 ?>
-<input type="submit" name="adm_backup_doit" value="<?php echo $button_strings['Backup']; ?>">
+<input type="submit" class="btn btn-default" name="adm_backup_doit" value="<?php echo $button_strings['Backup']; ?>">
 </form>
 <?php
 

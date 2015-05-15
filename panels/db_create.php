@@ -8,37 +8,37 @@
 
 ?>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_create_form">
-<table cellpadding="3" cellspacing="0">
-<tr>
-   <td><b><?php echo $db_strings['NewDB']; ?></b><br>
-       <input type="text" size="35" maxlength="255" name="db_create_database" value="<?php echo $s_create_db; ?>">
-   </td>
-   <td><b><?php echo $db_strings['Host']; ?></b><br>
-       <input type="text" size="35" maxlength="255" name="db_create_host" value="<?php echo $s_create_host; ?>">
-   </td>
-</tr>
-<tr>
-  <td>
-      <b><?php echo $db_strings['Username']; ?></b><br>
-      <input type="text" size="35" maxlength="32" name="db_create_user" value="<?php echo $s_create_user; ?>">
-  </td>
-  <td>
-      <b><?php echo $db_strings['Password']; ?></b><br>
-      <input type="password" size="35" maxlength="32" name="db_create_password" value="<?php echo password_stars($s_create_pw); ?>">
-  </td>
-</tr>
-<tr>
-  <td>
-      <b><?php echo $db_strings['PageSize']; ?></b><br>
-<?php
-      echo get_selectlist('db_create_pagesize', $pagesizes, $s_create_pagesize, TRUE);
-?>
-  </td>
-  <td>
-      <b><?php echo $db_strings['Charset']; ?></b><br>
-        <?php echo get_charset_select('db_create_charset', $s_create_charset); ?>
-  </td>
-</tr>
-</table>
-<input type="submit" name="db_create_doit" value="<?php echo $button_strings['Create']; ?>">
+    <table class="table table-bordered">
+        <tr>
+            <td><b><?php echo $db_strings['NewDB']; ?></b><br>
+                <input type="text" class="form-control" size="35" maxlength="255" name="db_create_database" value="<?php echo $s_create_db; ?>">
+            </td>
+            <td><b><?php echo $db_strings['Host']; ?></b><br>
+                <input type="text" class="form-control" size="35" maxlength="255" name="db_create_host" value="<?php echo $s_create_host; ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><?php echo $db_strings['Username']; ?></b><br>
+                <input type="text" class="form-control" size="35" maxlength="32" name="db_create_user" value="<?php echo $s_create_user; ?>">
+            </td>
+            <td>
+                <b><?php echo $db_strings['Password']; ?></b><br>
+                <input type="password" class="form-control" size="35" maxlength="32" name="db_create_password" value="<?php echo password_stars($s_create_pw); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b><?php echo $db_strings['PageSize']; ?></b><br>
+                <?php
+                echo get_selectlist('db_create_pagesize', $pagesizes, $s_create_pagesize, TRUE);
+                ?>
+            </td>
+            <td>
+                <b><?php echo $db_strings['Charset']; ?></b><br>
+                <?php echo get_charset_select('db_create_charset', $s_create_charset); ?>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" class="btn btn-success" name="db_create_doit" value="<?php echo $button_strings['Create']; ?>">
 </form>

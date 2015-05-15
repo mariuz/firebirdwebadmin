@@ -7,10 +7,10 @@
 //                see file LICENCE for details
 
 $df = new DataFormEdit($s_edit_where[$instance]['table'],
-                       $s_fields[$s_edit_where[$instance]['table']],
-                       $s_edit_values[$instance],
-                       substr($s_edit_where[$instance]['where'], 6),
-                       $instance);
+    $s_fields[$s_edit_where[$instance]['table']],
+    $s_edit_values[$instance],
+    substr($s_edit_where[$instance]['where'], 6),
+    $instance);
 
 echo $df->renderHTML();
 

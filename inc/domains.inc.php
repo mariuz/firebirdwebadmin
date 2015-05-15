@@ -195,7 +195,7 @@ function modify_domain($olddef, $domdef) {
 function get_domain_table($domains) {
     global $acc_strings, $tb_strings;
 
-    $html = "<table cellpadding=\"0\" cellspacing=\"0\" border>\n"
+    $html = "<table>\n"
            ."  <tr align=\"left\">\n"
            .'    <th class="detail">'.$acc_strings['Name']."</th>\n"
            .'    <th class="detail">'.$acc_strings['Type']."</a></th>\n"

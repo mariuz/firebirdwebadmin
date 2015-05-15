@@ -11,15 +11,16 @@
 //             $panels   panel array for the page
 
 $title = build_title($menu_strings[$s_page]);
-
-echo html_head($title)
-   . "<body>\n"
-   . js_global_variables()
-   . js_xml_http_request_client()
-   . js_request_close_panel()
-   . $js_stack
-
-   . get_tabmenu($s_page);
+require_once './views/header.php';
+//echo html_head($title).
+//    ""
+//   . js_global_variables()
+//   . js_xml_http_request_client()
+//   . js_request_close_panel()
+//   . $js_stack
+//
+//   . get_tabmenu($s_page)
+//    ;
 
 // display the panels on the active page
 foreach ($panels as $nr => $panel) {
@@ -116,9 +117,7 @@ if (DEBUG_HTML) {
 //     }
 }
 
-echo "</body>\n"
-   . "</html>\n";
-
+require_once './views/footer.php';
 globalize_session_vars();
 
 

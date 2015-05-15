@@ -39,7 +39,7 @@ function get_exceptions_table($exceptions, $order, $dir) {
 
     $heads = array('Name', 'Message');
 
-    $html = "<table cellpadding=\"0\" cellspacing=\"0\" border>\n"
+    $html = "<table>\n"
            ."  <tr align=\"left\">\n";
 
     foreach ($heads as $idx => $head) {

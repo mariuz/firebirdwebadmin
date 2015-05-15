@@ -137,12 +137,12 @@ function get_opened_trigger($name, $trigger, $url) {
           <a href="$url" class="dtitle"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7"><b>$name</b></a>
         </nobr>
         <nobr>
-        <table cellpadding="0" cellspacing="0">
+        <table>
           <tr>
             <td width="26">
             </td>
             <td>
-              <table border cellpadding="3" cellspacing="0">
+              <table class="table table-bordered">
                 <tr>
                   <th>${acc_strings['Table']}</th>
                   <th>${acc_strings['Phase']}</th>

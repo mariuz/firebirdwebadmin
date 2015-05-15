@@ -233,7 +233,7 @@ function index_definition($indexname, $title) {
     }
 
 ?>
-<table border cellpadding="3" cellspacing="0">
+<table>
   <tr>
     <th colspan="6" align="left"><?php echo $title; ?></th>
   </tr>
@@ -284,7 +284,7 @@ function get_index_table($indices, $order, $dir) {
         $table_title = ($dir == 'ASC') ? '*&nbsp;'.$acc_strings['Table'] : $acc_strings['Table'].'&nbsp;*';
     }
 
-    $html = "<table cellpadding=\"0\" cellspacing=\"0\" border>\n"
+    $html = "<table class=\"table table-bordered\">\n"
            ."  <tr align=\"left\">\n"
            .'    <th class="detail"><a href="'.$name_url.'">'.$name_title."</a></th>\n"
            .'    <th class="detail">'.$acc_strings['Active']."</th>\n"

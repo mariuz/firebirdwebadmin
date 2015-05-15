@@ -10,18 +10,16 @@ if ($s_connected):
 
 ?>
 <div class="if">
-  <iframe src="<?php echo url_session('./iframe_content.php?key='.$iframekey_meta); ?>" width="98%" height="<?php echo $s_cust['iframeheight']; ?>" name="db_meta_iframe"></iframe>
+    <iframe src="<?php echo url_session('./iframe_content.php?key=' . $iframekey_meta); ?>" width="98%" height="<?php echo $s_cust['iframeheight']; ?>" name="db_meta_iframe"></iframe>
 </div>
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_meta_form">
-<table class="table" align="left" cellpadding="3">
-  <tr>
-    <td>
-      <input type="submit" name="db_meta_save" value="<?php echo $button_strings['Save']; ?>">
-    </td>
-  </tr>
-</table>
-<?php
-
-endif;
-
-?>
+    <table class="table table-bordered" align="left">
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-success" name="db_meta_save" value="<?php echo $button_strings['Save']; ?>">
+            </td>
+        </tr>
+    </table>
+    <?php
+    endif;
+    ?>

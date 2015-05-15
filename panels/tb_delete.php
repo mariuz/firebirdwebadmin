@@ -9,29 +9,25 @@
 if (isset($s_confirmations['table'])) {
     $subject = 'table';
     include('./panels/confirm.php');
-}
+} elseif ($s_connected) {
 
-elseif ($s_connected) {
+    ?>
+    <form method="post" action="<?php url_session($_SERVER['PHP_SELF']); ?>" name="tb_delete_form">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2">
+                    <?php
 
-?>
-<form method="post" action="<?php url_session($_SERVER['PHP_SELF']); ?>" name="tb_delete_form">
-<table cellpadding="3" cellspacing="0">
-<tr>
-   <td colspan="2">
+                    echo '<b>' . $tb_strings['SelTbDel'] . "</b><br>\n"
+                        . get_table_selectlist('tb_delete_name', array('owner', 'noviews'), NULL, TRUE);
+                    ?>
+                </td>
+                <td valign="bottom">
+                    <input type="submit" class="btn btn-danger" name="tb_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
+                </td>
+            </tr>
+        </table>
+    </form>
 <?php
-
-    echo '<b>'.$tb_strings['SelTbDel'] . "</b><br>\n"
-       . get_table_selectlist('tb_delete_name', array('owner', 'noviews'), NULL, TRUE);
-?>
-   </td>
-   <td valign="bottom">
-      <input type="submit" name="tb_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
-   </td>
-</tr>
-</table>
-</form>
-<?php
-
 }
-
 ?>

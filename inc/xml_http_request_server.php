@@ -19,7 +19,7 @@ if (DEBUG === TRUE) {
 session_start();
 localize_session_vars();
 
-require('../lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
+require('../lang/' . (isset($s_cust['language']) && !empty($s_cust['language']) && ($s_cust['language'] != 1) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
 
 $dbhandle = db_connect();
 
@@ -233,7 +233,7 @@ function fk_values($table, $column, $value){
 
     if ($row = fbird_fetch_object($res)) {
         $close = "<a href='javascript:hide(\"fk\");'>[C]</a>";
-        $html = "<table class=\"tsep\">\n<tr align=\"left\">\n<th colspan=\"2\"><nobr>".$close.'&nbsp;&nbsp;'.$sql."</nobr></th></tr>\n";
+        $html = "<table class=\"table table-bordered tsep\">\n<tr align=\"left\">\n<th colspan=\"2\"><nobr>".$close.'&nbsp;&nbsp;'.$sql."</nobr></th></tr>\n";
         foreach ($GLOBALS['s_fields'][$table] as $field) {
             $value = ($field['type'] == 'BLOB') ? '<i>BLOB</i>' : trim($row->$field['name']);
             $html .= sprintf("<tr>\n<td class=\"wttr wttr1\">%s:</td><td class=\"wttr2\"><nobr>%s</nobr></td>\n</tr>\n", $field['name'] ,$value);
