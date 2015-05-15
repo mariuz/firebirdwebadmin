@@ -4,7 +4,7 @@
   
   o creating, deleting, modifying databases, tables, generators,
     views, triggers, domains, indices, stored procedures, udf's,
-    exceptions, roles and database usersgit
+    exceptions, roles and database users
 
   o performing sql expressions on databases and display the results
 
