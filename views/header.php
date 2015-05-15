@@ -1,17 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: gilcier
+ * User: gilcierweb
  * Date: 14/05/15
  * Time: 08:24
- */?>
+ */ ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="<?=$GLOBALS['charset']?>">
+    <meta charset="<?= $GLOBALS['charset'] ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?=$title?></title>
+    <title><?= $title ?></title>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.css">
@@ -25,7 +25,7 @@
     <![endif]-->
 </head>
 <body>
-<?php require_once 'menu.php';?>
+<?php require_once 'menu.php'; ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
