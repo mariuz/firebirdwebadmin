@@ -14,17 +14,12 @@ if (isset($s_confirmations['column'])):
 elseif ($s_connected && $s_modify_name == ''):
 
     ?>
-    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modify_form">
-        <table class="table table-bordered">
-            <tr>
-                <td colspan="2"><b><?php echo $tb_strings['SelTbMod']; ?></b><br>
-                    <?php echo get_table_selectlist('tb_modify_name', array('owner', 'noviews'), NULL, TRUE) ?>
-                </td>
-                <td valign="bottom">
-                    <input type="submit" class="btn btn-default" name="tb_modify_doit" value="<?php echo $button_strings['Modify']; ?>">
-                </td>
-            </tr>
-        </table>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modify_form" class="form-inline">
+		<div class="form-group">
+			<label for="tb_modify_name"><?php echo $tb_strings['SelTbMod']; ?></label>
+			<?php echo get_table_selectlist('tb_modify_name', array('owner', 'noviews'), NULL, TRUE) ?>
+		</div>
+		<input type="submit" class="btn btn-default" name="tb_modify_doit" value="<?php echo $button_strings['Modify']; ?>">
     </form>
 <?php
 

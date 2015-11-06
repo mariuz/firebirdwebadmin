@@ -12,21 +12,12 @@ if (isset($s_confirmations['table'])) {
 } elseif ($s_connected) {
 
     ?>
-    <form method="post" action="<?php url_session($_SERVER['PHP_SELF']); ?>" name="tb_delete_form">
-        <table class="table table-bordered">
-            <tr>
-                <td colspan="2">
-                    <?php
-
-                    echo '<b>' . $tb_strings['SelTbDel'] . "</b><br>\n"
-                        . get_table_selectlist('tb_delete_name', array('owner', 'noviews'), NULL, TRUE);
-                    ?>
-                </td>
-                <td valign="bottom">
-                    <input type="submit" class="btn btn-danger" name="tb_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
-                </td>
-            </tr>
-        </table>
+    <form method="post" action="<?php url_session($_SERVER['PHP_SELF']); ?>" name="tb_delete_form" class="form-inline">
+		<div class="form-group">
+			<label for="tb_modify_name"><?php echo $tb_strings['SelTbDel']; ?></label>
+			<?php echo get_table_selectlist('tb_delete_name', array('owner', 'noviews'), NULL, TRUE) ?>
+		</div>
+		<input type="submit" class="btn btn-danger" name="tb_delete_doit" value="<?php echo $button_strings['Delete']; ?>">
     </form>
 <?php
 }

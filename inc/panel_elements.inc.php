@@ -146,16 +146,16 @@ function get_coldef_definition($idx, $title, $rowspan, $collate=FALSE) {
 
     $html .= "    </td>\n"
            . "    <td colspan=\"2\" align=\"center\">\n"
-           . '      <b>'.$tb_strings['NotNull']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_notnull'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['notnull']) ? ' checked' : '').">\n"
+           . '      <label><b>'.$tb_strings['NotNull']."</b><br>\n"
+           . '      <input type="checkbox" name="cd_def_notnull'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['notnull']) ? ' checked' : '').">\n</label>"
            . "    </td>\n"
            . "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['Unique']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_unique'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['unique']) ? ' checked' : '').">\n"
+           . '      <label><b>'.$tb_strings['Unique']."</b><br>\n"
+           . '      <input type="checkbox" name="cd_def_unique'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['unique']) ? ' checked' : '').">\n</label>"
            . "    </td>\n"
            . "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['Primary']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_primary'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['primary']) ? ' checked' : '').">\n"
+           . '      <label><b>'.$tb_strings['Primary']."</b><br>\n"
+           . '      <input type="checkbox" name="cd_def_primary'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['primary']) ? ' checked' : '').">\n</label>"
            . "    </td>\n"
            . "  </tr>\n"
 
@@ -215,19 +215,19 @@ function get_column_constraint_definition($coldefs, $idx) {
         if (isset($coldefs['primary'])  &&  $coldefs['primary_cols'] == 1) {
             $checked_str = $coldefs['pk_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_pk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropPK']."</b>\n"
+                            .'                  <label><input type="checkbox" name="cd_def_pk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropPK']."</b>\n</label>"
                             ."                </td>\n";
         }
         if (isset($coldefs['unique'])  &&  $coldefs['unique_cols'] == 1) {
             $checked_str = $coldefs['uq_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_uq_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropUq']."</b>\n"
+                            .'                  <label><input type="checkbox" name="cd_def_uq_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropUq']."</b>\n</label>"
                             ."                </td>\n";
         }
         if (isset($coldefs['foreign'])  &&  $coldefs['foreign_cols'] == 1) {
             $checked_str = $coldefs['fk_del'] == TRUE ? ' checked' : '';
             $drop_element .= "                <td>\n"
-                            .'                  <input type="checkbox" name="cd_def_fk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropFK']."</b>\n"
+                            .'                  <label><input type="checkbox" name="cd_def_fk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropFK']."</b>\n</label>"
                             ."                </td>\n";
         }
 
@@ -244,7 +244,7 @@ function get_column_constraint_definition($coldefs, $idx) {
            ."        <tr>\n"
            ."          <td colspan=\"7\">\n"
            .'            <b>'.$tb_strings['FKName']."</b><br>\n"
-           .'            <input type="text" size="27" maxlength="31" name="cd_def_fk_name_'.$idx.'" value="'.$fk_name."\">\n"
+           .'            <input type="text" size="27" maxlength="31" name="cd_def_fk_name_'.$idx.'" value="'.$fk_name."\" class=\"form-control\">\n"
            ."          </td>\n"
            ."        </tr>\n"
            ."        <tr>\n"
@@ -256,7 +256,7 @@ function get_column_constraint_definition($coldefs, $idx) {
            ."          <td>\n"
            .'            <b>'.$tb_strings['Column1']."</b><br>\n"
            .'            <span id="cd_def_fk_col_'.$idx."\">\n"
-           .'              <input type="text" size="20" maxlength="31" name="cd_def_fk_col_'.$idx.'" value="'.$fk_column."\">\n"
+           .'              <input type="text" size="20" maxlength="31" name="cd_def_fk_col_'.$idx.'" value="'.$fk_column."\" class=\"form-control\">\n"
            ."            </span>\n"
            ."          </td>\n"
            ."          <td>&nbsp;&nbsp;</td>\n"
@@ -572,7 +572,7 @@ function hidden_field($name, $value) {
 function get_checkbox($name, $value, $checked, $tags=array()) {
 
     $checked_str = $checked ?  ' checked' : '';
-    $html = '<input  class="form-control" type="checkbox" name="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
+    $html = '<input type="checkbox" name="' . $name . '" id="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
 
     return $html;
 }
@@ -597,12 +597,11 @@ function get_tags_string($tags) {
 function get_closed_detail($title, $url, $curl='', $cdiv='') {
     global $ptitle_strings;
 
-    $green_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'green_triangle.png';
+    //$green_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'green_triangle.png';
 
-    $html= '<a href="'.$url.'" class="dtitle" title="'.$ptitle_strings['Open']."\">\n"
-         . '  <img src="'.$green_triangle.'" alt="'.$ptitle_strings['Open'].'" title="'.$ptitle_strings['Open'].'" border="0" hspace="7">'
-         . '  '.$title."\n"
-         . "</a>\n";
+    $html= '<a href="'.$url.'" class="dtitlex" title="'.$ptitle_strings['Open']."\">"
+         . '  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" alt="'.$ptitle_strings['Open'].'" title="'.$ptitle_strings['Open'].'" ></span> '.$title."</a> ";
+
     if (!empty($curl)) {
         $html .= '<a href="'.$curl.'" class="act" title="Edit comment">[C]</a>'."\n"
                . '<div id="'.$cdiv."\" class=\"cmt\">\n"
@@ -644,28 +643,25 @@ function detail_div_prefix($type) {
 function get_opened_table($name, $title, $url, $curl='', $cdiv='') {
     global $s_fields, $tb_strings, $ptitle_strings;
 
-    $red_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'red_triangle.png';
-
     $html = <<<EOT
-          <a href="$url" class="dtitle" title="${ptitle_strings['Close']}"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7">$title</a>
+          <a href="$url" class="dtitlex" title="${ptitle_strings['Close']}"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" ></span> $title</a>
           <a href="$curl" class="act" title="Edit table comment">[C]</a>
           <div id="$cdiv" class="cmt">
           </div>
-        <table>
+        <table class="table">
           <tr>
             <td width="26">
             </td>
             <td>
-              <table class="table table-bordered">
+              <table class="table table-bordered table-hover table-condensed margin-bottom-0px">
 
 EOT;
-    $cols = array('Name', 'Type', 'Charset', 'Collate', 'Computed', 'Default',
-                  'NotNull', 'Check', 'Unique', 'Primary', 'Foreign');
-    $html .= "                <tr align=\"left\">\n";
+    $cols = array('Name', 'Type', 'Charset', 'Collate', 'Computed', 'Default', 'NotNull', 'Check', 'Unique', 'Primary', 'Foreign');
+    $html .= " <thead><tr>\n";
     foreach ($cols as $idx) {
-        $html .= '                  <th class="detail">'.$tb_strings[$idx]."</th>\n";
+        $html .= ' <th>'.$tb_strings[$idx]."</th>\n";
     }
-    $html .= "                </tr>\n";
+    $html .= " </tr></thead>\n";
 
     foreach($s_fields[$name] as $field) {
         $type_str = isset($field['domain']) ? $field['type'] : get_type_string($field);
@@ -680,18 +676,18 @@ EOT;
         $prim_str = table_detail_constraint_string(ifsetor($field['primary']), $GLOBALS['s_tables_cnames']);
         $fk_str   = table_detail_constraint_string(ifsetor($field['foreign']), $GLOBALS['s_tables_cnames']);
 
-        $html .= "                <tr>
-                  <td class=\"detail\">${field['name']}</td>
-	          <td class=\"detail\">$type_str</td>
-    	          <td class=\"detail\">$char_str</td>
-                  <td align=\"right\" class=\"detail\">$coll_str</td>
-                  <td align=\"center\" class=\"detail\">$comp_str</td>
-                  <td align=\"center\" class=\"detail\">$def_str</td>
-                  <td align=\"center\" class=\"detail\">$nn_str</td>
-                  <td align=\"center\" class=\"detail\">$check_str</td>
-                  <td align=\"center\" class=\"detail\">$uniq_str</td>
-                  <td align=\"center\" class=\"detail\">$prim_str</td>
-                  <td align=\"center\" class=\"detail\">$fk_str</td>
+        $html .= " <tr>
+                  <td>${field['name']}</td>
+	          <td>$type_str</td>
+    	          <td>$char_str</td>
+                  <td align=\"right\" >$coll_str</td>
+                  <td align=\"center\">$comp_str</td>
+                  <td align=\"center\">$def_str</td>
+                  <td align=\"center\">$nn_str</td>
+                  <td align=\"center\">$check_str</td>
+                  <td align=\"center\">$uniq_str</td>
+                  <td align=\"center\">$prim_str</td>
+                  <td align=\"center\">$fk_str</td>
                 </tr>\n";
     }
 

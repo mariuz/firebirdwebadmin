@@ -32,8 +32,8 @@ else {
 </tr>
 <tr>
    <td valign="bottom">
-      <input type="submit" name="confirm_no" value="<?php echo $button_strings['No']; ?>">&nbsp;&nbsp;&nbsp;
-      <input type="submit" name="confirm_yes" value="<?php echo $button_strings['Yes']; ?>">
+      <input type="submit" name="confirm_no" value="<?php echo $button_strings['No']; ?>" class="btn btn-default">&nbsp;&nbsp;&nbsp;
+      <input type="submit" name="confirm_yes" value="<?php echo $button_strings['Yes']; ?>"  class="btn btn-default">
    </td>
 </tr>
 </table>
