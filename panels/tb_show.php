@@ -36,16 +36,17 @@ if ($s_connected == TRUE && is_array($s_tables)):
 
     }    // foreach $s_tables
 
-    echo '<form method="post" action="'.url_session($_SERVER['PHP_SELF'])."#tb_show\" name=\"tb_show_form\">\n"
-       . get_checkbox('tb_show_counts', '1', $s_tables_counts).' '.$tb_strings['DispCounts']."&nbsp;&nbsp;&nbsp;\n"
-       . get_checkbox('tb_show_cnames', '1', $s_tables_cnames).' '.$tb_strings['DispCNames']."&nbsp;&nbsp;&nbsp;\n"
-       . get_checkbox('tb_show_def', '1', $s_tables_def).' '.$tb_strings['DispDef']."&nbsp;&nbsp;&nbsp;\n"
-       . get_checkbox('tb_show_comp', '1', $s_tables_comp).' '.$tb_strings['DispComp']."&nbsp;&nbsp;&nbsp;\n"
-       . get_checkbox('tb_show_comments', '1', $s_tables_comment).' '.$tb_strings['DispComm']."<br />\n"
-       . '  <input type="submit" name="tb_show_reload" value="'.$button_strings['Reload']."\" class=\"bgrp\">\n";
+    echo '<br><form method="post" action="'.url_session($_SERVER['PHP_SELF'])."#tb_show\" name=\"tb_show_form\" class=\"form-horizontal\">\n"
+ 
+       . ' <label>'.get_checkbox('tb_show_counts', '1', $s_tables_counts).' '.$tb_strings['DispCounts']."</label>"
+       . ' <label>'.get_checkbox('tb_show_cnames', '1', $s_tables_cnames).' '.$tb_strings['DispCNames']."</label>"
+       . ' <label>'.get_checkbox('tb_show_def', '1', $s_tables_def).' '.$tb_strings['DispDef']."</label>"
+       . ' <label>'.get_checkbox('tb_show_comp', '1', $s_tables_comp).' '.$tb_strings['DispComp']."</label>"
+       . ' <label>'.get_checkbox('tb_show_comments', '1', $s_tables_comment).' '.$tb_strings['DispComm']."</label><br />\n"
+       . '  <input type="submit" name="tb_show_reload" value="'.$button_strings['Reload']."\" class=\"btn btn-default\">\n";
         if ($tcnt > 1) {
-            echo '  <input type="submit" name="tb_table_open" value="'.$button_strings['OpenAll']."\" class=\"bgrp\">\n"
-               . '  <input type="submit" name="tb_table_close" value="'.$button_strings['CloseAll']."\" class=\"bgrp\">\n";
+            echo '  <input type="submit" name="tb_table_open" value="'.$button_strings['OpenAll']."\" class=\"btn btn-default\">\n"
+               . '  <input type="submit" name="tb_table_close" value="'.$button_strings['CloseAll']."\" class=\"btn btn-default\">\n";
         }
     echo "</form>\n";
 
