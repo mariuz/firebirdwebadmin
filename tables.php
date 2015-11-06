@@ -5,9 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/09/05 23:02:00 lb>
-//
-// $Id: tables.php,v 1.37 2006/03/22 21:26:43 lbrueckner Exp $
 
 
 require('./inc/script_start.inc.php');
