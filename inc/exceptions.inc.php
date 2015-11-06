@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <04/03/06 16:14:550 lb>
-//
-// $Id: exceptions.inc.php,v 1.6 2005/08/27 19:42:25 lbrueckner Exp $
 
 
 //
