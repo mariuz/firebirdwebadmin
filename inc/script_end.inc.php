@@ -60,8 +60,7 @@ foreach ($panels as $nr => $panel) {
     }
 
     else {
-        $open_icon = get_icon_path(DATAPATH, ICON_SIZE) . 'open.png';
-        echo get_closed_panel($panel[1], $nr, $open_icon);
+        echo get_closed_panel($panel[1], $nr);
     }
 
     echo "</div>\n";

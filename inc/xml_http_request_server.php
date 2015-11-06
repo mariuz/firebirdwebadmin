@@ -116,8 +116,7 @@ function closed_panel($idx){
 
     $GLOBALS[$pvar][$idx][2] = 'close';
 
-    $icon = get_icon_path(DATAPATH, ICON_SIZE) . 'open.png';
-    $html = get_closed_panel($GLOBALS[$pvar][$idx][1], $idx, $icon);
+    $html = get_closed_panel($GLOBALS[$pvar][$idx][1], $idx);
 
     set_customize_cookie($GLOBALS['s_cust']);
     header('Content-Type: text/html;charset='.$GLOBALS['charset']);
