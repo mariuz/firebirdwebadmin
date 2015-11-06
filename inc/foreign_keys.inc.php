@@ -5,11 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <05/02/01 15:43:07 lb>
-//
-// $Id: foreign_keys.inc.php,v 1.4 2005/08/27 17:50:27 lbrueckner Exp $
-
-
 
 //
 // find the foreign keys defined for $table,
