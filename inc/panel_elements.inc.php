@@ -743,7 +743,7 @@ function table_column_detail_string($haveit, $source, $showit) {
 //
 // return the html for a closed panel
 //
-function get_closed_panel($title, $nr, $icon) {
+function get_closed_panel($title, $nr) {
     global $ptitle_strings;
 
     $fold_url = url_session('toggle_fold_panel.php?p='.$nr.'&d=open');
@@ -751,7 +751,7 @@ function get_closed_panel($title, $nr, $icon) {
     return "<table class='table table-hover' width=\"100%\" cellpadding=\"5\" cellspacing=\"0\" border=\"0\">\n"
            ."  <tr class=\"panel\">\n"
            ."    <td width=\"25\" align=\"center\">\n"
-           .'      '.sprintf('<a href="%1$s"><img src="%2$s" alt="%3$s" title="%3$s" border="0"></a>'."\n", $fold_url, $icon, $ptitle_strings['Open'])
+           .'      '.sprintf('<a href="%1$s"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" alt="%2$s" title="%2$s"></span></a>'."\n", $fold_url, $ptitle_strings['Open'])
            .'    <td width="100%"><a class="ptitle" href="'.$fold_url.'">'.$title."</a></td>\n"
            ."    <td width=\"65\">\n"
            ."    </td>\n"
@@ -767,12 +767,11 @@ function get_open_panel_start($title, $nr) {
     global $ptitle_strings;
 
     $fold_url   = sprintf("javascript:requestClosedPanel('%d')", $nr);
-    $close_icon = get_icon_path(DATAPATH, ICON_SIZE) . 'close.png';
 
-    return '<table width="100%" class="area">'."\n"
+    return '<table width="100%" class="table">'."\n"
          . "  <tr class=\"panel\">\n"
          . '    <td rowspan="2" width="25" align="center" valign="top">'."\n"
-         . '      ' . sprintf('<a href="%1$s"><img src="%2$s" alt="%3$s" title="%3$s" border="0"></a>'."\n", $fold_url, $close_icon, $ptitle_strings['Close'])."\n"
+         . '      ' . sprintf('<a href="%1$s"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="%2$s" title="%2$s"></span></a>'."\n", $fold_url, $ptitle_strings['Close'])."\n"
          . "    </td>\n"
          . '    <td width="100%"><a class="ptitle" href="' . $fold_url . '">' . $title . "</a></td>\n"
          . "    <td>\n"
