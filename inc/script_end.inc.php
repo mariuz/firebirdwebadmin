@@ -93,8 +93,6 @@ if (DEBUG === TRUE) {
     $get_url = url_session('./inc/display_variable.php?var=GET');
     echo '<a href="'.$get_url.'" target="_blank">[ GET ]</a>'."\n";
 
-    echo '<a href="./inc/phpinfo.php" target="_blank">[ phpinfo ]</a>'."\n";
-
     $kill_url = url_session('./inc/kill_session.php');
     echo '<a href="'.$kill_url.'">[ kill session ]</a>'."\n";
 
