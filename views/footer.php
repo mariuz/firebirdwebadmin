@@ -18,7 +18,7 @@
 				</td>
 <?php 
 if (DEBUG === TRUE) {
-    echo "<td width=\"50%\">&nbsp;</td><td><div align=\"left\">\n";
+    echo "<td width=\"30%\">&nbsp;</td><td><div align=\"left\">\n";
 
     show_time_consumption($start_time, microtime());
 

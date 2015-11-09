@@ -426,7 +426,7 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA password',
                      );
 
 // strings for the info-panel
-$info_strings = array('Connected' => 'connected to Database',
+$info_strings = array('Connected' => 'Connected to database',
                       'ExtResult' => 'Result from extern command',
                       'FBError'   => 'Firebird Error',
                       'ExtError'  => 'Error from extern command',
