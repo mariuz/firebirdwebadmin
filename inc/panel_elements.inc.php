@@ -502,7 +502,7 @@ function get_indexed_selectlist($name, $arr, $sel=NULL, $empty=FALSE, $tags=arra
 
     $sel = is_array($sel) ? array_map('htmlspecialchars', $sel) : htmlspecialchars($sel);
 
-    $html = '<select class="form-control" name="' . $name . '" size="' . $size . '"' . get_tags_string($tags) . ">\n";
+    $html = '<select class="form-control" id="' . $name . '" name="' . $name . '" size="' . $size . '"' . get_tags_string($tags) . ">\n";
     if ($empty == TRUE) {
         $html .= "<option />\n";
     }
@@ -542,7 +542,7 @@ function get_yesno_selectlist($name, $sel=NULL, $empty=FALSE, $tags=array()) {
 //
 function get_textfield($name, $size, $maxlength=NULL, $value=NULL, $type='text', $tags=array()) {
 
-    $html = '<input class="form-control" type="' . $type . '" name="' . $name . '" size="' . $size . '"';
+    $html = '<input class="form-control" type="' . $type . '" id="' . $name . '" name="' . $name . '" size="' . $size . '"';
     if ($maxlength !== NULL) {
         $html .= ' maxlength="' . $maxlength . '"';
     }
@@ -597,9 +597,7 @@ function get_tags_string($tags) {
 function get_closed_detail($title, $url, $curl='', $cdiv='') {
     global $ptitle_strings;
 
-    //$green_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'green_triangle.png';
-
-    $html= '<a href="'.$url.'" class="dtitlex" title="'.$ptitle_strings['Open']."\">"
+    $html= '<a href="'.$url.'" title="'.$ptitle_strings['Open']."\">"
          . '  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" alt="'.$ptitle_strings['Open'].'" title="'.$ptitle_strings['Open'].'" ></span> '.$title."</a> ";
 
     if (!empty($curl)) {

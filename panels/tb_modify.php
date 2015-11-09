@@ -19,7 +19,7 @@ elseif ($s_connected && $s_modify_name == ''):
 			<label for="tb_modify_name"><?php echo $tb_strings['SelTbMod']; ?></label>
 			<?php echo get_table_selectlist('tb_modify_name', array('owner', 'noviews'), NULL, TRUE) ?>
 		</div>
-		<input type="submit" class="btn btn-default" name="tb_modify_doit" value="<?php echo $button_strings['Modify']; ?>">
+		<input type="submit" class="btn btn-success" name="tb_modify_doit" value="<?php echo $button_strings['Modify']; ?>">
     </form>
 <?php
 

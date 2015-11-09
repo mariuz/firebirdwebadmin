@@ -17,12 +17,12 @@ else:
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_delete_form">
         <table class="table table-bordered">
             <tr>
-                <td><b><?php echo $db_strings['DelDB']; ?></b><br>
+                <td><label for="db_delete_database"><?php echo $db_strings['DelDB']; ?></label><br>
                     <?php
 
                     if (count($dbfiles) == 0):
                         ?>
-                        <input type="text" class="form-control" size="35" maxlength="255" name="db_delete_database" value="<?php echo $s_delete_db['database']; ?>">
+                        <input type="text" class="form-control" size="35" maxlength="255" id="db_delete_database" name="db_delete_database" value="<?php echo $s_delete_db['database']; ?>">
                     <?php
 
                     else:
@@ -31,19 +31,19 @@ else:
                     ?>
                 </td>
                 <td>
-                    <b><?php echo $db_strings['Host']; ?></b><br>
-                    <input type="text" class="form-control" size="35" maxlength="255" name="db_delete_host" value="<?php echo $s_delete_db['host']; ?>">
+                    <label for="db_delete_host"><?php echo $db_strings['Host']; ?></label><br>
+                    <input type="text" class="form-control" size="35" maxlength="255" id="db_delete_host" name="db_delete_host" value="<?php echo $s_delete_db['host']; ?>">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <b><?php echo $db_strings['Username']; ?></b><br>
-                    <input type="text" class="form-control" size="35" maxlength="32" name="db_delete_user" value="<?php echo $s_delete_db['user']; ?>">
+                    <label for="db_delete_user"><?php echo $db_strings['Username']; ?></label><br>
+                    <input type="text" class="form-control" size="35" maxlength="32" id="db_delete_user" name="db_delete_user" value="<?php echo $s_delete_db['user']; ?>">
                 </td>
                 <td>
-                    <b><?php echo $db_strings['Password']; ?></b><br>
-                    <input type="password" class="form-control" size="35" maxlength="32" name="db_delete_password" value="<?php echo password_stars($s_delete_db['password']); ?>">
+                    <label for="db_delete_password"><?php echo $db_strings['Password']; ?></label><br>
+                    <input type="password" class="form-control" size="35" maxlength="32" id="db_delete_password" name="db_delete_password" value="<?php echo password_stars($s_delete_db['password']); ?>">
                 </td>
             </tr>
         </table>

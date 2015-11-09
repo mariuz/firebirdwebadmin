@@ -270,11 +270,9 @@ function get_opened_procedure($name, $procedure, $url) {
         $rowspan++;
     }
 
-    $red_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'red_triangle.png';
-
     $html = <<<EOT
         <nobr>
-          <a href="$url" class="dtitle"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7">$name</a>
+          <a href="$url" class="dtitle"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}"></span> $name</a>
         </nobr>
         <table>
           <tr>

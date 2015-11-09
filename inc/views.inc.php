@@ -103,11 +103,10 @@ function get_opened_view($name, $title, $url)
     global $dbhandle, $s_fields, $tb_strings, $acc_strings, $ptitle_strings;
 
     $source = get_view_source($name);
-    $red_triangle = get_icon_path(DATAPATH, ICON_SIZE) . 'red_triangle.png';
 
     $html = <<<EOT
         <nobr>
-          <a href="$url" class="dtitle"><img src="$red_triangle" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" border="0" hspace="7">$title</a>
+          <a href="$url" class="dtitle"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}"></span> $title</a>
         </nobr>
         <nobr>
         <table class="table table-hover">

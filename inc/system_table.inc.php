@@ -91,7 +91,7 @@ function get_systable($s_systable) {
 //
 function get_systable_html($table, $s_systable) {
 
-    $html = "<table id=\"systable\" class=\"table table-bordered tsep\" cellpadding=\"2\">\n<tr>\n";
+    $html = "<table id=\"systable\" class=\"table table-bordered table-hover tsep\" cellpadding=\"2\">\n<thead><tr>\n";
     foreach (array_keys($table) as $colname) {
         if ($s_systable['order'] == $colname) {
             $headstr = ($s_systable['dir'] == 'ASC') ? '*&nbsp;'.$colname : $colname.'&nbsp;*';
@@ -102,7 +102,7 @@ function get_systable_html($table, $s_systable) {
         $url = url_session('database.php?order='.$colname);
         $html .= '<th><a href="'.$url.'">'.$headstr."</a></th>\n";
     }
-    $html .= "</tr>\n";
+    $html .= "</tr></thead>\n";
 
     $systable_textblobs = systable_textblobs();
     if (isset($systable_textblobs[$s_systable['table']])) {
@@ -219,7 +219,7 @@ function systable_field_select($table, $field=NULL) {
 
     $cols = get_table_fields($table);
 
-    return '<b>'.$db_strings['FField']."</b><br>\n"
+    return '<label for="db_sysfield">'.$db_strings['FField']."</label><br>\n"
          . get_selectlist('db_sysfield', $cols, $field, TRUE,
                            array('onChange' => "getFilterValues('".$table."' ,selectedElement(this))",
                                  'id' => 'db_sysvalues_list')
@@ -238,7 +238,7 @@ function systable_value_select($table, $field, $value=NULL) {
     }
     fbird_free_result($res);
 
-    return '<b>'.$db_strings['FValue']."</b><br>\n"
+    return '<label for="db_sysvalue">'.$db_strings['FValue']."</label><br>\n"
          . get_selectlist('db_sysvalue', $values, $value, TRUE);
 }
 

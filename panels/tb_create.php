@@ -26,7 +26,7 @@ if ($s_connected && (!isset($s_create_num) || empty($s_create_num))):
                 </td>
             </tr>
         </table>
-        <input type="submit" class="btn btn-success" name="tb_create_doit" value="<?php echo $button_strings['Create']; ?>">
+        <input type="submit" class="btn btn-primary" name="tb_create_doit" value="<?php echo $button_strings['Create']; ?>">
     </form>
 <?php
 

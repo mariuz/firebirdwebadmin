@@ -14,7 +14,7 @@ if ($s_connected === TRUE) {
 <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_systable_form">
     <table class="table table-bordered">
         <tr>
-            <td><b><?php echo $db_strings['SysTables']; ?></b><br>
+            <td><label for="db_systable"><?php echo $db_strings['SysTables']; ?></label><br>
                 <?php echo get_selectlist('db_systable',
                     get_system_tables(SERVER_FAMILY, SERVER_VERSION),
                     $s_systable['table'], TRUE,
@@ -23,10 +23,9 @@ if ($s_connected === TRUE) {
                 ?>
             </td>
             <td align="center">
-                <b><?php echo $db_strings['SysData']; ?></b><br>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="db_sysdata" <?php if ($s_systable['sysdata'] == TRUE) echo 'checked'; ?>>
+				<label for="db_sysdata"><?php echo $db_strings['SysData']; ?></label><br>
+				<input type="checkbox" name="db_sysdata" id="db_sysdata" <?php if ($s_systable['sysdata'] == TRUE) echo 'checked'; ?>>
             </td>
-            <td>&nbsp;&nbsp;</td>
             <td>
                 <div id="systable_field">
                     <?php
@@ -37,8 +36,8 @@ if ($s_connected === TRUE) {
 
                     } else {
                         ?>
-                        <b><?php echo $db_strings['FField']; ?></b><br>
-                        <input type="text" class="form-control" size="16" maxlength="128" name="db_sysfield" value="<?php echo $s_systable['ffield']; ?>">
+                        <label for="db_sysfield"><?php echo $db_strings['FField']; ?></label><br>
+                        <input type="text" class="form-control" size="16" maxlength="128" id="db_sysfield" name="db_sysfield" value="<?php echo $s_systable['ffield']; ?>">
                     <?php
 
                     }
@@ -55,17 +54,16 @@ if ($s_connected === TRUE) {
 
                     } else {
                         ?>
-                        <b><?php echo $db_strings['FValue']; ?></b><br>
-                        <input type="text" class="form-control" size="16" maxlength="128" name="db_sysvalue" value="<?php echo $s_systable['fvalue']; ?>">
+                        <label for="db_sysvalue"><?php echo $db_strings['FValue']; ?></label><br>
+                        <input type="text" class="form-control" size="16" maxlength="128" id="db_sysvalue" name="db_sysvalue" value="<?php echo $s_systable['fvalue']; ?>">
                     <?php
 
                     }
                     ?>
                 </div>
             </td>
-            <td>&nbsp;</td>
             <td valign="bottom">
-                <input type="submit" class="btn btn-default" name="db_systable_select" value="<?php echo $button_strings['Select']; ?>">
+                <input type="submit" class="btn btn-success" name="db_systable_select" value="<?php echo $button_strings['Select']; ?>">
             </td>
         </tr>
         <?php
