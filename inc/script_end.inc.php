@@ -73,37 +73,6 @@ if (isset($dbhandle)  &&  is_resource($dbhandle)) {
     //    fbird_close($dbhandle);
 }
 
-
-
-if (DEBUG === TRUE) {
-    echo "<div align=\"left\">\n";
-
-    show_time_consumption($start_time, microtime());
-
-//     echo 'cookie size: '.strlen($_COOKIE[get_customize_cookie_name()])."<br>\n";
-//     debug_var($_COOKIE[get_customize_cookie_name()]);
-
-    // display links to display the session, post or get variables
-    $session_url = url_session('./inc/display_variable.php?var=SESSION');
-    echo '<a href="'.$session_url.'" target="_blank">[ Session ]</a>'."\n";
-
-    $post_url = url_session('./inc/display_variable.php?var=POST');
-    echo '<a href="'.$post_url.'" target="_blank">[ POST ]</a>'."\n";
-
-    $get_url = url_session('./inc/display_variable.php?var=GET');
-    echo '<a href="'.$get_url.'" target="_blank">[ GET ]</a>'."\n";
-
-    $kill_url = url_session('./inc/kill_session.php');
-    echo '<a href="'.$kill_url.'">[ kill session ]</a>'."\n";
-
-    // Inhalt von $_POST und $_GET in der Session hinterlegen
-    $s_POST = $_POST;
-    $s_GET  = $_GET;
-
-    echo "</div>\n";
-}
-
-
 if (DEBUG_HTML) {
     $fname = TMPPATH.substr_replace(basename($_SERVER['PHP_SELF']), 'html', -3);
     write_output_buffer($fname);

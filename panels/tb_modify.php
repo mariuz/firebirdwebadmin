@@ -29,7 +29,6 @@ elseif (isset($col_add_flag)):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modadd_form">
         <table class="table table-bordered">
             <?php
-
             echo get_coldef_definition('add', $tb_strings['DefNewCol'], 5, TRUE);
             ?>
         </table>
@@ -64,7 +63,7 @@ elseif ($s_connected && isset($s_modify_name)):
         <table class="table table-bordered">
             <tr>
                 <th colspan="2" align="left">
-                    <b><?php echo $tb_strings['AddCol']; ?></b>
+                    <label><?php echo $tb_strings['AddCol']; ?></label>
                 </th>
                 <td>
                     <input type="submit" class="btn btn-success" name="tb_modify_add" value="<?php echo $button_strings['Add']; ?>">
@@ -72,10 +71,10 @@ elseif ($s_connected && isset($s_modify_name)):
             </tr>
             <tr>
                 <td>
-                    <b><?php echo $tb_strings['SelColMod']; ?></b>
+                    <label for="tb_modify_mname"><?php echo $tb_strings['SelColMod']; ?></label>
                 </td>
                 <td>
-                    <select class="form-control" name="tb_modify_mname">
+                    <select class="form-control" id="tb_modify_mname" name="tb_modify_mname">
                         <?php build_column_options($s_modify_name); ?>
                     </select>
                 </td>
@@ -85,10 +84,10 @@ elseif ($s_connected && isset($s_modify_name)):
             </tr>
             <tr>
                 <td>
-                    <b><?php echo $tb_strings['SelColDel']; ?></b>
+                    <label for="tb_modify_dname"><?php echo $tb_strings['SelColDel']; ?></label>
                 </td>
                 <td>
-                    <select class="form-control" name="tb_modify_dname">
+                    <select class="form-control" id="tb_modify_dname" name="tb_modify_dname">
                         <?php build_column_options($s_modify_name); ?>
                     </select>
                 </td>
