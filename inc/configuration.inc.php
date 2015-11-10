@@ -114,8 +114,6 @@ define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting 
 
 define('DATAPATH','./data/');             // the place where FirebirdWebAdmin searches images, icons, etc
 
-define('ICON_SIZE', 'small');             // size of the icons and navigation elements;
-
 define('SQL_AREA_COLS', 80);       // use this for the textarea on the SQL page (also used on the triggers,
 define('SQL_AREA_ROWS', 6);        // the stored procedures and the views panels)
 
