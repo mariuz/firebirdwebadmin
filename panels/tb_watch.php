@@ -9,37 +9,23 @@
 if (!isset($tb_watch_cfg_flag) && $s_connected):
 
     ?>
-    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_watch_form">
-        <table class="table table-bordered">
-            <tr>
-                <td colspan="1">
-                    <?php
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_watch_form" class="form-inline">
+		<div class="form-group">
+		<label for="tb_watch_table"><?php echo $sql_strings['SelTable'];?></label>
+		<?php echo get_table_selectlist('tb_watch_table', array('select'), $s_wt['table'], TRUE); ?>
+		<input type="submit" class="btn btn-default" name="tb_watch_select" value="<?php echo $button_strings['Select']; ?>">
 
-                    echo '<b>' . $sql_strings['SelTable'] . "</b><br>\n"
-                        . get_table_selectlist('tb_watch_table', array('select'), $s_wt['table'], TRUE);
-                    ?>
-                    <input type="submit" class="btn btn-default" name="tb_watch_select" value="<?php echo $button_strings['Select']; ?>">
-                </td>
-                <?php
-
-                if (isset($s_wt['table']) && $s_wt['table'] != '') {
-                    echo "<td width=\"100\">&nbsp;</td>\n";
-                    $url = url_session($_SERVER['PHP_SELF'] . '?wcfg=true');
-                    echo '<td><a href="' . $url . '" class="act">[' . $sql_strings['Config'] . "]</a></td>\n";
-                }
-                ?>
-            </tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <?php
-                    display_table($s_wt);
-                    ?>
-                </td>
-            </tr>
-        </table>
+		<?php
+		if (isset($s_wt['table']) && $s_wt['table'] != '') {
+			$url = url_session($_SERVER['PHP_SELF'] . '?wcfg=true');
+			echo '<a class="btn btn-link" href="' . $url . '">[' . $sql_strings['Config'] . "]</a>";
+		}
+		?>
+		</div>
     </form>
+	<?php
+	display_table($s_wt);
+	?>
     <div id="fk" class="fk"></div>
 <?php
 
@@ -50,33 +36,31 @@ elseif ($s_connected):
 
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_watch_form">
+ 
+		<?php watchtable_column_options($s_wt['table'],
+			$s_wt['columns'],
+			$s_wt['order'],
+			$s_wt['blob_links'],
+			$s_wt['blob_as']
+		);
+		?>
+
         <table class="table table-bordered">
-            <tr>
-                <td colspan="5">
-                    <?php watchtable_column_options($s_wt['table'],
-                        $s_wt['columns'],
-                        $s_wt['order'],
-                        $s_wt['blob_links'],
-                        $s_wt['blob_as']
-                    );
-                    ?>
-                </td>
-            <tr>
-        </table>
-        <table class="table table-bordered">
-            <tr>
-                <th><?php echo $sql_strings['Rows']; ?></th>
-                <th><?php echo $sql_strings['Start']; ?></th>
-                <th><?php echo $sql_strings['Dir']; ?></th>
-                <th><?php echo $sql_strings['ELinks']; ?></th>
-                <th><?php echo $sql_strings['DLinks']; ?></th>
-            </tr>
+			<thead>
+				<tr>
+					<th><label for="tb_watch_rows"><?php echo $sql_strings['Rows']; ?></label></th>
+					<th><label for="tb_watch_start"><?php echo $sql_strings['Start']; ?></label></th>
+					<th><label for="tb_watch_direction"><?php echo $sql_strings['Dir']; ?></label></th>
+					<th><label for="tb_watch_edit"><?php echo $sql_strings['ELinks']; ?></label></th>
+					<th><label for="tb_watch_del"><?php echo $sql_strings['DLinks']; ?></label></th>
+				</tr>
+			</thead>
             <tr>
                 <td align="center">
-                    <input type="text" size="4" maxlength="4" name="tb_watch_rows" value="<?php echo $s_wt['rows']; ?>">
+                    <input type="text" size="4" maxlength="4" class="form-control" id="tb_watch_rows" name="tb_watch_rows" value="<?php echo $s_wt['rows']; ?>">
                 </td>
                 <td align="center">
-                    <input type="text" size="8" maxlength="8" name="tb_watch_start" value="<?php echo $s_wt['start']; ?>">
+                    <input type="text" size="8" maxlength="8" class="form-control" id="tb_watch_start" name="tb_watch_start" value="<?php echo $s_wt['start']; ?>">
                 </td>
                 <td align="center">
                     <?php echo get_selectlist('tb_watch_direction',
@@ -93,30 +77,35 @@ elseif ($s_connected):
             </tr>
         </table>
         <table class="table table-bordered">
-            <tr>
-                <th><?php echo $sql_strings['TBInline']; ?></th>
-                <th><?php echo $sql_strings['TBChars']; ?></th>
+			<thead>
+				<tr>
+					<th><label for="tb_watch_tblob_inline"><?php echo $sql_strings['TBInline']; ?></label></th>
+					<th><label for="tb_watch_tblob_chars"><?php echo $sql_strings['TBChars']; ?></label></th>
+				</tr>
+			</thead>
             <tr>
                 <td align="center">
                     <?php echo get_yesno_selectlist('tb_watch_tblob_inline', $s_wt['delete'] ? 'Yes' : 'No'); ?>
                 </td>
                 <td align="center">
-                    <input type="text" class="form-control" size="4" maxlength="4" name="tb_watch_tblob_chars" value="<?php echo $s_wt['tblob_chars']; ?>">
+                    <input type="text" class="form-control" size="4" maxlength="4" id="tb_watch_tblob_chars" name="tb_watch_tblob_chars" value="<?php echo $s_wt['tblob_chars']; ?>">
                 </td>
             </tr>
         </table>
         <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th align="left"><label for="tb_watch_condition"><?php echo $sql_strings['Restrict']; ?></label></th>
+				</tr>
+			</thead>
             <tr>
-                <th colspan="5" align="left"><?php echo $sql_strings['Restrict']; ?></th>
-            </tr>
-            <tr>
-                <td colspan="5">
-                    <input type="text" class="form-control" size="60" maxlength="256" name="tb_watch_condition" value="<?php echo $s_wt['condition']; ?>">
+                <td>
+                    <input type="text" class="form-control" size="60" maxlength="256" id="tb_watch_condition" name="tb_watch_condition" value="<?php echo $s_wt['condition']; ?>">
                 <td>
             </tr>
         </table>
-        <input type="submit" class="btn btn-default" name="tb_watch_cfg_doit" value="<?php echo $button_strings['Ready']; ?>" class="bgrp">
-        <input type="submit" class="btn btn-danger"  name="tb_watch_cfg_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+        <input type="submit" class="btn btn-success" name="tb_watch_cfg_doit" value="<?php echo $button_strings['Ready']; ?>" class="bgrp">
+        <input type="submit" class="btn btn-default"  name="tb_watch_cfg_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
     </form>
 <?php
 endif;

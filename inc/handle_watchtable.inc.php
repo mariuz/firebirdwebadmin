@@ -341,10 +341,10 @@ function display_table($wt)
     ob_start();
 
     // navigation
-    echo "<table>\n<tr>\n";
+    echo "<p><table>\n<tr>\n";
     if ($wt['start'] > 1) {
         echo '<td><a href="' . url_session('watchtable.php?go=start') . '" class="act">&lt;&lt; ' . $sql_strings['Start'] . "</a></td>\n";
-        echo '<td><a href="' . url_session('watchtable.php?go=prev') . '" class="act">&lt; ' . $sql_strings['Prev'] . "</a></td>\n";
+        echo '<td>&nbsp;<a href="' . url_session('watchtable.php?go=prev') . '" class="act">&lt; ' . $sql_strings['Prev'] . "</a></td>\n";
     }
     $end = (($wt['start'] + $wt['rows'] >= $rowcount)) ? $rowcount : $wt['start'] + $wt['rows'] - 1;
     $cinfo = sprintf('<b>%d - %d (%d %s)</b>', $wt['start'], $end, $rowcount, $sql_strings['Total']);
@@ -352,12 +352,12 @@ function display_table($wt)
     if ($rowcount >= $wt['start'] + $wt['rows']) {
         echo '<td><a href="' . url_session('watchtable.php?go=next') . '" class="act">' . $sql_strings['Next'] . " &gt;</a></td>\n";
         $laststart = floor(($rowcount - 1) / $wt['rows']) * $wt['rows'] + 1;
-        echo '<td><a href="' . url_session('watchtable.php?go=' . $laststart) . '" class="act">' . $sql_strings['End'] . " &gt;&gt;</a></td>\n";
+        echo '<td>&nbsp;<a href="' . url_session('watchtable.php?go=' . $laststart) . '" class="act">' . $sql_strings['End'] . " &gt;&gt;</a></td>\n";
     }
-    echo "</tr>\n</table>\n";
+    echo "</tr>\n</table></p>\n";
 
     // table head
-    echo '<table id="watchtable" class="table table-bordered tsep">' . "\n"
+    echo '<table id="watchtable" class="table table-bordered table-hover">' . "\n"
         . "  <thead>\n"
         . "    <tr>\n";
     foreach ($wt['columns'] as $col) {
@@ -629,13 +629,13 @@ function watchtable_column_options($table, $show_cols, $sort_col, $bloblinks, $b
 {
     global $sql_strings;
 
-    echo "<table class=\"table table-bordered\">\n";
-    echo '<tr><th>' . $sql_strings['Column'] . '</th>'
+    echo "<table class=\"table table-hover table-bordered\">\n";
+    echo '<thead><tr><th>' . $sql_strings['Column'] . '</th>'
         . '<th>' . $sql_strings['Show'] . '</th>'
         . '<th>' . $sql_strings['Sort'] . '</th>'
         . '<th>' . $sql_strings['BlobLink'] . '</th>'
         . '<th>' . $sql_strings['BlobType'] . '</th>'
-        . "</tr>\n";
+        . "</tr></thead>\n";
 
     foreach ($GLOBALS['s_fields'][$table] as $field) {
         echo "<tr>\n";

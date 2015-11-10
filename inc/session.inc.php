@@ -296,7 +296,7 @@ function initialize_session() {
                                             array('acc_exc',   $ptitle_strings['acc_exc'],    'close'),
                                             array('acc_udf',   $ptitle_strings['acc_udf'],    'close')),
               // panels on the SQL page
-              's_sql_panels'       => array(array('sql_enter', $ptitle_strings['sql_enter'],  'close'),
+              's_sql_panels'       => array(array('sql_enter', $ptitle_strings['sql_enter'],  'open'),
                                             array('sql_output',$ptitle_strings['sql_output'], 'close'),
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close')),
 

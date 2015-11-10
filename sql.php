@@ -255,9 +255,9 @@ require('./inc/script_end.inc.php');
 function get_result_table($result, $fieldinfo, $idx) {
 
     $table = '<table class="table table-bordered table-hover" id="resulttable_'.$idx."\">\n"
-            ."   <tr align=\"left\">\n"
+            ."   <thead><tr align=\"left\">\n"
             .'      <th>'.implode('</th><th>', array_keys($result[0]))."</th>\n"
-            ."   </tr>\n";
+            ."   </tr></thead>\n";
 
     $cnt = count($result[0]);
     foreach ($result as $row) {
