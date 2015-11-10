@@ -275,22 +275,19 @@ function initialize_session() {
               // $array[2] : panel status ['open'|'close']
 
               // panels on the Database page
-              's_database_panels' => array(array('info',       $ptitle_strings['info'],       'open'),
-                                           array('db_login',   $ptitle_strings['db_login'],   'open'),
+              's_database_panels' => array(array('db_login',   $ptitle_strings['db_login'],   'open'),
                                            array('db_create',  $ptitle_strings['db_create'],  'close'),
                                            array('db_delete',  $ptitle_strings['db_delete'],  'close'),
                                            array('db_systable',$ptitle_strings['db_systable'],'close'),
                                            array('db_meta',    $ptitle_strings['db_meta'],    'close')),
 
               // panels on the Tables page
-              's_tables_panels'   => array(array('info',       $ptitle_strings['info'],       'open'),
-                                           array('tb_show',    $ptitle_strings['tb_show'],    'close'),
+              's_tables_panels'   => array(array('tb_show',    $ptitle_strings['tb_show'],    'close'),
                                            array('tb_create',  $ptitle_strings['tb_create'],  'close'),
                                            array('tb_modify',  $ptitle_strings['tb_modify'],  'close'),
                                            array('tb_delete',  $ptitle_strings['tb_delete'],  'close')),
               // panels on the Accessories page
-              's_accessories_panels'=>array(array('info',      $ptitle_strings['info'],       'open'),
-                                            array('acc_index', $ptitle_strings['acc_index'],  'close'),
+              's_accessories_panels'=>array(array('acc_index', $ptitle_strings['acc_index'],  'close'),
                                             array('acc_gen',   $ptitle_strings['acc_gen'],    'close'),
                                             array('acc_trigger',$ptitle_strings['acc_trigger'],'close'),
                                             array('acc_proc',  $ptitle_strings['acc_proc'],   'close'),
@@ -299,26 +296,22 @@ function initialize_session() {
                                             array('acc_exc',   $ptitle_strings['acc_exc'],    'close'),
                                             array('acc_udf',   $ptitle_strings['acc_udf'],    'close')),
               // panels on the SQL page
-              's_sql_panels'       => array(array('info',      $ptitle_strings['info'],       'open'),
-                                            array('sql_enter', $ptitle_strings['sql_enter'],  'close'),
+              's_sql_panels'       => array(array('sql_enter', $ptitle_strings['sql_enter'],  'close'),
                                             array('sql_output',$ptitle_strings['sql_output'], 'close'),
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close')),
 
               // panels on the Data page
-              's_data_panels'      => array(array('info',      $ptitle_strings['info'],       'open'),
-                                            array('dt_enter',  $ptitle_strings['dt_enter'],   'close'),
+              's_data_panels'      => array(array('dt_enter',  $ptitle_strings['dt_enter'],   'close'),
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close'),
                                             array('dt_export', $ptitle_strings['dt_export'],  'close'),
                                             array('dt_import', $ptitle_strings['dt_import'],  'close')),
               // panels on the User page
-              's_users_panels'      => array(array('info',     $ptitle_strings['info'],       'open'),
-                                             array('usr_user', $ptitle_strings['usr_user'],   'close'),
+              's_users_panels'      => array(array('usr_user', $ptitle_strings['usr_user'],   'close'),
                                              array('usr_role', $ptitle_strings['usr_role'],   'close'),
 //                                              array('usr_grant',$ptitle_strings['usr_grant'],'close')),
                                              array('usr_cust', $ptitle_strings['usr_cust'],   'close')),
               // panels on the Admin page
-              's_admin_panels'      => array(array('info',      $ptitle_strings['info'],      'open'),
-                                             array('adm_server',$ptitle_strings['adm_server'],'close'),
+              's_admin_panels'      => array(array('adm_server',$ptitle_strings['adm_server'],'close'),
                                              array('adm_dbstat',$ptitle_strings['adm_dbstat'],'close'),
                                              array('adm_gfix',  $ptitle_strings['adm_gfix'],  'close'),
                                              array('adm_backup',$ptitle_strings['adm_backup'],'close'),

@@ -1,22 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gilcierweb
- * Date: 14/05/15
- * Time: 08:20
- */ 
- 
 	require_once('./inc/script_start.inc.php');
-	
-	if ($s_connected == TRUE) {
-		$dstr = (!empty($s_login['host'])) ? $s_login['host'] . ':' . $s_login['database'] : $s_login['database'];
-		$rstr = !empty($s_login['role']) ? '&nbsp;(' . $s_login['role'] . ')' : '';
-		$ustr = $s_login['user'] . $rstr;
-	} else {
-		$dstr = '&lt;none&gt;';
-		$ustr = '';
-	}
-	
  ?>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,12 +19,22 @@
 			<?php if ($s_connected == TRUE) { ?>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $ustr; ?> <span class="caret"></span></a>
-				  <ul class="dropdown-menu">
-				    <li class="dropdown-header"><?php echo $info_strings['Connected']; ?>:</li>
-					<li><a href="#"><?php echo $dstr; ?></a></li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $s_login['user']; ?> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					
+					<?php if (!empty($s_login['role'])) { ?>
+				    <li class="dropdown-header"><?php echo $db_strings['Role']; ?>:</li>
+					<li><a href="#"><?php echo $s_login['role']; ?></a></li>
+					<?php } ?>
+				    
+					<li class="dropdown-header"><?php echo $db_strings['Host']; ?>:</li>
+					<li><a href="#"><?php echo $s_login['host']; ?></a></li>
+
+					<li class="dropdown-header"><?php echo $db_strings['Database']; ?>:</li>
+					<li><a href="#"><?php echo $s_login['database']; ?></a></li>
+					
 					<li role="separator" class="divider"></li>
-					<li><a href="logout.php"><?php echo $button_strings['Logout']; ?></a></li>
+					<li><a href="logout.php"><?= $button_strings['Logout']; ?></a></li>
 				  </ul>
 				</li>
 			</ul>

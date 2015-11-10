@@ -54,6 +54,7 @@ if (isset($_POST['db_login_doit'])){
 
             remove_edit_panels();
             $s_charsets = get_charsets();
+			$message = $info_strings['SuccessLogin'];
         } else {
             // connect failed
             $ib_error = fbird_errmsg();

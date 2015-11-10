@@ -1,10 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gilcierweb
- * Date: 14/05/15
- * Time: 08:24
- */ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,3 +23,4 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
 
+		<?php include './panels/info.php'; ?>

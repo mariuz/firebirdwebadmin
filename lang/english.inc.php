@@ -426,16 +426,17 @@ $adm_strings = array('SysdbaPW'  => 'SYSDBA password',
                      );
 
 // strings for the info-panel
-$info_strings = array('Connected' => 'Connected to database',
-                      'ExtResult' => 'Result from extern command',
-                      'FBError'   => 'Firebird Error',
-                      'ExtError'  => 'Error from extern command',
-                      'Error'     => 'Error',
-                      'Warning'   => 'Warning',
-                      'Message'   => 'Message',
-                      'ComCall'   => 'Command call',
-                      'Debug'     => 'Debug output',
-                      'PHPError'  => 'PHP Error'
+$info_strings = array('Connected' 		=> 'Connected to database',
+                      'ExtResult' 		=> 'Result from extern command',
+                      'FBError'   		=> 'Firebird Error',
+                      'ExtError'  		=> 'Error from extern command',
+                      'Error'     		=> 'Error',
+                      'Warning'   		=> 'Warning',
+                      'Message'   		=> 'Message',
+                      'ComCall'   		=> 'Command call',
+                      'Debug'     		=> 'Debug output',
+                      'PHPError'  		=> 'PHP Error',
+                      'SuccessLogin'  	=> 'You have been successfully logged in!'
                       );
 
 $MESSAGES = array('SP_CREATE_INFO'        => 'FirebirdWebAdmin has created a stored procedure "'.SP_LIMIT_NAME.'" which is used by the Watch Table function '
