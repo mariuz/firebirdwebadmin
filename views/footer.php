@@ -51,7 +51,7 @@ if (DEBUG === TRUE) {
 </footer>
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="./js/miscellaneous.js" type="text/javascript"></script>
 <?=  js_global_variables()
 . js_xml_http_request_client()
