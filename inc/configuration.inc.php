@@ -13,7 +13,7 @@
 // i.e define('BINPATH', 'c:/firebirid/bin/');
 //
 
-define('VERSION', '3.0.2');
+define('VERSION', '3.1.0');
 
 define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 
@@ -111,8 +111,6 @@ define('SYSDBA_GET_ALL', TRUE);           // if TRUE the $HIDE_PANELS and the $S
 
 
 define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting data rows or any database objects
-
-define('DATAPATH','./data/');             // the place where FirebirdWebAdmin searches images, icons, etc
 
 define('SQL_AREA_COLS', 80);       // use this for the textarea on the SQL page (also used on the triggers,
 define('SQL_AREA_ROWS', 6);        // the stored procedures and the views panels)
