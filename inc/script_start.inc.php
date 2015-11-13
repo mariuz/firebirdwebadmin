@@ -5,8 +5,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-//apd_set_pprof_trace();
-
 require('./inc/configuration.inc.php');
 
 if (DEBUG) $start_time = @microtime();
