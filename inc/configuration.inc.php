@@ -13,7 +13,7 @@
 // i.e define('BINPATH', 'c:/firebirid/bin/');
 //
 
-define('VERSION', '3.1.0');
+define('VERSION', '3.2.0');
 
 define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 
