@@ -28,3 +28,7 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.margin-left-10px {
+	margin-left: 10px
+}

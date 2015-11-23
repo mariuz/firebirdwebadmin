@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gilcierweb
- * Date: 14/05/15
- * Time: 08:26
- */
-?>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

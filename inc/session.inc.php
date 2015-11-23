@@ -282,7 +282,7 @@ function initialize_session() {
                                            array('db_meta',    $ptitle_strings['db_meta'],    'close')),
 
               // panels on the Tables page
-              's_tables_panels'   => array(array('tb_show',    $ptitle_strings['tb_show'],    'close'),
+              's_tables_panels'   => array(array('tb_show',    $ptitle_strings['tb_show'],    'open'),
                                            array('tb_create',  $ptitle_strings['tb_create'],  'close'),
                                            array('tb_modify',  $ptitle_strings['tb_modify'],  'close'),
                                            array('tb_delete',  $ptitle_strings['tb_delete'],  'close')),
@@ -301,17 +301,17 @@ function initialize_session() {
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close')),
 
               // panels on the Data page
-              's_data_panels'      => array(array('dt_enter',  $ptitle_strings['dt_enter'],   'close'),
+              's_data_panels'      => array(array('dt_enter',  $ptitle_strings['dt_enter'],   'open'),
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close'),
                                             array('dt_export', $ptitle_strings['dt_export'],  'close'),
                                             array('dt_import', $ptitle_strings['dt_import'],  'close')),
               // panels on the User page
-              's_users_panels'      => array(array('usr_user', $ptitle_strings['usr_user'],   'close'),
+              's_users_panels'      => array(array('usr_user', $ptitle_strings['usr_user'],   'open'),
                                              array('usr_role', $ptitle_strings['usr_role'],   'close'),
 //                                              array('usr_grant',$ptitle_strings['usr_grant'],'close')),
                                              array('usr_cust', $ptitle_strings['usr_cust'],   'close')),
               // panels on the Admin page
-              's_admin_panels'      => array(array('adm_server',$ptitle_strings['adm_server'],'close'),
+              's_admin_panels'      => array(array('adm_server',$ptitle_strings['adm_server'],'open'),
                                              array('adm_dbstat',$ptitle_strings['adm_dbstat'],'close'),
                                              array('adm_gfix',  $ptitle_strings['adm_gfix'],  'close'),
                                              array('adm_backup',$ptitle_strings['adm_backup'],'close'),

@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">FirebirdWebAdmin 3.0</a>
+            <a class="navbar-brand" href="#">FirebirdWebAdmin</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?= get_tabmenu_top_fixed($s_page) ?>
