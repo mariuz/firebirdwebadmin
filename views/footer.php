@@ -8,10 +8,10 @@
 	<div class="container">
 		<table>
 			<tr>
-				<td>	
+				<td>
 					<p class="text-muted"><?=date('Y')?> - <a href="https://github.com/mariuz/firebirdwebadmin">FirebirdWebAdmin</a> <?php echo VERSION; ?></p>
 				</td>
-<?php 
+<?php
 if (DEBUG === TRUE) {
     echo "<td width=\"30%\">&nbsp;</td><td><div align=\"left\">\n";
 
@@ -33,7 +33,7 @@ if (DEBUG === TRUE) {
     $kill_url = url_session('./inc/kill_session.php');
     echo '<a href="'.$kill_url.'">[ kill session ]</a>'."\n";
 
-    // Inhalt von $_POST und $_GET in der Session hinterlegen
+    // Save the contents of $_POST and $_GET in session
     $s_POST = $_POST;
     $s_GET  = $_GET;
 

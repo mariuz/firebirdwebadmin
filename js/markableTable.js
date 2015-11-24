@@ -175,7 +175,7 @@ markableFbwaTable.prototype.doUnmark = function (cell) {
 
 /*
  * markableTable implementation for the watchtable on the tb_watch-panel
- * inherits from markableFbwaTable which inherits from marableTable
+ * inherits from markableFbwaTable which inherits from markableTable
  */
 function  markableWatchtable(id, leaveColumns) {
     markableFbwaTable.call(this, id, leaveColumns);
