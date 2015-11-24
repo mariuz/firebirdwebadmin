@@ -11,8 +11,8 @@
  * use shift- and ctrl-key to mark multiple rows or ranges of rows
  */
 function markableTable(id, leaveColumns) {
-    var table = $(id);
-    if (!table) return;
+  if (!id ) return;
+  var table = $('#'+id);
 
     if (typeof leaveColumns == 'undefined') leaveColumns = [];
 
@@ -96,14 +96,14 @@ markableTable.prototype.onCellClicked = function(e) {
     if (!this.spanStart) {
         this.spanStart = row.rowIndex;
     }
-    
+
     // mark a single row
     if (!e.shiftKey  &&  !e.ctrlKey) {
         for (i=0; i<this.marked.length; i++) {
             this.unmarkRow(this.rows[this.marked[i]]);
         }
         this.markRow(row);
-        this.marked = []; 
+        this.marked = [];
         this.marked.push(row.rowIndex);
         this.spanStart = row.rowIndex;
     }
@@ -215,7 +215,7 @@ markableWatchtable.prototype.rowUnmarked = function(row) {
         var button = $('tb_watch_export');
         button.value = button.value.match(/\S+\s/) + '(' + this.cnt + ')';
     }
-    else 
+    else
         $('tb_watch_mark_buttons').style.display = 'none';
 
 //     if (this.report) {
@@ -237,4 +237,3 @@ markableWatchtable.prototype.unmarkAll = function() {
     req.Request('markable_watchtable_report', new Array('unmark', 'all'), '', new Array());
     this.report = true;
 }
-    

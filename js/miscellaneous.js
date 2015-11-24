@@ -5,40 +5,22 @@
 //                see file LICENCE for details
 
 
-function $() {
-    var element = null;
-    if (typeof arguments[0] == 'string') {
-        element = document.getElementById(arguments[0]);
-    }
-    return element;
-}
-
-
 function hide(id) {
-    var  obj = $(id);
-    if (obj) {
-        obj.style.display = 'none';
-    }
+    $('#'+id).hide();
 }
 
 function display(id) {
-    var  obj = $(id);
-    if (obj) {
-        obj.style.display = '';
-    }
+    $('#'+id).show();
 }
 
 // put the given html string into the specified div
 function setInnerHtml(html, id) {
-    var  obj = $(id);
-    if (obj) {
-        obj.innerHTML = html;
-    }
+  if (!id) return;
+  $('#'+id).html(html);
 }
 
 // find and return the value of the selected element in a selectlist
 function selectedElement(source) {
-
     return source.options[source.selectedIndex].value;
 }
 
