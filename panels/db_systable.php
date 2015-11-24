@@ -99,7 +99,7 @@ if ($s_connected === TRUE) {
 
     if (isset($systable)) {
         echo get_systable_html($systable, $s_systable)
-            . js_javascript("new markableIbwaTable('systable')");
+            . js_javascript("new markableFbwaTable('systable')");
     }
     }
     ?>

@@ -280,7 +280,7 @@ function get_result_table($result, $fieldinfo, $idx) {
     }
     
     $table .= "</table>\n"
-            . js_javascript("new markableIbwaTable('resulttable_" . $idx ."')");
+            . js_javascript("new markableFbwaTable('resulttable_" . $idx ."')");
 
     return $table;
 }
