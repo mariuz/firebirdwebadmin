@@ -4,9 +4,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-?>
-
-<?php
 
 if  (isset($binary_output)  &&  count($binary_output) > 0  &&  $s_page != 'SQL'
 &&   strstr('Use CONNECT or CREATE DATABASE to specify a database', $binary_output[0]) === FALSE) {
