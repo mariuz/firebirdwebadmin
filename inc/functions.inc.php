@@ -49,16 +49,6 @@ function build_title($str, $showdb = TRUE)
 
 
 //
-// return the path to th navigation icons
-//
-function get_icon_path($datapath, $iconsize)
-{
-
-    return $datapath . ('transparent/') . strtolower($iconsize) . '/';
-}
-
-
-//
 //  set an new $title for the panel $name
 //
 function set_panel_title($name, $title)
@@ -569,7 +559,7 @@ function build_datatype($defs, $type = 'column', $mode = 'create')
 
 
 //
-// return the interbase charactersets in an array
+// return the firebird charactersets in an array
 //
 function get_charsets()
 {
