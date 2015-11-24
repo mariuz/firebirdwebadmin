@@ -5,17 +5,13 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/01/28 20:46:12 lb>
-//
-// $Id: domains.inc.php,v 1.13 2005/08/27 16:47:47 lbrueckner Exp $
-
 
 //
 // get the properties of all defined domains
 //
 function get_domain_definitions($olddomains){
     global $dbhandle, $s_charsets;
-    
+
     $sql  = 'SELECT  F.RDB$FIELD_NAME AS DNAME,'
                   .' F.RDB$FIELD_TYPE AS FTYPE,'
                   .' F.RDB$FIELD_SUB_TYPE AS STYPE,'
@@ -51,9 +47,9 @@ function get_domain_definitions($olddomains){
         if (isset($obj->CHARID)) {
             $domains[$dname]['charset'] = $s_charsets[$obj->CHARID]['name'];
         }
-  
-        $domains[$dname]['collate'] = (isset($obj->COLLID)  &&  $obj->COLLID != 0) 
-            ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID] 
+
+        $domains[$dname]['collate'] = (isset($obj->COLLID)  &&  $obj->COLLID != 0)
+            ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID]
             : NULL;
 
         if ($domains[$dname]['type'] == 'DECIMAL' || $domains[$dname]['type'] == 'NUMERIC') {
@@ -70,11 +66,11 @@ function get_domain_definitions($olddomains){
         $domains[$dname]['default'] = (isset($obj->DSOURCE)  &&  !empty($obj->DSOURCE))
             ? get_domain_default($dname)
             : '';
-            
+
         $domains[$dname]['check'] = (isset($obj->VSOURCE)  &&  !empty($obj->VSOURCE))
             ? get_domain_check($dname)
             : '';
-        
+
         $domains[$dname]['status'] = (isset($olddomains[$dname])) ? $olddomains[$dname]['status'] : 'close';
     }
     fbird_free_result($res);
@@ -99,7 +95,7 @@ function get_domain_check($dname) {
 
 //
 // create a domain from the values in $domdefs
-// 
+//
 function create_domain($domdefs) {
     global $dbhandle, $lsql, $ib_error;
 
@@ -114,13 +110,13 @@ function create_domain($domdefs) {
           . ($domdefs['default'] != '' ? ' DEFAULT ' . $domdefs['default'] : '')
           . ($domdefs['notnull'] == 'yes' ? ' NOT NULL' : '')
           . $check_str
-          . (!empty($domdefs['collate']) ? ' COLLATE ' . $domdefs['collate'] : '');    
+          . (!empty($domdefs['collate']) ? ' COLLATE ' . $domdefs['collate'] : '');
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
         return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -162,7 +158,7 @@ function modify_domain($olddef, $domdef) {
         $lsql[] = 'ALTER DOMAIN ' . $domdef['name'] . ' DROP DEFAULT';
     }
 
-    if (isset($olddef['default'])  
+    if (isset($olddef['default'])
     &&  $domdef['default'] != ''  &&  $olddef['default'] != $domdef['default']) {
         $lsql[] = 'ALTER DOMAIN ' . $domdef['name'] . ' SET DEFAULT ' . $domdef['default'];
     }

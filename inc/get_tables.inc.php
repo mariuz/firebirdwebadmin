@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <00/10/06 08:34:43 lb>
-//
-// $Id: get_tables.inc.php,v 1.33 2005/09/10 18:26:21 lbrueckner Exp $
-
 
 //
 // set the session variables $s_tables[], $s_fields[]
@@ -125,7 +121,7 @@ function get_tables() {
         }
     }
     fbird_free_result($res);
-    
+
 //     debug_var($sql);
 //     debug_var($constraints);
 //     debug_var($s_foreigns);
@@ -165,7 +161,7 @@ function get_tables() {
             $s_fields[$tname][$idx]['domain'] = 'Yes';
             $s_fields[$tname][$idx]['type'] = trim($row->DNAME);
         } else {
-            $s_fields[$tname][$idx]['stype'] = (isset($row->STYPE)) ? $row->STYPE : NULL; 
+            $s_fields[$tname][$idx]['stype'] = (isset($row->STYPE)) ? $row->STYPE : NULL;
             $s_fields[$tname][$idx]['type']  = get_datatype($row->FTYPE, $s_fields[$tname][$idx]['stype']);
         }
 	if ($s_fields[$tname][$idx]['type'] == 'VARCHAR' || $s_fields[$tname][$idx]['type'] == 'CHARACTER') {
@@ -200,7 +196,7 @@ function get_tables() {
 
 	$s_fields[$tname][$idx]['charset'] = isset($row->CHARID) ? $s_charsets[$row->CHARID]['name'] : NULL;
         $s_fields[$tname][$idx]['collate'] = (isset($row->COLLID)  &&  $row->COLLID != 0  &&  isset($s_charsets[$row->CHARID]['collations'][$row->COLLID]))
-                                 ? $s_charsets[$row->CHARID]['collations'][$row->COLLID] 
+                                 ? $s_charsets[$row->CHARID]['collations'][$row->COLLID]
                                  : NULL;
 
         // optional array dimensions

@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/04/16 16:19:48 lb>
-//
-// $Id: handle_editdata.inc.php,v 1.27 2005/08/27 20:05:34 lbrueckner Exp $
-
 
 //
 // check if and which 'done' or 'cancel' button on which dt_edit panel was clicked
@@ -120,7 +116,7 @@ foreach ($_POST as $name => $value) {
             // remove the dt_edit panel
             $name = 'dt_edit'.$instance;
             $idx = get_panel_index($$panels_arrayname, $name);
-            array_splice($$panels_arrayname, $idx, 1); 
+            array_splice($$panels_arrayname, $idx, 1);
             unset($s_edit_where[$instance]);
             unset($s_edit_values[$instance]);
             if (count($s_edit_where) == 0) {

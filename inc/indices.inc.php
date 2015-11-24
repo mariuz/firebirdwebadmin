@@ -5,10 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/10/10 20:52:58 lb>
-//
-// $Id: indices.inc.php,v 1.16 2005/08/27 16:38:31 lbrueckner Exp $
-
 
 //
 // create an index from the values in the index form
@@ -45,7 +41,7 @@ function create_index() {
         $indices[$iname]['seg'] = array();
         foreach ($segs as $seg) {
             $indices[$iname]['seg'][] = $seg;
-        } 
+        }
         return TRUE;
     }
     else {
@@ -64,7 +60,7 @@ function modify_index($iname) {
     if (isset($_POST['def_index_activ'])  && $indices[$iname]['active'] == FALSE) {
         if (alter_index($iname, 'ACTIVE')) {
             $indices[$iname]['active'] = TRUE;
-        } 
+        }
         else {
             return FALSE;
         }
@@ -84,7 +80,7 @@ function modify_index($iname) {
     if ($indices[$iname]['table'] != $_POST['def_index_table']
     ||  $iname != $_POST['def_index_name']
     ||  $indices[$iname]['dir']   != $_POST['def_index_dir']
-    ||  $indices[$iname]['uniq']  != $uniq_flag 
+    ||  $indices[$iname]['uniq']  != $uniq_flag
     ||  $indices[$iname]['active']!= $acti_flag
     ||  implode(',', $indices[$iname]['seg']) !=  strtoupper($_POST['def_index_segs'])) {
 
@@ -97,7 +93,7 @@ function modify_index($iname) {
             return FALSE;
         }
 
-        // try to recreate with the new properties        
+        // try to recreate with the new properties
         if (create_index()) {
 
             return TRUE;
@@ -165,7 +161,7 @@ function drop_index($name) {
 
 
 //
-// return an array with the properties of the defined indeces 
+// return an array with the properties of the defined indeces
 //
 function get_indices($order, $dir) {
     global $dbhandle;
@@ -208,7 +204,7 @@ function get_indices($order, $dir) {
 
 
 //
-// output a html-table with a form to define/modify an index 
+// output a html-table with a form to define/modify an index
 //
 // Variables:  $indexname  name of the index to modify
 //             $title      headline-string for the table
@@ -245,10 +241,10 @@ function index_definition($indexname, $title) {
       <?php echo get_table_selectlist('def_index_table', array('noviews', 'owner'), $table, TRUE); ?>
     </td>
     <td align="center" valign="top"><b><?php echo $acc_strings['Active']; ?></b><br>
-      <input type="checkbox" name="def_index_activ" <?php if ($active) echo 'checked'; ?>> 
+      <input type="checkbox" name="def_index_activ" <?php if ($active) echo 'checked'; ?>>
     </td>
     <td align="center" valign="top"><b><?php echo $acc_strings['Unique']; ?></b><br>
-      <input type="checkbox" name="def_index_uniq" <?php if ($uniq) echo 'checked'; ?>> 
+      <input type="checkbox" name="def_index_uniq" <?php if ($uniq) echo 'checked'; ?>>
     </td>
     <td align="center" valign="top"><b><?php echo $acc_strings['Sort']; ?></b><br>
       <select name="def_index_dir">
@@ -258,7 +254,7 @@ function index_definition($indexname, $title) {
     </td>
     <td valign="top"><b><?php echo $acc_strings['ColExpl']; ?></b><br>
         <input type="text" size="30" maxlength="128" name="def_index_segs" value="<?php echo $segs; ?>">
-    </td> 
+    </td>
   </tr>
 </table>
 <?php

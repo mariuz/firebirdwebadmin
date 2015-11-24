@@ -5,10 +5,6 @@
 // Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/02/13 22:31:31 lb>
-//
-// $Id: handle_watchtable.inc.php,v 1.58 2006/07/08 17:08:11 lbrueckner Exp $
-
 
 // initialize $s_tables[] and $s_fields[] if necessary
 $idx = get_panel_index($s_sql_panels, 'tb_watch');
@@ -58,7 +54,7 @@ if (isset($_POST['tb_watch_select'])
 
 //
 // some attributes are restored from $s_cust['wt']
-// 
+//
 if (!empty($s_wt['table']) && $s_wt['columns'] == FALSE && is_array($s_fields[$s_wt['table']])) {
     $s_wt['columns'] = set_watch_all();
     $s_wt['blob_links'] = set_watch_blinks();

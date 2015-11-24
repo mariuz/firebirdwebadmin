@@ -5,19 +5,15 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <01/09/02 14:19:32 lb>
-//
-// $Id: debug_funcs.inc.php,v 1.5 2004/10/24 16:32:58 lbrueckner Exp $
-
 
 //
 // write the content of php's output_buffer to $fname
 //
 function write_output_buffer($fname) {
 
-    $fp = fopen($fname, 'w') 
+    $fp = fopen($fname, 'w')
         or die('Error opening file '.$fname);
-    fwrite($fp, ob_get_contents()) 
+    fwrite($fp, ob_get_contents())
         or die('Error writing to file '.$fname);
     ob_end_flush();
 }
@@ -25,7 +21,7 @@ function write_output_buffer($fname) {
 
 //
 // output the distance between $start and $end,
-// which are resultstrings from microtime() 
+// which are resultstrings from microtime()
 //
 function show_time_consumption($start, $end) {
 
