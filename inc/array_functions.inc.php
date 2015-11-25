@@ -9,20 +9,6 @@
 //
 // swap the elements $from and $to in $arr, return the array
 //
-function array_swap_elements($arr, $from, $to)
-{
-    for ($i = 0; $i < count($arr); ++$i) {
-        if ($i == $from) {
-            $newarr[] = $arr[$to];
-        } elseif ($i == $to) {
-            $newarr[] = $arr[$from];
-        } else {
-            $newarr[] = $arr[$i];
-        }
-    }
-
-    return $newarr;
-}
 
 //
 // move the element from $pos to the top of the array, return the array
@@ -35,21 +21,6 @@ function array_moveto_top($arr, $pos)
             $newarr[] = $arr[$i];
         }
     }
-
-    return $newarr;
-}
-
-//
-// move the element from $pos to the end of the array, return the array
-//
-function array_moveto_end($arr, $pos)
-{
-    for ($i = 0; $i < count($arr); ++$i) {
-        if ($i != $pos) {
-            $newarr[] = $arr[$i];
-        }
-    }
-    $newarr[] = $arr[$pos];
 
     return $newarr;
 }

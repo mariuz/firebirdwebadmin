@@ -256,7 +256,6 @@ function isql_get_metadata($user, $pw, $db, $host)
 
 function exec_command($cmd, $parameters, $stderr = false)
 {
-
     $is_windows = (stristr(php_uname(), 'wind') == true) ? true : false;
 
     if (($is_windows && !is_file(BINPATH . $cmd . '.exe')) && !is_file(BINPATH . $cmd)) {
