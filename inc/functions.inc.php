@@ -158,7 +158,7 @@ function table_columns($table)
 
 
 //
-// return TRUE if the table $tablename contains a blob column
+// return true if the table $tablename contains a blob column
 //
 function have_blob($tablename)
 {
@@ -857,7 +857,7 @@ function get_table_count($tablename)
     $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $tablename . $quote;
     $res = fbird_query($GLOBALS['dbhandle'], $sql)
     or $ib_error .= fbird_errmsg() . "<br>\n";
-    $count = FALSE;
+    $count = false;
     if (is_resource($res)) {
         $row = fbird_fetch_row($res);
         $count = $row[0];
@@ -1049,7 +1049,7 @@ function get_tabmenu_top_fixed($page)
 function redirect($url)
 {
 
-    if (META_REDIRECT === TRUE) {
+    if (META_REDIRECT === true) {
         echo "<head>\n"
             . '  <meta http-equiv="refresh" content="0; URL=' . $url . "\">\n"
             . "</head>\n";
@@ -1120,7 +1120,7 @@ function error_handler($errno, $errmsg, $file, $line, $errstack)
 {
     global $php_error, $warning;
 
-    if (stristr($errmsg, 'ibase') == TRUE) {
+    if (stristr($errmsg, 'ibase') == true) {
         return;
     }
 
@@ -1212,7 +1212,7 @@ function set_customize_settings($cookie_string)
 
     $customize['language'] = $settings[2];
 
-    list ($cols, $rows) = explode('|', $settings[4]);;
+    list ($cols, $rows) = explode('|', $settings[4]);
 
     $customize['askdel'] = $settings[6];
 
@@ -1295,9 +1295,9 @@ function get_customize_defaults($useragent)
         'iframeheight' => IFRAME_HEIGHT,
 
         'askdel' => (CONFIRM_DELETE ? 1 : 0),
-        'enter' => array('another_row' => TRUE,
-            'fk_lookup' => TRUE,
-            'as_new' => FALSE),
+        'enter' => array('another_row' => true,
+            'fk_lookup' => true,
+            'as_new' => false),
         'fk_lookups' => array(),
         'wt' => array(),
     );
@@ -1310,7 +1310,8 @@ function get_customize_defaults($useragent)
 function get_customize_languages()
 {
 
-    return array('brazilian_portuguese', 'dutch', 'english', 'hungarian', 'japanese', 'german', 'polish', 'russian-win1251', 'spanish');
+    return array('brazilian_portuguese', 'dutch', 'english', 'hungarian', 'japanese', 'german', 'polish',
+    'russian-win1251', 'spanish');
 }
 
 
@@ -1403,7 +1404,7 @@ function have_panel_permissions($user, $pname, $connected = false)
     }
 
     if (in_array($pname, $GLOBALS['HIDE_PANELS']) &&
-        ($user != 'SYSDBA' || SYSDBA_GET_ALL == FALSE)
+        ($user != 'SYSDBA' || SYSDBA_GET_ALL == false)
     ) {
 
         return false;
