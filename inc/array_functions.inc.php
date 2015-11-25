@@ -7,10 +7,6 @@
 //                see file LICENCE for details
 
 //
-// swap the elements $from and $to in $arr, return the array
-//
-
-//
 // move the element from $pos to the top of the array, return the array
 //
 function array_moveto_top($arr, $pos)
