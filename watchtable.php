@@ -8,16 +8,15 @@
 
 
 // do not overwrite $s_referer in script_start.inc.php
-$no_session_referer = TRUE;
+$no_session_referer = true;
 
-require('./inc/script_start.inc.php');
-require('./inc/array_functions.inc.php');
+require './inc/script_start.inc.php';
+require './inc/array_functions.inc.php';
 
 if ($s_connected) {
     $dbhandle = db_connect()
          or ib_error();
 }
-
 
 // handle the paging navigation
 if (isset($_GET['go'])) {
@@ -40,8 +39,7 @@ if (isset($_GET['go'])) {
 elseif (isset($_GET['order'])) {
     if ($s_wt['order'] == $_GET['order']) {
         $s_wt['direction'] = ($s_wt['direction'] == 'ASC') ? 'DESC' : 'ASC';
-    }
-    else {
+    } else {
         $s_wt['order'] = $_GET['order'];
         $s_wt['direction'] = 'ASC';
     }
@@ -60,19 +58,18 @@ elseif (isset($_GET['edit'])) {
     $$target_panels = array_moveto_top($$target_panels, $pos);
 
     $s_edit_where[$s_edit_idx] = array('where' => get_request_data('edit', 'GET'),
-                                       'table' => $s_wt['table']);
+                                       'table' => $s_wt['table'], );
     $s_fields = get_table_computed_sources($s_wt['table'], $s_fields);
     $s_edit_values[$s_edit_idx] = init_edit_values($s_edit_where[$s_edit_idx], $s_fields[$s_wt['table']]);
 }
 
 // deleting of a dataset is requested
 elseif (isset($_GET['del'])) {
-
     $where = get_request_data('del', 'GET');
     $quote = identifier_quote($s_login['dialect']);
-    $sql   = 'DELETE FROM ' . $quote . $s_wt['table'] . $quote . ' ' . $where;
+    $sql = 'DELETE FROM '.$quote.$s_wt['table'].$quote.' '.$where;
 
-    if ($s_cust['askdel'] == TRUE) {
+    if ($s_cust['askdel'] == true) {
         $s_delete_idx = ($s_delete_idx > 0) ? get_max_key($s_confirmations['row']) + 1 : 1;
         $target_panels = get_panel_array($s_referer);
         $pname = 'dt_delete'.$s_delete_idx;
@@ -85,10 +82,8 @@ elseif (isset($_GET['del'])) {
 
         $s_confirmations['row'][$s_delete_idx] =
              array('msg' => sprintf($MESSAGES['CONFIRM_ROW_DELETE'], $s_wt['table'], $where),
-                   'sql' => $sql);
-    }
-
-    else {  
+                   'sql' => $sql, );
+    } else {
         fbird_query($dbhandle, $sql)
             or $ib_error = fbird_errmsg();
 
@@ -103,10 +98,9 @@ if (isset($_GET['go'])  ||  isset($_GET['order'])) {
     $s_cust['wt'][$s_login['database']] = array('table' => $s_wt['table'],
                                                 'start' => $s_wt['start'],
                                                 'order' => $s_wt['order'],
-                                                'dir'   => $s_wt['direction']);
+                                                'dir' => $s_wt['direction'], );
     set_customize_cookie($s_cust);
 }
-
 
 globalize_session_vars();
 
@@ -114,36 +108,31 @@ if (!empty($dbhandle)) {
     fbird_close($dbhandle);
 }
 
-header ('Location: '.url_session($s_referer));
+header('Location: '.url_session($s_referer));
 exit;
-
 
 //
 // return the initial field values when editing a dataset
 //
-function init_edit_values($edit_where, $fields) {
-
+function init_edit_values($edit_where, $fields)
+{
     $values = array();
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
-    $sql = 'SELECT * FROM ' . $quote . $edit_where['table'] . $quote . ' ' . $edit_where['where'];
+    $sql = 'SELECT * FROM '.$quote.$edit_where['table'].$quote.' '.$edit_where['where'];
     $res = fbird_query($GLOBALS['dbhandle'], $sql) or ib_error();
     if ($row = fbird_fetch_assoc($res, IBASE_TEXT)) {
         fbird_free_result($res);
         foreach ($fields as $field) {
             if (isset($field['comp'])) {
-                $values[] = $field['csource'] ;
-            }
-            else {
+                $values[] = $field['csource'];
+            } else {
                 $values[] = $row[$field['name']];
             }
         }
-    }
-    else {
+    } else {
         $GLOBALS['ib_error'] = "Query didn't return a result: ".$sql;
     }
 
     return $values;
 }
-
-?>

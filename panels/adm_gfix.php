@@ -6,7 +6,7 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-if ($s_connected == TRUE):
+if ($s_connected == true):
 
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="db_gfix_form"
@@ -34,7 +34,7 @@ if ($s_connected == TRUE):
 
                     <div class="form-group">
                         <label for="adm_sql_dialect"><?php echo $adm_strings['DBDialect']; ?></label>
-                        <?php echo get_selectlist('adm_sql_dialect', array(1, 3), $s_gfix['dialect'], TRUE); ?>
+                        <?php echo get_selectlist('adm_sql_dialect', array(1, 3), $s_gfix['dialect'], true); ?>
                     </div>
                     <input type="submit" class="btn btn-default" name="adm_gfix_dialect"
                            value="<?php echo $button_strings['Set']; ?>">
@@ -43,7 +43,7 @@ if ($s_connected == TRUE):
 
                     <div class="form-group">
                         <label for="adm_access_mode"><?php echo $adm_strings['AccessMode']; ?></label>
-                        <?php echo get_selectlist('adm_access_mode', array($adm_strings['ReadWrite'], $adm_strings['ReadOnly']), $s_gfix['access_mode'], TRUE); ?>
+                        <?php echo get_selectlist('adm_access_mode', array($adm_strings['ReadWrite'], $adm_strings['ReadOnly']), $s_gfix['access_mode'], true); ?>
                     </div>
                     <input type="submit" class="btn btn-default" name="adm_gfix_access_mode"
                            value="<?php echo $button_strings['Set']; ?>">
@@ -52,7 +52,7 @@ if ($s_connected == TRUE):
 
                     <div class="form-group">
                         <label for="adm_write_mode"><?php echo $adm_strings['WriteMode']; ?></label>
-                        <?php echo get_selectlist('adm_write_mode', array($adm_strings['Sync'], $adm_strings['Async']), $s_gfix['write_mode'], TRUE); ?>
+                        <?php echo get_selectlist('adm_write_mode', array($adm_strings['Sync'], $adm_strings['Async']), $s_gfix['write_mode'], true); ?>
                     </div>
                     <input type="submit" class="btn btn-default" name="adm_gfix_write_mode"
                            value="<?php echo $button_strings['Set']; ?>">
@@ -61,7 +61,7 @@ if ($s_connected == TRUE):
 
                     <div class="form-group">
                         <label for="adm_use_space"><?php echo $adm_strings['UseSpace']; ?></label>
-                        <?php echo get_selectlist('adm_use_space', array($adm_strings['SmallFull'], $adm_strings['Reserve']), $s_gfix['use_space'], TRUE); ?>
+                        <?php echo get_selectlist('adm_use_space', array($adm_strings['SmallFull'], $adm_strings['Reserve']), $s_gfix['use_space'], true); ?>
                     </div>
                     <input type="submit" class="btn btn-default" name="adm_gfix_use_space"
                            value="<?php echo $button_strings['Set']; ?>">
@@ -88,7 +88,9 @@ if ($s_connected == TRUE):
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="adm_sweep_ignore"
-                                   value="1"<?php if ($s_gfix['sweep_ignore']) echo ' checked'; ?>> <?php echo $adm_strings['IgnoreChk']; ?>
+                                   value="1"<?php if ($s_gfix['sweep_ignore']) {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['IgnoreChk']; ?>
                         </label>
                     </div>
                     <input type="submit" class="btn btn-default margin-left-10px" name="adm_gfix_sweep"
@@ -105,23 +107,33 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="radio" name="adm_repair"
-                               value="mend"<?php if ($s_gfix['repair'] == 'mend') echo ' checked'; ?>> <?php echo $adm_strings['Mend']; ?>
+                               value="mend"<?php if ($s_gfix['repair'] == 'mend') {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['Mend']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_repair"
-                               value="validate"<?php if ($s_gfix['repair'] == 'validate') echo ' checked'; ?>> <?php echo $adm_strings['Validate']; ?>
+                               value="validate"<?php if ($s_gfix['repair'] == 'validate') {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['Validate']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_repair"
-                               value="full"<?php if ($s_gfix['repair'] == 'full') echo ' checked'; ?>> <?php echo $adm_strings['Full']; ?>
+                               value="full"<?php if ($s_gfix['repair'] == 'full') {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['Full']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_repair"
-                               value="no_update"<?php if ($s_gfix['repair'] == 'no_update') echo ' checked'; ?>> <?php echo $adm_strings['NoUpdate']; ?>
+                               value="no_update"<?php if ($s_gfix['repair'] == 'no_update') {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['NoUpdate']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_repair_ignore"
-                               value="1"<?php if ($s_gfix['repair_ignore']) echo ' checked'; ?>> <?php echo $adm_strings['IgnoreChk']; ?>
+                               value="1"<?php if ($s_gfix['repair_ignore']) {
+    echo ' checked';
+} ?>> <?php echo $adm_strings['IgnoreChk']; ?>
                     </label>
                     <input type="submit" class="btn btn-default margin-left-10px" name="adm_gfix_repair"
                            value="<?php echo $button_strings['Execute']; ?>">
@@ -137,17 +149,23 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="radio" name="adm_shutdown"
-                               value="noconns"<?php if ($s_gfix['_shutdown'] == 'noconns') echo ' checked'; ?>>&nbsp;
+                               value="noconns"<?php if ($s_gfix['_shutdown'] == 'noconns') {
+    echo ' checked';
+} ?>>&nbsp;
                         <?php echo $adm_strings['NoConns']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_shutdown"
-                               value="notrans"<?php if ($s_gfix['shutdown'] == 'notrans') echo ' checked'; ?>>&nbsp;
+                               value="notrans"<?php if ($s_gfix['shutdown'] == 'notrans') {
+    echo ' checked';
+} ?>>&nbsp;
                         <?php echo $adm_strings['NoTrans']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_shutdown"
-                               value="force"<?php if ($s_gfix['shutdown'] == 'force') echo ' checked'; ?>>&nbsp;
+                               value="force"<?php if ($s_gfix['shutdown'] == 'force') {
+    echo ' checked';
+} ?>>&nbsp;
                         <?php echo $adm_strings['Force']; ?>
                     </label>
                     <div class="form-group">
@@ -166,7 +184,9 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_shut_reconnect"
-                               value="1"<?php if ($s_gfix['reconnect']) echo ' checked'; ?>>
+                               value="1"<?php if ($s_gfix['reconnect']) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['Reconnect']; ?>&nbsp;
                     </label>
                 </td>

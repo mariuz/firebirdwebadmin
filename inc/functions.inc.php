@@ -36,12 +36,12 @@ function panel_array_names()
 //
 // returns a string for the usage between the html <title> tags
 //
-function build_title($str, $showdb = TRUE)
+function build_title($str, $showdb = true)
 {
     global $s_connected, $s_login;
 
     $title = 'FirebirdWebAdmin ' . VERSION . ' *** ' . $str;
-    if ($s_connected == TRUE && $showdb)
+    if ($s_connected == true && $showdb)
         $title .= ': ' . $s_login['database'];
 
     return $title;
@@ -74,10 +74,11 @@ function password_stars($pw)
 {
 
     $length = strlen($pw);
-    if ($length > 0)
+    if ($length > 0) {
         return str_repeat('*', $length);
-    else
+    } else {
         return '';
+    }
 }
 
 
@@ -93,7 +94,7 @@ function get_datatype($type, $subtype)
         return 'INT64';
     }
 
-    if ($subtype == 0 or $subtype == NULL or $type == 261 or $type == 14) {
+    if ($subtype == 0 or $subtype == null or $type == 261 or $type == 14) {
         return $datatypes[$type];
     } elseif ($subtype == 1) {
         return 'NUMERIC';
@@ -169,7 +170,7 @@ function have_blob($tablename)
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 
@@ -213,20 +214,20 @@ function build_sql_file($sql)
 //
 // execute some sql via the isql command line tool
 //
-function isql_execute($sql, $user = NULL, $pw = NULL, $db = NULL, $host = NULL)
+function isql_execute($sql, $user = null, $pw = null, $db = null, $host = null)
 {
 
     $sql_file = build_sql_file($sql);
-    $u_str = ($user <> NULL) ? '-u ' . ibwa_escapeshellarg($user) : '';
-    $p_str = ($pw <> NULL) ? '-p ' . ibwa_escapeshellarg($pw) : '';
-    $d_str = ($db <> NULL) ? $db : '';
-    $d_str = ($host <> NULL) ? ibwa_escapeshellarg($host . ':' . $d_str) : ibwa_escapeshellarg($d_str);
+    $u_str = ($user <> null) ? '-u ' . ibwa_escapeshellarg($user) : '';
+    $p_str = ($pw <> null) ? '-p ' . ibwa_escapeshellarg($pw) : '';
+    $d_str = ($db <> null) ? $db : '';
+    $d_str = ($host <> null) ? ibwa_escapeshellarg($host . ':' . $d_str) : ibwa_escapeshellarg($d_str);
 
     $parameters = sprintf(' -m %s %s -i %s %s', $u_str, $p_str, ibwa_escapeshellarg($sql_file), $d_str);
 
     $result = exec_command('isql-fb', $parameters);
 
-    if (DEBUG_FILES !== TRUE) {
+    if (DEBUG_FILES !== true) {
         unlink($sql_file);
     }
 
@@ -251,10 +252,10 @@ function isql_get_metadata($user, $pw, $db, $host)
 }
 
 
-function exec_command($cmd, $parameters, $stderr = FALSE)
 {
+function exec_command($cmd, $parameters, $stderr = false)
 
-    $is_windows = (stristr(php_uname(), 'wind') == TRUE) ? TRUE : FALSE;
+    $is_windows = (stristr(php_uname(), 'wind') == true) ? true : false;
 
     if (($is_windows && !is_file(BINPATH . $cmd . '.exe')) && !is_file(BINPATH . $cmd)) {
 
@@ -264,7 +265,7 @@ function exec_command($cmd, $parameters, $stderr = FALSE)
     $fcmd = $cmd . $parameters . (($stderr && !$is_windows) ? ' 2>&1' : '');
 
 
-    if (DEBUG_COMMANDS === TRUE) {
+    if (DEBUG_COMMANDS === true) {
         $GLOBALS['externcmd'] .= ($GLOBALS['externcmd'] != '') ? '<br>' . BINPATH . $fcmd : BINPATH . $fcmd;
     }
 
@@ -285,7 +286,7 @@ function exec_command($cmd, $parameters, $stderr = FALSE)
     }
 
     return array($out, $err);
-}
+    }
 
 
 //
@@ -311,7 +312,7 @@ function remove_edit_panels()
 
     for ($i = 1; $i <= $s_edit_idx; $i++) {
         $idx = get_panel_index($s_data_panels, 'dt_edit' . $i);
-        if ($idx !== FALSE) {
+        if ($idx !== false) {
             array_splice($s_data_panels, $idx, 1);
         }
         $idx = get_panel_index($s_sql_panels, 'dt_edit' . $i);
@@ -347,23 +348,23 @@ function save_coldef($idx)
     global $s_coldefs;
 
     $s_coldefs[$idx] = save_datatype($idx);
-    $s_coldefs[$idx]['comp'] = isset($_POST['cd_def_comp' . $idx]) ? $_POST['cd_def_comp' . $idx] : NULL;
-    $s_coldefs[$idx]['domain'] = !empty($_POST['cd_def_domain' . $idx]) ? $_POST['cd_def_domain' . $idx] : NULL;
+    $s_coldefs[$idx]['comp'] = isset($_POST['cd_def_comp' . $idx]) ? $_POST['cd_def_comp' . $idx] : null;
+    $s_coldefs[$idx]['domain'] = !empty($_POST['cd_def_domain' . $idx]) ? $_POST['cd_def_domain' . $idx] : null;
     $s_coldefs[$idx]['default'] = get_request_data('cd_def_default' . $idx);
     $s_coldefs[$idx]['check'] = get_request_data('cd_def_check' . $idx);
-    $s_coldefs[$idx]['notnull'] = !empty($_POST['cd_def_notnull' . $idx]) ? $_POST['cd_def_notnull' . $idx] : NULL;
-    $s_coldefs[$idx]['unique'] = !empty($_POST['cd_def_unique' . $idx]) ? $_POST['cd_def_unique' . $idx] : NULL;
-    $s_coldefs[$idx]['primary'] = !empty($_POST['cd_def_primary' . $idx]) ? $_POST['cd_def_primary' . $idx] : NULL;
-    $s_coldefs[$idx]['fk_name'] = !empty($_POST['cd_def_fk_name_' . $idx]) ? $_POST['cd_def_fk_name_' . $idx] : NULL;
-    $s_coldefs[$idx]['fk_table'] = !empty($_POST['cd_def_fk_table_' . $idx]) ? $_POST['cd_def_fk_table_' . $idx] : NULL;
-    $s_coldefs[$idx]['fk_column'] = !empty($_POST['cd_def_fk_col_' . $idx]) ? $_POST['cd_def_fk_col_' . $idx] : NULL;
-    $s_coldefs[$idx]['on_update'] = !empty($_POST['cd_def_ou_' . $idx]) ? $_POST['cd_def_ou_' . $idx] : NULL;
-    $s_coldefs[$idx]['on_delete'] = !empty($_POST['cd_def_od_' . $idx]) ? $_POST['cd_def_od_' . $idx] : NULL;
+    $s_coldefs[$idx]['notnull'] = !empty($_POST['cd_def_notnull' . $idx]) ? $_POST['cd_def_notnull' . $idx] : null;
+    $s_coldefs[$idx]['unique'] = !empty($_POST['cd_def_unique' . $idx]) ? $_POST['cd_def_unique' . $idx] : null;
+    $s_coldefs[$idx]['primary'] = !empty($_POST['cd_def_primary' . $idx]) ? $_POST['cd_def_primary' . $idx] : null;
+    $s_coldefs[$idx]['fk_name'] = !empty($_POST['cd_def_fk_name_' . $idx]) ? $_POST['cd_def_fk_name_' . $idx] : null;
+    $s_coldefs[$idx]['fk_table'] = !empty($_POST['cd_def_fk_table_' . $idx]) ? $_POST['cd_def_fk_table_' . $idx] : null;
+    $s_coldefs[$idx]['fk_column'] = !empty($_POST['cd_def_fk_col_' . $idx]) ? $_POST['cd_def_fk_col_' . $idx] : null;
+    $s_coldefs[$idx]['on_update'] = !empty($_POST['cd_def_ou_' . $idx]) ? $_POST['cd_def_ou_' . $idx] : null;
+    $s_coldefs[$idx]['on_delete'] = !empty($_POST['cd_def_od_' . $idx]) ? $_POST['cd_def_od_' . $idx] : null;
 
     if ($idx == 'mod') {
-        $s_coldefs['mod']['fk_del'] = isset($_POST['cd_def_fk_del_mod']) ? TRUE : FALSE;
-        $s_coldefs['mod']['pk_del'] = isset($_POST['cd_def_pk_del_mod']) ? TRUE : FALSE;
-        $s_coldefs['mod']['uq_del'] = isset($_POST['cd_def_uq_del_mod']) ? TRUE : FALSE;
+        $s_coldefs['mod']['fk_del'] = isset($_POST['cd_def_fk_del_mod']) ? true : false;
+        $s_coldefs['mod']['pk_del'] = isset($_POST['cd_def_pk_del_mod']) ? true : false;
+        $s_coldefs['mod']['uq_del'] = isset($_POST['cd_def_uq_del_mod']) ? true : false;
     }
 }
 
@@ -378,7 +379,7 @@ function save_datatype($idx)
     $coldef['type'] = $_POST['cd_def_type' . $idx];
     $coldef['size'] = trim($_POST['cd_def_size' . $idx]);
     $coldef['charset'] = $_POST['cd_def_charset' . $idx];
-    $coldef['collate'] = (isset($_POST['cd_def_collate' . $idx])) ? $_POST['cd_def_collate' . $idx] : NULL;
+    $coldef['collate'] = (isset($_POST['cd_def_collate' . $idx])) ? $_POST['cd_def_collate' . $idx] : null;
     $coldef['prec'] = trim($_POST['cd_def_prec' . $idx]);
     $coldef['scale'] = trim($_POST['cd_def_scale' . $idx]);
     $coldef['stype'] = trim($_POST['cd_def_stype' . $idx]);
@@ -411,7 +412,7 @@ function datatype_is_modified($olddef, $coldef)
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 
@@ -428,11 +429,11 @@ function column_fk_is_modified($olddef, $coldef)
             || (!isset($olddef[$name]) && !empty($coldef[$name]))
         ) {
 
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 
@@ -463,7 +464,7 @@ function build_coldef($idx, $mode = 'create')
     }
 
     if (isset($s_coldefs[$idx]['notnull']) && $s_coldefs[$idx]['notnull'] != '') {
-        $sql .= ' NOT NULL';
+        $sql .= ' NOT null';
     }
 
     if (isset($s_coldefs[$idx]['unique']) && $s_coldefs[$idx]['unique'] != '') {
@@ -595,7 +596,7 @@ function get_charsets()
 //
 // Result: array  with one entry for every existing dependency
 //                the entries are array with a 'type' and a 'name' index
-function get_dependencies($type, $name, $fname = NULL)
+function get_dependencies($type, $name, $fname = null)
 {
     global $dbhandle;
 
@@ -608,7 +609,7 @@ function get_dependencies($type, $name, $fname = NULL)
     }
     $ignore_str = !empty($ignore) ? ' AND D.RDB$DEPENDENT_TYPE NOT IN (' . implode(',', $ignore) . ')' : '';
 
-    $field_str = ($fname != NULL) ? " AND D.RDB\$FIELD_NAME='" . $fname . "'" : '';
+    $field_str = ($fname != null) ? " AND D.RDB\$FIELD_NAME='" . $fname . "'" : '';
 
     $sql = 'SELECT DISTINCT D.RDB$DEPENDENT_NAME DNAME,'
         . ' T.RDB$TYPE_NAME DTYPE'
@@ -1366,7 +1367,7 @@ function get_request_data($name, $source = 'POST')
         return $data;
     } else {
 
-        return NULL;
+        return null;
     }
 }
 
@@ -1375,7 +1376,7 @@ function get_request_data($name, $source = 'POST')
 // return the variable value if the variable is set
 // or the altenative value otherwise
 //
-function ifsetor(&$var, &$alt = NULL)
+function ifsetor(&$var, &$alt = null)
 {
 
     return isset($var) ? $var : $alt;

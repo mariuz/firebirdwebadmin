@@ -7,7 +7,6 @@
 //                see file LICENCE for details
 
 
-
 //
 // For the defines of paths you have to use slashes, even in a windows environment!
 // i.e define('BINPATH', 'c:/firebirid/bin/');
@@ -48,8 +47,7 @@ $ALLOWED_DIRS = array();
 //                      '/var/lib/firebird/2.5/data/test.gdb',
 //                      'employee.fdb'
 //                      );
-$ALLOWED_FILES=array();
-
+$ALLOWED_FILES = array();
 
 $DATABASE_SUFFIXES = array('fdb','gdb','GDB');    // login into databases, creating and dropping of databases
                                                    // is restricted to database files with this file extensions
@@ -60,7 +58,6 @@ define('BACKUP_DIR', '/var/lib/firebird/2.5'); // define this to restrict the lo
 
 define('LANGUAGE', 'english');       // set the language to use; 'english', 'brazilian_portuguese', 'dutch',
                                      // 'japanese', 'russian-win1251', 'spanish' and 'german' are valid options
-
 
 
 // uncomment the corresponding line for every panel
@@ -101,16 +98,16 @@ $HIDE_PANELS = array(
 // use this array to disable the execution of commands or command groups
 // from the sql-enter panel
 $SQL_DISABLE = array('CREATE DATABASE',   // disables creation of databases/schemas; there is no need to
-                     'CREATE SCHEMA',     // add entries for [ALTER|DROP] DATABASE because they did not work anyhow.
+                     'CREATE SCHEMA'// add entries for [ALTER|DROP] DATABASE because they did not work anyhow.
 //                     'DROP'             // uncommenting this disables all DROP statements
 //                     'DROP TABLE'       // uncommenting this disables the DROP TABLE statement
                      );
 
-define('SYSDBA_GET_ALL', TRUE);           // if TRUE the $HIDE_PANELS and the $SQL_DISABLE settings have
+define('SYSDBA_GET_ALL', true);           // if TRUE the $HIDE_PANELS and the $SQL_DISABLE settings have
                                           // no effect for the SYSDBA user
 
 
-define('CONFIRM_DELETE', TRUE);           // ask for confirmation when deleting data rows or any database objects
+define('CONFIRM_DELETE', true);           // ask for confirmation when deleting data rows or any database objects
 
 define('SQL_AREA_COLS', 80);       // use this for the textarea on the SQL page (also used on the triggers,
 define('SQL_AREA_ROWS', 6);        // the stored procedures and the views panels)
@@ -130,7 +127,6 @@ define('DATA_MAXWIDTH', 50);       // maximal width for the input fields on the 
 
 define('FKLOOKUP_ENTRIES', 1000);
 
-
 define('MAX_CSV_LINE', 50000);     // maximal length for a line read from the csv import file
 
 
@@ -142,22 +138,24 @@ define('BLOB_WINDOW_HEIGHT', 800);
 define('SESSION_NAME', 'firebirdwebadmin');         // session name to use
 
 # transaction parameters used for the calls of fbird_trans()
-define('TRANS_READ', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_READ);
-define('TRANS_WRITE', IBASE_COMMITTED|IBASE_NOWAIT|IBASE_WRITE);
+define('TRANS_READ', IBASE_COMMITTED | IBASE_NOWAIT | IBASE_READ);
+define('TRANS_WRITE', IBASE_COMMITTED | IBASE_NOWAIT | IBASE_WRITE);
 
-define('META_REDIRECT', FALSE);         // use server (FALSE) or client (TRUE) side redirection
+define('META_REDIRECT', false);         // use server (FALSE) or client (TRUE) side redirection
 
 
-define('DEBUG', TRUE);                 // if TRUE print the $debug[] to the info-panel
-define('DEBUG_HTML', FALSE);            // if TRUE write the output_buffer to TMPPATH/{scriptname}.html before
+define('DEBUG', true);                 // if TRUE print the $debug[] to the info-panel
+define('DEBUG_HTML', false);            // if TRUE write the output_buffer to TMPPATH/{scriptname}.html before
                                         // sending it to the client
-define('DEBUG_COMMANDS', FALSE);        // if TRUE all calls of external commands are diplayed on the info-panel
-define('DEBUG_FILES', TRUE);           // if TRUE the temporary files created in TMPATH for processing by isql
+define('DEBUG_COMMANDS', false);        // if TRUE all calls of external commands are diplayed on the info-panel
+define('DEBUG_FILES', true);           // if TRUE the temporary files created in TMPATH for processing by isql
                                         // are not deleted when isql is finished
 
 
-if ('' != SESSION_NAME) session_name(SESSION_NAME);
+if ('' != SESSION_NAME) {
+    session_name(SESSION_NAME);
+}
 
-if (DEBUG === TRUE) error_reporting(E_ALL | E_NOTICE | E_STRICT);
-
-?>
+if (DEBUG === true) {
+    error_reporting(E_ALL | E_NOTICE | E_STRICT);
+}

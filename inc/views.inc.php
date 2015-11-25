@@ -19,15 +19,16 @@ function create_view($viewdefs)
         $lsql .= "\nWITH CHECK OPTION";
     }
 
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
 
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
     }
 
-    return (empty($ib_error)) ? get_viewname($viewdefs['source']) : FALSE;
+    return (empty($ib_error)) ? get_viewname($viewdefs['source']) : false;
 }
-
 
 //
 // drop the view $name off the database
@@ -37,17 +38,20 @@ function drop_view($name)
     global $dbhandle, $s_tables;
     global $ib_error, $lsql;
 
-    $lsql = 'DROP VIEW ' . $name;
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    $lsql = 'DROP VIEW '.$name;
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
-        return FALSE;
+
+        return false;
     } else {
         unset($s_tables[$name]);
-        return TRUE;
+
+        return true;
     }
 }
-
 
 //
 // return the html for the form elements to create or alter a view
@@ -75,6 +79,7 @@ function view_definition($title, $viewdefs)
 </table>
 
 EOT;
+
     return sprintf($html,
         $s_cust['textarea']['rows'],
         $s_cust['textarea']['cols'],
@@ -82,18 +87,15 @@ EOT;
     );
 }
 
-
 //
 // find the name of a view in its source code
 //
 function get_viewname($viewsource)
 {
-
     $chunks = preg_split("/[\s]+/", $viewsource, 4);
 
     return $chunks[2];
 }
-
 
 //
 // deliver the html for an opened view on the views panel
@@ -120,7 +122,7 @@ EOT;
     $cols = array('Name', 'Type', 'Length', 'Prec', 'Scale', 'Charset', 'Collate');
     $html .= "              <tr align=\"left\">\n";
     foreach ($cols as $idx) {
-        $html .= '                <th class="detail"><nobr>' . $tb_strings[$idx] . "</nobr></th>\n";
+        $html .= '                <th class="detail"><nobr>'.$tb_strings[$idx]."</nobr></th>\n";
     }
     $html .= "              </tr>\n";
 
@@ -144,23 +146,22 @@ EOT;
     $html .= "            </table>\n          </td>\n";
 
     $html .= "         <td>&nbsp;</td>\n"
-        . "          <td valign=\"top\">\n"
-        . "            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
-        . "              <tr align=\"left\">\n"
-        . '                <th class="detail">' . $acc_strings['Source'] . "</th>\n"
-        . "              </tr>\n"
-        . "              <tr>\n"
-        . '                <td class="detail"><pre>' . $source . "</pre></td>\n"
-        . "              </tr>\n"
-        . "            </table>\n"
-        . "          </tr>\n"
-        . "        </td>\n"
-        . "      </table>\n"
-        . "    </nobr>\n";
+        ."          <td valign=\"top\">\n"
+        ."            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
+        ."              <tr align=\"left\">\n"
+        .'                <th class="detail">'.$acc_strings['Source']."</th>\n"
+        ."              </tr>\n"
+        ."              <tr>\n"
+        .'                <td class="detail"><pre>'.$source."</pre></td>\n"
+        ."              </tr>\n"
+        ."            </table>\n"
+        ."          </tr>\n"
+        ."        </td>\n"
+        ."      </table>\n"
+        ."    </nobr>\n";
 
     return $html;
 }
-
 
 //
 // return the sourcecode of the definition for $view
@@ -171,8 +172,8 @@ function get_view_source($name)
 
     $vsource = '';
     $sql = 'SELECT R.RDB$VIEW_SOURCE VSOURCE'
-        . ' FROM RDB$RELATIONS R'
-        . " WHERE R.RDB\$RELATION_NAME='" . $name . "'";
+        .' FROM RDB$RELATIONS R'
+        ." WHERE R.RDB\$RELATION_NAME='".$name."'";
     $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     $obj = fbird_fetch_object($res);
 
@@ -188,13 +189,11 @@ function get_view_source($name)
     return $vsource;
 }
 
-
 //
 // mark all views as opened or closed in $s_tables
 //
 function toggle_all_views($tables, $status)
 {
-
     foreach (array_keys($tables) as $name) {
         if ($tables[$name]['is_view']) {
             $tables[$name]['status'] = $status;
@@ -203,5 +202,3 @@ function toggle_all_views($tables, $status)
 
     return $tables;
 }
-
-?>

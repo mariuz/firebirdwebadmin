@@ -6,7 +6,7 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-if ($s_connected == TRUE):
+if ($s_connected == true):
 
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="adm_restore"
@@ -23,7 +23,9 @@ if ($s_connected == TRUE):
                         <label for="adm_re_source"><?php echo $adm_strings['FDName']; ?></label>
 
                         <div class="input-group">
-                            <?php if (defined('BACKUP_DIR') && BACKUP_DIR !== '') echo '<div class="input-group-addon">' . BACKUP_DIR . '</div>'; ?>
+                            <?php if (defined('BACKUP_DIR') && BACKUP_DIR !== '') {
+    echo '<div class="input-group-addon">'.BACKUP_DIR.'</div>';
+} ?>
                             <?php echo get_textfield('adm_re_source', 50, 256, $s_restore['source']); ?>
                         </div>
                     </div>
@@ -47,12 +49,16 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="radio" name="adm_re_overwrite"
-                               value="0"<?php if ($s_restore['overwrite'] == FALSE) echo ' checked'; ?>>&nbsp;
+                               value="0"<?php if ($s_restore['overwrite'] == false) {
+    echo ' checked';
+} ?>>&nbsp;
                         <?php echo $adm_strings['NewFile']; ?>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="adm_re_overwrite"
-                               value="1"<?php if ($s_restore['overwrite'] == TRUE) echo ' checked'; ?>>&nbsp;
+                               value="1"<?php if ($s_restore['overwrite'] == true) {
+    echo ' checked';
+} ?>>&nbsp;
                         <?php echo $adm_strings['RestFile']; ?>
                     </label>
                 </td>
@@ -67,14 +73,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_inactive"
-                               value="1"<?php if ($s_restore['inactive'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['inactive'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['IdxInact']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_novalidity"
-                               value="1"<?php if ($s_restore['novalidity'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['novalidity'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['NoValidity']; ?>
                     </label>
                 </td>
@@ -83,14 +93,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_oneattime"
-                               value="1"<?php if ($s_restore['oneattime'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['oneattime'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['OneAtTime']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_kill"
-                               value="1"<?php if ($s_restore['kill'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['kill'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['KillShad']; ?>
                     </label>
                 </td>
@@ -99,14 +113,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_useall"
-                               value="1"<?php if ($s_restore['useall'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['useall'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['UseAll']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_re_verbose"
-                               value="1"<?php if ($s_restore['verbose'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_restore['verbose'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['Verbose']; ?>
                     </label>
                 </td>
@@ -114,7 +132,9 @@ if ($s_connected == TRUE):
         </table>
         <label class="radio-inline">
             <input type="checkbox" name="adm_re_connect"
-                   value="1"<?php if ($s_restore['connect'] == TRUE) echo ' checked'; ?>>
+                   value="1"<?php if ($s_restore['connect'] == true) {
+    echo ' checked';
+} ?>>
             <?php echo $adm_strings['ConnAfter']; ?></label>
         <?php
 
@@ -123,7 +143,7 @@ if ($s_connected == TRUE):
 
             <br/>
             <div class="if">
-                <iframe src="<?php echo url_session('./iframe_content.php?key=' . $iframekey_restore); ?>" width="98%"
+                <iframe src="<?php echo url_session('./iframe_content.php?key='.$iframekey_restore); ?>" width="98%"
                         height="<?php echo $s_cust['iframeheight']; ?>" name="adm_restore_iframe"></iframe>
             </div>
             <br/>

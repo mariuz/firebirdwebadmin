@@ -9,7 +9,7 @@
 if ($s_connected):
 
     ?>
-    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']) . '#dt_export'; ?>" name="dt_csv_form" enctype="multipart/form-data">
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']).'#dt_export'; ?>" name="dt_csv_form" enctype="multipart/form-data">
         <table class="table table-bordered">
             <tr>
                 <td valign="top">
@@ -19,7 +19,7 @@ if ($s_connected):
                         </tr>
                         <tr>
                             <td>
-                                <?php echo get_indexed_selectlist('dt_export_format', get_export_formats(), $s_export['format'], FALSE, array('onChange' => 'replaceExportFormatOptions(this.value);')); ?>
+                                <?php echo get_indexed_selectlist('dt_export_format', get_export_formats(), $s_export['format'], false, array('onChange' => 'replaceExportFormatOptions(this.value);')); ?>
                             </td>
                         </tr>
                     </table>
@@ -31,14 +31,14 @@ if ($s_connected):
                         </tr>
                         <tr>
                             <td valign="top">
-                                <?php echo get_indexed_selectlist('dt_export_source', get_export_sources(), $s_export['source']['option'], FALSE, array('onChange' => 'setExportSource(this.value);')); ?>
+                                <?php echo get_indexed_selectlist('dt_export_source', get_export_sources(), $s_export['source']['option'], false, array('onChange' => 'setExportSource(this.value);')); ?>
                             </td>
                             <td>
             <span id="dt_export_source_table_span" style="display:<?php $s_export['source']['option'] == 'table' ? print 'block' : print 'none'; ?>;">
-              <?php echo get_table_selectlist('dt_export_source_table', array('select'), $s_export['source']['table'], TRUE); ?>
+              <?php echo get_table_selectlist('dt_export_source_table', array('select'), $s_export['source']['table'], true); ?>
             </span>
             <span id="dt_export_source_dbtables_span" style="display:<?php $s_export['source']['option'] == 'db' ? print 'block' : print 'none'; ?>;">
-              <?php echo get_table_selectlist('dt_export_source_dbtables[]', array('select'), $s_export['source']['dbtables'], FALSE, array('multiple' => 'multiple'), 4); ?>
+              <?php echo get_table_selectlist('dt_export_source_dbtables[]', array('select'), $s_export['source']['dbtables'], false, array('multiple' => 'multiple'), 4); ?>
             </span>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@ if ($s_connected):
                         </tr>
                         <tr>
                             <td>
-                                <?php echo get_indexed_selectlist('dt_export_target', get_export_targets(), $s_export['target']['option'], FALSE, array('onChange' => "if (this.value=='screen') hide('dt_export_filename_span'); else display('dt_export_filename_span'); setExportTarget(this.value);")); ?>
+                                <?php echo get_indexed_selectlist('dt_export_target', get_export_targets(), $s_export['target']['option'], false, array('onChange' => "if (this.value=='screen') hide('dt_export_filename_span'); else display('dt_export_filename_span'); setExportTarget(this.value);")); ?>
                             </td>
                             <td>
             <span id="dt_export_filename_span" style="display:<?php $s_export['target']['option'] == 'file' ? print 'block' : print 'none'; ?>;">
@@ -91,7 +91,7 @@ if ($s_connected):
                                 <table class="table table-bordered">
                                     <tr>
                                         <td>
-                                            <?php echo $dt_strings['ReplNull'] . "\n"; ?>
+                                            <?php echo $dt_strings['ReplNull']."\n"; ?>
                                         </td>
                                         <td>
                                             <?php echo get_textfield('dt_export_replnull', 8, 255, $s_export['general']['replnull']); ?>
@@ -99,7 +99,7 @@ if ($s_connected):
                                     </tr>
                                     <tr>
                                         <td>
-                                            <?php echo $dt_strings['DFormat'] . "\n"; ?>
+                                            <?php echo $dt_strings['DFormat']."\n"; ?>
                                         </td>
                                         <td>
                                             <?php echo get_textfield('dt_export_date', 10, 255, $s_export['general']['date']); ?>
@@ -107,7 +107,7 @@ if ($s_connected):
                                     </tr>
                                     <tr>
                                         <td>
-                                            <?php echo $dt_strings['TFormat'] . "\n"; ?>
+                                            <?php echo $dt_strings['TFormat']."\n"; ?>
                                         </td>
                                         <td>
                                             <?php echo get_textfield('dt_export_time', 10, 255, $s_export['general']['time']); ?>
@@ -139,7 +139,7 @@ if (isset($iframekey_export)):
 
     ?>
     <div class="if" id="dt_export_iframe">
-        <iframe src="<?php echo url_session('./iframe_content.php?key=' . $iframekey_export); ?>" width="98%" height="<?php echo $s_cust['iframeheight']; ?>" name="adm_export_iframe"></iframe>
+        <iframe src="<?php echo url_session('./iframe_content.php?key='.$iframekey_export); ?>" width="98%" height="<?php echo $s_cust['iframeheight']; ?>" name="adm_export_iframe"></iframe>
     </div>
     <br/>
 <?php

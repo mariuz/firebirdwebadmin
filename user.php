@@ -6,14 +6,13 @@
 //                see file LICENCE for details
 
 
-require('./inc/script_start.inc.php');
+require './inc/script_start.inc.php';
 
 //
 // user stuff
 //
-if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
-
-    include('./inc/users.inc.php');
+if (have_panel_permissions($s_login['user'], 'usr_user', true)) {
+    include './inc/users.inc.php';
 
     // init the array users[]
     $users = get_user();
@@ -33,58 +32,54 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
         // remove the selected user
         if (isset($_POST['usr_user_del'])  &&
             trim($_POST['usr_user_dname']) != '') {
-
-            $duser =  get_request_data('usr_user_dname');
-            if ($s_cust['askdel'] == TRUE) {
-                $s_confirmations['user'] = 
+            $duser = get_request_data('usr_user_dname');
+            if ($s_cust['askdel'] == true) {
+                $s_confirmations['user'] =
                      array('msg' => sprintf($MESSAGES['CONFIRM_USER_DELETE'], $duser),
-                           'obj' => $duser);
-            }
-
-            elseif (drop_user($duser, $s_sysdba_pw)) {
+                           'obj' => $duser, );
+            } elseif (drop_user($duser, $s_sysdba_pw)) {
                 unset($users[$duser]);
             }
         }
-        
+
         // The Create button on the User panel was pushed
-        if (isset($_POST['usr_user_create'])){
-            $user_add_flag = TRUE;
+        if (isset($_POST['usr_user_create'])) {
+            $user_add_flag = true;
         }
-        
+
         // create the user from the form values
         if (isset($_POST['usr_user_create_doit'])) {
             $udata = get_posted_user_data();
             if (!create_user($udata, $s_sysdba_pw)) {
 
                 // on error show the create user form again
-                $user_add_flag = TRUE;
-            }
-            else {
+                $user_add_flag = true;
+            } else {
                 $users = get_user();
             }
         }
-        
+
         // the Modify button on the User panel was pushed
-        if (isset($_POST['usr_user_mod'])  
+        if (isset($_POST['usr_user_mod'])
         &&  !empty($_POST['usr_user_mname'])) {
             $s_user_name = get_request_data('usr_user_mname');
-            $udata = array('uname'    => $s_user_name,
-                           'fname'    => $users[$s_user_name]['FIRST_NAME'],
-                           'mname'    => $users[$s_user_name]['MIDDLE_NAME'],
-                           'lname'    => $users[$s_user_name]['LAST_NAME']
+            $udata = array('uname' => $s_user_name,
+                           'fname' => $users[$s_user_name]['FIRST_NAME'],
+                           'mname' => $users[$s_user_name]['MIDDLE_NAME'],
+                           'lname' => $users[$s_user_name]['LAST_NAME'],
                            );
         }
-        
+
         // modify the user from the form values
         if (isset($_POST['usr_user_mod_doit'])) {
-            $udata =  get_posted_user_data();
+            $udata = get_posted_user_data();
             if (modify_user($udata, $s_sysdba_pw)) {
                 // on success don't show the modify user form again
                 unset($s_user_name);
                 $users = get_user();
-            }        
+            }
         }
-        
+
         // modifying an index was canceled
         if (isset($_POST['usr_user_mod_cancel'])) {
             unset($s_user_name);
@@ -92,27 +87,23 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
     }
 }
 
-
 //
 // roles initialisations and form handling
 //
-if (have_panel_permissions($s_login['user'], 'usr_role', TRUE)) {
-
-    include('./inc/roles.inc.php');
+if (have_panel_permissions($s_login['user'], 'usr_role', true)) {
+    include './inc/roles.inc.php';
 
     $roles = get_roles();
 
     // create a role
     if (isset($_POST['usr_role_create'])
     &&  $_POST['usr_role_name'] != '') {
-
         create_role($_POST['usr_role_name']);
     }
 
     // drop a role
     if (isset($_POST['usr_role_del'])
     &&  $_POST['usr_role_dname'] != '') {
-
         drop_role($_POST['usr_role_dname']);
     }
 
@@ -120,7 +111,6 @@ if (have_panel_permissions($s_login['user'], 'usr_role', TRUE)) {
     if (isset($_POST['usr_role_add'])
     &&  $_POST['usr_role_addname'] != ''
     &&  $_POST['usr_role_adduser'] != '') {
-
         grant_role_to_user($_POST['usr_role_addname'], $_POST['usr_role_adduser']);
     }
 
@@ -128,11 +118,9 @@ if (have_panel_permissions($s_login['user'], 'usr_role', TRUE)) {
     if (isset($_POST['usr_role_remove'])
     &&  $_POST['usr_role_removename'] != ''
     &&  $_POST['usr_role_removeuser'] != '') {
-
         revoke_role_from_user($_POST['usr_role_removename'], $_POST['usr_role_removeuser']);
     }
 }
-
 
 // deleting a subject is confirmed
 if (isset($_POST['confirm_yes'])) {
@@ -151,36 +139,30 @@ if (isset($_POST['confirm_no'])) {
     unset($s_confirmations[$_POST['confirm_subject']]);
 }
 
-
 //
 // customizing
 //
 if (have_panel_permissions($s_login['user'], 'usr_cust')) {
-
     if (isset($_POST['usr_cust_save'])) {
-
         $old_settings = $s_cust;
 
-        $s_cust['language']     = get_request_data('usr_cust_language');
-        $s_cust['askdel']       = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
+        $s_cust['language'] = get_request_data('usr_cust_language');
+        $s_cust['askdel'] = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
 
-        $settings_changed = TRUE;
+        $settings_changed = true;
     }
 
     // reset the customizing values to the configuration defaults
     if (isset($_POST['usr_cust_defaults'])) {
-
         $old_settings = $s_cust;
         $s_cust = get_customize_defaults($s_useragent);
 
-        $settings_changed = TRUE;
+        $settings_changed = true;
     }
 
-    if ($settings_changed = TRUE  &&  isset($old_settings)) {
-
+    if ($settings_changed = true  &&  isset($old_settings)) {
         if ($old_settings['language'] != $s_cust['language']) {
-
-            include('./lang/' . $s_cust['language'] . '.inc.php');
+            include './lang/'.$s_cust['language'].'.inc.php';
             fix_language($s_cust['language']);
         }
 
@@ -191,13 +173,10 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
     }
 }
 
-
 //
 // print out all the panels
 //
 $s_page = 'Users';
 $panels = $s_users_panels;
 
-require('./inc/script_end.inc.php');
-
-?>
+require './inc/script_end.inc.php';

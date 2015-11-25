@@ -31,7 +31,7 @@
             <td>
                 <label for="db_create_pagesize"><?php echo $db_strings['PageSize']; ?></label><br>
                 <?php
-                echo get_selectlist('db_create_pagesize', $pagesizes, $s_create_pagesize, TRUE);
+                echo get_selectlist('db_create_pagesize', $pagesizes, $s_create_pagesize, true);
                 ?>
             </td>
             <td>

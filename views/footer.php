@@ -12,7 +12,7 @@
 					<p class="text-muted"><?=date('Y')?> - <a href="https://github.com/mariuz/firebirdwebadmin">FirebirdWebAdmin</a> <?php echo VERSION; ?></p>
 				</td>
 <?php
-if (DEBUG === TRUE) {
+if (DEBUG === true) {
     echo "<td width=\"30%\">&nbsp;</td><td><div align=\"left\">\n";
 
     show_time_consumption($start_time, microtime());
@@ -35,7 +35,7 @@ if (DEBUG === TRUE) {
 
     // Save the contents of $_POST and $_GET in session
     $s_POST = $_POST;
-    $s_GET  = $_GET;
+    $s_GET = $_GET;
 
     echo "</div>\n</td>";
 }
@@ -49,9 +49,9 @@ if (DEBUG === TRUE) {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="./js/miscellaneous.js" type="text/javascript"></script>
 <?=  js_global_variables()
-. js_xml_http_request_client()
-. js_request_close_panel()
-. $js_stack
+.js_xml_http_request_client()
+.js_request_close_panel()
+.$js_stack
 ?>
 </body>
 </html>

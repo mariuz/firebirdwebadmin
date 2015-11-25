@@ -9,45 +9,47 @@
 //
 // create a stored procedure from the values in the procedure form
 //
-function create_procedure($proceduredefs) {
+function create_procedure($proceduredefs)
+{
     global $s_login, $isql, $binary_output, $binary_error;
 
     if (empty($proceduredefs['source'])) {
-        return FALSE;
+        return false;
     }
 
-    $isql  = "SET TERM !! ;\n"
-            . $proceduredefs['source']."\n"
+    $isql = "SET TERM !! ;\n"
+            .$proceduredefs['source']."\n"
             ."SET TERM ; !!\n";
-    if (DEBUG) add_debug('isql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('isql', __FILE__, __LINE__);
+    }
 
     // this must be done by isql because 'create procedure' is not supported from within php
     list($binary_output, $binary_error) = isql_execute($isql, $s_login['user'], $s_login['password'], $s_login['database'], $s_login['host']);
 
-    return ($binary_error != ''  ||  count($binary_output) > 0) ? FALSE : TRUE;
+    return ($binary_error != ''  ||  count($binary_output) > 0) ? false : true;
 }
-
 
 //
 // drop the named stored procedure
 //
-function drop_procedure($name) {
+function drop_procedure($name)
+{
     global $dbhandle, $ib_error, $s_procedures;
 
     $lsql = 'DROP PROCEDURE '.$name;
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
-    }
-    else {
-         unset($s_procedures[$name]);
+    } else {
+        unset($s_procedures[$name]);
     }
 }
-
 
 //
 // return an array with the properties of the defined procedures
 //
-function get_procedures($oldprocedures) {
+function get_procedures($oldprocedures)
+{
     global $dbhandle;
 
     $sql = 'SELECT P.RDB$PROCEDURE_NAME PNAME,'
@@ -71,23 +73,23 @@ function get_procedures($oldprocedures) {
             $status = 'open';
         }
 
-        $procs[trim($obj->PNAME)] = array('name'  => trim($obj->PNAME),
+        $procs[trim($obj->PNAME)] = array('name' => trim($obj->PNAME),
                                           'owner' => trim($obj->OWNER),
-                                          'source'=> $source,
-                                          'in'    => $in,
-                                          'out'   => $out,
-                                          'status'=> $status);
+                                          'source' => $source,
+                                          'in' => $in,
+                                          'out' => $out,
+                                          'status' => $status, );
     }
     fbird_free_result($res);
 
     return $procs;
 }
 
-
 //
 // return the sourcecode of the stored procedure $name
 //
-function get_procedure_source($name) {
+function get_procedure_source($name)
+{
     global $dbhandle;
 
     $psource = '';
@@ -109,13 +111,13 @@ function get_procedure_source($name) {
     return $psource;
 }
 
-
 //
 // return the input- and result-parameters of the stored procedure $name
 //
 // Result: array containing two arrays with the datatype properties of
 //               the stored procedures parameters and return values
-function get_procedure_parameters($name) {
+function get_procedure_parameters($name)
+{
     global $dbhandle, $s_charsets;
 
     $sql = 'SELECT P.RDB$PARAMETER_NAME PNAME,'
@@ -135,54 +137,52 @@ function get_procedure_parameters($name) {
 
     $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     $in = $out = array();
-    while  ($obj = fbird_fetch_object($res)) {
+    while ($obj = fbird_fetch_object($res)) {
         $ptype = ($obj->PTYPE == 0) ? 'in' : 'out';
 
-        $stype = (isset($obj->STYPE)) ? $obj->STYPE : NULL;
-        $type  = get_datatype($obj->FTYPE, $stype);
+        $stype = (isset($obj->STYPE)) ? $obj->STYPE : null;
+        $type = get_datatype($obj->FTYPE, $stype);
 
         if (in_array($type, array('DECIMAL', 'NUMERIC'))) {
-            $prec  = $obj->FPREC;
+            $prec = $obj->FPREC;
             $scale = -$obj->FSCALE;
-            $stype = NULL;
-        }
-        else {
-            $prec = $scale = NULL;
+            $stype = null;
+        } else {
+            $prec = $scale = null;
         }
 
-        ${$ptype}[] = array('name'    => trim($obj->PNAME),
-                          'type'    => $type,
-                          'stype'   => $stype,
-                          'size'    => (in_array($type, array('VARCHAR', 'CHARACTER'))) ? $obj->FLEN : NULL,
-                          'charset' => (isset($obj->CHARID)) ? $s_charsets[$obj->CHARID]['name'] : NULL,
+        ${$ptype}[] = array('name' => trim($obj->PNAME),
+                          'type' => $type,
+                          'stype' => $stype,
+                          'size' => (in_array($type, array('VARCHAR', 'CHARACTER'))) ? $obj->FLEN : null,
+                          'charset' => (isset($obj->CHARID)) ? $s_charsets[$obj->CHARID]['name'] : null,
                           'collate' => (isset($obj->COLLID)  &&  $obj->COLLID != 0)
-                                            ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID] : NULL,
-                          'prec'    => $prec,
-                          'scale'   => $scale,
-                          'segsize' => ($type == 'BLOB') ? $obj->SEGLEN : NULL);
+                                            ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID] : null,
+                          'prec' => $prec,
+                          'scale' => $scale,
+                          'segsize' => ($type == 'BLOB') ? $obj->SEGLEN : null, );
     }
 
     return array($in, $out);
 }
 
-
 //
 // find the name of a procedure in its source code
 //
-function get_procedure_name($source) {
-
+function get_procedure_name($source)
+{
     $chunks = preg_split("/[\s]+/", $source, 4);
 
     return $chunks[2];
 }
-
 
 //
 // returns the html for a table displaying the stored procedures parameters or result values
 //
 // Paremters:  array typedefs   one of the arrays returned by get_procedure_parameters()
 //
-function procedure_parameters($typedefs) {
+function procedure_parameters($typedefs)
+{
     global $acc_strings;
 
     $str = "<table class=\"table table-bordered\">\n"
@@ -200,15 +200,15 @@ function procedure_parameters($typedefs) {
 
     foreach ($typedefs as $def) {
         $str .=  "  <tr>\n"
-                .'    <td class="detail">' . $def['name'] ."</td>\n"
-                .'    <td class="detail">' . $def['type'] ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['size'])) ? $def['size'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['charset'])) ? $def['charset'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['collate'])) ? $def['collate'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['prec'])) ? $def['prec'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['scale'])) ? $def['scale'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['stype'])) ? $def['stype'] : '&nbsp;') ."</td>\n"
-                .'    <td class="detail">' . ((isset($def['segsize'])) ? $def['segsize'] : '&nbsp;') ."</td>\n"
+                .'    <td class="detail">'.$def['name']."</td>\n"
+                .'    <td class="detail">'.$def['type']."</td>\n"
+                .'    <td class="detail">'.((isset($def['size'])) ? $def['size'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['charset'])) ? $def['charset'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['collate'])) ? $def['collate'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['prec'])) ? $def['prec'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['scale'])) ? $def['scale'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['stype'])) ? $def['stype'] : '&nbsp;')."</td>\n"
+                .'    <td class="detail">'.((isset($def['segsize'])) ? $def['segsize'] : '&nbsp;')."</td>\n"
                 ."  </tr>\n";
     }
 
@@ -217,14 +217,14 @@ function procedure_parameters($typedefs) {
     return $str;
 }
 
-
 //
 // output a html-table with a form to define/modify a stored procedure
 //
 // Parameters:  $indexname  name of the index to modify
 //              $title      headline-string for the table
 //
-function get_procedure_definition($title, $source) {
+function get_procedure_definition($title, $source)
+{
     global $acc_strings, $s_cust;
 
     $rows = $s_cust['textarea']['rows'];
@@ -249,11 +249,11 @@ EOT;
     return $html;
 }
 
-
 //
 // deliver the html for an opened view on the views panel
 //
-function get_opened_procedure($name, $procedure, $url) {
+function get_opened_procedure($name, $procedure, $url)
+{
     global $dbhandle, $tb_strings, $acc_strings, $ptitle_strings;
 
     $in = $out = '';
@@ -262,12 +262,12 @@ function get_opened_procedure($name, $procedure, $url) {
     if (count($procedure['in']) > 0) {
         $in = procedure_parameters($procedure['in']);
         $out_start = $src_start = "<tr>\n";
-        $rowspan++;
+        ++$rowspan;
     }
     if (count($procedure['out']) > 0) {
         $out = procedure_parameters($procedure['out']);
         $src_start = "<tr>\n";
-        $rowspan++;
+        ++$rowspan;
     }
 
     $html = <<<EOT
@@ -282,7 +282,7 @@ function get_opened_procedure($name, $procedure, $url) {
 EOT;
 
     if (!empty($in)) {
-        $html .=<<<EOT
+        $html .= <<<EOT
           <td>
             <table class="table table-bordered">
               <tr>
@@ -296,11 +296,10 @@ EOT;
        </tr>
 
 EOT;
-
     }
 
     if (!empty($out)) {
-        $html .=<<<EOT
+        $html .= <<<EOT
         $out_start
           <td>
             <table class="table table-bordered">
@@ -315,7 +314,6 @@ EOT;
         </tr>
 
 EOT;
-
     }
 
     $html .= <<<EOT
@@ -338,19 +336,18 @@ EOT;
     return $html;
 }
 
-
 //
 // mark all procedures as opened or closed in $s_procedures
 //
-function toggle_all_procedures($procedures, $status) {
-
+function toggle_all_procedures($procedures, $status)
+{
     foreach (array_keys($procedures) as $name) {
         $procedures[$name]['status'] = $status;
 
         if ($status == 'open'  &&  empty($procedures[$name]['source'])) {
             $procedures[$name]['source'] = get_procedure_source($name);
             list($in, $out) = get_procedure_parameters($name);
-            $procedures[$name]['in']  = $in;
+            $procedures[$name]['in'] = $in;
             $procedures[$name]['out'] = $out;
         }
     }
@@ -358,12 +355,11 @@ function toggle_all_procedures($procedures, $status) {
     return $procedures;
 }
 
-
 //
 // build the source code for modifying the sp described in $procedure
 //
-function procedure_modify_source($procedure) {
-
+function procedure_modify_source($procedure)
+{
     $source = 'ALTER PROCEDURE '.$procedure['name'].procedure_parameter_list($procedure['in'])."\n"
              .procedure_return_list($procedure['out'])
              ."AS\n"
@@ -372,8 +368,8 @@ function procedure_modify_source($procedure) {
     return $source;
 }
 
-function procedure_parameter_list($in) {
-
+function procedure_parameter_list($in)
+{
     if (count($in) == 0) {
         return '';
     }
@@ -387,8 +383,8 @@ function procedure_parameter_list($in) {
     return $list;
 }
 
-function procedure_return_list($out) {
-
+function procedure_return_list($out)
+{
     if (count($out) == 0) {
         return '';
     }
@@ -401,5 +397,3 @@ function procedure_return_list($out) {
 
     return $list;
 }
-
-?>

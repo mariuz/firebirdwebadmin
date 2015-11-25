@@ -10,11 +10,12 @@
 //
 // return an array to display an the System Table panel
 //
-function get_systable($s_systable) {
+function get_systable($s_systable)
+{
     global $dbhandle;
 
     // get the field names and types
-    $sql  = 'SELECT RDB$RELATION_FIELDS.RDB$FIELD_NAME AS FNAME,'
+    $sql = 'SELECT RDB$RELATION_FIELDS.RDB$FIELD_NAME AS FNAME,'
                  .' RDB$RELATION_FIELDS.RDB$FIELD_POSITION,'
                  .' RDB$FIELD_TYPE AS FTYPE,'
                  .' RDB$FIELD_SUB_TYPE AS STYPE'
@@ -27,16 +28,16 @@ function get_systable($s_systable) {
 
     $table = array();
     while ($row = fbird_fetch_object($res)) {
-        $type = (isset($row->FTYPE)) ? $row->FTYPE : NULL;
-        $stype= (isset($row->STYPE)) ? $row->STYPE : NULL;
+        $type = (isset($row->FTYPE)) ? $row->FTYPE : null;
+        $stype = (isset($row->STYPE)) ? $row->STYPE : null;
         $table[trim($row->FNAME)]['type'] = get_datatype($type, $stype);
     }
     fbird_free_result($res);
 
     // get the table content
     $sql = 'SELECT *' //.implode(',', array_keys($table))
-           .' FROM '.$s_systable['table'];
-    if ($s_systable['sysdata'] == FALSE) {
+.' FROM '.$s_systable['table'];
+    if ($s_systable['sysdata'] == false) {
         $fields = array_keys($table);
         $sql .= ' WHERE '.pos($fields)." NOT LIKE 'RDB\$%'"
                  .' AND '.pos($fields)." NOT LIKE 'TMP\$%'";
@@ -44,14 +45,14 @@ function get_systable($s_systable) {
 
     // handle the filter
     if (!empty($s_systable['ffield'])  &&  in_array($s_systable['ffield'], array_keys($table))) {
-        $sql .= $s_systable['sysdata'] == TRUE ? ' WHERE ' : ' AND ';
+        $sql .= $s_systable['sysdata'] == true ? ' WHERE ' : ' AND ';
         switch ($s_systable['fvalue']) {
             case '':
-                $sql .= $s_systable['ffield'] . ' IS NULL';
+                $sql .= $s_systable['ffield'].' IS NULL';
                 break;
             case 'BLOB':
                 if ($table[$s_systable['ffield']]['type'] == 'BLOB') {
-                    $sql .= $s_systable['ffield'] . " IS NOT NULL";
+                    $sql .= $s_systable['ffield'].' IS NOT NULL';
                     break;
                 }
             default:
@@ -68,14 +69,11 @@ function get_systable($s_systable) {
         foreach (array_keys($table) as $fname) {
             if ($row->$fname === 0) {
                 $table[$fname]['col'][] = '0';
-            }
-            elseif (!isset($row->$fname)  || empty($row->$fname)) {
+            } elseif (!isset($row->$fname)  || empty($row->$fname)) {
                 $table[$fname]['col'][] = '&nbsp;';
-            }
-            elseif ($table[$fname]['type'] == 'BLOB') {
+            } elseif ($table[$fname]['type'] == 'BLOB') {
                 $table[$fname]['col'][] = '<i>BLOB</i>';
-            }
-            else {
+            } else {
                 $table[$fname]['col'][] = trim($row->$fname);
             }
         }
@@ -85,18 +83,16 @@ function get_systable($s_systable) {
     return $table;
 }
 
-
 //
 // display the system table onto the System Table panel
 //
-function get_systable_html($table, $s_systable) {
-
+function get_systable_html($table, $s_systable)
+{
     $html = "<table id=\"systable\" class=\"table table-bordered table-hover tsep\" cellpadding=\"2\">\n<thead><tr>\n";
     foreach (array_keys($table) as $colname) {
         if ($s_systable['order'] == $colname) {
             $headstr = ($s_systable['dir'] == 'ASC') ? '*&nbsp;'.$colname : $colname.'&nbsp;*';
-        }
-        else {
+        } else {
             $headstr = $colname;
         }
         $url = url_session('database.php?order='.$colname);
@@ -121,13 +117,12 @@ function get_systable_html($table, $s_systable) {
         $class = 'wttr2';
 
         // loop the rows
-        for ($i=0; $i<$rows; $i++) {
+        for ($i = 0; $i < $rows; ++$i) {
             $class = ($class == 'wttr1') ? 'wttr2' : 'wttr1';
             $html .= '<tr class="'.$class."\">\n";
 
             // loop the columns
             foreach ($table as $colname => $colarr) {
-
                 $align = ($colarr['type'] == 'BLOB') ? 'center' : 'right';
                 $val = $colarr['col'][$i];
 
@@ -137,8 +132,7 @@ function get_systable_html($table, $s_systable) {
                     if (count($systable_textblobs[$s_systable['table']]['indices']) == 1) {
                         $where = urlencode(sprintf($where_str,
                                                    $table[$systable_textblobs[$s_systable['table']]['indices'][0]]['col'][$i]));
-                    }
-                    else {
+                    } else {
                         $where = urlencode(sprintf($where_str,
                                                    $table[$systable_textblobs[$s_systable['table']]['indices'][0]]['col'][$i],
                                                    $table[$systable_textblobs[$s_systable['table']]['indices'][1]]['col'][$i]));
@@ -157,76 +151,76 @@ function get_systable_html($table, $s_systable) {
     return $html;
 }
 
-
 //
 // delivers the definitions for the blob links on the systemtables panel
 //
-function systable_textblobs() {
-
+function systable_textblobs()
+{
     return
-        array('RDB$CHARACTER_SETS'       => array('columns' => array('RDB$DESCRIPTON'),
-                                                  'indices' => array('RDB$RDB$CHARACTER_SET_NAME')
+        array('RDB$CHARACTER_SETS' => array('columns' => array('RDB$DESCRIPTON'),
+                                                  'indices' => array('RDB$RDB$CHARACTER_SET_NAME'),
                                                   ),
-              'RDB$COLLATIONS'           => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$COLLATION_NAME')
+              'RDB$COLLATIONS' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$COLLATION_NAME'),
                                                   ),
-              'RDB$DATABASE'             => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$RELATION_ID')
+              'RDB$DATABASE' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$RELATION_ID'),
                                                   ),
-              'RDB$EXCEPTIONS'           => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$EXCEPTION_NAME')
+              'RDB$EXCEPTIONS' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$EXCEPTION_NAME'),
                                                   ),
-              'RDB$FIELDS'               => array('columns' => array('RDB$VALIDATION_SOURCE', 'RDB$COMPUTED_SOURCE',
-                                                                     'RDB$DEFAULT_SOURCE', 'RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$FIELD_NAME')
+              'RDB$FIELDS' => array('columns' => array('RDB$VALIDATION_SOURCE', 'RDB$COMPUTED_SOURCE',
+                                                                     'RDB$DEFAULT_SOURCE', 'RDB$DESCRIPTION', ),
+                                                  'indices' => array('RDB$FIELD_NAME'),
                                                   ),
-              'RDB$FILTERS'              => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$FUNCTION_NAME')
+              'RDB$FILTERS' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$FUNCTION_NAME'),
                                                   ),
-              'RDB$FUNCTIONS'            => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$FUNCTION_NAME')
+              'RDB$FUNCTIONS' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$FUNCTION_NAME'),
                                                   ),
-              'RDB$INDICES'              => array('columns' => array('RDB$DESCRIPTION', 'RDB$EXPRESSION_SOURCE'),
-                                                  'indices' => array('RDB$INDEX_NAME')
+              'RDB$INDICES' => array('columns' => array('RDB$DESCRIPTION', 'RDB$EXPRESSION_SOURCE'),
+                                                  'indices' => array('RDB$INDEX_NAME'),
                                                   ),
               'RDB$PROCEDURE_PARAMETERS' => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$PROCEDURE_NAME', 'RDB$PARAMETER_NAME')
+                                                  'indices' => array('RDB$PROCEDURE_NAME', 'RDB$PARAMETER_NAME'),
                                                   ),
-              'RDB$PROCEDURES'           => array('columns' => array('RDB$DESCRIPTION', 'RDB$PROCEDURE_SOURCE'),
-                                                  'indices' => array('RDB$PROCEDURE_NAME')
+              'RDB$PROCEDURES' => array('columns' => array('RDB$DESCRIPTION', 'RDB$PROCEDURE_SOURCE'),
+                                                  'indices' => array('RDB$PROCEDURE_NAME'),
                                                   ),
-              'RDB$RELATION_FIELDS'      => array('columns' => array('RDB$DESCRIPTION', 'RDB$DEFAULT_SOURCE'),
-                                                  'indices' => array('RDB$FIELD_SOURCE', 'RDB$RELATION_NAME')
+              'RDB$RELATION_FIELDS' => array('columns' => array('RDB$DESCRIPTION', 'RDB$DEFAULT_SOURCE'),
+                                                  'indices' => array('RDB$FIELD_SOURCE', 'RDB$RELATION_NAME'),
                                                   ),
-              'RDB$RELATIONS'            => array('columns' => array('RDB$VIEW_SOURCE', 'RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$RELATION_ID')
+              'RDB$RELATIONS' => array('columns' => array('RDB$VIEW_SOURCE', 'RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$RELATION_ID'),
                                                   ),
-              'RDB$SECURITY_CLASSES'     => array ('columns' => array('RDB$DESCRIPTION'),
-                                                   'indices' => array('RDB$SECURITY_CLASS')
+              'RDB$SECURITY_CLASSES' => array('columns' => array('RDB$DESCRIPTION'),
+                                                   'indices' => array('RDB$SECURITY_CLASS'),
                                                    ),
-              'RDB$TRIGGERS'             => array('columns' => array('RDB$DESCRIPTION', 'RDB$TRIGGER_SOURCE'),
-                                                  'indices' => array('RDB$TRIGGER_NAME')
+              'RDB$TRIGGERS' => array('columns' => array('RDB$DESCRIPTION', 'RDB$TRIGGER_SOURCE'),
+                                                  'indices' => array('RDB$TRIGGER_NAME'),
                                                   ),
-              'RDB$TYPES'                => array('columns' => array('RDB$DESCRIPTION'),
-                                                  'indices' => array('RDB$TYPE_NAME')
+              'RDB$TYPES' => array('columns' => array('RDB$DESCRIPTION'),
+                                                  'indices' => array('RDB$TYPE_NAME'),
                                                   ),
               );
 }
 
-
-function systable_field_select($table, $field=NULL) {
+function systable_field_select($table, $field = null)
+{
     global $db_strings;
 
     $cols = get_table_fields($table);
 
     return '<label for="db_sysfield">'.$db_strings['FField']."</label><br>\n"
-         . get_selectlist('db_sysfield', $cols, $field, TRUE,
+         .get_selectlist('db_sysfield', $cols, $field, true,
                            array('onChange' => "getFilterValues('".$table."' ,selectedElement(this))",
-                                 'id' => 'db_sysvalues_list')
+                                 'id' => 'db_sysvalues_list', )
                            );
 }
 
-function systable_value_select($table, $field, $value=NULL) {
+function systable_value_select($table, $field, $value = null)
+{
     global $dbhandle, $db_strings;
 
     $sql = 'SELECT DISTINCT '.$field.' AS FNAME FROM '.$table;
@@ -239,7 +233,5 @@ function systable_value_select($table, $field, $value=NULL) {
     fbird_free_result($res);
 
     return '<label for="db_sysvalue">'.$db_strings['FValue']."</label><br>\n"
-         . get_selectlist('db_sysvalue', $values, $value, TRUE);
+         .get_selectlist('db_sysvalue', $values, $value, true);
 }
-
-?>

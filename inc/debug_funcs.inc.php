@@ -9,8 +9,8 @@
 //
 // write the content of php's output_buffer to $fname
 //
-function write_output_buffer($fname) {
-
+function write_output_buffer($fname)
+{
     $fp = fopen($fname, 'w')
         or die('Error opening file '.$fname);
     fwrite($fp, ob_get_contents())
@@ -18,17 +18,16 @@ function write_output_buffer($fname) {
     ob_end_flush();
 }
 
-
 //
 // output the distance between $start and $end,
 // which are resultstrings from microtime()
 //
-function show_time_consumption($start, $end) {
-
-   list($sm, $ss) = split(' ', $start);
-   list($em, $es) = split(' ', $end);
-   $elapsed = $es - $ss + $em - $sm;
-   echo 'time consumption: '.$elapsed."<br>\n";
+function show_time_consumption($start, $end)
+{
+    list($sm, $ss) = split(' ', $start);
+    list($em, $es) = split(' ', $end);
+    $elapsed = $es - $ss + $em - $sm;
+    echo 'time consumption: '.$elapsed."<br>\n";
 }
 
 // add a string to array $debug[], $debug[] is printed on the info-panel if DEBUG == TRUE
@@ -37,20 +36,19 @@ function show_time_consumption($start, $end) {
 // $str         : if $$str is a variable print its name and value, else just print $str
 // $file, $line : are thought to be __FILE__ and __LINE__ at the place the function is called
 //
-function add_debug($str, $file=NULL, $line=NULL) {
-
-    if ($file == NULL || $line == NULL) {
+function add_debug($str, $file = null, $line = null)
+{
+    if ($file == null || $line == null) {
         $dstr = "<tr>\n<td colspan=\"2\">";
         if (isset($GLOBALS[$str])) {
             $dstr .= add_var_debug($str, "<br>\n");
         } else {
             $dstr .= "$str<br>\n";
         }
-    }
-    else {
+    } else {
         $dstr = "<tr>\n<td>$file, $line:</td>\n";
         if (isset($GLOBALS[$str])) {
-            $dstr .= "<td>".add_var_debug($str, "<br>\n");
+            $dstr .= '<td>'.add_var_debug($str, "<br>\n");
         } else {
             $dstr .= "<td>$str<br>\n";
         }
@@ -59,85 +57,81 @@ function add_debug($str, $file=NULL, $line=NULL) {
     $GLOBALS['debug'][] = $dstr;
 }
 
-
-
-function add_var_debug($var, $separator) {
-
+function add_var_debug($var, $separator)
+{
     if (!is_array($GLOBALS[$var])) {
         return($var.' = '.$GLOBALS[$var]);
     } else {
         $str = $var.' = array('.$separator;
         $arr = $GLOBALS[$var];
-        foreach($arr as $key => $val) {
+        foreach ($arr as $key => $val) {
             $str .= $key.' => '.$val.$separator;
         }
         $str .= ')'.$separator;
+
         return $str;
     }
 }
 
-
 //
 // append debugging output $str to the file debug.txt in the temporay directory
 //
-function file_debug($str) {
-    include_once('inc/configuration.inc.php');
+function file_debug($str)
+{
+    include_once 'inc/configuration.inc.php';
 
     $fp = fopen(TMPPATH.'debug.txt', 'a') or die('Error: cannot open file for debug output');
-	fwrite($fp, $str);
-	fclose($fp);
+    fwrite($fp, $str);
+    fclose($fp);
 }
-
 
 //
 // pop up a javascript window displaying $string
 //
-function js_alert($string) {
-?>
+function js_alert($string)
+{
+    ?>
 <script language="JavaScript">
   <!--
-   alert("<?php echo $string; ?>");
+   alert("<?php echo $string;
+    ?>");
   //-->
   </script>
 <?php
-}
 
+}
 
 //
 // display all session variables
 //
-function show_session() {
-
+function show_session()
+{
     debug_var($GLOBALS['HTTP_SESSION_VAR']);
 }
 
-
 // display content and structure of $var and die()
-function debug_die($var) {
-
+function debug_die($var)
+{
     debug_var($var);
     die();
 }
 
-
 // display content and structure of $var
-function debug_var($var) {
-
-    @include_once('Var_Dump.php');
+function debug_var($var)
+{
+    @include_once 'Var_Dump.php';
     if (class_exists('Var_Dump')) {
         Var_Dump::displayInit(array('display_mode' => 'HTML4_Text'),
-                              array('mode'   => 'normal',
+                              array('mode' => 'normal',
                                     'offset' => 3,
-                                    'before_type'  => '<font color="#006600">',
-                                    'after_type'   => '</font>',
+                                    'before_type' => '<font color="#006600">',
+                                    'after_type' => '</font>',
                                     'before_value' => '<font color="#000088">',
-                                    'after_value'  => '</font>'
+                                    'after_value' => '</font>',
                                     )
                               );
         Var_Dump::display($var);
-    }
-
-    else {
+    } else {
         echo "<pre>\n";
         print_r($var);
         echo "</pre>\n";

@@ -12,12 +12,9 @@
             <td colspan="2"><label for="db_login_database"><?php echo $db_strings['Database']; ?></label><br>
                 <?php
                 if (count($dbfiles) == 0) {
-
                     echo get_textfield('db_login_database', '35', '128', $s_login['database']);
-
                 } else {
-
-                    echo get_selectlist('db_login_database', $dbfiles, $s_login['database'], TRUE);
+                    echo get_selectlist('db_login_database', $dbfiles, $s_login['database'], true);
                 }
                 ?>
             </td>
@@ -45,17 +42,17 @@
                 <?php echo get_charset_select('db_login_charset', $s_login['charset']); ?>
             </td>
             <td><label for="db_login_dialect"><?php echo $db_strings['Dialect']; ?></label><br>
-                <?php echo get_selectlist('db_login_dialect', array(1, 3), $s_login['dialect'], TRUE); ?>
+                <?php echo get_selectlist('db_login_dialect', array(1, 3), $s_login['dialect'], true); ?>
             </td>
             <td><label for="db_login_server"><?php echo $db_strings['Server']; ?></label><br>
-                <?php echo get_selectlist('db_login_server', $server_types, $s_login['server'], TRUE); ?>
+                <?php echo get_selectlist('db_login_server', $server_types, $s_login['server'], true); ?>
             </td>
         </tr>
     </table>
 	<input class="btn btn-success" type="submit" name="db_login_doit" value="<?php echo $button_strings['Login']; ?>">
 	<?php
-	if ($s_connected == TRUE) {
-		echo '<input class="btn btn-warning" type="submit" name="db_logout_doit" value="' . $button_strings['Logout'] . "\">\n";
-	}
-	?>
+    if ($s_connected == true) {
+        echo '<input class="btn btn-warning" type="submit" name="db_logout_doit" value="'.$button_strings['Logout']."\">\n";
+    }
+    ?>
 </form>

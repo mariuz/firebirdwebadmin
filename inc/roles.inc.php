@@ -9,7 +9,8 @@
 //
 // create a role called $name
 //
-function create_role($name) {
+function create_role($name)
+{
     global $dbhandle, $roles, $s_login;
     global $ib_error, $lsql;
 
@@ -17,50 +18,52 @@ function create_role($name) {
 
     $lsql = 'CREATE ROLE '.$name;
 
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
 
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)) {
-
         $roles[$name]['owner'] = $s_login['user'];
         $roles[$name]['members'] = array();
 
-        return TRUE;
-    }
-    else {
-
-        return FALSE;
+        return true;
+    } else {
+        return false;
     }
 }
-
 
 //
 // drop the role $name off the database
 //
-function drop_role($name) {
+function drop_role($name)
+{
     global $roles, $dbhandle;
     global $ib_error, $lsql;
 
     $lsql = 'DROP ROLE '.$name;
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
-        return FALSE;
-    }
-    else {
+
+        return false;
+    } else {
         unset($roles[$name]);
-        return TRUE;
+
+        return true;
     }
 }
-
 
 //
 // grant a role to an user
 //
-function grant_role_to_user($role, $user) {
+function grant_role_to_user($role, $user)
+{
     global $dbhandle, $roles;
     global $ib_error, $lsql;
 
@@ -68,28 +71,28 @@ function grant_role_to_user($role, $user) {
 
     $lsql = 'GRANT '.$role.' TO '.$user;
 
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
 
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)) {
-
         $roles[$role]['members'][] = $user;
-        return TRUE;
-    }
-    else {
 
-        return FALSE;
+        return true;
+    } else {
+        return false;
     }
 }
-
 
 //
 // revoke a role from an user
 //
-function revoke_role_from_user($role, $user) {
+function revoke_role_from_user($role, $user)
+{
     global $dbhandle, $roles;
     global $ib_error, $lsql;
 
@@ -97,29 +100,29 @@ function revoke_role_from_user($role, $user) {
 
     $lsql = 'REVOKE '.$role.' FROM '.$user;
 
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
 
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
     }
 
     if (empty($ib_error)  &&
-        ($idx = array_search($user, $roles[$role]['members'])) !== FALSE) {
+        ($idx = array_search($user, $roles[$role]['members'])) !== false) {
         unset($roles[$role]['members'][$idx]);
-        return TRUE;
-    }
-    else {
 
-        return FALSE;
+        return true;
+    } else {
+        return false;
     }
 }
-
-
 
 //
 // return an array with the properties of the defined indeces
 //
-function get_roles() {
+function get_roles()
+{
     global $dbhandle;
 
     $sql = 'SELECT R.RDB$ROLE_NAME AS NAME,'
@@ -135,11 +138,11 @@ function get_roles() {
     $roles = array();
     $lastone = '';
     while ($obj = fbird_fetch_object($res)) {
-        $rname  = trim($obj->NAME);
+        $rname = trim($obj->NAME);
         $member = (isset($obj->MEMBER)) ? trim($obj->MEMBER) : '';
 
         if ($rname == $lastone) {
-            $roles[$rname]['members'][]   = $member;
+            $roles[$rname]['members'][] = $member;
             continue;
         }
 
@@ -151,23 +154,22 @@ function get_roles() {
     return $roles;
 }
 
-
 //
 // output the options for the role selectlist
 //
-function build_roles_options($roles, $selected) {
+function build_roles_options($roles, $selected)
+{
     global $s_login;
 
     echo "<option>\n";
-    foreach($roles as $name => $role) {
+    foreach ($roles as $name => $role) {
         if ($role['owner'] != $s_login['user']  &&  $s_login['user'] != 'SYSDBA') {
             continue;
         }
         if ($name == $selected) {
             echo '<option selected> '.$name."\n";
-        } else
+        } else {
             echo '<option> '.$name."\n";
+        }
     }
 }
-
-?>

@@ -20,7 +20,7 @@ function get_tables()
     $s_fields = array();
 
     // get the tablenames, owner and view flag
-    $sql  = 'SELECT RDB$RELATION_NAME AS RNAME,'
+    $sql = 'SELECT RDB$RELATION_NAME AS RNAME,'
                  .' RDB$VIEW_BLR AS VBLR,'
                  .' RDB$OWNER_NAME AS OWNER'
             .' FROM RDB$RELATIONS'
@@ -33,12 +33,11 @@ function get_tables()
 
     // initialize $s_tables[]
     while ($row = fbird_fetch_object($res)) {
-
         $tablename = trim($row->RNAME);
 
-        $s_tables[$tablename]['status']     = (isset($previous[$tablename])) ? $previous[$tablename]['status'] : 'close';
-        $s_tables[$tablename]['is_view']    = (isset($row->VBLR)  &&  $row->VBLR !== null) ? true : false;
-        $s_tables[$tablename]['owner']      = trim($row->OWNER);
+        $s_tables[$tablename]['status'] = (isset($previous[$tablename])) ? $previous[$tablename]['status'] : 'close';
+        $s_tables[$tablename]['is_view'] = (isset($row->VBLR)  &&  $row->VBLR !== null) ? true : false;
+        $s_tables[$tablename]['owner'] = trim($row->OWNER);
         $s_tables[$tablename]['privileges'] = array();
     }
     fbird_free_result($res);
@@ -67,13 +66,12 @@ function get_tables()
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     while ($row = fbird_fetch_object($res)) {
-        $s_tables[trim($row->RNAME)]['privileges'][] =  trim($row->PRIV);
+        $s_tables[trim($row->RNAME)]['privileges'][] = trim($row->PRIV);
     }
     fbird_free_result($res);
 
-
     // find the check, not null, unique, pk and fk and  constraints
-    $sql ='SELECT RC.RDB$RELATION_NAME TNAME,'
+    $sql = 'SELECT RC.RDB$RELATION_NAME TNAME,'
                .' RC.RDB$CONSTRAINT_TYPE RTYPE,'
                .' RC.RDB$CONSTRAINT_NAME CNAME,'
                .' RC.RDB$INDEX_NAME INAME,'
@@ -93,9 +91,9 @@ function get_tables()
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     // reset the index infos
-    $s_foreigns  = array();
+    $s_foreigns = array();
     $s_primaries = array();
-    $s_uniques   = array();
+    $s_uniques = array();
 
     $constraints = array();
     while ($row = fbird_fetch_object($res)) {
@@ -107,17 +105,17 @@ function get_tables()
             case 'UNIQUE':
                 $constraints[trim($row->TNAME)][trim($row->SENAME)]['unique'] = $cname;
                 $s_uniques[$cname]['index'] = trim($row->INAME);
-                $s_uniques[$cname]['cols']  = isset($s_uniques[$cname]['cols']) ? $s_uniques[$cname]['cols']++ : 1;
+                $s_uniques[$cname]['cols'] = isset($s_uniques[$cname]['cols']) ? $s_uniques[$cname]['cols']++ : 1;
                 break;
             case 'FOREIGN KEY':
                 $constraints[trim($row->TNAME)][trim($row->SENAME)]['foreign'] = $cname;
                 $s_foreigns[$cname]['index'] = trim($row->INAME);
-                $s_foreigns[$cname]['cols']  = isset($s_foreigns[$cname]['cols']) ? $s_foreigns[$cname]['cols']++ : 1;
+                $s_foreigns[$cname]['cols'] = isset($s_foreigns[$cname]['cols']) ? $s_foreigns[$cname]['cols']++ : 1;
                 break;
             case 'PRIMARY KEY':
                 $constraints[trim($row->TNAME)][trim($row->SENAME)]['primary'] = $cname;
                 $s_primaries[$cname]['index'] = trim($row->INAME);
-                $s_primaries[$cname]['cols']  = isset($s_primaries[$cname]['cols']) ? $s_primaries[$cname]['cols']++ : 1;
+                $s_primaries[$cname]['cols'] = isset($s_primaries[$cname]['cols']) ? $s_primaries[$cname]['cols']++ : 1;
                 break;
         }
     }
@@ -129,7 +127,7 @@ function get_tables()
 //     debug_var($s_primaries);
 
     // find the field properties for all non-system tables
-    $sql  = 'SELECT DISTINCT R.RDB$FIELD_NAME AS FNAME,'
+    $sql = 'SELECT DISTINCT R.RDB$FIELD_NAME AS FNAME,'
                  .' R.RDB$NULL_FLAG AS NFLAG,'
                  .' R.RDB$DEFAULT_SOURCE AS DSOURCE,'
                  .' R.RDB$FIELD_POSITION,'
@@ -150,23 +148,23 @@ function get_tables()
             .' JOIN RDB$FIELDS F ON R.RDB$FIELD_SOURCE=F.RDB$FIELD_NAME'
        .' LEFT JOIN RDB$FIELD_DIMENSIONS D ON R.RDB$FIELD_SOURCE=D.RDB$FIELD_NAME'
            .' WHERE F.RDB$SYSTEM_FLAG=0'
-       . ' ORDER BY R.RDB$FIELD_POSITION';
+       .' ORDER BY R.RDB$FIELD_POSITION';
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     //initialize $s_fields[]
     $idx = 0;
     while ($row = fbird_fetch_object($res)) {
         $tname = trim($row->TNAME);
-        $field = $s_fields[$tname][$idx]['name']  = trim($row->FNAME);
+        $field = $s_fields[$tname][$idx]['name'] = trim($row->FNAME);
         if (strpos($row->DNAME, 'RDB$') !== 0) {
             $s_fields[$tname][$idx]['domain'] = 'Yes';
             $s_fields[$tname][$idx]['type'] = trim($row->DNAME);
         } else {
             $s_fields[$tname][$idx]['stype'] = (isset($row->STYPE)) ? $row->STYPE : null;
-            $s_fields[$tname][$idx]['type']  = get_datatype($row->FTYPE, $s_fields[$tname][$idx]['stype']);
+            $s_fields[$tname][$idx]['type'] = get_datatype($row->FTYPE, $s_fields[$tname][$idx]['stype']);
         }
         if ($s_fields[$tname][$idx]['type'] == 'VARCHAR' || $s_fields[$tname][$idx]['type'] == 'CHARACTER') {
-            $s_fields[$tname][$idx]['size']    = $row->FLEN;
+            $s_fields[$tname][$idx]['size'] = $row->FLEN;
         }
 
         // field is defined as NOT NULL
@@ -176,19 +174,19 @@ function get_tables()
 
         // this field is computed
         if (isset($row->CSOURCE)) {
-            $s_fields[$tname][$idx]['comp']   = 'Yes';
+            $s_fields[$tname][$idx]['comp'] = 'Yes';
             $s_fields[$tname][$idx]['csource'] = false;
         }
 
         // this field has a default value
         if (isset($row->DSOURCE)) {
-            $s_fields[$tname][$idx]['default']= 'Yes';
+            $s_fields[$tname][$idx]['default'] = 'Yes';
             $s_fields[$tname][$idx]['dsource'] = false;
         }
 
         if (($s_fields[$tname][$idx]['type'] == 'DECIMAL')  or  ($s_fields[$tname][$idx]['type'] == 'NUMERIC')) {
-            $s_fields[$tname][$idx]['prec']   = $row->FPREC;
-            $s_fields[$tname][$idx]['scale']  = -($row->FSCALE);
+            $s_fields[$tname][$idx]['prec'] = $row->FPREC;
+            $s_fields[$tname][$idx]['scale'] = -($row->FSCALE);
         }
 
         if ($s_fields[$tname][$idx]['type'] == 'BLOB') {
@@ -212,13 +210,12 @@ function get_tables()
                 $s_fields[$tname][$idx][$ctype] = $constraints[$tname][$field][$ctype];
             }
         }
-        $idx++;
+        ++$idx;
     }
 //     debug_var($s_fields);
 
     $quote = identifier_quote($s_login['dialect']);
     foreach ($s_tables as $name => $properties) {
-
         if ($s_tables_def == true) {
             $s_fields = get_table_defaults_sources($name, $s_fields);
         }
@@ -233,8 +230,7 @@ function get_tables()
 
         if (($properties['is_view'] == false  &&  $s_tables_counts == true)
         ||  ($properties['is_view'] == true   &&  $s_views_counts  == true)) {
-
-            $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $name . $quote;
+            $sql = 'SELECT COUNT(*) AS CNT FROM '.$quote.$name.$quote;
             $res = fbird_query($dbhandle, $sql)
                 or $ib_error .= fbird_errmsg()."<br>\n";
             if (is_resource($res)) {

@@ -8,7 +8,7 @@
 
 if (empty($_COOKIE)):
 
-    echo '<div style="padding: 20px 0px 20px 15px">' . $MESSAGES['COOKIES_NEEDED'] . "</div>\n";
+    echo '<div style="padding: 20px 0px 20px 15px">'.$MESSAGES['COOKIES_NEEDED']."</div>\n";
 
 else:
 

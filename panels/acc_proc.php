@@ -8,7 +8,7 @@
 
 if (isset($s_confirmations['procedure'])):
     $subject = 'procedure';
-    include_once('./panels/confirm.php');
+    include_once './panels/confirm.php';
 
 elseif (isset($proc_add_flag)):
 
@@ -38,21 +38,17 @@ elseif (isset($proc_mod_flag)):
 </form>
 <?php
 
-elseif ($s_connected == TRUE):
+elseif ($s_connected == true):
 
     if (count($s_procedures) > 0) {
-        foreach($s_procedures as $pname => $properties) {
-
+        foreach ($s_procedures as $pname => $properties) {
             $fold_url = fold_detail_url('procedure', $properties['status'], $pname, $pname);
 
             echo '<div id="'.'p_'.$pname."\" class=\"det\">\n";
 
             if ($properties['status'] == 'open') {
-
                 echo get_opened_procedure($pname, $properties, $fold_url);
-            }
-            else {
-
+            } else {
                 echo get_closed_detail($pname, $fold_url);
             }
 
@@ -82,7 +78,7 @@ elseif ($s_connected == TRUE):
     <b><?php echo $acc_strings['SelProcMod']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_proc_mod_name', array_keys($s_procedures), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_proc_mod_name', array_keys($s_procedures), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_proc_mod" value="<?php echo $button_strings['Modify']; ?>">
@@ -93,7 +89,7 @@ elseif ($s_connected == TRUE):
     <b><?php echo $acc_strings['SelProcDel']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_proc_del_name', array_keys($s_procedures), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_proc_del_name', array_keys($s_procedures), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_proc_del" value="<?php echo $button_strings['Delete']; ?>">

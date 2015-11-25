@@ -7,20 +7,18 @@
 //                see file LICENCE for details
 
 
-require('./inc/script_start.inc.php');
+require './inc/script_start.inc.php';
 
 //
 // script is called from the create table form
 //
-if (have_panel_permissions($s_login['user'], 'tb_create', TRUE)) {
-
+if (have_panel_permissions($s_login['user'], 'tb_create', true)) {
     if (isset($_POST['tb_create_doit'])) {
         $s_create_table = $_POST['tb_create_table'];
 
         // this is the first step, $s_create_num is still unset
         if (!isset($s_create_num) || empty($s_create_num)) {
-            
-            if (isset($_POST['tb_create_num'])  &&  (int)$_POST['tb_create_num'] > 0) {
+            if (isset($_POST['tb_create_num'])  &&  (int) $_POST['tb_create_num'] > 0) {
                 $s_create_num = $_POST['tb_create_num'];
                 $s_coldefs = array();
             }
@@ -31,7 +29,7 @@ if (have_panel_permissions($s_login['user'], 'tb_create', TRUE)) {
         //              create the table 
         else {
             $rwords = array();
-            for ($idx=0; $idx<$s_create_num; $idx++) {
+            for ($idx = 0; $idx < $s_create_num; ++$idx) {
                 // save the form values into $s_coldefs
                 save_coldef($idx);
 
@@ -44,16 +42,14 @@ if (have_panel_permissions($s_login['user'], 'tb_create', TRUE)) {
             if (count($rwords) > 0) {
                 $cnt = count($rwords);
                 $warning = ($cnt == 1) ? sprintf($WARNINGS['NAME_IS_KEYWORD'], $rwords[0])
-                                       : sprintf($WARNINGS['NAMES_ARE_KEYWORDS'], implode(', ',$rwords));
-            }
-
-            else {
-       	        // build the CREATE TABLE sql-statement
+                                       : sprintf($WARNINGS['NAMES_ARE_KEYWORDS'], implode(', ', $rwords));
+            } else {
+                // build the CREATE TABLE sql-statement
                 $sql = "CREATE TABLE $s_create_table (\n";
 
                 // loop over the number of columns 
                 // and build the <col_def> parts of the query
-                for ($idx=0; $idx<$s_create_num; $idx++) {
+                for ($idx = 0; $idx < $s_create_num; ++$idx) {
                     $sql .= build_coldef($idx);
 
                     if (isset($s_coldefs[$idx]['primary'])) {   // collect fieldnames for the PRIMARY KEY
@@ -62,15 +58,14 @@ if (have_panel_permissions($s_login['user'], 'tb_create', TRUE)) {
                     $sql .= ",\n";
                 }
                 if (isset($pkeys)) {
-                    $sql .= "\tPRIMARY KEY\t(".implode(', ', $pkeys)."),\n"; 
+                    $sql .= "\tPRIMARY KEY\t(".implode(', ', $pkeys)."),\n";
                 }
                 $sql = substr($sql, 0, -2);      // remove the last ',\n'
                 $sql .= "\n);";
             }
         }
     }
- }
-
+}
 
 //
 // cancel button on the create table panel was pressed
@@ -80,19 +75,16 @@ if (isset($_POST['tb_create_cancel'])) {
     $s_coldefs = array();
 }
 
-
-
 //
 // script is called from the modify table form
 //
 if (isset($_POST['tb_modify_doit'])) {
     if ($_POST['tb_modify_name'] != '') {
-	$s_modify_name = $_POST['tb_modify_name'];
+        $s_modify_name = $_POST['tb_modify_name'];
 
         set_panel_title('tb_modify', $ptitle_strings['tb_modify'].': '.$s_modify_name);
     }
 }
-
 
 //
 // prevent bypassing of the $HIDE_PANEL setting for the modify column actions
@@ -102,7 +94,6 @@ if ((!have_panel_permissions($s_login['user'], 'tb_modify'))
     die('bad boy');
 }
 
-
 //
 // script is called via the Ready button on the modify table form
 //
@@ -111,15 +102,13 @@ if (isset($_POST['tb_modify_ready'])) {
     set_panel_title('tb_modify', $ptitle_strings['tb_modify']);
 }
 
-
 //
 // script is called via the Add Column button on the modify table form
 //
 if (isset($_POST['tb_modify_add'])) {
     $s_coldefs['add'] = array();
-    $col_add_flag = TRUE;
+    $col_add_flag = true;
 }
-
 
 //
 // add the new column to the table
@@ -132,48 +121,40 @@ if (isset($_POST['tb_modadd_doit'])) {
         $warning = sprintf($WARNINGS['NAME_IS_KEYWORD'], strtoupper($s_coldefs['add']['name']));
 
         // show the add-column form again
-        $col_add_flag = TRUE;
-    }
-
-    else {
+        $col_add_flag = true;
+    } else {
         $sql = "ALTER TABLE $s_modify_name ADD \n";
         $sql .= build_coldef('add', 'alter');
         $sql .= ';';
 
-        $add_flag = TRUE;
+        $add_flag = true;
     }
 }
-
 
 //
 // script is called via the Delete Column button from the modify table form
 //
 if (isset($_POST['tb_modify_del'])
 &&  isset($_POST['tb_modify_dname'])  &&  !empty($_POST['tb_modify_dname'])) {
-
     $cname = $_POST['tb_modify_dname'];
 
     $deps = get_dependencies(OT_RELATION, $s_modify_name, $cname);
     if (count($deps) > 0) {
         $message = sprintf($MESSAGES['HAVE_DEPENDENCIES'], $tb_strings['Column'], $cname, dependencies_string($deps));
-    }
-
-    else {
-            $drop_statement = count(table_columns($s_modify_name)) > 1
+    } else {
+        $drop_statement = count(table_columns($s_modify_name)) > 1
                             ? 'ALTER TABLE '.$s_modify_name.' DROP '.$cname
                             : 'DROP TABLE '.$s_modify_name;
 
-        if ($s_cust['askdel'] == TRUE) {
-            $s_confirmations['column'] = 
+        if ($s_cust['askdel'] == true) {
+            $s_confirmations['column'] =
                 array('msg' => sprintf($MESSAGES['CONFIRM_COLUMN_DELETE'], $cname, $s_modify_name),
-                      'sql' => $drop_statement);
-        }
-        else {
+                      'sql' => $drop_statement, );
+        } else {
             $sql = $drop_statement;
-        } 
+        }
     }
 }
-
 
 //
 // script is called via the Modify Column button from the modify table form
@@ -181,14 +162,13 @@ if (isset($_POST['tb_modify_del'])
 if (isset($_POST['tb_modify_col'])
 &&  isset($_POST['tb_modify_mname'])  &&  !empty($_POST['tb_modify_mname'])) {
     $s_modify_col = $_POST['tb_modify_mname'];
-    foreach($s_fields[$s_modify_name] as $field) {
+    foreach ($s_fields[$s_modify_name] as $field) {
         if ($field['name'] == $s_modify_col) {
-            
             $s_coldefs['mod'] = $field;
 
             $s_coldefs['mod']['foreign_cols'] = $s_coldefs['mod']['primary_cols'] = $s_coldefs['mod']['unique_cols'] = 0;
             if (isset($field['foreign'])) {
-                $s_coldefs['mod'] 
+                $s_coldefs['mod']
                     = array_merge($s_coldefs['mod'],
                                   get_column_fk_defs($field['foreign'], $s_foreigns[$field['foreign']]['index']));
                 $s_coldefs['mod']['foreign_cols'] = $s_foreigns[$field['foreign']]['cols'];
@@ -204,60 +184,56 @@ if (isset($_POST['tb_modify_col'])
 
             $s_coldefs['old'] = $s_coldefs['mod'];
             break;
-	}
+        }
     }
     if (isset($s_coldefs['mod']['domain'])) {
         $warning = $WARNINGS['CAN_NOT_ALTER_DOMAINS'];
         $s_coldefs = array();
-    }
-    else {
-        $s_coldefs['mod']['pk_del'] = $s_coldefs['mod']['fk_del'] = $s_coldefs['mod']['uq_del'] = FALSE;
-        $col_mod_flag = TRUE;
+    } else {
+        $s_coldefs['mod']['pk_del'] = $s_coldefs['mod']['fk_del'] = $s_coldefs['mod']['uq_del'] = false;
+        $col_mod_flag = true;
 
         $js_stack .= js_request_table_columns();
     }
 }
 
-
 //
 // altering the column definitions 
 //
 if (isset($_POST['tb_modcol_doit'])) {
-    $mod_flag = FALSE;
+    $mod_flag = false;
     $sql = 'ALTER TABLE '.$s_modify_name.' ';
 
     save_coldef('mod');
 
     if (!isset($s_coldefs['mod']['domain'])  ||  $s_coldefs['mod']['domain'] != 'Yes') {
-
         if (datatype_is_modified($s_coldefs['old'], $s_coldefs['mod'])) {
 
             // build sql for altering datatype definition
-            $sql .= 'ALTER '.$s_modify_col.' TYPE ' . build_datatype($s_coldefs['mod']) . ', ';
-            $mod_flag = TRUE;
+            $sql .= 'ALTER '.$s_modify_col.' TYPE '.build_datatype($s_coldefs['mod']).', ';
+            $mod_flag = true;
         }
 
         // the delete primary key checkbox is checked
-        if ($s_coldefs['mod']['pk_del'] == TRUE) {
+        if ($s_coldefs['mod']['pk_del'] == true) {
             $sql .= 'DROP CONSTRAINT '.$s_coldefs['old']['primary'].', ';
-            $mod_flag = TRUE;
+            $mod_flag = true;
         }
 
         // the delete foreign key checkbox is checked
-        if ($s_coldefs['mod']['fk_del'] == TRUE) {
+        if ($s_coldefs['mod']['fk_del'] == true) {
             $sql .= 'DROP CONSTRAINT '.$s_coldefs['old']['fk_name'].', ';
-            $mod_flag = TRUE;
+            $mod_flag = true;
         }
 
         // the delete unique constraint checkbox is checked
-        if ($s_coldefs['mod']['uq_del'] == TRUE) {
+        if ($s_coldefs['mod']['uq_del'] == true) {
             $sql .= 'DROP CONSTRAINT '.$s_coldefs['old']['unique'].', ';
-            $mod_flag = TRUE;
+            $mod_flag = true;
         }
 
         // delete and recreate the foreign key constraint
         elseif (column_fk_is_modified($s_coldefs['old'], $s_coldefs['mod'])) {
-
             if (isset($s_coldefs['old']['fk_name'])  &&  !empty($s_coldefs['old']['fk_name'])) {
                 $sql .= 'DROP CONSTRAINT '.$s_coldefs['old']['fk_name'].', ';
             }
@@ -276,22 +252,22 @@ if (isset($_POST['tb_modcol_doit'])) {
             if (isset($s_coldefs['mod']['on_delete'])  &&  $s_coldefs['mod']['on_delete'] != '') {
                 $sql .= ' ON DELETE '.$s_coldefs['mod']['on_delete'].', ';
             }
-            $mod_flag = TRUE;
+            $mod_flag = true;
         }
     }
 
     // build sql for altering column domain
     if ((isset($s_coldefs['mod']['domain'])  &&  $s_coldefs['mod']['domain'] == 'Yes')
     && $_POST['cd_def_domainmod'] != $s_coldefs['mod']['type']) {
-        $s_coldefs['mod']['type']  = $_POST['cd_def_domainmod'];
+        $s_coldefs['mod']['type'] = $_POST['cd_def_domainmod'];
         $sql .= 'ALTER '.$s_modify_col.' '.$s_coldefs['mod']['type'].', ';
-        $mod_flag = TRUE;
+        $mod_flag = true;
     }
 
     // build sql for changing column position
     if ($_POST['tb_modcol_pos'] != '') {
         $sql .= 'ALTER '.$s_modify_col.' POSITION '.$_POST['tb_modcol_pos'].', ';
-        $mod_flag = TRUE;
+        $mod_flag = true;
     }
 
     // build sql for renaming of the column
@@ -299,54 +275,45 @@ if (isset($_POST['tb_modcol_doit'])) {
         // interbase keywords are not allowed as column names     
         if (in_array(strtoupper($s_coldefs['mod']['name']), get_reserved_words(SERVER_FAMILY, SERVER_VERSION))) {
             $warning = sprintf($WARNINGS['NAME_IS_KEYWORD'], strtoupper($s_coldefs['mod']['name']));
-        }
-        else {
+        } else {
             $sql .= 'ALTER '.$s_modify_col.' TO '.$_POST['cd_def_namemod'].', ';
-            $mod_flag = TRUE;
+            $mod_flag = true;
         }
     }
 
     if ($mod_flag) {
         $sql = substr($sql, 0, -2);      // remove the trailing ', '
         $sql .= ';';
-    }
-    else {
+    } else {
         $sql = '';
     }
-
 
     if ($s_wt['table'] == $s_modify_name) {
         $s_watch_buffer = '';
     }
 }
 
-
 //
 // script is called from the delete table form
 //
 if (have_panel_permissions($s_login['user'], 'tb_delete')) {
-
     if (isset($_POST['tb_delete_doit'])
-    &&  isset ($_POST['tb_delete_name'])  &&  !empty($_POST['tb_delete_name'])) {
-
+    &&  isset($_POST['tb_delete_name'])  &&  !empty($_POST['tb_delete_name'])) {
         $tname = $_POST['tb_delete_name'];
 
         $deps = get_dependencies(OT_RELATION, $tname);
         if (count($deps) > 0) {
             $message = sprintf($MESSAGES['HAVE_DEPENDENCIES'], $tb_strings['Table'], $tname, dependencies_string($deps));
-        }
-
-        else {
+        } else {
             $quote = identifier_quote($s_login['dialect']);
-            $tstr  = $quote . $tname . $quote;
-            $drop_statement = ($s_tables[$tname]['is_view'] == TRUE) ? 'DROP VIEW '.$tstr : 'DROP TABLE '.$tstr;
-        
-            if ($s_cust['askdel'] == TRUE) {
-                $s_confirmations['table'] = 
+            $tstr = $quote.$tname.$quote;
+            $drop_statement = ($s_tables[$tname]['is_view'] == true) ? 'DROP VIEW '.$tstr : 'DROP TABLE '.$tstr;
+
+            if ($s_cust['askdel'] == true) {
+                $s_confirmations['table'] =
                     array('msg' => sprintf($MESSAGES['CONFIRM_TABLE_DELETE'], $tname),
-                          'sql' => $drop_statement);
-            }
-            else {
+                          'sql' => $drop_statement, );
+            } else {
                 $sql = $drop_statement;
             }
 
@@ -354,7 +321,7 @@ if (have_panel_permissions($s_login['user'], 'tb_delete')) {
                 $s_modify_name = '';
             }
             if ($s_wt['table'] == $_POST['tb_delete_name']) {
-                $s_wt['table']  = '';
+                $s_wt['table'] = '';
                 $s_watch_buffer = '';
             }
             if ($s_enter_name == $_POST['tb_delete_name']) {
@@ -364,7 +331,6 @@ if (have_panel_permissions($s_login['user'], 'tb_delete')) {
         }
     }
 }
-
 
 // 'Open All' button
 if (isset($_POST['tb_table_open'])) {
@@ -376,19 +342,16 @@ if (isset($_POST['tb_table_close'])) {
     $s_tables = toggle_all_tables($s_tables, 'close');
 }
 
-
 // deleting a subject is confirmed
 if (isset($_POST['confirm_yes'])
 &&  isset($s_confirmations[$_POST['confirm_subject']])) {
-
-    $sql  = $s_confirmations[$_POST['confirm_subject']]['sql'];
+    $sql = $s_confirmations[$_POST['confirm_subject']]['sql'];
     unset($s_confirmations[$_POST['confirm_subject']]);
 }
 
 // deleting a subject is canceled
 if (isset($_POST['confirm_no'])
 &&  isset($s_confirmations[$_POST['confirm_subject']])) {
-
     unset($s_confirmations[$_POST['confirm_subject']]);
 }
 
@@ -396,11 +359,13 @@ if (isset($_POST['confirm_no'])
 // perform the sql-statement in $sql
 //
 if ($sql != '') {
-    if (DEBUG) add_debug('$sql: '.$sql, __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('$sql: '.$sql, __FILE__, __LINE__);
+    }
     $trans = fbird_trans(TRANS_WRITE, $dbhandle);
     if (fbird_query($trans, $sql)) {
         fbird_commit($trans);
-        $s_tables_valid = FALSE;		     
+        $s_tables_valid = false;
         $s_create_table = '';
         $s_create_num = 0;
         $s_coldefs = array();
@@ -408,69 +373,60 @@ if ($sql != '') {
     } else {
         $ib_error = fbird_errmsg();
         fbird_rollback($trans);
-        if (isset($mod_flag)  &&  $mod_flag == TRUE) {
-            $col_mod_flag = TRUE;
+        if (isset($mod_flag)  &&  $mod_flag == true) {
+            $col_mod_flag = true;
         }
-        if (isset($add_flag) &&  $add_flag == TRUE) {
-            $col_add_flag = TRUE;
+        if (isset($add_flag) &&  $add_flag == true) {
+            $col_add_flag = true;
         }
     }
 }
 
-
 if (have_panel_permissions($s_login['user'], 'tb_show')) {
 
     // include the javascript for detail requests
-    $js_stack .= js_request_details(); 
+    $js_stack .= js_request_details();
 
     //
     // Reload button from the tb_show panel
     //
     if (isset($_POST['tb_show_reload'])) {
-
-        $s_tables_counts  = (boolean)get_request_data('tb_show_counts');
-        $s_tables_cnames  = (boolean)get_request_data('tb_show_cnames');
-        $s_tables_def     = (boolean)get_request_data('tb_show_def');
-        $s_tables_comp    = (boolean)get_request_data('tb_show_comp');
-        $s_tables_comment = (boolean)get_request_data('tb_show_comments');
-        $s_tables_valid   = FALSE;
+        $s_tables_counts = (boolean) get_request_data('tb_show_counts');
+        $s_tables_cnames = (boolean) get_request_data('tb_show_cnames');
+        $s_tables_def = (boolean) get_request_data('tb_show_def');
+        $s_tables_comp = (boolean) get_request_data('tb_show_comp');
+        $s_tables_comment = (boolean) get_request_data('tb_show_comments');
+        $s_tables_valid = false;
     }
 
     $js_stack .= js_request_comment_area();
 }
 
-
 // init $s_domain for the columns form if necessary
-if ($s_domains_valid == FALSE  &&
+if ($s_domains_valid == false  &&
     ($s_create_num > 0  ||  isset($col_add_flag))) {
-
-    include_once('./inc/domains.inc.php');
+    include_once './inc/domains.inc.php';
 
     $s_domains = get_domain_definitions($s_domains);
-    $s_domains_valid = TRUE;
+    $s_domains_valid = true;
 }
-
 
 // add javascript for the columns form
-if ($s_connected === TRUE  && 
+if ($s_connected === true  &&
     ($s_create_num > 0  ||  isset($col_add_flag))) {
-
     $js_stack .= js_collations($s_charsets)
-               . js_request_table_columns();
+               .js_request_table_columns();
 }
-
 
 //
 // setup $s_tables[] and $s_fields[] if necessary 
 //
-if (($s_connected) && ($s_tables_valid == FALSE)) {
-    include_once('./inc/get_tables.inc.php');
+if (($s_connected) && ($s_tables_valid == false)) {
+    include_once './inc/get_tables.inc.php';
     if (get_tables($dbhandle)) {
-        $s_tables_valid = TRUE;
+        $s_tables_valid = true;
     }
 }
-
-
 
 //
 // print out all the panels
@@ -478,14 +434,13 @@ if (($s_connected) && ($s_tables_valid == FALSE)) {
 $s_page = 'Tables';
 $panels = $s_tables_panels;
 
-require('./inc/script_end.inc.php');
-
+require './inc/script_end.inc.php';
 
 //
 // mark all tables as opened or closed in $s_tables
 //
-function toggle_all_tables($tables, $status) {
-
+function toggle_all_tables($tables, $status)
+{
     foreach (array_keys($tables) as $name) {
         if (!$tables[$name]['is_view']) {
             $tables[$name]['status'] = $status;
@@ -495,8 +450,8 @@ function toggle_all_tables($tables, $status) {
     return $tables;
 }
 
-
-function get_column_fk_defs($cname, $iname) {
+function get_column_fk_defs($cname, $iname)
+{
     global $dbhandle;
 
     $defs = array('fk_name' => $cname);
@@ -523,12 +478,10 @@ function get_column_fk_defs($cname, $iname) {
     if ($res  && $row = fbird_fetch_row($res)) {
         fbird_free_result($res);
     }
-    $defs['fk_table']  = trim($row[0]);
+    $defs['fk_table'] = trim($row[0]);
     $defs['fk_column'] = trim($row[1]);
 
     fbird_commit($trans);
 
     return $defs;
 }
-
-?>

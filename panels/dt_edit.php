@@ -13,5 +13,3 @@ $df = new DataFormEdit($s_edit_where[$instance]['table'],
     $instance);
 
 echo $df->renderHTML();
-
-?>

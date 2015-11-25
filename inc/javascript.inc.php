@@ -18,13 +18,13 @@
 // index : index of the col_def_definition
 // form  : form object
 //
-function js_checkColConstraint() {
-    static $done = FALSE;
+function js_checkColConstraint()
+{
+    static $done = false;
 
-    if ($done == TRUE) {
+    if ($done == true) {
         return '';
     }
-
 
     echo <<<EOT
 <script language="JavaScript" type="text/javascript">
@@ -64,36 +64,34 @@ function checkColConstraint(form, opt, index) {
 
 EOT;
 
-    $done = TRUE;
+    $done = true;
 }
-
 
 //
 // return a string with a javascript to give the focus to $field in $form
 // (because ns4.7 fails on js inside of a table, this is written to
 //  a string $js_stack, which is printed out in script_end.inc.php)
 //
-function js_giveFocus($form, $field) {
-    $js  = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n";
+function js_giveFocus($form, $field)
+{
+    $js = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n";
     $js .= "    window.document.$form.$field.focus();\n";
     $js .= "//-->\n</script>\n";
 
     return $js;
 }
 
-
 //
 // set width and height of the window
 //
-function js_window_resize($width, $height) {
-
-    $js  = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n"
+function js_window_resize($width, $height)
+{
+    $js = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n"
            ."   window.resizeTo($width, $height);\n"
           ."//-->\n</script>\n";
 
     return $js;
 }
-
 
 //
 // builds a javascript array with the collation definitions
@@ -104,14 +102,15 @@ function js_window_resize($width, $height) {
 //            source     charsets selectlist object
 //            target     collations selectlist object
 //
-function js_collations($charsets) {
-    static $done = FALSE;
+function js_collations($charsets)
+{
+    static $done = false;
 
-    if ($done == TRUE) {
+    if ($done == true) {
         return '';
     }
 
-    $js  = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n"
+    $js = "<script language=\"JavaScript\" type=\"text/javascript\">\n<!--\n"
           ."    var collations = new Array();\n";
 
     foreach ($charsets as $cs) {
@@ -119,12 +118,12 @@ function js_collations($charsets) {
         $n = 0;
         foreach ($cs['collations'] as $coll) {
             $js .= '    collations["'.$cs['name'].'"]['.$n.'] = "'.$coll."\";\n";
-            $n++;
+            ++$n;
         }
     }
     $js .= "\n";
 
-    $js .=<<<EOT
+    $js .= <<<EOT
     function adjustCollation(source, target) {
         var i, charset;
         for(i=0; i<source.length; i++) {
@@ -148,42 +147,43 @@ function js_collations($charsets) {
 
 EOT;
 
-    $done = TRUE;
+    $done = true;
 
     return $js;
 }
 
-
 //
 // include the XMLHttpRequestClient library
 //
-function js_xml_http_request_client() {
-    static $done = FALSE;
+function js_xml_http_request_client()
+{
+    static $done = false;
 
-    if ($done == TRUE) {
+    if ($done == true) {
         return '';
     }
-    $done = TRUE;
+    $done = true;
 
     return js_javascript_file('js/XMLHttpRequestClient.js');
 }
 
-function js_markable_table() {
-    static $done = FALSE;
+function js_markable_table()
+{
+    static $done = false;
 
-    if ($done == TRUE) {
+    if ($done == true) {
         return '';
     }
-    $done = TRUE;
+    $done = true;
 
     return js_javascript_file('js/markableTable.js');
-
 }
 
 //
 // return the URL of the server-script for the XMLHttpRequests
 //
-function xml_http_request_server_url() {
+function xml_http_request_server_url()
+{
     static $url;
 
     if (!isset($url)) {
@@ -191,21 +191,20 @@ function xml_http_request_server_url() {
         $script = substr($script, 0, strrpos($script, '/')).'/inc/xml_http_request_server.php';
         $script = url_session($script);
 
-        $url = PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $script;
+        $url = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].$script;
     }
 
     return $url;
 }
 
-
 //
 // request and display the form for a column configuration from the dt_enter- or dt_edit-panel
 //
-function js_request_column_config_form() {
-
+function js_request_column_config_form()
+{
     $server_url = xml_http_request_server_url();
 
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript"  type="text/javascript">
     function requestColumnConfigForm(fk_table, table, column, divId) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -218,15 +217,14 @@ EOT;
     return $js;
 }
 
-
 //
 // function to request and display a closed panel
 //
-function js_request_close_panel() {
-
+function js_request_close_panel()
+{
     $server_url = xml_http_request_server_url();
 
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript" type="text/javascript">
     function requestClosedPanel(idx, active) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -239,20 +237,20 @@ EOT;
     return $js;
 }
 
-
 //
 // functions to request, display and hide the details for a database object
 //
-function js_request_details() {
-    static $done = FALSE;
+function js_request_details()
+{
+    static $done = false;
 
-    if ($done == TRUE) {
+    if ($done == true) {
         return '';
     }
 
     $server_url = xml_http_request_server_url();
 
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript" type="text/javascript">
     function requestDetail(type, name, title) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -266,20 +264,19 @@ function js_request_details() {
 
 EOT;
 
-    $done = TRUE;
+    $done = true;
 
     return $js;
 }
 
-
 //
 // functions to request the values for a foreign key on the tb_watch panel
 //
-function js_request_fk() {
-
+function js_request_fk()
+{
     $server_url = xml_http_request_server_url();
 
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript" type="text/javascript">
     function requestFKValues(table, column, value) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -292,12 +289,11 @@ EOT;
     return $js;
 }
 
-
 //
 // functions used for the system table filters
 //
-function js_request_filter_fields() {
-
+function js_request_filter_fields()
+{
     $server_url = xml_http_request_server_url();
 
     $js = <<<EOT
@@ -317,12 +313,11 @@ EOT;
     return $js;
 }
 
-
 //
 // request a selectlist filled with the columns of a table
 //
-function js_request_table_columns() {
-
+function js_request_table_columns()
+{
     $server_url = xml_http_request_server_url();
 
     $js = <<<EOT
@@ -338,16 +333,15 @@ EOT;
     return $js;
 }
 
-
 //
 // functions to get the content of a sql buffer and to put it into the textarea on the sql-enter panel
 //
-function js_request_sql_buffer() {
-
-    $server_url   = xml_http_request_server_url();
+function js_request_sql_buffer()
+{
+    $server_url = xml_http_request_server_url();
     $history_size = SQL_HISTORY_SIZE;
 
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript" type="text/javascript">
     function requestSqlBuffer(idx) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -364,15 +358,14 @@ EOT;
     return $js;
 }
 
-
 //
 // functions used for the export-options form
 //
-function js_data_export() {
+function js_data_export()
+{
+    $server_url = xml_http_request_server_url();
 
-    $server_url   = xml_http_request_server_url();
-
-    $js =<<<EOT
+    $js = <<<EOT
     <script language="javascript" type="text/javascript">
     function replaceExportFormatOptions(format) {
         var req = new XMLHttpRequestClient("$server_url");
@@ -426,8 +419,8 @@ EOT;
 //
 // request a textarea for editing the comment for a table, sp, trigger, view, ...
 //
-function js_request_comment_area() {
-
+function js_request_comment_area()
+{
     $server_url = xml_http_request_server_url();
 
     $js = <<<EOT
@@ -443,13 +436,12 @@ EOT;
     return $js;
 }
 
-
 //
 // auto-refresh feature on thy systables panel for Firebird temporary system tables
 //
 // TODO: this is left to change for using XMLHttpRequests
-function js_refresh_systable() {
-
+function js_refresh_systable()
+{
     $js = <<<EOT
     <script language="javascript" type="text/javascript">
     var sttimer;
@@ -486,42 +478,38 @@ EOT;
     return sprintf($js, url_session('jsrs/systable_request.php'));
 }
 
-
 //
 // return inline javascript as a string
 //
-function js_javascript($js) {
-
-    return '<script language="JavaScript" type="text/javascript">' . $js . "</script>\n";
+function js_javascript($js)
+{
+    return '<script language="JavaScript" type="text/javascript">'.$js."</script>\n";
 }
 
-function js_javascript_file($file) {
-
-    return '<script src="' . $file . "\" type=\"text/javascript\"></script>\n";
+function js_javascript_file($file)
+{
+    return '<script src="'.$file."\" type=\"text/javascript\"></script>\n";
 }
 
-function js_javascript_variable($type, $name, $value) {
-
+function js_javascript_variable($type, $name, $value)
+{
     switch ($type) {
     case 'string':
-        $value_str = "'" . $value . "'";
+        $value_str = "'".$value."'";
         break;
     default:
-        $value_str ="''";
+        $value_str = "''";
     }
 
-    return 'var ' . $name . '=' . $value_str . ";\n";
+    return 'var '.$name.'='.$value_str.";\n";
 }
 
-
-function js_global_variables() {
-
+function js_global_variables()
+{
     return "<script language=\"javascript\" type=\"text/javascript\">\n"
-         . js_javascript_variable('string', 'php_session_name', session_name())
-         . js_javascript_variable('string', 'php_session_id', session_id())
-         . js_javascript_variable('string', 'php_xml_http_request_server_url', xml_http_request_server_url())
-         . js_javascript_variable('string', 'php_charset', $GLOBALS['charset'])
-         . "</script>\n";
+         .js_javascript_variable('string', 'php_session_name', session_name())
+         .js_javascript_variable('string', 'php_session_id', session_id())
+         .js_javascript_variable('string', 'php_xml_http_request_server_url', xml_http_request_server_url())
+         .js_javascript_variable('string', 'php_charset', $GLOBALS['charset'])
+         ."</script>\n";
 }
-
-?>

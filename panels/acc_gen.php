@@ -9,63 +9,74 @@
 
 if (isset($s_confirmations['generator'])) {
     $subject = 'generator';
-    include_once('./panels/confirm.php');
-}
-
-elseif($s_connected) {
-
-?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_gen_form">
+    include_once './panels/confirm.php';
+} elseif ($s_connected) {
+    ?>
+<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']);
+    ?>" name="acc_gen_form">
 <?php
 
 if (!empty($generators)) {
-
-?>
+    ?>
 <table border cellpadding="3" cellspacing="0">
 <tr>
-   <th><?php echo $acc_strings['Name']; ?></th>
-   <th><?php echo $acc_strings['Value']; ?></th>
-   <th><?php echo $acc_strings['SetValue']; ?></th>
-   <th><?php echo $acc_strings['DropGen']; ?></th>
+   <th><?php echo $acc_strings['Name'];
+    ?></th>
+   <th><?php echo $acc_strings['Value'];
+    ?></th>
+   <th><?php echo $acc_strings['SetValue'];
+    ?></th>
+   <th><?php echo $acc_strings['DropGen'];
+    ?></th>
 </tr>
 
 <?php
 
     foreach ($generators as $idx => $gen) {
-
-?>
+        ?>
 <tr>
-   <td><b><?php echo $gen['name']; ?></b></td>
-   <td align="right"><?php echo $gen['value']; ?></td>
+   <td><b><?php echo $gen['name'];
+        ?></b></td>
+   <td align="right"><?php echo $gen['value'];
+        ?></td>
    <td>
-      <input type="text" size="8" maxlength="24" name="acc_gen_val_<?php echo $idx; ?>">&nbsp;&nbsp;
-      <input type="submit" name="acc_gen_set_<?php echo $idx; ?>" value="<?php echo $button_strings['Set']; ?>">
+      <input type="text" size="8" maxlength="24" name="acc_gen_val_<?php echo $idx;
+        ?>">&nbsp;&nbsp;
+      <input type="submit" name="acc_gen_set_<?php echo $idx;
+        ?>" value="<?php echo $button_strings['Set'];
+        ?>">
    </td>
    <td align="center">
-      <input type="submit" name="acc_gen_drop_<?php echo $idx; ?>" value="<?php echo $button_strings['Drop']; ?>">
+      <input type="submit" name="acc_gen_drop_<?php echo $idx;
+        ?>" value="<?php echo $button_strings['Drop'];
+        ?>">
    </td>
 </tr>
 <?php
 
     }
-    echo "</table>";
+    echo '</table>';
 }
 
-?>
+    ?>
 <p>
 <table border cellpadding="3" cellspacing="0">
 <tr>
-   <th colspan="3" align="left"><b><?php echo $acc_strings['CreateGen']; ?></b></th>
+   <th colspan="3" align="left"><b><?php echo $acc_strings['CreateGen'];
+    ?></b></th>
 </tr>
 <tr>
-   <td><b><?php echo $acc_strings['Name']; ?></b><br>
+   <td><b><?php echo $acc_strings['Name'];
+    ?></b><br>
       <input type="text" size="15" maxlength="31" name="acc_gen_name">
    </td>
-   <td><b><?php echo $acc_strings['StartVal']; ?></b><br>
+   <td><b><?php echo $acc_strings['StartVal'];
+    ?></b><br>
       <input type="text" size="8" maxlength="24" name="acc_gen_start">
    </td>
    <td>
-      <input type="submit" name="acc_gen_create" value="<?php echo $button_strings['Create']; ?>">
+      <input type="submit" name="acc_gen_create" value="<?php echo $button_strings['Create'];
+    ?>">
    </td>
 </tr>
 </table>

@@ -8,7 +8,7 @@
 
 if (isset($s_confirmations['index'])):
     $subject = 'index';
-    include('./panels/confirm.php');
+    include './panels/confirm.php';
 
 elseif (isset($index_add_flag)):
 
@@ -16,7 +16,7 @@ elseif (isset($index_add_flag)):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_index_form">
         <?php
 
-        index_definition(NULL, $acc_strings['CreateIdx']);
+        index_definition(null, $acc_strings['CreateIdx']);
         ?>
         <input type="submit" class="btn btn-success" name="acc_ind_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
         <input type="reset" class="btn btn-default" name="acc_ind_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
@@ -41,7 +41,6 @@ elseif (!empty($s_mod_index)):
 elseif ($s_connected):
 
     if (!empty($indices)) {
-
         echo get_index_table($indices, $s_index_order, $s_index_dir);
     }
     ?>
