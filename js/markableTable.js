@@ -11,8 +11,8 @@
  * use shift- and ctrl-key to mark multiple rows or ranges of rows
  */
 function markableTable(id, leaveColumns) {
-  if (!id ) return;
-  var table = $('#'+id);
+    if (!id ) return;
+    var table = $('#'+id);
 
     if (typeof leaveColumns == 'undefined') leaveColumns = [];
 

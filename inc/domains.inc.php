@@ -9,7 +9,8 @@
 //
 // get the properties of all defined domains
 //
-function get_domain_definitions($olddomains){
+function get_domain_definitions($olddomains)
+{
     global $dbhandle, $s_charsets;
 
     $sql  = 'SELECT  F.RDB$FIELD_NAME AS DNAME,'
@@ -41,7 +42,7 @@ function get_domain_definitions($olddomains){
         }
 
         if ($domains[$dname]['type'] == 'VARCHAR' || $domains[$dname]['type'] == 'CHARACTER') {
-	    $domains[$dname]['size'] = $obj->FLEN;
+            $domains[$dname]['size'] = $obj->FLEN;
         }
 
         if (isset($obj->CHARID)) {
@@ -50,7 +51,7 @@ function get_domain_definitions($olddomains){
 
         $domains[$dname]['collate'] = (isset($obj->COLLID)  &&  $obj->COLLID != 0)
             ? $s_charsets[$obj->CHARID]['collations'][$obj->COLLID]
-            : NULL;
+            : null;
 
         if ($domains[$dname]['type'] == 'DECIMAL' || $domains[$dname]['type'] == 'NUMERIC') {
             $domains[$dname]['prec']   = $obj->FPREC;
@@ -61,7 +62,7 @@ function get_domain_definitions($olddomains){
             $domains[$dname]['segsize'] = $obj->SEGLEN;
         }
 
-        $domains[$dname]['notnull'] = (isset($obj->NFLAG)  &&  !empty($obj->NFLAG)) ? TRUE : FALSE;
+        $domains[$dname]['notnull'] = (isset($obj->NFLAG)  &&  !empty($obj->NFLAG)) ? true : false;
 
         $domains[$dname]['default'] = (isset($obj->DSOURCE)  &&  !empty($obj->DSOURCE))
             ? get_domain_default($dname)
@@ -78,14 +79,16 @@ function get_domain_definitions($olddomains){
     return $domains;
 }
 
-function get_domain_default($dname) {
+function get_domain_default($dname)
+{
 
     return substr(get_blob_content('SELECT RDB$DEFAULT_SOURCE'
                                    .' FROM RDB$FIELDS'
                                    ." WHERE RDB\$FIELD_NAME='".$dname."'"), 8);
 }
 
-function get_domain_check($dname) {
+function get_domain_check($dname)
+{
 
     return substr(get_blob_content('SELECT RDB$VALIDATION_SOURCE'
                                    .' FROM RDB$FIELDS'
@@ -96,12 +99,13 @@ function get_domain_check($dname) {
 //
 // create a domain from the values in $domdefs
 //
-function create_domain($domdefs) {
+function create_domain($domdefs)
+{
     global $dbhandle, $lsql, $ib_error;
 
     $check_str =  '';
     if (!empty($domdefs['check'])) {
-        $check_str = stristr($domdefs['check'], 'VALUE') === FALSE  &&  stristr($domdefs['check'], 'NOT') === FALSE
+        $check_str = stristr($domdefs['check'], 'VALUE') === null  &&  stristr($domdefs['check'], 'NOT') === false
             ? ' CHECK (VALUE ' . $domdefs['check'] . ')'
             : ' CHECK (' . $domdefs['check'] . ')';
     }
@@ -114,25 +118,26 @@ function create_domain($domdefs) {
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
 //
 // drop the domain $name off the database
 //
-function drop_domain($name) {
+function drop_domain($name)
+{
     global $s_domains, $dbhandle, $ib_error;
 
     $lsql = 'DROP DOMAIN '.$name;
     if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
-    if (!@fbird_query($dbhandle, $lsql)) {
+    if (!@fbird_query($dbhandle, $lsql))
+    {
         $ib_error = fbird_errmsg();
-    }
-    else {
+    } else {
         unset($s_domains[$name]);
     }
 }
@@ -141,7 +146,8 @@ function drop_domain($name) {
 //
 // execute sql to modify a domain
 //
-function modify_domain($olddef, $domdef) {
+function modify_domain($olddef, $domdef)
+{
     global $dbhandle, $ib_error;
 
     $lsql = array();
@@ -177,18 +183,19 @@ function modify_domain($olddef, $domdef) {
         if (!@fbird_query($dbhandle, $sql)) {
             $ib_error = fbird_errmsg() . "<br>\n>";
 
-            return FALSE;
+            return false;
         }
     }
 
-    return TRUE;
+    return true;
 }
 
 
 //
 // return the html displaying the domain details in a table
 //
-function get_domain_table($domains) {
+function get_domain_table($domains)
+{
     global $acc_strings, $tb_strings;
 
     $html = "<table>\n"
@@ -204,13 +211,13 @@ function get_domain_table($domains) {
            .'    <th class="detail">'.$tb_strings['Check']."</th>\n"
            ."  </tr>\n";
 
-    foreach($domains as $dname => $domain) {
+    foreach ($domains as $dname => $domain) {
         $type_str = get_type_string($domain);
         $char_str  = isset($domain['charset'])  &&  !empty($domain['charset'])  ? $domain['charset']  : '&nbsp;';
         $coll_str  = isset($domain['collate'])  &&  !empty($domain['collate'])  ? $domain['collate']  : '&nbsp;';
         $stype_str = isset($domain['stype'])  &&  !empty($domain['stype'])    ? $domain['stype']    : '&nbsp;';
         $segs_str  = isset($domain['segsize'])  &&  !empty($domain['segsize'])  ? $domain['segsize']  : '&nbsp;';
-        $null_str  = $domain['notnull'] === TRUE ? $acc_strings['Yes'] : '&nbsp;';
+        $null_str  = $domain['notnull'] === true ? $acc_strings['Yes'] : '&nbsp;';
         $def_str   = $domain['default'] !== '' ? $domain['default']  : '&nbsp;';
         $chk_str   = !empty($domain['check'])   ? $domain['check']    : '&nbsp;';
 
@@ -236,10 +243,11 @@ function get_domain_table($domains) {
 //
 // return the html for the constraint elements of a domain definition form
 //
-function get_domain_constraint($domdefs, $notnull=TRUE) {
+function get_domain_constraint($domdefs, $notnull = true)
+{
     global $tb_strings;
 
-    $nn_checkbox = $notnull == TRUE
+    $nn_checkbox = $notnull == true
         ?  '      <b>'.$tb_strings['NotNull']."</b><br>\n"
           .'      <input type="checkbox" name="cd_def_notnull" value ="yes"'.($domdefs['notnull'] == 'yes' ? ' checked' : '').'>'."\n"
         :  '      &nbsp;';
@@ -258,5 +266,3 @@ function get_domain_constraint($domdefs, $notnull=TRUE) {
           ."    </td>\n"
           ."  </tr>\n";
 }
-
-?>
