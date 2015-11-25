@@ -41,8 +41,9 @@ function build_title($str, $showdb = true)
     global $s_connected, $s_login;
 
     $title = 'FirebirdWebAdmin ' . VERSION . ' *** ' . $str;
-    if ($s_connected == true && $showdb)
+    if ($s_connected == true && $showdb) {
         $title .= ': ' . $s_login['database'];
+    }
 
     return $title;
 }
@@ -119,8 +120,8 @@ function get_type_string($field)
     $str = $field['type'];
 
     switch ($field['type']) {
-        case 'CHARACTER' :
-        case 'VARCHAR'   :
+        case 'CHARACTER':
+        case 'VARCHAR':
             if ($field['size'] > 0) {
                 $str .= '(' . $field['size'] . ')';
             }
@@ -166,7 +167,7 @@ function have_blob($tablename)
     foreach ($s_fields[$tablename] as $field) {
         if ($field['type'] == 'BLOB') {
 
-            return TRUE;
+            return true;
         }
     }
 
@@ -252,8 +253,9 @@ function isql_get_metadata($user, $pw, $db, $host)
 }
 
 
-{
+
 function exec_command($cmd, $parameters, $stderr = false)
+{
 
     $is_windows = (stristr(php_uname(), 'wind') == true) ? true : false;
 
@@ -286,7 +288,7 @@ function exec_command($cmd, $parameters, $stderr = false)
     }
 
     return array($out, $err);
-    }
+}
 
 
 //
@@ -301,7 +303,7 @@ function get_panel_index($panelarray, $name)
             return $index;
         }
     }
-    return FALSE;
+    return false;
 }
 
 
@@ -316,7 +318,7 @@ function remove_edit_panels()
             array_splice($s_data_panels, $idx, 1);
         }
         $idx = get_panel_index($s_sql_panels, 'dt_edit' . $i);
-        if ($idx !== FALSE) {
+        if ($idx !== false) {
             array_splice($s_sql_panels, $idx, 1);
         }
     }
@@ -388,7 +390,7 @@ function save_datatype($idx)
     // domains only
     $coldef['default'] = get_request_data('cd_def_default');
     $coldef['check'] = get_request_data('cd_def_check');
-    $coldef['notnull'] = (isset($_POST['cd_def_notnull'])) ? TRUE : FALSE;
+    $coldef['notnull'] = (isset($_POST['cd_def_notnull'])) ? true : false;
 
     return $coldef;
 }
@@ -408,7 +410,7 @@ function datatype_is_modified($olddef, $coldef)
             || (!isset($olddef[$name]) && !empty($coldef[$name]))
         ) {
 
-            return TRUE;
+            return true;
         }
     }
 
@@ -519,8 +521,8 @@ function build_datatype($defs, $type = 'column', $mode = 'create')
     $sql = '';
 
     switch ($datatype) {
-        case 'CHARACTER' :
-        case 'VARCHAR'   :
+        case 'CHARACTER':
+        case 'VARCHAR':
             $sql .= $datatype;
             if ($defs['size'] > 0) {
                 $sql .= ' (' . $defs['size'] . ')';
@@ -548,7 +550,7 @@ function build_datatype($defs, $type = 'column', $mode = 'create')
             if (!empty($defs['charset']) && $defs['charset'] != 'NONE')
                 $sql .= ' CHARACTER SET ' . $defs['charset'];
             break;
-        case 'DOUBLE' :
+        case 'DOUBLE':
             $sql .= 'DOUBLE PRECISION';
             break;
         default:
@@ -668,7 +670,7 @@ function db_connect()
         return $dbh;
     }
 
-    return FALSE;
+    return false;
 }
 
 
@@ -684,14 +686,14 @@ function have_db_suffix($filename)
         foreach ($DATABASE_SUFFIXES as $suffix) {
             if ($fileend == strtoupper($suffix)) {
 
-                return TRUE;
+                return true;
             }
         }
 
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
@@ -702,16 +704,16 @@ function is_allowed_db($filename)
 {
     global $ALLOWED_FILES, $ALLOWED_DIRS;
 
-    $cmp_func = (stristr(php_uname(), 'wind') !== FALSE) ? 'strcasecmp' : 'strcmp';
+    $cmp_func = (stristr(php_uname(), 'wind') !== false) ? 'strcasecmp' : 'strcmp';
 
     if (isset($ALLOWED_FILES) && count($ALLOWED_FILES) > 0) {
         foreach ($ALLOWED_FILES as $file) {
             if ($cmp_func($filename, $file) == 0) {
 
-                return TRUE;
+                return true;
             }
         }
-        return FALSE;
+        return false;
     }
 
     $dirname = dirname($filename);
@@ -719,13 +721,13 @@ function is_allowed_db($filename)
         foreach ($ALLOWED_DIRS as $dir) {
             if ($cmp_func($dirname, substr($dir, 0, -1)) == 0) {
 
-                return TRUE;
+                return true;
             }
         }
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 
@@ -1302,29 +1304,6 @@ function get_customize_defaults($useragent)
 
 }
 
-
-//
-// return the indices for the color customize settings in $s_cust
-//
-function get_colornames()
-{
-
-    return array('background',
-        'panel',
-        'area',
-        'headline',
-        'menuborder',
-        'iframeborder',
-        'iframebackground',
-        'link',
-        'linkhover',
-        'selectedrow',
-        'selectedinput',
-        'firstrow',
-        'secondrow');
-}
-
-
 //
 // return the supported language names
 //
@@ -1403,34 +1382,32 @@ function fb_escape_string($str)
 //
 // check if the $user is allowed to execute functions from the panel $pname
 //
-function have_panel_permissions($user, $pname, $connected = FALSE)
+function have_panel_permissions($user, $pname, $connected = false)
 {
 
     if ($connected && !$GLOBALS['s_connected']) {
-        return FALSE;
+        return false;
     }
 
-    $is_open = FALSE;
+    $is_open = false;
     foreach (panel_array_names() as $paname) {
         foreach ($GLOBALS[$paname] as $idx => $panel) {
             if (in_array($pname, $panel) && $panel[2] == 'open') {
-                $is_open = TRUE;
+                $is_open = true;
                 break 2;
             }
         }
     }
     if (!$is_open) {
-        return FALSE;
+        return false;
     }
 
     if (in_array($pname, $GLOBALS['HIDE_PANELS']) &&
         ($user != 'SYSDBA' || SYSDBA_GET_ALL == FALSE)
     ) {
 
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
-
-?>
