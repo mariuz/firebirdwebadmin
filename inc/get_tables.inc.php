@@ -10,7 +10,8 @@
 // set the session variables $s_tables[], $s_fields[]
 // for the database $dbhandle
 //
-function get_tables() {
+function get_tables()
+{
     global $dbhandle, $ib_error, $s_tables, $s_fields, $s_foreigns, $s_primaries, $s_uniques, $s_login;
     global $s_charsets, $s_tables_counts, $s_views_counts, $s_tables_def, $s_tables_comp;
 
@@ -27,7 +28,7 @@ function get_tables() {
         .' ORDER BY RDB$RELATION_NAME';
     $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
     if (!is_resource($res)) {
-       return FALSE;
+        return false;
     }
 
     // initialize $s_tables[]
@@ -36,7 +37,7 @@ function get_tables() {
         $tablename = trim($row->RNAME);
 
         $s_tables[$tablename]['status']     = (isset($previous[$tablename])) ? $previous[$tablename]['status'] : 'close';
-        $s_tables[$tablename]['is_view']    = (isset($row->VBLR)  &&  $row->VBLR !== NULL) ? TRUE : FALSE;
+        $s_tables[$tablename]['is_view']    = (isset($row->VBLR)  &&  $row->VBLR !== null) ? true : false;
         $s_tables[$tablename]['owner']      = trim($row->OWNER);
         $s_tables[$tablename]['privileges'] = array();
     }
@@ -157,16 +158,16 @@ function get_tables() {
     while ($row = fbird_fetch_object($res)) {
         $tname = trim($row->TNAME);
         $field = $s_fields[$tname][$idx]['name']  = trim($row->FNAME);
-        if (strpos($row->DNAME, 'RDB$') !== 0){
+        if (strpos($row->DNAME, 'RDB$') !== 0) {
             $s_fields[$tname][$idx]['domain'] = 'Yes';
             $s_fields[$tname][$idx]['type'] = trim($row->DNAME);
         } else {
-            $s_fields[$tname][$idx]['stype'] = (isset($row->STYPE)) ? $row->STYPE : NULL;
+            $s_fields[$tname][$idx]['stype'] = (isset($row->STYPE)) ? $row->STYPE : null;
             $s_fields[$tname][$idx]['type']  = get_datatype($row->FTYPE, $s_fields[$tname][$idx]['stype']);
         }
-	if ($s_fields[$tname][$idx]['type'] == 'VARCHAR' || $s_fields[$tname][$idx]['type'] == 'CHARACTER') {
-	    $s_fields[$tname][$idx]['size']    = $row->FLEN;
-	}
+        if ($s_fields[$tname][$idx]['type'] == 'VARCHAR' || $s_fields[$tname][$idx]['type'] == 'CHARACTER') {
+            $s_fields[$tname][$idx]['size']    = $row->FLEN;
+        }
 
         // field is defined as NOT NULL
         if (!empty($row->NFLAG)) {
@@ -174,30 +175,30 @@ function get_tables() {
         }
 
         // this field is computed
-	if (isset($row->CSOURCE)) {
+        if (isset($row->CSOURCE)) {
             $s_fields[$tname][$idx]['comp']   = 'Yes';
-            $s_fields[$tname][$idx]['csource'] = FALSE;
+            $s_fields[$tname][$idx]['csource'] = false;
         }
 
         // this field has a default value
-	if (isset($row->DSOURCE)) {
+        if (isset($row->DSOURCE)) {
             $s_fields[$tname][$idx]['default']= 'Yes';
-            $s_fields[$tname][$idx]['dsource'] = FALSE;
+            $s_fields[$tname][$idx]['dsource'] = false;
         }
 
-    	if (($s_fields[$tname][$idx]['type'] == 'DECIMAL')  or  ($s_fields[$tname][$idx]['type'] == 'NUMERIC')) {
-	    $s_fields[$tname][$idx]['prec']   = $row->FPREC;
-	    $s_fields[$tname][$idx]['scale']  = -($row->FSCALE);
-	}
+        if (($s_fields[$tname][$idx]['type'] == 'DECIMAL')  or  ($s_fields[$tname][$idx]['type'] == 'NUMERIC')) {
+            $s_fields[$tname][$idx]['prec']   = $row->FPREC;
+            $s_fields[$tname][$idx]['scale']  = -($row->FSCALE);
+        }
 
-	if ($s_fields[$tname][$idx]['type'] == 'BLOB') {
+        if ($s_fields[$tname][$idx]['type'] == 'BLOB') {
             $s_fields[$tname][$idx]['segsize'] = $row->SEGLEN;
         }
 
-	$s_fields[$tname][$idx]['charset'] = isset($row->CHARID) ? $s_charsets[$row->CHARID]['name'] : NULL;
+        $s_fields[$tname][$idx]['charset'] = isset($row->CHARID) ? $s_charsets[$row->CHARID]['name'] : null;
         $s_fields[$tname][$idx]['collate'] = (isset($row->COLLID)  &&  $row->COLLID != 0  &&  isset($s_charsets[$row->CHARID]['collations'][$row->COLLID]))
                                  ? $s_charsets[$row->CHARID]['collations'][$row->COLLID]
-                                 : NULL;
+                                 : null;
 
         // optional array dimensions
         if (isset($row->LBOUND)) {
@@ -218,11 +219,11 @@ function get_tables() {
     $quote = identifier_quote($s_login['dialect']);
     foreach ($s_tables as $name => $properties) {
 
-        if ($s_tables_def == TRUE) {
+        if ($s_tables_def == true) {
             $s_fields = get_table_defaults_sources($name, $s_fields);
         }
 
-        if ($s_tables_comp == TRUE) {
+        if ($s_tables_comp == true) {
             $s_fields = get_table_computed_sources($name, $s_fields);
         }
 
@@ -230,8 +231,8 @@ function get_tables() {
             continue;
         }
 
-        if (($properties['is_view'] == FALSE  &&  $s_tables_counts == TRUE)
-        ||  ($properties['is_view'] == TRUE   &&  $s_views_counts  == TRUE)) {
+        if (($properties['is_view'] == false  &&  $s_tables_counts == true)
+        ||  ($properties['is_view'] == true   &&  $s_views_counts  == true)) {
 
             $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $name . $quote;
             $res = fbird_query($dbhandle, $sql)
@@ -244,7 +245,5 @@ function get_tables() {
         }
     }
 
-    return TRUE;
+    return true;
 }
-
-?>
