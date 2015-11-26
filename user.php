@@ -21,9 +21,10 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
     $s_sysdba_pw = get_sysdba_pw();
 
     if (isset($_POST['usr_user_del'])
-    ||  isset($_POST['usr_user_create'])
-    ||  isset($_POST['usr_user_mod'])) {
-        if (!isset($s_sysdba_pw)  ||  empty($s_sysdba_pw)) {
+        || isset($_POST['usr_user_create'])
+        || isset($_POST['usr_user_mod'])
+    ) {
+        if (!isset($s_sysdba_pw) || empty($s_sysdba_pw)) {
             $warning = $WARNINGS['NEED_SYSDBA_PW'];
         }
     }
@@ -31,26 +32,25 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
     if (empty($warning)) {
 
         // remove the selected user
-        if (isset($_POST['usr_user_del'])  &&
-            trim($_POST['usr_user_dname']) != '') {
+        if (isset($_POST['usr_user_del']) &&
+            trim($_POST['usr_user_dname']) != ''
+        ) {
 
-            $duser =  get_request_data('usr_user_dname');
+            $duser = get_request_data('usr_user_dname');
             if ($s_cust['askdel'] == TRUE) {
-                $s_confirmations['user'] = 
-                     array('msg' => sprintf($MESSAGES['CONFIRM_USER_DELETE'], $duser),
-                           'obj' => $duser);
-            }
-
-            elseif (drop_user($duser, $s_sysdba_pw)) {
+                $s_confirmations['user'] =
+                    array('msg' => sprintf($MESSAGES['CONFIRM_USER_DELETE'], $duser),
+                        'obj' => $duser);
+            } elseif (drop_user($duser, $s_sysdba_pw)) {
                 unset($users[$duser]);
             }
         }
-        
+
         // The Create button on the User panel was pushed
-        if (isset($_POST['usr_user_create'])){
+        if (isset($_POST['usr_user_create'])) {
             $user_add_flag = TRUE;
         }
-        
+
         // create the user from the form values
         if (isset($_POST['usr_user_create_doit'])) {
             $udata = get_posted_user_data();
@@ -58,33 +58,33 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
 
                 // on error show the create user form again
                 $user_add_flag = TRUE;
-            }
-            else {
+            } else {
                 $users = get_user();
             }
         }
-        
+
         // the Modify button on the User panel was pushed
-        if (isset($_POST['usr_user_mod'])  
-        &&  !empty($_POST['usr_user_mname'])) {
+        if (isset($_POST['usr_user_mod'])
+            && !empty($_POST['usr_user_mname'])
+        ) {
             $s_user_name = get_request_data('usr_user_mname');
-            $udata = array('uname'    => $s_user_name,
-                           'fname'    => $users[$s_user_name]['FIRST_NAME'],
-                           'mname'    => $users[$s_user_name]['MIDDLE_NAME'],
-                           'lname'    => $users[$s_user_name]['LAST_NAME']
-                           );
+            $udata = array('uname' => $s_user_name,
+                'fname' => $users[$s_user_name]['FIRST_NAME'],
+                'mname' => $users[$s_user_name]['MIDDLE_NAME'],
+                'lname' => $users[$s_user_name]['LAST_NAME']
+            );
         }
-        
+
         // modify the user from the form values
         if (isset($_POST['usr_user_mod_doit'])) {
-            $udata =  get_posted_user_data();
+            $udata = get_posted_user_data();
             if (modify_user($udata, $s_sysdba_pw)) {
                 // on success don't show the modify user form again
                 unset($s_user_name);
                 $users = get_user();
-            }        
+            }
         }
-        
+
         // modifying an index was canceled
         if (isset($_POST['usr_user_mod_cancel'])) {
             unset($s_user_name);
@@ -104,30 +104,35 @@ if (have_panel_permissions($s_login['user'], 'usr_role', TRUE)) {
 
     // create a role
     if (isset($_POST['usr_role_create'])
-    &&  $_POST['usr_role_name'] != '') {
-
+        && $_POST['usr_role_name'] != ''
+    ) {
         create_role($_POST['usr_role_name']);
     }
 
+    //print_r($_POST);
+
     // drop a role
     if (isset($_POST['usr_role_del'])
-    &&  $_POST['usr_role_dname'] != '') {
+        && $_POST['usr_role_dname'] != ''
+    ) {
 
         drop_role($_POST['usr_role_dname']);
     }
 
     // add user to role
     if (isset($_POST['usr_role_add'])
-    &&  $_POST['usr_role_addname'] != ''
-    &&  $_POST['usr_role_adduser'] != '') {
+        && $_POST['usr_role_addname'] != ''
+        && $_POST['usr_role_adduser'] != ''
+    ) {
 
         grant_role_to_user($_POST['usr_role_addname'], $_POST['usr_role_adduser']);
     }
 
     // remove user from role
     if (isset($_POST['usr_role_remove'])
-    &&  $_POST['usr_role_removename'] != ''
-    &&  $_POST['usr_role_removeuser'] != '') {
+        && $_POST['usr_role_removename'] != ''
+        && $_POST['usr_role_removeuser'] != ''
+    ) {
 
         revoke_role_from_user($_POST['usr_role_removename'], $_POST['usr_role_removeuser']);
     }
@@ -161,8 +166,8 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
 
         $old_settings = $s_cust;
 
-        $s_cust['language']     = get_request_data('usr_cust_language');
-        $s_cust['askdel']       = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
+        $s_cust['language'] = get_request_data('usr_cust_language');
+        $s_cust['askdel'] = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
 
         $settings_changed = TRUE;
     }
@@ -176,7 +181,7 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
         $settings_changed = TRUE;
     }
 
-    if ($settings_changed = TRUE  &&  isset($old_settings)) {
+    if ($settings_changed = TRUE && isset($old_settings)) {
 
         if ($old_settings['language'] != $s_cust['language']) {
 

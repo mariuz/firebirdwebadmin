@@ -19,9 +19,10 @@ elseif (isset($user_add_flag)):
         ?>
         <input type="submit" name="usr_user_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
         <input type="reset" name="usr_user_reset" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-        <input type="submit" name="usr_user_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+        <input type="submit" name="usr_user_create_cancel" value="<?php echo $button_strings['Cancel']; ?>"
+               class="bgrp">
     </form>
-<?php
+    <?php
 
 elseif (!empty($s_user_name)):
 
@@ -36,18 +37,20 @@ elseif (!empty($s_user_name)):
         <input type="submit" name="usr_user_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
     </form>
 
-<?php
+    <?php
 
 elseif ($s_connected):
 
     ?>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
+        <thead>
         <tr align="left">
             <th><?php echo $usr_strings['UName']; ?></th>
             <th><?php echo $usr_strings['FName']; ?></th>
             <th><?php echo $usr_strings['MName']; ?></th>
             <th><?php echo $usr_strings['LName']; ?></th>
         </tr>
+        </thead>
         <?php
         if (!empty($users)):
             foreach ($users as $uname => $udata):
@@ -58,7 +61,7 @@ elseif ($s_connected):
                     <td><?php echo table_val($udata['MIDDLE_NAME']); ?></td>
                     <td><?php echo table_val($udata['LAST_NAME']); ?></td>
                 </tr>
-            <?php
+                <?php
             endforeach;
         endif;
 
@@ -74,7 +77,8 @@ elseif ($s_connected):
         <table class="table table-bordered">
             <tr>
                 <th align="left"><?php echo $usr_strings['CreateUsr']; ?></th>
-                <td><input type="submit" class="btn btn-success" name="usr_user_create" value="<?php echo $button_strings['Create']; ?>"></td>
+                <td><input type="submit" class="btn btn-success" name="usr_user_create"
+                           value="<?php echo $button_strings['Create']; ?>"></td>
             </tr>
 
             <tr>
@@ -85,7 +89,8 @@ elseif ($s_connected):
                     </select>
                 </td>
                 <td align="left">
-                    <input type="submit" class="btn btn-primary" name="usr_user_mod" value="<?php echo $button_strings['Modify']; ?>">
+                    <input type="submit" class="btn btn-primary" name="usr_user_mod"
+                           value="<?php echo $button_strings['Modify']; ?>">
                 </td>
             </tr>
 
@@ -97,12 +102,13 @@ elseif ($s_connected):
                     </select>
                 </td>
                 <td align="left">
-                    <input type="submit" class="btn btn-danger" name="usr_user_del" value="<?php echo $button_strings['Delete']; ?>">
+                    <input type="submit" class="btn btn-danger" name="usr_user_del"
+                           value="<?php echo $button_strings['Delete']; ?>">
                 </td>
             </tr>
         </table>
     </form>
-<?php
+    <?php
 
 endif;
 
