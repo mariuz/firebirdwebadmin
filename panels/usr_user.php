@@ -7,7 +7,7 @@
 
 if (isset($s_confirmations['user'])):
     $subject = 'user';
-    include_once('./panels/confirm.php');
+    include_once './panels/confirm.php';
 
 elseif (isset($user_add_flag)):
 
@@ -30,7 +30,7 @@ elseif (!empty($s_user_name)):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="usr_user_form">
         <?php
 
-        echo user_definition($udata, sprintf($usr_strings['ModUser'], $s_user_name, TRUE));
+        echo user_definition($udata, sprintf($usr_strings['ModUser'], $s_user_name, true));
         ?>
         <input type="submit" name="usr_user_mod_doit" value="<?php echo $button_strings['Modify']; ?>" class="bgrp">
         <input type="reset" name="usr_user_mod_reset" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
@@ -98,7 +98,7 @@ elseif ($s_connected):
                 <td>
                     <strong><?php echo $usr_strings['USelDel']; ?></strong>
                     <select class="form-control" name="usr_user_dname">
-                        <?php build_user_options($with_sysdba = FALSE); ?>
+                        <?php build_user_options($with_sysdba = false); ?>
                     </select>
                 </td>
                 <td align="left">
@@ -114,7 +114,6 @@ endif;
 
 function table_val($val)
 {
-
     $val = (empty($val) && $val !== 0) ? '&nbsp;' : $val;
 
     return $val;

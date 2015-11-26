@@ -10,7 +10,8 @@
 //
 // get the properties for all defined triggers
 //
-function get_triggers($oldtriggers) {
+function get_triggers($oldtriggers)
+{
     global $dbhandle;
 
     $lsql = 'SELECT RDB$TRIGGER_NAME AS NAME,'
@@ -34,7 +35,6 @@ function get_triggers($oldtriggers) {
         $tsource = '';
         if ((isset($oldtriggers[$name]) &&  $display == 'open')
         ||  isset($_POST['acc_trigger_mod'])) {
-
             $bid = fbird_blob_open($obj->TSOURCE);
             $arr = fbird_blob_info($obj->TSOURCE);
 
@@ -45,40 +45,41 @@ function get_triggers($oldtriggers) {
             // discard the 'AS ' from the source-string
             $tsource = substr(trim($tsource), 3);
         }
-        $triggers[$name] = array('table'   => trim($obj->TNAME),
-                                 'phase'   => get_trigger_phase($obj->TTYPE),
-                                 'type'    => get_trigger_type($obj->TTYPE),
-                                 'pos'     => $obj->POS,
-                                 'status'  => get_trigger_status($obj->STATUS),
-                                 'source'  => $tsource,
-                                 'display' => $display);
+        $triggers[$name] = array('table' => trim($obj->TNAME),
+                                 'phase' => get_trigger_phase($obj->TTYPE),
+                                 'type' => get_trigger_type($obj->TTYPE),
+                                 'pos' => $obj->POS,
+                                 'status' => get_trigger_status($obj->STATUS),
+                                 'source' => $tsource,
+                                 'display' => $display, );
     }
 
     return $triggers;
 }
 
-
 //
 // create trigger from the definitions in $triggerdefs
 //
-function create_trigger($triggerdefs) {
+function create_trigger($triggerdefs)
+{
     global $s_login, $isql, $binary_output, $binary_error;
 
     $isql = trigger_create_source($triggerdefs);
 
-    if (DEBUG) add_debug('isql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('isql', __FILE__, __LINE__);
+    }
 
     // this must be done by isql because 'create trigger' is not supported from within php
     list($binary_output, $binary_error) = isql_execute($isql, $s_login['user'], $s_login['password'], $s_login['database'], $s_login['host']);
 
-    return ($binary_error != ''  ||  count($binary_output) > 0) ? FALSE : TRUE;
+    return ($binary_error != ''  ||  count($binary_output) > 0) ? false : true;
 }
 
-
-function trigger_create_source($triggerdefs) {
-
-    $isql  = "SET TERM !! ;\n"
-           . 'CREATE TRIGGER '.$triggerdefs['name'].' FOR '.$triggerdefs['table']
+function trigger_create_source($triggerdefs)
+{
+    $isql = "SET TERM !! ;\n"
+           .'CREATE TRIGGER '.$triggerdefs['name'].' FOR '.$triggerdefs['table']
             .' '.$triggerdefs['status'].' '.$triggerdefs['phase'].' '.implode(' OR ', $triggerdefs['type']);
     if ($triggerdefs['pos'] != 0) {
         $isql .= ' POSITION '.$triggerdefs['pos'];
@@ -90,46 +91,49 @@ function trigger_create_source($triggerdefs) {
     return $isql;
 }
 
-
-function modify_trigger($name, $triggerdefs) {
+function modify_trigger($name, $triggerdefs)
+{
     global $s_login, $isql, $binary_output, $binary_error;
 
     $isql = 'DROP TRIGGER '.$name.";\n"
             .trigger_create_source($triggerdefs);
 
-    if (DEBUG) add_debug('isql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('isql', __FILE__, __LINE__);
+    }
 
     list($binary_output, $binary_error) = isql_execute($isql, $s_login['user'], $s_login['password'], $s_login['database'], $s_login['host']);
 
-    return ($binary_error != ''  ||  count($binary_output) > 0) ? FALSE : TRUE;
+    return ($binary_error != ''  ||  count($binary_output) > 0) ? false : true;
 }
-
 
 //
 // drop the trigger $name off the database
 //
-function drop_trigger($name) {
+function drop_trigger($name)
+{
     global $s_triggers, $dbhandle, $ib_error;
     global $lsql;
 
     $lsql = 'DROP TRIGGER '.$name;
-    if (DEBUG) add_debug('lsql', __FILE__, __LINE__);
+    if (DEBUG) {
+        add_debug('lsql', __FILE__, __LINE__);
+    }
     if (!@fbird_query($dbhandle, $lsql)) {
         $ib_error = fbird_errmsg();
-    }
-    else {
+    } else {
         unset($s_triggers[$name]);
     }
 }
 
-
 //
 // deliver the html for an opened trigger on the triggers panel
 //
-function get_opened_trigger($name, $trigger, $url) {
+function get_opened_trigger($name, $trigger, $url)
+{
     global $dbhandle, $acc_strings, $ptitle_strings;
 
-    $type_str     = implode('<br>', $trigger['type']);
+    $type_str = implode('<br>', $trigger['type']);
 
     $html = <<<EOT
         <nobr>
@@ -169,11 +173,11 @@ EOT;
     return $html;
 }
 
-
 //
 // return the definition sourcecode for a trigger
 //
-function get_trigger_source($name) {
+function get_trigger_source($name)
+{
     global $dbhandle;
 
     $tsource = '';
@@ -199,12 +203,11 @@ function get_trigger_source($name) {
     return $tsource;
 }
 
-
 //
 // return the string equivalent for the trigger-status $int
 //
-function get_trigger_status($int) {
-
+function get_trigger_status($int)
+{
     if ($int == 0) {
         return 'Active';
     } elseif ($int == 1) {
@@ -213,14 +216,14 @@ function get_trigger_status($int) {
     die('Error: get_trigger_status() bad parameter');
 }
 
-
 //
 // return the string equivalent for the trigger-type $int
 //
-function get_trigger_type($int) {
+function get_trigger_type($int)
+{
 
     // skip the phase bit
-    $int++;
+    ++$int;
     $int = $int >> 1;
 
     $types = array();
@@ -244,72 +247,71 @@ function get_trigger_type($int) {
     return $types;
 }
 
-
 //
 // return the phase fpr the trigger-type $int
 //
-function get_trigger_phase($int) {
+function get_trigger_phase($int)
+{
 
     // before-triggers have bit one set
     return  $int & 0x01 ? 'before' : 'after';
 }
 
-
 //
 // outputs a html-table with a form to define/modify a trigger
 //
 // Variables:    $title     headline-string for the table
-function get_trigger_definition($title) {
+function get_trigger_definition($title)
+{
     global $s_triggerdefs, $acc_strings, $s_cust;
 
     $trigger_source = htmlspecialchars($s_triggerdefs['source']);
 
     $html = "<table border cellpadding=\"3\" cellspacing=\"0\">\n"
-          . "  <tr>\n"
-          . '    <th colspan="6" align="left">'.$title."</th>\n"
-          . "  </tr>\n"
-          . "  <tr>\n"
-          . '    <td valign="top"><b>'.$acc_strings['Name']."</b><br>\n"
-          . '      <input type="text" size="20" maxlength="31" name="def_trigger_name" value="'.ifsetor($s_triggerdefs['name'])."\">\n"
-          . "    </td>\n"
-          . "    <td valign=\"top\">\n"
-          . '      <b>'.$acc_strings['Table']."</b><br>\n"
-          . '      '.get_table_selectlist('def_trigger_table', array('owner'), $s_triggerdefs['table'], TRUE)
-          . "    </td>\n"
-          . "    <td valign=\"top\">\n"
-          . '      <b>'.$acc_strings['Phase']."</b><br>\n"
-          . '      '.get_selectlist('def_trigger_phase', array('before', 'after'), $s_triggerdefs['phase'], TRUE)
-          . "    </td>\n"
-          . "    <td>\n"
-          . '      <b>'.$acc_strings['Type']."</b><br>\n"
-          . '      '.get_triggertype_selectlist('def_trigger_type', $s_triggerdefs['type'], TRUE)
-          . "    </td>\n"
-          . "    <td valign=\"top\">\n"
-          . '      <b>'.$acc_strings['Position']."</b><br>\n"
-          . '      <input type="text" size="2" maxlength="2" name="def_trigger_pos" value="'.ifsetor($s_triggerdefs['pos'])."\">\n"
-          . "    </td>\n"
-          . "    <td valign=\"top\">\n"
-          . '      <b>'.$acc_strings['Status']."</b><br>\n"
-          . '      '.get_selectlist('def_trigger_status', array('Active', 'Inactive'), $s_triggerdefs['status'], FALSE)
-          . "    </td>\n"
-          . "  </tr>\n"
-          . "  <tr>\n"
-          . "    <td colspan=\"6\">\n"
-          . '      <b>'.$acc_strings['Source']."</b><br>\n"
-          . '      <textarea name="def_trigger_source" rows="'.$s_cust['textarea']['rows'].'" cols="'.$s_cust['textarea']['cols'].'" wrap="virtual">'.$trigger_source."</textarea>\n"
-          . "    </td>\n"
-          . "  </tr>\n"
-          . "</table>\n";
+          ."  <tr>\n"
+          .'    <th colspan="6" align="left">'.$title."</th>\n"
+          ."  </tr>\n"
+          ."  <tr>\n"
+          .'    <td valign="top"><b>'.$acc_strings['Name']."</b><br>\n"
+          .'      <input type="text" size="20" maxlength="31" name="def_trigger_name" value="'.ifsetor($s_triggerdefs['name'])."\">\n"
+          ."    </td>\n"
+          ."    <td valign=\"top\">\n"
+          .'      <b>'.$acc_strings['Table']."</b><br>\n"
+          .'      '.get_table_selectlist('def_trigger_table', array('owner'), $s_triggerdefs['table'], true)
+          ."    </td>\n"
+          ."    <td valign=\"top\">\n"
+          .'      <b>'.$acc_strings['Phase']."</b><br>\n"
+          .'      '.get_selectlist('def_trigger_phase', array('before', 'after'), $s_triggerdefs['phase'], true)
+          ."    </td>\n"
+          ."    <td>\n"
+          .'      <b>'.$acc_strings['Type']."</b><br>\n"
+          .'      '.get_triggertype_selectlist('def_trigger_type', $s_triggerdefs['type'], true)
+          ."    </td>\n"
+          ."    <td valign=\"top\">\n"
+          .'      <b>'.$acc_strings['Position']."</b><br>\n"
+          .'      <input type="text" size="2" maxlength="2" name="def_trigger_pos" value="'.ifsetor($s_triggerdefs['pos'])."\">\n"
+          ."    </td>\n"
+          ."    <td valign=\"top\">\n"
+          .'      <b>'.$acc_strings['Status']."</b><br>\n"
+          .'      '.get_selectlist('def_trigger_status', array('Active', 'Inactive'), $s_triggerdefs['status'], false)
+          ."    </td>\n"
+          ."  </tr>\n"
+          ."  <tr>\n"
+          ."    <td colspan=\"6\">\n"
+          .'      <b>'.$acc_strings['Source']."</b><br>\n"
+          .'      <textarea name="def_trigger_source" rows="'.$s_cust['textarea']['rows'].'" cols="'.$s_cust['textarea']['cols'].'" wrap="virtual">'.$trigger_source."</textarea>\n"
+          ."    </td>\n"
+          ."  </tr>\n"
+          ."</table>\n";
 
     return $html;
 }
 
-
 //
 // return the html for a triggertypes selectlist
 //
-function get_triggertype_selectlist($name, $sel=NULL, $empty=FALSE) {
-
+function get_triggertype_selectlist($name, $sel = null, $empty = false)
+{
     $types = array('insert', 'update', 'delete');
     $html = '';
     if (SERVER_FAMILY == 'FB'  &&  SERVER_VERSION >= 15) {
@@ -325,37 +327,34 @@ function get_triggertype_selectlist($name, $sel=NULL, $empty=FALSE) {
             $html .= '>'.$type."</option>\n";
         }
         $html .= "</select>\n";
-    }
-
-    else {
+    } else {
         $html = get_selectlist($name.'[]', $types, pos($sel), $empty);
     }
 
     return $html;
 }
 
-
 //
 // save the form vars we got from trigger_definition()
 //
-function save_triggerdefs() {
+function save_triggerdefs()
+{
     global $s_triggerdefs;
 
-    $s_triggerdefs['name']   = strtoupper(get_request_data('def_trigger_name'));
-    $s_triggerdefs['table']  = $_POST['def_trigger_table'];
-    $s_triggerdefs['phase']  = $_POST['def_trigger_phase'];
-    $s_triggerdefs['type']   = ifsetor($_POST['def_trigger_type']);
-    $s_triggerdefs['pos']    = $_POST['def_trigger_pos'];
+    $s_triggerdefs['name'] = strtoupper(get_request_data('def_trigger_name'));
+    $s_triggerdefs['table'] = $_POST['def_trigger_table'];
+    $s_triggerdefs['phase'] = $_POST['def_trigger_phase'];
+    $s_triggerdefs['type'] = ifsetor($_POST['def_trigger_type']);
+    $s_triggerdefs['pos'] = $_POST['def_trigger_pos'];
     $s_triggerdefs['status'] = $_POST['def_trigger_status'];
     $s_triggerdefs['source'] = get_request_data('def_trigger_source');
 }
 
-
 //
 // mark all triggers as opened or closed in $s_triggers
 //
-function toggle_all_triggers($triggers, $status) {
-
+function toggle_all_triggers($triggers, $status)
+{
     foreach (array_keys($triggers) as $name) {
         $triggers[$name]['display'] = $status;
 
@@ -367,19 +366,16 @@ function toggle_all_triggers($triggers, $status) {
     return $triggers;
 }
 
-
 //
 // check if an active trigger is defined for $table
 //
-function have_active_trigger($triggers, $table, $phase, $type=NULL) {
-
-    $func = 'return $a["table"]=="' . $table . '"  && $a["status"] == "Active" && $a["phase"]=="' . $phase . '"'
-          . ($type != NULL ? ' && in_array("'.$type.'", $a["type"])' : '')
-          . ';';
+function have_active_trigger($triggers, $table, $phase, $type = null)
+{
+    $func = 'return $a["table"]=="'.$table.'"  && $a["status"] == "Active" && $a["phase"]=="'.$phase.'"'
+          .($type != null ? ' && in_array("'.$type.'", $a["type"])' : '')
+          .';';
 
     $trigger = array_filter($triggers, create_function('$a', $func));
 
     return !empty($trigger);
 }
-
-?>

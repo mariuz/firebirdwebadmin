@@ -11,8 +11,8 @@
  * use shift- and ctrl-key to mark multiple rows or ranges of rows
  */
 function markableTable(id, leaveColumns) {
-  if (!id ) return;
-  var table = $('#'+id);
+    if (!id ) return;
+    var table = $('#'+id);
 
     if (typeof leaveColumns == 'undefined') leaveColumns = [];
 
@@ -155,34 +155,34 @@ markableTable.prototype.onCellClicked = function(e) {
 /*
  * markableTable implementation used for sql results and system tables
  */
-function markableIbwaTable(id, leaveColumns) {
+function markableFbwaTable(id, leaveColumns) {
     markableTable.call(this, id, leaveColumns);
 }
-markableIbwaTable.prototype = new markableTable();
+markableFbwaTable.prototype = new markableTable();
 
-markableIbwaTable.prototype.markableRow = function(row) {
+markableFbwaTable.prototype.markableRow = function(row) {
     return row.rowIndex != 0 ? true : false;
 }
 
-markableIbwaTable.prototype.doMark = function(cell) {
+markableFbwaTable.prototype.doMark = function(cell) {
     cell.className = 'selected';
 }
 
-markableIbwaTable.prototype.doUnmark = function (cell) {
+markableFbwaTable.prototype.doUnmark = function (cell) {
     cell.className = '';
 }
 
 
 /*
  * markableTable implementation for the watchtable on the tb_watch-panel
- * inherits from markableIbwaTable which inherits from marableTable
+ * inherits from markableFbwaTable which inherits from markableTable
  */
 function  markableWatchtable(id, leaveColumns) {
-    markableIbwaTable.call(this, id, leaveColumns);
+    markableFbwaTable.call(this, id, leaveColumns);
     this.cnt = 0;
     this.report = true;
 }
-markableWatchtable.prototype = new markableIbwaTable();
+markableWatchtable.prototype = new markableFbwaTable();
 
 markableWatchtable.prototype.markableCell = function(cell) {
     for (var i=0; i<this.leaveColumns.length; i++) {

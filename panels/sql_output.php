@@ -20,41 +20,37 @@
 // display the output from isql
 if (isset($isql_flag)  ||  isset($plan_flag)) {
     array_shift($binary_output);      // discard the first line
-    foreach($binary_output as $line) {
+    foreach ($binary_output as $line) {
         $line = str_replace(' ', '&nbsp;', $line);
-	$line = nl2br($line);
-	echo $line."<br>\n";
+        $line = nl2br($line);
+        echo $line."<br>\n";
     }
-}
-
-elseif (isset($results)) {
-
+} elseif (isset($results)) {
     ob_start();
 
     foreach ($results as $idx => $result) {
         if (!is_array($result)  ||  empty($result)) {
             continue;
         }
-       echo get_result_table($result, $fieldinfo[$idx], $idx);
-       echo sql_export_button($idx);
+        echo get_result_table($result, $fieldinfo[$idx], $idx);
+        echo sql_export_button($idx);
     }
 
     $s_sql['buffer'] = ob_get_contents();
     ob_end_flush();
-}
-
-elseif ($s_sql['buffer'] != '') {
+} elseif ($s_sql['buffer'] != '') {
     echo $s_sql['buffer'];
     echo '('.$sql_strings['DisplBuf'].')';
 }
 
 echo "    </td>\n  </tr>\n";
 
-if ($s_sql['more'] === TRUE) {
-?>
+if ($s_sql['more'] === true) {
+    ?>
   <tr>
     <td>
-      <input type="submit" name="sql_display_all" value="<?php echo $button_strings['DisplAll']; ?>">
+      <input type="submit" name="sql_display_all" value="<?php echo $button_strings['DisplAll'];
+    ?>">
     </td>
   </tr>
 <?php

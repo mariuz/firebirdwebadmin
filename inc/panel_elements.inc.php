@@ -15,99 +15,99 @@
 //                $rowspan  span the name field over so much rows
 //                $collate  display the collation element if TRUE
 //
-function get_datatype_definition($idx, $title, $rowspan = 1, $collate=FALSE) {
+function get_datatype_definition($idx, $title, $rowspan = 1, $collate = false)
+{
     global $s_coldefs, $tb_strings;
 
     // preselect values for the form elements
-    $name_value     = isset($s_coldefs[$idx]['name'])        ? $s_coldefs[$idx]['name']         : '';
-    $colpos_value   = isset($_POST['tb_modcol_pos'])? $_POST['tb_modcol_pos'] : '';
-    $datatype_pre   = isset($s_coldefs[$idx]['type'])        ? $s_coldefs[$idx]['type']         : NULL;
-    $size_value     = isset($s_coldefs[$idx]['size'])        ? $s_coldefs[$idx]['size']         : '';
-    $charset_pre    = isset($s_coldefs[$idx]['charset'])     ? $s_coldefs[$idx]['charset']      : NULL;
-    $collate_pre    = isset($s_coldefs[$idx]['collate'])     ? $s_coldefs[$idx]['collate']      : NULL;
-    $prec_value     = isset($s_coldefs[$idx]['prec'])        ? $s_coldefs[$idx]['prec']         : '';
-    $scale_value    = isset($s_coldefs[$idx]['scale'])       ? $s_coldefs[$idx]['scale']        : '';
-    $stype_value    = isset($s_coldefs[$idx]['stype'])       ? $s_coldefs[$idx]['stype']        : '';
-    $segsize_value  = isset($s_coldefs[$idx]['segsize'])     ? $s_coldefs[$idx]['segsize']      : '';
+    $name_value = isset($s_coldefs[$idx]['name'])        ? $s_coldefs[$idx]['name']         : '';
+    $colpos_value = isset($_POST['tb_modcol_pos']) ? $_POST['tb_modcol_pos'] : '';
+    $datatype_pre = isset($s_coldefs[$idx]['type'])        ? $s_coldefs[$idx]['type']         : null;
+    $size_value = isset($s_coldefs[$idx]['size'])        ? $s_coldefs[$idx]['size']         : '';
+    $charset_pre = isset($s_coldefs[$idx]['charset'])     ? $s_coldefs[$idx]['charset']      : null;
+    $collate_pre = isset($s_coldefs[$idx]['collate'])     ? $s_coldefs[$idx]['collate']      : null;
+    $prec_value = isset($s_coldefs[$idx]['prec'])        ? $s_coldefs[$idx]['prec']         : '';
+    $scale_value = isset($s_coldefs[$idx]['scale'])       ? $s_coldefs[$idx]['scale']        : '';
+    $stype_value = isset($s_coldefs[$idx]['stype'])       ? $s_coldefs[$idx]['stype']        : '';
+    $segsize_value = isset($s_coldefs[$idx]['segsize'])     ? $s_coldefs[$idx]['segsize']      : '';
 
     // colspan attribute for the charset cell
-    $charspan = ($collate == FALSE) ? 2 : 1;
+    $charspan = ($collate == false) ? 2 : 1;
 
     // javascript event-handler to adjust the collation accordingly to the selected charset
     $charset_tags = array();
-    if ($collate == TRUE) {
+    if ($collate == true) {
         $form_name = get_form_name($idx);
         $charset_tags = array('onChange' => 'adjustCollation(document.'.$form_name.'.cd_def_charset'.$idx.', document.'.$form_name.'.cd_def_collate'.$idx.')');
     }
 
     $html = "  <tr>\n"
-          . '    <th colspan="9" align="left"><b>'.$title."</b></th>\n"
-          . "  </tr>\n"
+          .'    <th colspan="9" align="left"><b>'.$title."</b></th>\n"
+          ."  </tr>\n"
 
-          . "  <tr>\n"
-          . '    <td rowspan="'.$rowspan."\" valign=\"top\" height=\"100%\">\n"
-          . "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
-          . "        <tr>\n"
-          . "          <td>\n"
-          . '            <b>'.$tb_strings['Name']."</b><br>\n"
-          . '            '.get_textfield('cd_def_name'.$idx, 20, 31, $name_value)
-          . "          </td>\n"
-          . "        </tr>\n"
-          . "      </table>\n";
+          ."  <tr>\n"
+          .'    <td rowspan="'.$rowspan."\" valign=\"top\" height=\"100%\">\n"
+          ."      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
+          ."        <tr>\n"
+          ."          <td>\n"
+          .'            <b>'.$tb_strings['Name']."</b><br>\n"
+          .'            '.get_textfield('cd_def_name'.$idx, 20, 31, $name_value)
+          ."          </td>\n"
+          ."        </tr>\n"
+          ."      </table>\n";
 
     if ($idx === 'mod') {
         $html .= "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" valign=\"bottom\" height=\"100%\">\n"
-               . "        <tr>\n"
-               . "          <td>\n"
-               . '            <b>'.$tb_strings['NewColPos']."</b><br>\n"
-               . '            '.get_textfield('tb_modcol_pos', 4, 4, $colpos_value)
-               . "          </td>\n"
-               . "        </tr>\n"
-               . "      </table>\n";
+               ."        <tr>\n"
+               ."          <td>\n"
+               .'            <b>'.$tb_strings['NewColPos']."</b><br>\n"
+               .'            '.get_textfield('tb_modcol_pos', 4, 4, $colpos_value)
+               ."          </td>\n"
+               ."        </tr>\n"
+               ."      </table>\n";
     }
 
     $html .= "    </td>\n"
            ."     <td>\n"
-           . '      <b>'.$tb_strings['Datatype']."</b><br>\n"
-           . '      '.get_selectlist('cd_def_type'.$idx, get_datatypes(SERVER_FAMILY, SERVER_VERSION), $datatype_pre, TRUE)
-           . "    </td>\n"
-           . "    <td>\n"
-           . '      <b>'.$tb_strings['Size']."</b><br>\n"
-           . '      '.get_textfield('cd_def_size'.$idx, 5, 5, $size_value)
-           . "    </td>\n"
-           . '    <td colspan="'.$charspan."\">\n"
-           . '      <b>'.$tb_strings['Charset']."</b><br>\n"
-           . '      '.get_charset_select('cd_def_charset'.$idx, $charset_pre, TRUE, $charset_tags)
-           . "    </td>\n";
+           .'      <b>'.$tb_strings['Datatype']."</b><br>\n"
+           .'      '.get_selectlist('cd_def_type'.$idx, get_datatypes(SERVER_FAMILY, SERVER_VERSION), $datatype_pre, true)
+           ."    </td>\n"
+           ."    <td>\n"
+           .'      <b>'.$tb_strings['Size']."</b><br>\n"
+           .'      '.get_textfield('cd_def_size'.$idx, 5, 5, $size_value)
+           ."    </td>\n"
+           .'    <td colspan="'.$charspan."\">\n"
+           .'      <b>'.$tb_strings['Charset']."</b><br>\n"
+           .'      '.get_charset_select('cd_def_charset'.$idx, $charset_pre, true, $charset_tags)
+           ."    </td>\n";
 
-    if ($collate == TRUE) {
+    if ($collate == true) {
         $html .= "    <td>\n"
-               . '      <b>'.$tb_strings['Collation']."</b><br>\n"
-               . '      '.get_collation_select('cd_def_collate'.$idx, $collate_pre, TRUE)
-               . "    </td>\n";
+               .'      <b>'.$tb_strings['Collation']."</b><br>\n"
+               .'      '.get_collation_select('cd_def_collate'.$idx, $collate_pre, true)
+               ."    </td>\n";
     }
 
     $html .= "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['PrecShort']."</b><br>\n"
-           . '      '.get_textfield('cd_def_prec'.$idx, 2, 2, $prec_value)
-           . "    </td>\n"
-           . "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['Scale']."</b><br>\n"
-           . '      '.get_textfield('cd_def_scale'.$idx, 2, 2, $scale_value)
-           . "    </td>\n"
-           . "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['Subtype']."</b><br>\n"
-           . '      '.get_textfield('cd_def_stype'.$idx, 3, 3, $stype_value)
-           . "    </td>\n"
-           . "    <td align=\"center\">\n"
-           . '      <b>'.$tb_strings['SegSiShort']."</b><br>\n"
-           . '      '.get_textfield('cd_def_segsize'.$idx, 5, 5, $segsize_value)
-           . "    </td>\n"
-           . "  </tr>\n";
+           .'      <b>'.$tb_strings['PrecShort']."</b><br>\n"
+           .'      '.get_textfield('cd_def_prec'.$idx, 2, 2, $prec_value)
+           ."    </td>\n"
+           ."    <td align=\"center\">\n"
+           .'      <b>'.$tb_strings['Scale']."</b><br>\n"
+           .'      '.get_textfield('cd_def_scale'.$idx, 2, 2, $scale_value)
+           ."    </td>\n"
+           ."    <td align=\"center\">\n"
+           .'      <b>'.$tb_strings['Subtype']."</b><br>\n"
+           .'      '.get_textfield('cd_def_stype'.$idx, 3, 3, $stype_value)
+           ."    </td>\n"
+           ."    <td align=\"center\">\n"
+           .'      <b>'.$tb_strings['SegSiShort']."</b><br>\n"
+           .'      '.get_textfield('cd_def_segsize'.$idx, 5, 5, $segsize_value)
+           ."    </td>\n"
+           ."  </tr>\n";
 
     echo $html;
 }
-
 
 //
 // html sequence for part of a table/form to define a <col_def> statement
@@ -116,78 +116,78 @@ function get_datatype_definition($idx, $title, $rowspan = 1, $collate=FALSE) {
 //                $title  headline string
 //                $rowspan  span the name field over so much rows
 //
-function get_coldef_definition($idx, $title, $rowspan, $collate=FALSE) {
+function get_coldef_definition($idx, $title, $rowspan, $collate = false)
+{
     global $s_coldefs, $tb_strings, $s_domains;
 
     $coldefs = isset($s_coldefs[$idx]) ? $s_coldefs[$idx] : array();
 
     $domain_names = array_keys($s_domains);
-    $rowspan = !empty($domain_names) ? $rowspan -1 : $rowspan;
+    $rowspan = !empty($domain_names) ? $rowspan - 1 : $rowspan;
 
     // preselect values for the form elements
-    $domain_pre    = isset($coldefs['domain'])  ? $coldefs['domain']  : NULL;
-    $comp_value    = isset($coldefs['comp'])    ? $coldefs['comp']    : '';
+    $domain_pre = isset($coldefs['domain'])  ? $coldefs['domain']  : null;
+    $comp_value = isset($coldefs['comp'])    ? $coldefs['comp']    : '';
     $default_value = isset($coldefs['default']) ? $coldefs['default'] : '';
-    $check_value   = isset($coldefs['check'])   ? $coldefs['check']   : '';
+    $check_value = isset($coldefs['check'])   ? $coldefs['check']   : '';
 
     $ehandler_str = ' onClick="checkColConstraint('.'document.'.get_form_name($idx).", this.name, '".$idx."')";
 
     $html = get_datatype_definition($idx, $title, $rowspan, $collate)
-          . "  <tr>\n"
-          . "    <td colspan=\"4\">\n";
+          ."  <tr>\n"
+          ."    <td colspan=\"4\">\n";
 
     if (!empty($domain_names)) {
         $html .= '      <b>'.$tb_strings['Domain']."</b><br>\n"
-               . '      '.get_selectlist('cd_def_domain'.$idx, $domain_names, $domain_pre, TRUE);
-    }
-    else {
+               .'      '.get_selectlist('cd_def_domain'.$idx, $domain_names, $domain_pre, true);
+    } else {
         $html .= "&nbsp;\n";
     }
 
     $html .= "    </td>\n"
-           . "    <td colspan=\"2\" align=\"center\">\n"
-           . '      <label><b>'.$tb_strings['NotNull']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_notnull'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['notnull']) ? ' checked' : '').">\n</label>"
-           . "    </td>\n"
-           . "    <td align=\"center\">\n"
-           . '      <label><b>'.$tb_strings['Unique']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_unique'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['unique']) ? ' checked' : '').">\n</label>"
-           . "    </td>\n"
-           . "    <td align=\"center\">\n"
-           . '      <label><b>'.$tb_strings['Primary']."</b><br>\n"
-           . '      <input type="checkbox" name="cd_def_primary'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['primary']) ? ' checked' : '').">\n</label>"
-           . "    </td>\n"
-           . "  </tr>\n"
+           ."    <td colspan=\"2\" align=\"center\">\n"
+           .'      <label><b>'.$tb_strings['NotNull']."</b><br>\n"
+           .'      <input type="checkbox" name="cd_def_notnull'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['notnull']) ? ' checked' : '').">\n</label>"
+           ."    </td>\n"
+           ."    <td align=\"center\">\n"
+           .'      <label><b>'.$tb_strings['Unique']."</b><br>\n"
+           .'      <input type="checkbox" name="cd_def_unique'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['unique']) ? ' checked' : '').">\n</label>"
+           ."    </td>\n"
+           ."    <td align=\"center\">\n"
+           .'      <label><b>'.$tb_strings['Primary']."</b><br>\n"
+           .'      <input type="checkbox" name="cd_def_primary'.$idx.'"'.$ehandler_str.'"'.(!empty($coldefs['primary']) ? ' checked' : '').">\n</label>"
+           ."    </td>\n"
+           ."  </tr>\n"
 
-           . "  <tr>\n"
-           . "    <td colspan=\"2\">\n"
-           . '      <b>'. $tb_strings['CompBy']."</b><br>\n"
-           . '      '.get_textfield('cd_def_comp'.$idx, 27, 512, $comp_value)
-           . "    </td>\n"
-           . "    <td colspan=\"2\">\n"
-           . '      <b>'.$tb_strings['Default']."</b><br>\n"
-           . '      '.get_textfield('cd_def_default'.$idx, 27, 256, $default_value)
-           . "    </td>\n"
-           . "    <td colspan=\"4\">\n"
-           . '      <b>'.$tb_strings['Check']."</b><br>\n"
-           . '      '.get_textfield('cd_def_check'.$idx, 27, 256, $check_value)
-           . "    </td>\n"
-           . "  </tr>\n"
+           ."  <tr>\n"
+           ."    <td colspan=\"2\">\n"
+           .'      <b>'.$tb_strings['CompBy']."</b><br>\n"
+           .'      '.get_textfield('cd_def_comp'.$idx, 27, 512, $comp_value)
+           ."    </td>\n"
+           ."    <td colspan=\"2\">\n"
+           .'      <b>'.$tb_strings['Default']."</b><br>\n"
+           .'      '.get_textfield('cd_def_default'.$idx, 27, 256, $default_value)
+           ."    </td>\n"
+           ."    <td colspan=\"4\">\n"
+           .'      <b>'.$tb_strings['Check']."</b><br>\n"
+           .'      '.get_textfield('cd_def_check'.$idx, 27, 256, $check_value)
+           ."    </td>\n"
+           ."  </tr>\n"
 
-           . get_column_constraint_definition($coldefs, $idx);
+           .get_column_constraint_definition($coldefs, $idx);
 
     return $html;
 }
 
-
 //
 // html for foreign key definitions and dropping column constraints
 //
-function get_column_constraint_definition($coldefs, $idx) {
+function get_column_constraint_definition($coldefs, $idx)
+{
     global $fk_actions, $tb_strings;
 
-    $fk_name   = isset($coldefs['fk_name'])   ? $coldefs['fk_name']   : '';
-    $fk_table  = isset($coldefs['fk_table'])  ? $coldefs['fk_table']  : '';
+    $fk_name = isset($coldefs['fk_name'])   ? $coldefs['fk_name']   : '';
+    $fk_table = isset($coldefs['fk_table'])  ? $coldefs['fk_table']  : '';
     $fk_column = isset($coldefs['fk_column']) ? $coldefs['fk_column'] : '';
     $on_update = isset($coldefs['on_update']) ? $coldefs['on_update'] : '';
     $on_delete = isset($coldefs['on_delete']) ? $coldefs['on_delete'] : '';
@@ -195,7 +195,7 @@ function get_column_constraint_definition($coldefs, $idx) {
     $table_element = get_table_selectlist('cd_def_fk_table_'.$idx,
                                           array('no_views', 'references'),
                                           $fk_table,
-                                          TRUE,
+                                          true,
                                           array('onChange' => "requestTableColumns(selectedElement(this), 'cd_def_fk_col_".$idx."', 'fk');")
                                           );
 
@@ -206,26 +206,26 @@ function get_column_constraint_definition($coldefs, $idx) {
          (isset($coldefs['foreign'])  &&  $coldefs['foreign_cols'] == 1)
          )
         ) {
-        $checked_str = $coldefs['fk_del'] == TRUE ? ' checked' : '';
-        $drop_element =  "        <tr>\n"
+        $checked_str = $coldefs['fk_del'] == true ? ' checked' : '';
+        $drop_element = "        <tr>\n"
                         ."          <td colspan=\"7\">\n"
                         ."            <table style=\"border-bottom: 1px solid black;\" width=\"100%\">\n"
                         ."              <tr>\n";
 
         if (isset($coldefs['primary'])  &&  $coldefs['primary_cols'] == 1) {
-            $checked_str = $coldefs['pk_del'] == TRUE ? ' checked' : '';
+            $checked_str = $coldefs['pk_del'] == true ? ' checked' : '';
             $drop_element .= "                <td>\n"
                             .'                  <label><input type="checkbox" name="cd_def_pk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropPK']."</b>\n</label>"
                             ."                </td>\n";
         }
         if (isset($coldefs['unique'])  &&  $coldefs['unique_cols'] == 1) {
-            $checked_str = $coldefs['uq_del'] == TRUE ? ' checked' : '';
+            $checked_str = $coldefs['uq_del'] == true ? ' checked' : '';
             $drop_element .= "                <td>\n"
                             .'                  <label><input type="checkbox" name="cd_def_uq_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropUq']."</b>\n</label>"
                             ."                </td>\n";
         }
         if (isset($coldefs['foreign'])  &&  $coldefs['foreign_cols'] == 1) {
-            $checked_str = $coldefs['fk_del'] == TRUE ? ' checked' : '';
+            $checked_str = $coldefs['fk_del'] == true ? ' checked' : '';
             $drop_element .= "                <td>\n"
                             .'                  <label><input type="checkbox" name="cd_def_fk_del_'.$idx.'"'.$checked_str.'> <b>'.$tb_strings['DropFK']."</b>\n</label>"
                             ."                </td>\n";
@@ -262,12 +262,12 @@ function get_column_constraint_definition($coldefs, $idx) {
            ."          <td>&nbsp;&nbsp;</td>\n"
            ."          <td>\n"
            .'            <b>'.$tb_strings['OnUpdate']."</b><br>\n"
-           ."            ".get_selectlist('cd_def_ou_'.$idx, $fk_actions, $on_update, TRUE)."\n"
+           .'            '.get_selectlist('cd_def_ou_'.$idx, $fk_actions, $on_update, true)."\n"
            ."          </td>\n"
            ."          <td>&nbsp;&nbsp;</td>\n"
            ."          <td>\n"
            .'            <b>'.$tb_strings['OnDelete']."</b><br>\n"
-           ."            ".get_selectlist('cd_def_od_'.$idx, $fk_actions, $on_delete, TRUE)."\n"
+           .'            '.get_selectlist('cd_def_od_'.$idx, $fk_actions, $on_delete, true)."\n"
            ."          </td>\n"
            ."        </tr>\n"
            ."      </table>\n"
@@ -277,19 +277,19 @@ function get_column_constraint_definition($coldefs, $idx) {
     return $html;
 }
 
-
 //
 // find out the name of a datatype definition form
 //
 // Parameter: $idx    suffix, used for the form elements
 //
-function get_form_name($idx) {
+function get_form_name($idx)
+{
 
     // yes, its ugly,
     // but I need the form name for the adjustCollation() javascript
-    $idx = (string)$idx;
+    $idx = (string) $idx;
     switch ($idx) {
-        case 'add':
+        case 'add' :
             // modify table / add column
             $form_name = 'tb_modadd_form';
             break;
@@ -305,18 +305,20 @@ function get_form_name($idx) {
     return $form_name;
 }
 
-
 //
 // asks for SYSDBAs password
 //
-function sysdba_pw_textfield($caption, $explain, $pw) {
-
-?>
+function sysdba_pw_textfield($caption, $explain, $pw)
+{
+    ?>
 <table class="table table-bordered">
 <tr>
-  <th align="left"><?php echo $caption; ?></th>
-     <td><input type="password"  size="20" maxlength="32" name="sysdba_pw" value="<?php echo password_stars($pw); ?>">&nbsp;
-        <?php echo $explain; ?>
+  <th align="left"><?php echo $caption;
+    ?></th>
+     <td><input type="password"  size="20" maxlength="32" name="sysdba_pw" value="<?php echo password_stars($pw);
+    ?>">&nbsp;
+        <?php echo $explain;
+    ?>
      </td>
 </tr>
 </table>
@@ -324,14 +326,12 @@ function sysdba_pw_textfield($caption, $explain, $pw) {
 
 }
 
-
 //
 // determine SYSDBAs password from the sysdba_pw_textfield()
 //
-function get_sysdba_pw() {
-
+function get_sysdba_pw()
+{
     if ($GLOBALS['s_login']['user'] == 'SYSDBA') {
-
         return $GLOBALS['s_login']['password'];
     }
 
@@ -340,7 +340,6 @@ function get_sysdba_pw() {
         $pw = trim($_POST['sysdba_pw']);
         if (strspn($pw, '*') != strlen($GLOBALS['s_sysdba_pw'])
         ||  strlen($GLOBALS['s_sysdba_pw']) == 0) {
-
             return $pw;
         }
     }
@@ -348,31 +347,28 @@ function get_sysdba_pw() {
     return $GLOBALS['s_sysdba_pw'];
 }
 
-
 //
 // return the html for a selectlist of the  FireBird character sets.
 //
-function get_charset_select($name, $sel=NULL, $empty=FALSE, $tags=array()) {
-
+function get_charset_select($name, $sel = null, $empty = false, $tags = array())
+{
     $charset_names = array();
     if (!empty($GLOBALS['s_charsets'])) {
-        foreach($GLOBALS['s_charsets'] as $cs) {
+        foreach ($GLOBALS['s_charsets'] as $cs) {
             $charset_names[] = $cs['name'];
         }
-    }
-    else {
+    } else {
         $charset_names = get_preset_charsets(SERVER_FAMILY, SERVER_VERSION);
     }
 
     return get_selectlist($name, $charset_names, $sel, $empty, $tags);
 }
 
-
 //
 // return the html for a selectlist of the available collation orders
 //
-function get_collation_select($name, $sel=NULL, $empty=FALSE, $tags=array()) {
-
+function get_collation_select($name, $sel = null, $empty = false, $tags = array())
+{
     $collation_names = array();
     foreach ($GLOBALS['s_charsets'] as $charset) {
         foreach ($charset['collations'] as $collation) {
@@ -384,29 +380,28 @@ function get_collation_select($name, $sel=NULL, $empty=FALSE, $tags=array()) {
     return get_selectlist($name, $collation_names, $sel, $empty, $tags);
 }
 
-
 //
 // return the html for a selectlist for the tables of the selected database
 //
-function get_table_selectlist($name, $restrictions=array(), $sel=NULL, $empty=FALSE, $tags=array(), $size=1) {
+function get_table_selectlist($name, $restrictions = array(), $sel = null, $empty = false, $tags = array(), $size = 1)
+{
     global $s_tables, $s_login;
 
     $rights = array('S' => 'select',
                     'I' => 'insert',
                     'U' => 'update',
                     'D' => 'delete',
-                    'R' => 'reference');
+                    'R' => 'reference', );
 
     $tables = array();
-    foreach($s_tables as $tablename => $tarr) {
-
+    foreach ($s_tables as $tablename => $tarr) {
         if (in_array('noviews', $restrictions)
-        &&  $tarr['is_view'] == TRUE) {
+        &&  $tarr['is_view'] == true) {
             continue;
         }
 
         if (in_array('views', $restrictions)
-        &&  $tarr['is_view'] == FALSE) {
+        &&  $tarr['is_view'] == false) {
             continue;
         }
 
@@ -431,79 +426,77 @@ function get_table_selectlist($name, $restrictions=array(), $sel=NULL, $empty=FA
     return get_selectlist($name, $tables, $sel, $empty, $tags, $size);
 }
 
-
 //
 // output the <option> list for a selectlist for the columns
 // of the table $name
 //
-function build_column_options($table) {
+function build_column_options($table)
+{
     global $s_fields;
 
     echo "<option>\n";
-    foreach($s_fields[$table] as $field) {
+    foreach ($s_fields[$table] as $field) {
         echo '<option> '.$field['name']."\n";
     }
 }
-
 
 //
 // output the <option> list for a selectlist for the indices
 // of the selected database
 //
-function build_index_options() {
+function build_index_options()
+{
     global $indices;
 
     echo "<option>\n";
     if (is_array($indices)) {
         $inames = array_keys($indices);
-        foreach($inames as $name) {
+        foreach ($inames as $name) {
             echo '<option> '.$name."\n";
         }
     }
 }
-
 
 //
 // output the <option> list for a selectlist
 // for the firebird users in security db
 // of the selected database
 //
-function build_user_options($with_sysdba=TRUE) {
+function build_user_options($with_sysdba = true)
+{
     global $users;
 
     echo "<option>\n";
     if (is_array($users)) {
         $unames = array_keys($users);
-        if ($with_sysdba == FALSE) {
+        if ($with_sysdba == false) {
             unset($unames[array_search('SYSDBA', $unames)]);
         }
-        foreach($unames as $uname) {
+        foreach ($unames as $uname) {
             echo '<option> '.$uname."\n";
         }
     }
 }
 
-
 //
 // return the html for a selectlist
 //
-function get_selectlist($name, $arr, $sel=NULL, $empty=FALSE, $tags=array(), $size=1) {
-
+function get_selectlist($name, $arr, $sel = null, $empty = false, $tags = array(), $size = 1)
+{
     $html = get_indexed_selectlist($name, array_combine($arr, $arr), $sel, $empty, $tags, $size);
 
     return $html;
 }
 
-
 //
 // return the html for a selectlist
 //
-function get_indexed_selectlist($name, $arr, $sel=NULL, $empty=FALSE, $tags=array(), $size=1) {
-
+function get_indexed_selectlist($name, $arr, $sel = null, $empty = false, $tags = array(), $size = 1)
+{
     $sel = is_array($sel) ? array_map('htmlspecialchars', $sel) : htmlspecialchars($sel);
 
-    $html = '<select class="form-control" id="' . $name . '" name="' . $name . '" size="' . $size . '"' . get_tags_string($tags) . ">\n";
-    if ($empty == TRUE) {
+    $html = '<select class="form-control" id="'.$name.'" name="'.$name.'" size="'.$size.'"'.get_tags_string($tags).">\n";
+    if ($empty == true) {
         $html .= "<option />\n";
     }
 
@@ -521,58 +514,55 @@ function get_indexed_selectlist($name, $arr, $sel=NULL, $empty=FALSE, $tags=arra
     return $html;
 }
 
-
 //
 // return the html for a selectlist with 'Yes' and 'No' as options
 //
-function get_yesno_selectlist($name, $sel=NULL, $empty=FALSE, $tags=array()) {
+function get_yesno_selectlist($name, $sel = null, $empty = false, $tags = array())
+{
     global $sql_strings;
 
     $arr = array('Yes' => $sql_strings['Yes'],
-                 'No'  => $sql_strings['No']);
+                 'No' => $sql_strings['No'], );
 
     $html = get_indexed_selectlist($name, $arr, $sel, $empty, $tags);
 
     return $html;
 }
 
-
 //
 // output a form textfield
 //
-function get_textfield($name, $size, $maxlength=NULL, $value=NULL, $type='text', $tags=array()) {
-
-    $html = '<input class="form-control" type="' . $type . '" id="' . $name . '" name="' . $name . '" size="' . $size . '"';
-    if ($maxlength !== NULL) {
-        $html .= ' maxlength="' . $maxlength . '"';
+function get_textfield($name, $size, $maxlength = null, $value = null, $type = 'text', $tags = array())
+{
+    $html = '<input class="form-control" type="'.$type.'" id="'.$name.'" name="'.$name.'" size="'.$size.'"';
+    if ($maxlength !== null) {
+        $html .= ' maxlength="'.$maxlength.'"';
     }
-    if ($value !== NULL) {
-        $html .= ' value="' . htmlspecialchars($value) . '"';
+    if ($value !== null) {
+        $html .= ' value="'.htmlspecialchars($value).'"';
     }
-    $html .= get_tags_string($tags) . ">\n";
+    $html .= get_tags_string($tags).">\n";
 
     return $html;
 }
-
 
 //
 // return the html for hidden field
 //
-function hidden_field($name, $value) {
-
-    $html = '<input type="hidden" name="' . $name . '" value="' . htmlspecialchars($value) . "\">\n";
+function hidden_field($name, $value)
+{
+    $html = '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value)."\">\n";
 
     return $html;
 }
 
-
 //
 // return the html for a checkbox element
 //
-function get_checkbox($name, $value, $checked, $tags=array()) {
-
+function get_checkbox($name, $value, $checked, $tags = array())
+{
     $checked_str = $checked ?  ' checked' : '';
-    $html = '<input type="checkbox" name="' . $name . '" id="' . $name . '" value="' . htmlspecialchars($value) . '"' . $checked_str . get_tags_string($tags) . '>';
+    $html = '<input type="checkbox" name="'.$name.'" id="'.$name.'" value="'.htmlspecialchars($value).'"'.$checked_str.get_tags_string($tags).'>';
 
     return $html;
 }
@@ -580,8 +570,8 @@ function get_checkbox($name, $value, $checked, $tags=array()) {
 //
 // build a html tags string from an array using the indices as names and the values as values
 //
-function get_tags_string($tags) {
-
+function get_tags_string($tags)
+{
     $tags_str = '';
     foreach ($tags as $tag => $val) {
         $tags_str .= sprintf(' %s="%s"', $tag, $val);
@@ -590,20 +580,20 @@ function get_tags_string($tags) {
     return $tags_str;
 }
 
-
 //
 // return the html for a closed detail
 //
-function get_closed_detail($title, $url, $curl='', $cdiv='') {
+function get_closed_detail($title, $url, $curl = '', $cdiv = '')
+{
     global $ptitle_strings;
 
-    $html= '<a href="'.$url.'" title="'.$ptitle_strings['Open']."\">"
-         . '  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" alt="'.$ptitle_strings['Open'].'" title="'.$ptitle_strings['Open'].'" ></span> '.$title."</a> ";
+    $html = '<a href="'.$url.'" title="'.$ptitle_strings['Open'].'">'
+         .'  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" alt="'.$ptitle_strings['Open'].'" title="'.$ptitle_strings['Open'].'" ></span> '.$title.'</a> ';
 
     if (!empty($curl)) {
         $html .= '<a href="'.$curl.'" class="act" title="Edit comment">[C]</a>'."\n"
-               . '<div id="'.$cdiv."\" class=\"cmt\">\n"
-               . "</div>\n";
+               .'<div id="'.$cdiv."\" class=\"cmt\">\n"
+               ."</div>\n";
     }
 
     return $html;
@@ -612,33 +602,32 @@ function get_closed_detail($title, $url, $curl='', $cdiv='') {
 //
 // build the url for a link to open/close a detail
 //
-function fold_detail_url($type, $status, $name, $title) {
-
+function fold_detail_url($type, $status, $name, $title)
+{
     if ($status == 'close') {
         $url = sprintf("javascript:requestDetail('%s', '%s', '%s')", $type, $name, $title);
-    }
-    else {
+    } else {
         $url = sprintf("javascript:closeDetail('%s', '%s_%s', '%s', '%s')", $type, detail_div_prefix($type), $name, $name, $title);
     }
 
     return $url;
 }
 
-function detail_div_prefix($type) {
+function detail_div_prefix($type)
+{
+    $div_prefixes = array('table' => 't',
+                              'view' => 'v',
+                              'trigger' => 'r',
+                              'procedure' => 'p', );
 
-        $div_prefixes = array('table'     => 't',
-                              'view'      => 'v',
-                              'trigger'   => 'r',
-                              'procedure' => 'p');
-
-        return $div_prefixes[$type];
+    return $div_prefixes[$type];
 }
-
 
 //
 // deliver the html for an opened table on the tb_show panel
 //
-function get_opened_table($name, $title, $url, $curl='', $cdiv='') {
+function get_opened_table($name, $title, $url, $curl = '', $cdiv = '')
+{
     global $s_fields, $tb_strings, $ptitle_strings;
 
     $html = <<<EOT
@@ -661,18 +650,18 @@ EOT;
     }
     $html .= " </tr></thead>\n";
 
-    foreach($s_fields[$name] as $field) {
+    foreach ($s_fields[$name] as $field) {
         $type_str = isset($field['domain']) ? $field['type'] : get_type_string($field);
-        $type_str .=isset($field['lower_bound']) ? '['.$field['lower_bound'].':'.$field['upper_bound'].']' : '';
+        $type_str .= isset($field['lower_bound']) ? '['.$field['lower_bound'].':'.$field['upper_bound'].']' : '';
         $char_str = isset($field['charset']) ? $field['charset']  : '&nbsp;';
         $coll_str = isset($field['collate']) ? $field['collate']  : '&nbsp;';
         $comp_str = table_column_detail_string(ifsetor($field['comp']), ifsetor($field['csource']), $GLOBALS['s_tables_comp']);
-        $def_str  = table_column_detail_string(ifsetor($field['default']), ifsetor($field['dsource']), $GLOBALS['s_tables_def']);
-        $nn_str   = isset($field['notnull']) ? $tb_strings['Yes'] : '&nbsp;';
-        $check_str= isset($field['check'])   ? $tb_strings['Yes'] : '&nbsp;';
+        $def_str = table_column_detail_string(ifsetor($field['default']), ifsetor($field['dsource']), $GLOBALS['s_tables_def']);
+        $nn_str = isset($field['notnull']) ? $tb_strings['Yes'] : '&nbsp;';
+        $check_str = isset($field['check'])   ? $tb_strings['Yes'] : '&nbsp;';
         $uniq_str = table_detail_constraint_string(ifsetor($field['unique']), $GLOBALS['s_tables_cnames']);
         $prim_str = table_detail_constraint_string(ifsetor($field['primary']), $GLOBALS['s_tables_cnames']);
-        $fk_str   = table_detail_constraint_string(ifsetor($field['foreign']), $GLOBALS['s_tables_cnames']);
+        $fk_str = table_detail_constraint_string(ifsetor($field['foreign']), $GLOBALS['s_tables_cnames']);
 
         $html .= " <tr>
                   <td>${field['name']}</td>
@@ -697,47 +686,43 @@ EOT;
     return $html;
 }
 
-function table_detail_constraint_string($cname, $shownames) {
-
+function table_detail_constraint_string($cname, $shownames)
+{
     $str = '';
     if (isset($cname)) {
-        if ($shownames == TRUE) {
+        if ($shownames == true) {
             $str = $cname;
-        }
-        else {
+        } else {
             $str = $GLOBALS['tb_strings']['Yes'];
         }
-    }
-    else {
+    } else {
         $str = '&nbsp;';
     }
 
     return $str;
 }
 
-function table_column_detail_string($haveit, $source, $showit) {
-
+function table_column_detail_string($haveit, $source, $showit)
+{
     $str = '';
-    if ($haveit == TRUE) {
-        if ($showit == TRUE  &&  !empty($source)) {
+    if ($haveit == true) {
+        if ($showit == true  &&  !empty($source)) {
             $str = $source;
-        }
-        else {
+        } else {
             $str = $GLOBALS['tb_strings']['Yes'];
         }
-    }
-    else {
+    } else {
         $str = '&nbsp;';
     }
 
     return $str;
 }
-
 
 //
 // return the html for a closed panel
 //
-function get_closed_panel($title, $nr) {
+function get_closed_panel($title, $nr)
+{
     global $ptitle_strings;
 
     $fold_url = url_session('toggle_fold_panel.php?p='.$nr.'&d=open');
@@ -753,33 +738,33 @@ function get_closed_panel($title, $nr) {
            ."</table>\n";
 }
 
-
 //
 // return the html for an open panel
 //
-function get_open_panel_start($title, $nr) {
+function get_open_panel_start($title, $nr)
+{
     global $ptitle_strings;
 
-    $fold_url   = sprintf("javascript:requestClosedPanel('%d')", $nr);
+    $fold_url = sprintf("javascript:requestClosedPanel('%d')", $nr);
 
     return '<table width="100%" class="table">'."\n"
-         . "  <tr class=\"panel\">\n"
-         . '    <td rowspan="2" width="25" align="center" valign="top">'."\n"
-         . '      ' . sprintf('<a href="%1$s"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="%2$s" title="%2$s"></span></a>'."\n", $fold_url, $ptitle_strings['Close'])."\n"
-         . "    </td>\n"
-         . '    <td width="100%"><a class="ptitle" href="' . $fold_url . '">' . $title . "</a></td>\n"
-         . "    <td>\n"
-         . "    </td>\n"
-         . "  </tr>\n"
-         . "  <tr>\n"
-         . "    <td colspan=\"2\">\n";
+         ."  <tr class=\"panel\">\n"
+         .'    <td rowspan="2" width="25" align="center" valign="top">'."\n"
+         .'      '.sprintf('<a href="%1$s"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="%2$s" title="%2$s"></span></a>'."\n", $fold_url, $ptitle_strings['Close'])."\n"
+         ."    </td>\n"
+         .'    <td width="100%"><a class="ptitle" href="'.$fold_url.'">'.$title."</a></td>\n"
+         ."    <td>\n"
+         ."    </td>\n"
+         ."  </tr>\n"
+         ."  <tr>\n"
+         ."    <td colspan=\"2\">\n";
 }
 
-function get_open_panel_end() {
-
+function get_open_panel_end()
+{
     return "    </td>\n"
-         . "  </tr>\n"
-         . "</table>\n";
+         ."  </tr>\n"
+         ."</table>\n";
 }
 
  ?>

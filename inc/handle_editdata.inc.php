@@ -17,30 +17,28 @@ foreach ($_POST as $name => $value) {
         $instance = $matches[2];
         $table = $s_edit_where[$instance]['table'];
         $job = $matches[1];
-        $success = FALSE;
+        $success = false;
         if ($job == 'save') {
 
             // the origin types of domain-based columns are needed
             if (!$s_domains_valid) {
-
-                include_once('./inc/domains.inc.php');
+                include_once './inc/domains.inc.php';
 
                 $s_domains = get_domain_definitions($s_domains);
-                $s_domains_valid = TRUE;
+                $s_domains_valid = true;
             }
 
             $bindargs = $cols = $s_edit_values[$instance] = array();
             $k = 0;
-            foreach($s_fields[$table] as $field) {
+            foreach ($s_fields[$table] as $field) {
                 if (isset($field['comp'])) {
                     $s_edit_values[$instance][] = $field['csource'];
-                    $k++;
+                    ++$k;
                     continue;
                 }
 
                 if (isset($_FILES['dt_edit_file_'.$instance.'_'.$k])  &&
                     !empty($_FILES['dt_edit_file_'.$instance.'_'.$k]['name'])) {
-
                     $value = $_FILES['dt_edit_file_'.$instance.'_'.$k];
                     $s_edit_values[$instance][] = $value;
                 } else {
@@ -51,13 +49,13 @@ foreach ($_POST as $name => $value) {
                 // type of the field or the origin type of a domain-based field
                 $type = !isset($field['domain']) ? $field['type'] : $s_domains[$field['type']]['type'];
 
-                switch($type) {
+                switch ($type) {
                     case 'CHARACTER' :
                     case 'VARCHAR'   :
                     case 'DATE'      :
                     case 'TIME'      :
                     case 'TIMESTAMP' :
-                        $bindargs[] = empty($field['notnull'])  &&  empty($value) ? NULL : $value;
+                        $bindargs[] = empty($field['notnull'])  &&  empty($value) ? null : $value;
                         break;
                     case 'BLOB' :
                         // blob from file-upload
@@ -71,7 +69,7 @@ foreach ($_POST as $name => $value) {
                         // drop blob checkbox
                         elseif (isset($_POST['dt_edit_drop_blob_'.$instance.'_'.$k])
                                 && empty($field['notnull'])) {
-                            $bindargs[] = NULL;
+                            $bindargs[] = null;
                         }
                         // blob from textarea
                         elseif (!empty($value)) {
@@ -79,28 +77,27 @@ foreach ($_POST as $name => $value) {
                             fbird_blob_add($bhandle, $value);
                             $bstr = fbird_blob_close($bhandle);
                             $bindargs[] = $bstr;
-                        }
-                        else {
-                            $bindargs[] = NULL;
+                        } else {
+                            $bindargs[] = null;
                         }
                         break;
                     default:
                         if ($value == '') {
-                            $value = NULL;
+                            $value = null;
                         }
-                        $bindargs[] = empty($field['notnull'])  &&  strlen($value) == 0 ? NULL : $value;
+                        $bindargs[] = empty($field['notnull'])  &&  strlen($value) == 0 ? null : $value;
                 }
                 $cols[] = $field['name'];
-                $k++;
+                ++$k;
             }
 
             if (count($bindargs) > 0) {
-                $ib_error = $s_cust['enter']['as_new'] == TRUE
+                $ib_error = $s_cust['enter']['as_new'] == true
                     ? insert_row($table, $cols, $bindargs)
                     : update_row($table, $cols, $bindargs, substr($s_edit_where[$instance]['where'], 6));
 
                 if (empty($ib_error)) {
-                    $success = TRUE;
+                    $success = true;
                     $s_enter_values = array();
                     $s_watch_buffer = '';
 
@@ -125,5 +122,3 @@ foreach ($_POST as $name => $value) {
         }
     }
 }
-
-?>

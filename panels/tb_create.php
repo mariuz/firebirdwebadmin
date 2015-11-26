@@ -44,9 +44,9 @@ elseif ($s_connected && $s_create_num > 0):     // $s_create_num > 0
             </tr>
             <?php
 
-            for ($i = 0; $i < $s_create_num; $i++) {
-                $title = $tb_strings['DefColumn'] . ' ' . ($i + 1);
-                echo get_coldef_definition($i, $title, 5, TRUE);
+            for ($i = 0; $i < $s_create_num; ++$i) {
+                $title = $tb_strings['DefColumn'].' '.($i + 1);
+                echo get_coldef_definition($i, $title, 5, true);
             }
 
             ?>

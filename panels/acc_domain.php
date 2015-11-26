@@ -8,7 +8,7 @@
 
 if (isset($s_confirmations['domain'])):
     $subject = 'domain';
-    include('./panels/confirm.php');
+    include './panels/confirm.php';
 
 elseif (isset($dom_add_flag)):
 
@@ -19,7 +19,7 @@ elseif (isset($dom_add_flag)):
         ">
         <?php
 
-        echo get_datatype_definition('dom', $acc_strings['CreateDom'], 1, TRUE);
+        echo get_datatype_definition('dom', $acc_strings['CreateDom'], 1, true);
         echo get_domain_constraint($s_coldefs['dom']);
         ?>
         </table>
@@ -37,7 +37,7 @@ elseif (isset($dom_mod_flag)):
             <?php
 
             echo get_datatype_definition('dom', sprintf($acc_strings['ModDomain'], $s_mod_domain));
-            echo get_domain_constraint($s_coldefs['dom'], FALSE);
+            echo get_domain_constraint($s_coldefs['dom'], false);
             ?>
         </table>
         <input type="submit" name="acc_moddom_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
@@ -49,14 +49,13 @@ elseif (isset($dom_mod_flag)):
 elseif ($s_connected):
 
     if (count($s_domains) > 0) {
-
         echo get_domain_table($s_domains);
     }
 
-    echo '<form method="post" action="' . url_session($_SERVER['PHP_SELF']) . "\" name=\"acc_domain_form\">\n";
+    echo '<form method="post" action="'.url_session($_SERVER['PHP_SELF'])."\" name=\"acc_domain_form\">\n";
 
     if (count($s_domains) > 0) {
-        echo '<input type="submit" name="acc_domain_reload" value="' . $button_strings['Reload'] . "\">&nbsp;&nbsp;&nbsp;\n";
+        echo '<input type="submit" name="acc_domain_reload" value="'.$button_strings['Reload']."\">&nbsp;&nbsp;&nbsp;\n";
         echo "<br><br>\n";
     }
     ?>
@@ -70,7 +69,7 @@ elseif ($s_connected):
     <b><?php echo $acc_strings['SelDomMod']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_domain_mname', array_keys($s_domains), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_domain_mname', array_keys($s_domains), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_domain_mod" value="<?php echo $button_strings['Modify']; ?>">
@@ -81,7 +80,7 @@ elseif ($s_connected):
     <b><?php echo $acc_strings['SelDomDel']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_domain_dname', array_keys($s_domains), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_domain_dname', array_keys($s_domains), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_domain_del" value="<?php echo $button_strings['Delete']; ?>">

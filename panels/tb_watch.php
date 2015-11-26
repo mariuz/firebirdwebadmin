@@ -12,20 +12,20 @@ if (!isset($tb_watch_cfg_flag) && $s_connected):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_watch_form" class="form-inline">
 		<div class="form-group">
 		<label for="tb_watch_table"><?php echo $sql_strings['SelTable'];?></label>
-		<?php echo get_table_selectlist('tb_watch_table', array('select'), $s_wt['table'], TRUE); ?>
+		<?php echo get_table_selectlist('tb_watch_table', array('select'), $s_wt['table'], true); ?>
 		<input type="submit" class="btn btn-default" name="tb_watch_select" value="<?php echo $button_strings['Select']; ?>">
 
 		<?php
-		if (isset($s_wt['table']) && $s_wt['table'] != '') {
-			$url = url_session($_SERVER['PHP_SELF'] . '?wcfg=true');
-			echo '<a class="btn btn-link" href="' . $url . '">[' . $sql_strings['Config'] . "]</a>";
-		}
-		?>
+        if (isset($s_wt['table']) && $s_wt['table'] != '') {
+            $url = url_session($_SERVER['PHP_SELF'].'?wcfg=true');
+            echo '<a class="btn btn-link" href="'.$url.'">['.$sql_strings['Config'].']</a>';
+        }
+        ?>
 		</div>
     </form>
 	<?php
-	display_table($s_wt);
-	?>
+    display_table($s_wt);
+    ?>
     <div id="fk" class="fk"></div>
 <?php
 
@@ -38,12 +38,12 @@ elseif ($s_connected):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_watch_form">
  
 		<?php watchtable_column_options($s_wt['table'],
-			$s_wt['columns'],
-			$s_wt['order'],
-			$s_wt['blob_links'],
-			$s_wt['blob_as']
-		);
-		?>
+            $s_wt['columns'],
+            $s_wt['order'],
+            $s_wt['blob_links'],
+            $s_wt['blob_as']
+        );
+        ?>
 
         <table class="table table-bordered">
 			<thead>

@@ -9,7 +9,7 @@
 
 if (isset($s_confirmations['column'])):
     $subject = 'column';
-    include('./panels/confirm.php');
+    include './panels/confirm.php';
 
 elseif ($s_connected && $s_modify_name == ''):
 
@@ -17,7 +17,7 @@ elseif ($s_connected && $s_modify_name == ''):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modify_form" class="form-inline">
 		<div class="form-group">
 			<label for="tb_modify_name"><?php echo $tb_strings['SelTbMod']; ?></label>
-			<?php echo get_table_selectlist('tb_modify_name', array('owner', 'noviews'), NULL, TRUE) ?>
+			<?php echo get_table_selectlist('tb_modify_name', array('owner', 'noviews'), null, true) ?>
 		</div>
 		<input type="submit" class="btn btn-success" name="tb_modify_doit" value="<?php echo $button_strings['Modify']; ?>">
     </form>
@@ -29,7 +29,7 @@ elseif (isset($col_add_flag)):
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_modadd_form">
         <table class="table table-bordered">
             <?php
-            echo get_coldef_definition('add', $tb_strings['DefNewCol'], 5, TRUE);
+            echo get_coldef_definition('add', $tb_strings['DefNewCol'], 5, true);
             ?>
         </table>
         <input type="submit" class="btn btn-success" name="tb_modadd_doit" value="<?php echo $button_strings['Add']; ?>" class="bgrp">
@@ -45,7 +45,7 @@ elseif (isset($col_mod_flag)):
         <table class="table table-bordered">
             <?php
 
-            echo get_datatype_definition('mod', 'Change the Definitions for Column ' . $s_modify_col, 2);
+            echo get_datatype_definition('mod', 'Change the Definitions for Column '.$s_modify_col, 2);
             echo get_column_constraint_definition($s_coldefs['mod'], 'mod');
             ?>
         </table>

@@ -6,8 +6,8 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-require('./configuration.inc.php');
-require('./debug_funcs.inc.php');
+require './configuration.inc.php';
+require './debug_funcs.inc.php';
 
 session_start();
 
@@ -20,9 +20,7 @@ switch ($_GET['var']) {
         $display = $_SESSION['s_'.$_GET['var']];
         break;
     default:
-        $display = NULL;
+        $display = null;
 }
 
 debug_var($display);
-
-?>

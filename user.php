@@ -37,7 +37,7 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
         ) {
 
             $duser = get_request_data('usr_user_dname');
-            if ($s_cust['askdel'] == TRUE) {
+            if ($s_cust['askdel'] == true) {
                 $s_confirmations['user'] =
                     array('msg' => sprintf($MESSAGES['CONFIRM_USER_DELETE'], $duser),
                         'obj' => $duser);
@@ -48,7 +48,7 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
 
         // The Create button on the User panel was pushed
         if (isset($_POST['usr_user_create'])) {
-            $user_add_flag = TRUE;
+            $user_add_flag = true;
         }
 
         // create the user from the form values
@@ -57,7 +57,7 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
             if (!create_user($udata, $s_sysdba_pw)) {
 
                 // on error show the create user form again
-                $user_add_flag = TRUE;
+                $user_add_flag = true;
             } else {
                 $users = get_user();
             }
@@ -96,7 +96,7 @@ if (have_panel_permissions($s_login['user'], 'usr_user', TRUE)) {
 //
 // roles initialisations and form handling
 //
-if (have_panel_permissions($s_login['user'], 'usr_role', TRUE)) {
+if (have_panel_permissions($s_login['user'], 'usr_role', true)) {
 
     include('./inc/roles.inc.php');
 
@@ -169,7 +169,7 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
         $s_cust['language'] = get_request_data('usr_cust_language');
         $s_cust['askdel'] = get_request_data('usr_cust_askdel') == $usr_strings['Yes'] ? 1 : 0;
 
-        $settings_changed = TRUE;
+        $settings_changed = true;
     }
 
     // reset the customizing values to the configuration defaults
@@ -178,10 +178,10 @@ if (have_panel_permissions($s_login['user'], 'usr_cust')) {
         $old_settings = $s_cust;
         $s_cust = get_customize_defaults($s_useragent);
 
-        $settings_changed = TRUE;
+        $settings_changed = true;
     }
 
-    if ($settings_changed = TRUE && isset($old_settings)) {
+    if ($settings_changed = true && isset($old_settings)) {
 
         if ($old_settings['language'] != $s_cust['language']) {
 

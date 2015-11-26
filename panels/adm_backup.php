@@ -6,7 +6,7 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-if ($s_connected == TRUE):
+if ($s_connected == true):
 
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="adm_backup" class="form-inline">
@@ -27,7 +27,9 @@ if ($s_connected == TRUE):
                         <label for="adm_bu_target"><?php echo $adm_strings['FDName']; ?></label>
 
                         <div class="input-group">
-                            <?php if (defined('BACKUP_DIR') && BACKUP_DIR !== '') echo '<div class="input-group-addon">' . BACKUP_DIR . '</div>'; ?>
+                            <?php if (defined('BACKUP_DIR') && BACKUP_DIR !== '') {
+    echo '<div class="input-group-addon">'.BACKUP_DIR.'</div>';
+} ?>
                             <?php echo get_textfield('adm_bu_target', 50, 256, $s_backup['target']); ?>
                         </div>
                     </div>
@@ -43,14 +45,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_mdonly"
-                               value="1"<?php if ($s_backup['mdonly'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['mdonly'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BMDOnly']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_nogc"
-                               value="1"<?php if ($s_backup['nogc'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['nogc'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BNoGC']; ?>
                     </label>
                 </td>
@@ -59,14 +65,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_mdoldstyle"
-                               value="1"<?php if ($s_backup['mdoldstyle'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['mdoldstyle'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BMDOStyle']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_ignorecs"
-                               value="1"<?php if ($s_backup['ignorecs'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['ignorecs'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BIgnoreCS']; ?>
                     </label>
                 </td>
@@ -75,14 +85,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_transport"
-                               value="1"<?php if ($s_backup['transport'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['transport'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BTransport']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_ignorelt"
-                               value="1"<?php if ($s_backup['ignorelt'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['ignorelt'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BIgnoreLT']; ?>
                     </label>
                 </td>
@@ -91,14 +105,18 @@ if ($s_connected == TRUE):
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_convert"
-                               value="1"<?php if ($s_backup['convert'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['convert'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['BConvert']; ?>
                     </label>
                 </td>
                 <td>
                     <label class="radio-inline">
                         <input type="checkbox" name="adm_bu_verbose"
-                               value="1"<?php if ($s_backup['verbose'] == TRUE) echo ' checked'; ?>>
+                               value="1"<?php if ($s_backup['verbose'] == true) {
+    echo ' checked';
+} ?>>
                         <?php echo $adm_strings['Verbose']; ?>
                     </label>
                 </td>
@@ -107,7 +125,7 @@ if ($s_connected == TRUE):
         <?php if (isset($iframekey_backup)): ?>
             <br/>
             <div class="if">
-                <iframe src="<?php echo url_session('./iframe_content.php?key=' . $iframekey_backup); ?>" width="98%"
+                <iframe src="<?php echo url_session('./iframe_content.php?key='.$iframekey_backup); ?>" width="98%"
                         height="<?php echo $s_cust['iframeheight']; ?>" name="adm_backup_iframe"></iframe>
             </div>
             <br/>

@@ -17,7 +17,7 @@ if ($s_connected):
             <tr>
             <tr>
                 <td>
-                    <?php echo get_table_selectlist('dt_import_table', array('insert'), NULL, TRUE); ?>
+                    <?php echo get_table_selectlist('dt_import_table', array('insert'), null, true); ?>
                 </td>
                 <td>
                     <input type="file" size="30" name="dt_import_file">
@@ -27,9 +27,11 @@ if ($s_connected):
                 </td>
             </tr>
         </table>
-        <input type="checkbox" name="dt_import_null" value="yes"<?php if ($s_csv['import_null']) echo ' checked'; ?>>&nbsp;<?php echo $dt_strings['ConvEmpty']; ?>
+        <input type="checkbox" name="dt_import_null" value="yes"<?php if ($s_csv['import_null']) {
+    echo ' checked';
+} ?>>&nbsp;<?php echo $dt_strings['ConvEmpty']; ?>
     </form>
-    <b><?php echo $dt_strings['FileForm'] . ':'; ?></b>
+    <b><?php echo $dt_strings['FileForm'].':'; ?></b>
     <ul type="circle">
         <li><?php echo $dt_strings['CsvForm1']; ?></li>
         <li><?php echo $dt_strings['CsvForm2']; ?></li>

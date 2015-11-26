@@ -8,7 +8,7 @@
 
 if (isset($s_confirmations['trigger'])):
     $subject = 'trigger';
-    include_once('./panels/confirm.php');
+    include_once './panels/confirm.php';
 
 elseif (isset($trigger_add_flag)):
 
@@ -39,19 +39,15 @@ elseif (isset($trigger_mod_flag)):
 elseif ($s_connected):
 
     if (count($s_triggers) > 0) {
-        foreach($s_triggers as $tname => $properties) {
-
+        foreach ($s_triggers as $tname => $properties) {
             $display = $properties['display'];
             $fold_url = fold_detail_url('trigger', $display, $tname, $tname);
 
             echo '<div id="'.'r_'.$tname."\" class=\"det\">\n";
 
             if ($display == 'open') {
-
                 echo get_opened_trigger($tname, $properties, $fold_url);
-            }
-            else {
-
+            } else {
                 echo get_closed_detail($tname, $fold_url);
             }
 
@@ -67,7 +63,6 @@ elseif ($s_connected):
         if (count($s_triggers) > 1) {
             echo '<input type="submit" name="acc_trigger_open" value="'.$button_strings['OpenAll']."\">&nbsp;&nbsp;&nbsp;\n";
             echo '<input type="submit" name="acc_trigger_close" value="'.$button_strings['CloseAll']."\">\n";
-
         }
         echo "<br><br>\n";
     }
@@ -82,7 +77,7 @@ elseif ($s_connected):
     <b><?php echo $acc_strings['SelTrigMod']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_trigger_mod_name', array_keys($s_triggers), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_trigger_mod_name', array_keys($s_triggers), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_trigger_mod" value="<?php echo $button_strings['Modify']; ?>">
@@ -93,7 +88,7 @@ elseif ($s_connected):
     <b><?php echo $acc_strings['SelTrigDel']; ?></b>
   </td>
   <td>
-    <?php echo get_selectlist('acc_trigger_del_name', array_keys($s_triggers), NULL, TRUE); ?>
+    <?php echo get_selectlist('acc_trigger_del_name', array_keys($s_triggers), null, true); ?>
   </td>
   <td align="left">
     <input type="submit" name="acc_trigger_del" value="<?php echo $button_strings['Delete']; ?>">

@@ -11,7 +11,8 @@
 // fallback to get-/post-session-mode if the client accept no cookies
 // set $s_cookies = TRUE if the client accept cookies
 //
-function fallback_session() {
+function fallback_session()
+{
 
     // check if we got a valid session-id, redirect if not
     // and force ssl usage if configured
@@ -27,68 +28,67 @@ function fallback_session() {
         $script = !empty($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
 
         // take care for non-standard http ports
-        $port_str = isset($_SERVER['SERVER_PORT']) ? ':' . $_SERVER['SERVER_PORT'] : '';
+        $port_str = isset($_SERVER['SERVER_PORT']) ? ':'.$_SERVER['SERVER_PORT'] : '';
 
         // no valid id, fallback
-        redirect(PROTOCOL . '://' . $_SERVER['SERVER_NAME'] . $port_str . $script . '?' . SESSION_NAME . '=' . session_id());
+        redirect(PROTOCOL.'://'.$_SERVER['SERVER_NAME'].$port_str.$script.'?'.SESSION_NAME.'='.session_id());
         exit;
     }
 
-    $_SESSION['s_cookies'] = isset($_COOKIE[SESSION_NAME]) ? TRUE : FALSE;
+    $_SESSION['s_cookies'] = isset($_COOKIE[SESSION_NAME]) ? true : false;
     $GLOBALS['s_cookies'] = $_SESSION['s_cookies'];
 }
-
 
 //
 // add the session_id to url if necessary
 //
-function url_session($url) {
+function url_session($url)
+{
     global $s_cookies;
 
     // peephole optimation, saves up to three function calls per url_session() call
     // and up to 1% script execution time :-)
-    static $add_id = FALSE;
+    static $add_id = false;
 
     if ($add_id ||
         (!$s_cookies  &&
          !ini_get('session.use_trans_sid') &&
-         strstr($url, SESSION_NAME.'='.session_id()) === FALSE)) {
-
-        $url .= (strchr($url, '?') === FALSE) ? '?' : '&';
-        $url .= SESSION_NAME."=".session_id();
-        $add_id = TRUE;
+         strstr($url, SESSION_NAME.'='.session_id()) === false)) {
+        $url .= (strchr($url, '?') === false) ? '?' : '&';
+        $url .= SESSION_NAME.'='.session_id();
+        $add_id = true;
     }
 
     return str_replace('&', '&amp;', $url);
 }
 
-
 //
 // register all sessionvars and assign default values
 //
-function initialize_session() {
+function initialize_session()
+{
     global $ptitle_strings, $adm_strings;
 
     $session_vars =
-        array('s_init' => TRUE,                           // indicates that the session is already initialized
+        array('s_init' => true,                           // indicates that the session is already initialized
               's_cookies' => 'untested',
               's_stylesheet_etag' => '',
-              's_connected' => FALSE,                     // TRUE if successfilly connected toa database
-              's_binpath' => FALSE,                       // becomes TRUE if isql was found in BINPATH
+              's_connected' => false,                     // TRUE if successfilly connected toa database
+              's_binpath' => false,                       // becomes TRUE if isql was found in BINPATH
               's_referer' => '',                          // replacement for $_SERVER['HTTP_REFERER']
-              's_page'    => '',                          // indicator for the active page
+              's_page' => '',                          // indicator for the active page
 
               's_cust' => get_customize_defaults($useragent), // user specific customization values
 
               's_login' => array('database' => DEFAULT_PATH.DEFAULT_DB,    // set by the db_login panel
-                                 'user'     => DEFAULT_USER,
-                                 'host'     => DEFAULT_HOST,
+                                 'user' => DEFAULT_USER,
+                                 'host' => DEFAULT_HOST,
                                  'password' => '',
-                                 'role'     => DEFAULT_ROLE,
-                                 'cache'    => DEFAULT_CACHE,
-                                 'charset'  => DEFAULT_CHARSET,
-                                 'dialect'  => DEFAULT_DIALECT,
-                                 'server'   => DEFAULT_SERVER),
+                                 'role' => DEFAULT_ROLE,
+                                 'cache' => DEFAULT_CACHE,
+                                 'charset' => DEFAULT_CHARSET,
+                                 'dialect' => DEFAULT_DIALECT,
+                                 'server' => DEFAULT_SERVER, ),
 
               's_create_db' => '',                        // set by the db_create panel
               's_create_user' => '',
@@ -98,19 +98,19 @@ function initialize_session() {
               's_create_charset' => 'NONE',
 
               's_delete_db' => array('database' => '',    // set by the db_delete panel
-                                     'user'     => '',
-                                     'host'     => '',
-                                     'password' => ''),
+                                     'user' => '',
+                                     'host' => '',
+                                     'password' => '', ),
 
-              's_systable' => array('table'   => '',      // show this table on the System Tables panel
-                                    'order'   => '',      // order the system table by this column
-                                    'dir'     => 'ASC',   // order direction for the system table, 'ASC' or 'DESC'
-                                    'ffield'  => '',      // filter field
-                                    'fvalue'  => '',      // filter value
-                                    'sysdata' => TRUE,    // show system data in the system tables if TRUE
+              's_systable' => array('table' => '',      // show this table on the System Tables panel
+                                    'order' => '',      // order the system table by this column
+                                    'dir' => 'ASC',   // order direction for the system table, 'ASC' or 'DESC'
+                                    'ffield' => '',      // filter field
+                                    'fvalue' => '',      // filter value
+                                    'sysdata' => true,    // show system data in the system tables if TRUE
                                     'refresh' => 15),
               's_system_table' => '',
-              's_system_data' => TRUE,
+              's_system_data' => true,
               's_systbl_order' => '',
               's_systbl_dir' => 'ASC',
 
@@ -118,15 +118,15 @@ function initialize_session() {
               's_fields' => array(),
               's_foreigns' => array(),
               's_primaries' => array(),
-              's_uniques'   => array(),
+              's_uniques' => array(),
 
-              's_tables_valid'  => FALSE,    // indicates that $s_tables[]['name'] is setup properly
+              's_tables_valid' => false,    // indicates that $s_tables[]['name'] is setup properly
 
-              's_tables_counts' => FALSE,    // whether to display the record counts    on the tb_show panel
-              's_tables_cnames' => FALSE,    //           "            constraint names         "
-              's_tables_def'    => FALSE,    //           "            default values           "
-              's_tables_comp'   => FALSE,    //           "            computed values          "
-              's_tables_comment'=> FALSE,
+              's_tables_counts' => false,    // whether to display the record counts    on the tb_show panel
+              's_tables_cnames' => false,    //           "            constraint names         "
+              's_tables_def' => false,    //           "            default values           "
+              's_tables_comp' => false,    //           "            computed values          "
+              's_tables_comment' => false,
 
               's_charsets' => array(),       // charset names and associated collations
 
@@ -136,35 +136,35 @@ function initialize_session() {
               's_coldefs' => array(),
 
               's_modify_name' => '',         // set by the tb_modify panel
-              's_modify_col'  => '',
+              's_modify_col' => '',
 
               's_enter_name' => '',          // set by the dt_enter-panel
               's_enter_values' => array(),
 
               's_domains' => array(),        // $s_domains properties
-              's_domains_valid' => FALSE,
+              's_domains_valid' => false,
               's_mod_domain' => '',          // set by the acc_domain-panel
 
               's_triggers' => array(),       // triggers properties, set by the acc_triggers-panel
-              's_triggers_valid' => FALSE,
+              's_triggers_valid' => false,
               's_triggerdefs' => array(),
 
-              's_viewdefs' => array('name'   => '',
+              's_viewdefs' => array('name' => '',
                                     'source' => '',
-                                    'check'  => 'no'),
-              's_views_counts' => FALSE,      // whether to display the record counts on th tb_show panel
+                                    'check' => 'no', ),
+              's_views_counts' => false,      // whether to display the record counts on th tb_show panel
 
               's_procedures' => array(),     // stored procedures
               's_proceduredefs' => array(),
-              's_procedures_valid' => FALSE,
+              's_procedures_valid' => false,
 
               's_udfs' => array(),           // user defined functions
-              's_udfs_valid' => FALSE,
+              's_udfs_valid' => false,
               's_udfs_order' => 1,
               's_udfs_dir' => 'ASC',
 
               's_exceptions' => array(),     // exceptions
-              's_exceptions_valid' => FALSE,
+              's_exceptions_valid' => false,
               's_exceptions_order' => 1,
               's_exceptions_dir' => 'ASC',
               's_exception_defs' => array(),
@@ -175,28 +175,28 @@ function initialize_session() {
               's_index_dir' => 'ASC',
 
               // watchtable configuration
-              's_wt' => array('table'      => '',
-                              'columns'    => array(),
+              's_wt' => array('table' => '',
+                              'columns' => array(),
                               'blob_links' => array(),
-                              'blob_as'    => array(),
-                              'rows'       => DEFAULT_ROWS,
-                              'start'      => 1,
-                              'order'      => '',
-                              'direction'  => 'ASC',
-                              'edit'         => TRUE,
-                              'delete'       => TRUE,
-                              'tblob_inline' => TRUE,
-                              'tblob_chars'  => 50,
-                              'condition'    => '',
-                              'fks'          => array()   // foreign key definitions for the watchtable
+                              'blob_as' => array(),
+                              'rows' => DEFAULT_ROWS,
+                              'start' => 1,
+                              'order' => '',
+                              'direction' => 'ASC',
+                              'edit' => true,
+                              'delete' => true,
+                              'tblob_inline' => true,
+                              'tblob_chars' => 50,
+                              'condition' => '',
+                              'fks' => array(),   // foreign key definitions for the watchtable
                               ),
 
               's_watch_buffer' => '',         // holds the html source of the watchtable output
 
               // variables for the sql_output panel
               's_sql' => array('queries' => array(),    // select statements
-                               'buffer'  => '',         // holds the html source of the sql output
-                               'more'    => FALSE),     // TRUE if not all lines of the result are displayed
+                               'buffer' => '',         // holds the html source of the sql output
+                               'more' => false),     // TRUE if not all lines of the result are displayed
 
               's_edit_idx' => 0,              // counter for open edit panels, and idx for s_edit_where
               's_edit_where' => array(),      // sql where-clauses for the data in the edit panels
@@ -216,56 +216,56 @@ function initialize_session() {
               's_sql_pointer' => 0,           // the actual buffer position
 
 
-              's_gfix' => array('buffers'          => 75,    // for the values and settings on the Database Maintenance panel
-                                'dialect'          => '',
-                                'access_mode'      => '',
-                                'write_mode'       => '',
-                                'use_space'        => '',
-                                'sweep_interval'   => 20000,
-                                'sweep_ignore'     => FALSE,
-                                'repair'           => '',
-                                'repair_ignore'    => FALSE,
-                                'shutdown'         => '',
+              's_gfix' => array('buffers' => 75,    // for the values and settings on the Database Maintenance panel
+                                'dialect' => '',
+                                'access_mode' => '',
+                                'write_mode' => '',
+                                'use_space' => '',
+                                'sweep_interval' => 20000,
+                                'sweep_ignore' => false,
+                                'repair' => '',
+                                'repair_ignore' => false,
+                                'shutdown' => '',
                                 'shutdown_seconds' => 3,
-                                'reconnect'        => TRUE),
+                                'reconnect' => true, ),
 
               's_dbstat_option' => IBASE_STS_HDR_PAGES,
 
-              's_backup' => array('target'    => '', // for the values on the Database Backup panel
-                                  'servicemgr'=> '',
-                                  'bfactor'   => 0,
-                                  'mdonly'    => '',
-                                  'mdoldstyle'=> '',
-                                  'create'    => '',
+              's_backup' => array('target' => '', // for the values on the Database Backup panel
+                                  'servicemgr' => '',
+                                  'bfactor' => 0,
+                                  'mdonly' => '',
+                                  'mdoldstyle' => '',
+                                  'create' => '',
                                   'transport' => '',
-                                  'convert'   => '',
-                                  'nogc'      => '',
-                                  'ignorecs'  => '',
-                                  'ignorelt'  => '',
-                                  'verbose'   => TRUE),
+                                  'convert' => '',
+                                  'nogc' => '',
+                                  'ignorecs' => '',
+                                  'ignorelt' => '',
+                                  'verbose' => true, ),
 
-              's_restore' => array('source'   => '', // for the values on the Database Restore panel
-                                   'servicemgr'=> '',
-                                   'target'   => '',
-                                   'overwrite'=> 'no',
+              's_restore' => array('source' => '', // for the values on the Database Restore panel
+                                   'servicemgr' => '',
+                                   'target' => '',
+                                   'overwrite' => 'no',
                                    'pagesize' => '8192',
-                                   'buffers'  => '',
-                                   'amode'    => $adm_strings['ReadWrite'],
+                                   'buffers' => '',
+                                   'amode' => $adm_strings['ReadWrite'],
                                    'inactive' => '',
-                                   'oneattime'=> '',
-                                   'useall'   => '',
-                                   'novalidity'=> '',
-                                   'kill'     => '',
-                                   'verbose'  => TRUE,
-                                   'connect'  => 'no'),
+                                   'oneattime' => '',
+                                   'useall' => '',
+                                   'novalidity' => '',
+                                   'kill' => '',
+                                   'verbose' => true,
+                                   'connect' => 'no', ),
 
-              's_csv' => array('import_null' => FALSE), // options for csv import/export
+              's_csv' => array('import_null' => false), // options for csv import/export
               's_export' => array(),
 
               's_iframejobs' => array(),      //informations about what to execute and display in iframe_content.php
 
               's_POST' => array(),            // if DEBUG = TRUE the post and get variables are
-              's_GET'  => array(),            // stored here for the inc/display_variable.php script
+              's_GET' => array(),            // stored here for the inc/display_variable.php script
 
 
               // the $s_xyz_panels are arrays containing one array per panel
@@ -279,43 +279,43 @@ function initialize_session() {
                                            array('db_create',  $ptitle_strings['db_create'],  'close'),
                                            array('db_delete',  $ptitle_strings['db_delete'],  'close'),
                                            array('db_systable',$ptitle_strings['db_systable'],'close'),
-                                           array('db_meta',    $ptitle_strings['db_meta'],    'close')),
+                                           array('db_meta',    $ptitle_strings['db_meta'],    'close'), ),
 
               // panels on the Tables page
-              's_tables_panels'   => array(array('tb_show',    $ptitle_strings['tb_show'],    'open'),
+              's_tables_panels' => array(array('tb_show',    $ptitle_strings['tb_show'],    'open'),
                                            array('tb_create',  $ptitle_strings['tb_create'],  'close'),
                                            array('tb_modify',  $ptitle_strings['tb_modify'],  'close'),
-                                           array('tb_delete',  $ptitle_strings['tb_delete'],  'close')),
+                                           array('tb_delete',  $ptitle_strings['tb_delete'],  'close'), ),
               // panels on the Accessories page
-              's_accessories_panels'=>array(array('acc_index', $ptitle_strings['acc_index'],  'close'),
+              's_accessories_panels' => array(array('acc_index', $ptitle_strings['acc_index'],  'close'),
                                             array('acc_gen',   $ptitle_strings['acc_gen'],    'close'),
                                             array('acc_trigger',$ptitle_strings['acc_trigger'],'close'),
                                             array('acc_proc',  $ptitle_strings['acc_proc'],   'close'),
                                             array('acc_domain',$ptitle_strings['acc_domain'], 'close'),
                                             array('acc_view',  $ptitle_strings['acc_view'],   'close'),
                                             array('acc_exc',   $ptitle_strings['acc_exc'],    'close'),
-                                            array('acc_udf',   $ptitle_strings['acc_udf'],    'close')),
+                                            array('acc_udf',   $ptitle_strings['acc_udf'],    'close'), ),
               // panels on the SQL page
-              's_sql_panels'       => array(array('sql_enter', $ptitle_strings['sql_enter'],  'open'),
+              's_sql_panels' => array(array('sql_enter', $ptitle_strings['sql_enter'],  'open'),
                                             array('sql_output',$ptitle_strings['sql_output'], 'close'),
-                                            array('tb_watch',  $ptitle_strings['tb_watch'],   'close')),
+                                            array('tb_watch',  $ptitle_strings['tb_watch'],   'close'), ),
 
               // panels on the Data page
-              's_data_panels'      => array(array('dt_enter',  $ptitle_strings['dt_enter'],   'open'),
+              's_data_panels' => array(array('dt_enter',  $ptitle_strings['dt_enter'],   'open'),
                                             array('tb_watch',  $ptitle_strings['tb_watch'],   'close'),
                                             array('dt_export', $ptitle_strings['dt_export'],  'close'),
-                                            array('dt_import', $ptitle_strings['dt_import'],  'close')),
+                                            array('dt_import', $ptitle_strings['dt_import'],  'close'), ),
               // panels on the User page
-              's_users_panels'      => array(array('usr_user', $ptitle_strings['usr_user'],   'open'),
+              's_users_panels' => array(array('usr_user', $ptitle_strings['usr_user'],   'open'),
                                              array('usr_role', $ptitle_strings['usr_role'],   'close'),
 //                                              array('usr_grant',$ptitle_strings['usr_grant'],'close')),
-                                             array('usr_cust', $ptitle_strings['usr_cust'],   'close')),
+                                             array('usr_cust', $ptitle_strings['usr_cust'],   'close'), ),
               // panels on the Admin page
-              's_admin_panels'      => array(array('adm_server',$ptitle_strings['adm_server'],'open'),
+              's_admin_panels' => array(array('adm_server',$ptitle_strings['adm_server'],'open'),
                                              array('adm_dbstat',$ptitle_strings['adm_dbstat'],'close'),
                                              array('adm_gfix',  $ptitle_strings['adm_gfix'],  'close'),
                                              array('adm_backup',$ptitle_strings['adm_backup'],'close'),
-                                             array('adm_restore',$ptitle_strings['adm_restore'],'close'))
+                                             array('adm_restore',$ptitle_strings['adm_restore'],'close'), ),
               );
 
     $cookie = get_customize_cookie_name();
@@ -339,23 +339,21 @@ function initialize_session() {
     localize_session_vars();
 }
 
-
 //
 // copy all sessionvars from $_SESSION[] into the local scope
 //
-function localize_session_vars() {
-
-    foreach($_SESSION as $sname => $svar) {
+function localize_session_vars()
+{
+    foreach ($_SESSION as $sname => $svar) {
         $GLOBALS[$sname] = $svar;
     }
 }
 
-
 //
 // store the local vars into the session
 //
-function globalize_session_vars() {
-
+function globalize_session_vars()
+{
     $session_var_names =
         array('s_init',
               's_cookies',
@@ -445,7 +443,7 @@ function globalize_session_vars() {
               's_sql_panels',
               's_data_panels',
               's_users_panels',
-              's_admin_panels'
+              's_admin_panels',
               );
 
     foreach ($session_var_names as $sname) {
@@ -457,12 +455,11 @@ function globalize_session_vars() {
     }
 }
 
-
 //
 // reset the session variables which depending on the connected database
 //
-function cleanup_session() {
-
+function cleanup_session()
+{
     $GLOBALS['s_modify_table'] = '';
     $GLOBALS['s_enter_name'] = '';
     $GLOBALS['s_tables'] = array();
@@ -470,46 +467,46 @@ function cleanup_session() {
     $GLOBALS['s_foreigns'] = array();
     $GLOBALS['s_primaries'] = array();
     $GLOBALS['s_uniques'] = array();
-    $GLOBALS['s_tables_valid'] = FALSE;
+    $GLOBALS['s_tables_valid'] = false;
     $GLOBALS['s_create_table'] = '';
     $GLOBALS['s_create_num'] = '';
     $GLOBALS['s_coldefs'] = array();
     $GLOBALS['s_modify_name'] = '';
-    $GLOBALS['s_modify_col']  = '';
+    $GLOBALS['s_modify_col'] = '';
     $GLOBALS['s_enter_name'] = '';
-    $GLOBALS['s_enter_values'] =  array();
+    $GLOBALS['s_enter_values'] = array();
     $GLOBALS['s_mod_domain'] = '';
     $GLOBALS['s_domains'] = array();
-    $GLOBALS['s_domains_valid'] = FALSE;
+    $GLOBALS['s_domains_valid'] = false;
     $GLOBALS['s_triggers'] = array();
-    $GLOBALS['s_triggers_valid'] = FALSE;
+    $GLOBALS['s_triggers_valid'] = false;
     $GLOBALS['s_triggerdefs'] = array();
     $GLOBALS['s_indexes'] = array();
     $GLOBALS['s_udfs'] = array();
-    $GLOBALS['s_udfs_valid'] = FALSE;
+    $GLOBALS['s_udfs_valid'] = false;
     $GLOBALS['s_exceptions'] = array();
-    $GLOBALS['s_exceptions_valid'] = FALSE;
+    $GLOBALS['s_exceptions_valid'] = false;
     $GLOBALS['s_exception_defs'] = array();
     $GLOBALS['s_mod_index'] = '';
-    $GLOBALS['s_wt'] = array('table'      => '',
-                             'columns'    => array(),
+    $GLOBALS['s_wt'] = array('table' => '',
+                             'columns' => array(),
                              'blob_links' => array(),
-                             'blob_as'    => array(),
-                             'rows'       => DEFAULT_ROWS,
-                             'start'      => 1,
-                             'order'      => '',
-                             'direction'  => 'ASC',
-                             'edit'         => TRUE,
-                             'delete'       => TRUE,
-                             'tblob_inline' => TRUE,
-                             'tblob_chars'  => 50,
-                             'condition'    => '',
-                             'fks'          => array()
+                             'blob_as' => array(),
+                             'rows' => DEFAULT_ROWS,
+                             'start' => 1,
+                             'order' => '',
+                             'direction' => 'ASC',
+                             'edit' => true,
+                             'delete' => true,
+                             'tblob_inline' => true,
+                             'tblob_chars' => 50,
+                             'condition' => '',
+                             'fks' => array(),
                              );
     $GLOBALS['s_watch_buffer'] = '';
     $GLOBALS['s_sql'] = array('queries' => array(),
-                              'buffer'  => '',
-                              'more'    => FALSE);
+                              'buffer' => '',
+                              'more' => false, );
     $GLOBALS['s_edit_idx'] = 0;
     $GLOBALS['s_edit_where'] = array();
     $GLOBALS['s_edit_values'] = array();
@@ -519,20 +516,18 @@ function cleanup_session() {
     $GLOBALS['s_user_name'] = '';
     $GLOBALS['s_procedures'] = array();
     $GLOBALS['s_proceduredefs'] = array();
-    $GLOBALS['s_procedures_valid'] = FALSE;
-    $GLOBALS['s_viewdefs'] = array('name'   => '',
+    $GLOBALS['s_procedures_valid'] = false;
+    $GLOBALS['s_viewdefs'] = array('name' => '',
                                    'source' => '',
-                                   'check'  => 'no');
+                                   'check' => 'no', );
     $GLOBALS['s_iframejobs'] = array();
 
     if ($GLOBALS['s_login']['database']  &&  isset($GLOBALS['s_cust']['wt'][$GLOBALS['s_login']['database']])) {
         $wt = $GLOBALS['s_cust']['wt'][$GLOBALS['s_login']['database']];
-        $GLOBALS['s_wt']['table']     = $wt['table'];
-        $GLOBALS['s_wt']['start']     = $wt['start'];
-        $GLOBALS['s_wt']['order']     = $wt['order'];
+        $GLOBALS['s_wt']['table'] = $wt['table'];
+        $GLOBALS['s_wt']['start'] = $wt['start'];
+        $GLOBALS['s_wt']['order'] = $wt['order'];
         $GLOBALS['s_wt']['direction'] = $wt['dir'];
-        $GLOBALS['s_wt']['columns']   = FALSE;
+        $GLOBALS['s_wt']['columns'] = false;
     }
 }
-
-?>

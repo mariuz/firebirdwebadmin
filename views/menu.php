@@ -1,5 +1,5 @@
 <?php
-	require_once('./inc/script_start.inc.php');
+    require_once './inc/script_start.inc.php';
  ?>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -16,29 +16,42 @@
         <div id="navbar" class="navbar-collapse collapse">
             <?= get_tabmenu_top_fixed($s_page) ?>
 			
-			<?php if ($s_connected == TRUE) { ?>
+			<?php if ($s_connected == true) {
+    ?>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $s_login['user']; ?> <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $s_login['user'];
+    ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 					
-					<?php if (!empty($s_login['role'])) { ?>
-				    <li class="dropdown-header"><?php echo $db_strings['Role']; ?>:</li>
-					<li><a href="#"><?php echo $s_login['role']; ?></a></li>
-					<?php } ?>
+					<?php if (!empty($s_login['role'])) {
+    ?>
+				    <li class="dropdown-header"><?php echo $db_strings['Role'];
+    ?>:</li>
+					<li><a href="#"><?php echo $s_login['role'];
+    ?></a></li>
+					<?php 
+}
+    ?>
 				    
-					<li class="dropdown-header"><?php echo $db_strings['Host']; ?>:</li>
-					<li><a href="#"><?php echo $s_login['host']; ?></a></li>
+					<li class="dropdown-header"><?php echo $db_strings['Host'];
+    ?>:</li>
+					<li><a href="#"><?php echo $s_login['host'];
+    ?></a></li>
 
-					<li class="dropdown-header"><?php echo $db_strings['Database']; ?>:</li>
-					<li><a href="#"><?php echo $s_login['database']; ?></a></li>
+					<li class="dropdown-header"><?php echo $db_strings['Database'];
+    ?>:</li>
+					<li><a href="#"><?php echo $s_login['database'];
+    ?></a></li>
 					
 					<li role="separator" class="divider"></li>
-					<li><a href="logout.php"><?= $button_strings['Logout']; ?></a></li>
+					<li><a href="logout.php"><?= $button_strings['Logout'];
+    ?></a></li>
 				  </ul>
 				</li>
 			</ul>
-			<?php } ?>
+			<?php 
+} ?>
         </div>
         <!--/.nav-collapse -->
     </div>

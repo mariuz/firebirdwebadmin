@@ -27,17 +27,15 @@ foreach ($panels as $nr => $panel) {
 
     // take respect for the $HIDE_PANELS configuration
     if (in_array($panel[0], $HIDE_PANELS)
-    &&  ($s_login['user'] != 'SYSDBA'  ||  SYSDBA_GET_ALL == FALSE  ||  $s_connected == FALSE)) {
-
+    &&  ($s_login['user'] != 'SYSDBA'  ||  SYSDBA_GET_ALL == false  ||  $s_connected == false)) {
         continue;
     }
 
     echo '<div id="p'.$nr."\">\n"
-       . '<a name="'.$panel[0].'"></a>'."\n";
+       .'<a name="'.$panel[0].'"></a>'."\n";
 
     if ($panel[2] == 'open'  ||
         ($panel[0] == 'info'  &&  critical_error())) {
-
         echo get_open_panel_start($panel[1], $nr);
 
         // there may be different instances of the data edit/delete panel,
@@ -45,21 +43,17 @@ foreach ($panels as $nr => $panel) {
         if (preg_match('/dt_(edit|delete)([0-9]+)/', $panel[0], $matches)) {
             $instance = $matches[2];
             if ($matches[1] == 'edit') {
-                include('./panels/dt_edit.php');
-            }
-            else {
+                include './panels/dt_edit.php';
+            } else {
                 $subject = 'row';
-                include('./panels/confirm.php');
+                include './panels/confirm.php';
             }
-        }
-        else {
-            include('./panels/' . $panel[0] . '.php');
+        } else {
+            include './panels/'.$panel[0].'.php';
         }
 
         echo get_open_panel_end();
-    }
-
-    else {
+    } else {
         echo get_closed_panel($panel[1], $nr);
     }
 
@@ -86,16 +80,13 @@ if (DEBUG_HTML) {
 require_once './views/footer.php';
 globalize_session_vars();
 
-
 //
 // check the global error-variables
 //
-function critical_error() {
-
+function critical_error()
+{
     return !empty($GLOBALS['error'])  ||
            !empty($GLOBALS['ib_error'])  ||
            !empty($GLOBALS['php_error'])  ||
            !empty($GLOBALS['externcmd']);
 }
-
-?>

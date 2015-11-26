@@ -9,14 +9,14 @@
 //                 $d       the string "open" or "close"
 
 
-include('./inc/configuration.inc.php');
-include('./inc/session.inc.php');
+include './inc/configuration.inc.php';
+include './inc/session.inc.php';
 
 session_start();
 localize_session_vars();
 
-include('./lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
-include('./inc/functions.inc.php');
+include './lang/'.(isset($s_cust) ? $s_cust['language'] : LANGUAGE).'.inc.php';
+include './inc/functions.inc.php';
 
 // some browsers may fail with the dynamically inserted html
 if (!isset($_GET['p'])) {
@@ -38,5 +38,3 @@ set_customize_cookie($s_cust);
 globalize_session_vars();
 
 redirect(url_session($s_referer));
-
-?>

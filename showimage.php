@@ -6,27 +6,26 @@
 //                see file LICENCE for details
 
 
-
 // GET-Variables specifying the blob
 //
 //       $table: table containing the blob
 //       $col  : column containing the blob
 //       $where: sql-where-clause specifying the primary keys to fetch the blob
 
-require('./inc/configuration.inc.php');
-require('./inc/session.inc.php');
+require './inc/configuration.inc.php';
+require './inc/session.inc.php';
 
 session_start();
 localize_session_vars();
 
-require('./lang/' . (isset($s_cust) ? $s_cust['language'] : LANGUAGE) . '.inc.php');
-require('./inc/functions.inc.php');
+require './lang/'.(isset($s_cust) ? $s_cust['language'] : LANGUAGE).'.inc.php';
+require './inc/functions.inc.php';
 
 $dbhandle = db_connect()
      or ib_error();
 
 $table = $_GET['table'];
-$col   = $_GET['col'];
+$col = $_GET['col'];
 $where = $_GET['where'];
 $sql = sprintf('SELECT %s FROM %s %s', $col, $table, $where);
 $blob = get_blob_content($sql);
@@ -44,5 +43,3 @@ switch ($s_wt['blob_as'][$col]) {
 }
 
 echo $blob;
-
-?>

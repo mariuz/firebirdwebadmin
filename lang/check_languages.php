@@ -9,14 +9,13 @@
 //
 // $Id: check_languages.php,v 1.2 2004/01/13 21:12:17 lbrueckner Exp $
 
-include('../inc/functions.inc.php');
-include('../inc/debug_funcs.inc.php');
+include '../inc/functions.inc.php';
+include '../inc/debug_funcs.inc.php';
 
 define('PROTOTYPE', 'english');
 
 foreach (get_customize_languages() as $language) {
-
-    require('./' . $language . '.inc.php');
+    require './'.$language.'.inc.php';
 
     foreach (get_array_names() as $aname) {
         $string_keys[$language][$aname] = array_keys($$aname);
@@ -24,7 +23,6 @@ foreach (get_customize_languages() as $language) {
 }
 
 foreach (get_customize_languages() as $language) {
-
     if ($language == PROTOTYPE) {
         continue;
     }
@@ -49,8 +47,8 @@ foreach (get_customize_languages() as $language) {
     echo "<br>\n";
 }
 
-function get_array_names() {
-
+function get_array_names()
+{
     return array('menu_strings',
                  'menu_coords',
                  'ptitle_strings',
@@ -65,8 +63,6 @@ function get_array_names() {
                  'info_strings',
                  'MESSAGES',
                  'WARNINGS',
-                 'ERRORS'
+                 'ERRORS',
                   );
 }
-
-?>

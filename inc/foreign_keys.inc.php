@@ -10,8 +10,8 @@
 // find the foreign keys defined for $table,
 // only foreign keys over single columns are taken into consideration
 //
-function get_foreignkeys($tablename, $privilege=NULL) {
-
+function get_foreignkeys($tablename, $privilege = null)
+{
     $sql = 'SELECT I2.RDB$RELATION_NAME FKTABLE,'
                 .' IS1.RDB$FIELD_NAME FKFIELD,'
                 .' IS2.RDB$FIELD_NAME TFIELD'
@@ -30,8 +30,8 @@ function get_foreignkeys($tablename, $privilege=NULL) {
     while ($row = fbird_fetch_object($res)) {
         $fktable = trim($row->FKTABLE);
         if (empty($privilege)  ||  in_array($privilege, $GLOBALS['s_tables'][$fktable]['privileges'])) {
-            $fk[trim($row->TFIELD)] = array('table'  => $fktable,
-                                            'column' => trim($row->FKFIELD)
+            $fk[trim($row->TFIELD)] = array('table' => $fktable,
+                                            'column' => trim($row->FKFIELD),
                                             );
         }
     }
@@ -40,21 +40,19 @@ function get_foreignkeys($tablename, $privilege=NULL) {
     return $fk;
 }
 
-
 //
 // return TRUE if the table $tablename contains a column with a foreign key definition
 //
-function have_fk($tablename) {
-    
+function have_fk($tablename)
+{
     return count(array_filter($GLOBALS['s_fields'][$tablename], create_function('$a', 'return isset($a["foreign"]);'))) > 0;
 }
-
 
 //
 // return infos about a tables foreign keys in an array
 //
-function get_fk_lookups_data($tablename, $fk_lookups) {
-
+function get_fk_lookups_data($tablename, $fk_lookups)
+{
     $lookups_data = array();
     $fk_defs = get_foreignkeys($tablename, 'S');
     foreach ($fk_defs as $colname => $defs) {
@@ -69,7 +67,7 @@ function get_fk_lookups_data($tablename, $fk_lookups) {
 
         $value_field = ifsetor($fk_lookups[$colname], $defs['column']);
         if ($value_field != $defs['column']) {
-            $value_field = "COALESCE(".$value_field.", '')" . " || ' - '" . ' || ' . $defs['column'];
+            $value_field = 'COALESCE('.$value_field.", '')"." || ' - '".' || '.$defs['column'];
         }
 
         $sql = 'SELECT '.$defs['column'].', '.$value_field.' FROM '.$defs['table'].' ORDER BY '.$value_field.' ASC';
@@ -81,12 +79,10 @@ function get_fk_lookups_data($tablename, $fk_lookups) {
         }
         fbird_free_result($res);
 
-        $lookups_data[$colname] = array('table'  => $defs['table'],
+        $lookups_data[$colname] = array('table' => $defs['table'],
                                         'column' => $defs['column'],
-                                        'data'   => $data);
+                                        'data' => $data, );
     }
 
     return $lookups_data;
 }
-
-?>

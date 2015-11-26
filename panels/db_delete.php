@@ -9,7 +9,7 @@
 
 if (isset($s_confirmations['database'])):
     $subject = 'database';
-    include_once('./panels/confirm.php');
+    include_once './panels/confirm.php';
 
 else:
 
@@ -26,7 +26,7 @@ else:
                     <?php
 
                     else:
-                        echo get_selectlist('db_delete_database', $dbfiles, $s_delete_db['database'], TRUE);
+                        echo get_selectlist('db_delete_database', $dbfiles, $s_delete_db['database'], true);
                     endif;
                     ?>
                 </td>

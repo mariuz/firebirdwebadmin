@@ -10,8 +10,7 @@
 
 if ($subject == 'row') {
     $question = $s_confirmations[$subject][$instance]['msg'];
-}
-else {
+} else {
     $question = $s_confirmations[$subject]['msg'];
     $instance = '';
 }
