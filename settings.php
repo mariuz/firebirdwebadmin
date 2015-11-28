@@ -34,8 +34,8 @@ if ($settings_changed = true && isset($old_settings)) {
     $s_stylesheet_etag = '';
 }
 
-require('./inc/script_end.inc.php');
-
 header("Location: " . $_SERVER["HTTP_REFERER"]);
+
+require('./inc/script_end.inc.php');
 
 ?>
