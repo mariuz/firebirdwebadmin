@@ -1308,9 +1308,8 @@ function get_customize_defaults($useragent)
 //
 function get_customize_languages()
 {
-
-    return array('brazilian_portuguese', 'dutch', 'english', 'hungarian', 'japanese', 'german', 'polish',
-    'russian-win1251', 'spanish');
+    return array('Dutch', 'English', 'German', 'Hungarian', 'Japanese', 'Polish', 'Portuguese, Brazilian', 'Romanian',
+                    'Russian', 'Spanish');
 }
 
 

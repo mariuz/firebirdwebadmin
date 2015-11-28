@@ -1,13 +1,18 @@
 <?php
-// File           spanish.inc.php / FirebirdWebAdmin
-// Purpose        spanish strings definitions
-// Author         Jose Pichardo <joel_pichardo@yahoo.com>
-// Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
+// Purpose        Language strings definitions
+// Author         Lutz Brueckner <irie@gmx.de>
+// Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <04/03/28 11:39:45 >       
-//
-// $Id: spanish.inc.php,v 1.4 2005/10/05 20:26:43 lbrueckner Exp $
+
+//Initial authors
+// Dutch          			Michael van Canneyt <Michael.VanCanneyt@Wisa.be
+// Japanese       			Shue Miula <shue@xdip.com>
+// Polish         			Matthias Hryniszak <matthias@hryniszak.de>
+// Hungarian      			Zolt√°n Miklovicz <zmiklovicz@vivamail.hu>
+// Spanish        			Jose Pichardo <joel_pichardo@yahoo.com>
+// Russian        			Andrej Surkov <sura@mail.ru>
+// Portuguese, Brazilian	Paulo Vaz <paulo@multi-informatica.com.br>
 
 // strings used for the tabfolder menu
 $menu_strings = array('Database' => 'Base de Datos',
@@ -19,16 +24,7 @@ $menu_strings = array('Database' => 'Base de Datos',
                       'Admin' => 'Servicios',
                       );
 
-// the coordinates for the image area used by the tabfolder menu
-$menu_coords = array('Database' => '8,0,122,35',
-                     'Tables' => '124,0,179,35',
-                     'Accessories' => '181,0,269,35',
-                     'SQL' => '271,0,308,35',
-                     'Data' => '310,0,359,35',
-                     'Users' => '361,0,430,35',
-                     'Admin' => '432,0,504,35',
-                     );
-
+// strings used as panel titles
 $ptitle_strings = array('info' => 'Infomacion',
                         'db_login' => 'Conectar a Base de Datos',
                         'db_create' => 'Crear Base de Datos',
@@ -39,7 +35,7 @@ $ptitle_strings = array('info' => 'Infomacion',
                         'tb_create' => 'Crear Nueva Tabla',
                         'tb_modify' => 'Modificar Tabla',
                         'tb_delete' => 'Borrar Tabla',
-                        'acc_index' => 'Õndices',
+                        'acc_index' => '√çndices',
                         'acc_gen' => 'Generadores',
                         'acc_trigger' => 'Disparadores',
                         'acc_proc' => 'Procedimientos Almacenados',
@@ -57,8 +53,8 @@ $ptitle_strings = array('info' => 'Infomacion',
                         'usr_role' => 'Roles',
                         'usr_grant' => 'Grants',
                         'usr_cust' => 'Customizing',
-                        'adm_server' => 'EstadÌsticas del Servidor',
-                        'adm_dbstat' => 'EstadÌsticas de la Base de Datos',
+                        'adm_server' => 'Estad√≠sticas del Servidor',
+                        'adm_dbstat' => 'Estad√≠sticas de la Base de Datos',
                         'adm_gfix' => 'Mantenimiento de la Base de Datos',
                         'adm_backup' => 'Respaldo',
                         'adm_restore' => 'Restauracion',
@@ -104,20 +100,21 @@ $button_strings = array('Login' => 'Conectar',
                         'CloseAll' => 'Cerrar Todo',
                         'Defaults' => 'Por Defecto',
                         'Load' => 'Calgar',
+                        'Unmark' => 'Unmark',
                         );
 
 // strings on the database page
 $db_strings = array('Database' => 'Base de Datos',
                     'Host' => 'Host',
                     'Username' => 'Nombre de Usuario',
-                    'Password' => 'ContraseÒa',
+                    'Password' => 'Contrase√±a',
                     'Role' => 'Role',
                     'Cache' => 'Cache',
                     'Charset' => 'Character Set',
                     'Dialect' => 'Dialecto',
                     'Server' => 'Version FIB/Interbase',
                     'NewDB' => 'Nueva Base de Datos',
-                    'PageSize' => 'TamaÒo de P·gina',
+                    'PageSize' => 'Tama√±o de P√°gina',
                     'DelDB' => 'Borrar Base de Datos',
                     'SysTables' => 'Tablas de Sistema',
                     'SysData' => 'Datos de Sistema',
@@ -130,7 +127,7 @@ $db_strings = array('Database' => 'Base de Datos',
 // strings on the table page
 $tb_strings = array('Name' => 'Nombre',
                     'Type' => 'Tipo',
-                    'Length' => 'TamaÒo',
+                    'Length' => 'Tama√±o',
                     'Prec' => 'Precion',
                     'PrecShort' => 'Prec',
                     'Scale' => 'Escala',
@@ -138,10 +135,10 @@ $tb_strings = array('Name' => 'Nombre',
                     'Collate' => 'Collate',
                     'Collation' => 'Collation',
                     'NotNull' => 'No Nulos',
-                    'Unique' => 'UnÌco',
+                    'Unique' => 'Un√≠co',
                     'Computed' => 'Calculado',
                     'Default' => 'Por defecto',
-                    'Primary' => 'Prim·ria',
+                    'Primary' => 'Prim√°ria',
                     'Foreign' => 'Foranea',
                     'TbName' => 'Nombre de la Tabla',
                     'Fields' => 'Campos',
@@ -154,10 +151,10 @@ $tb_strings = array('Name' => 'Nombre',
                     'AddCol' => 'Adicionar columna',
                     'SelTbDel' => 'Selecione tabla a borrar',
                     'Datatype' => 'Tipo de Dato',
-                    'Size' => 'TamaÒo',
+                    'Size' => 'Tama√±o',
                     'Subtype' => 'Subtipo',
-                    'SegSiShort' => 'TamaÒo de Segmento',
-                    'Domain' => 'DomÌnio',
+                    'SegSiShort' => 'Tama√±o de Segmento',
+                    'Domain' => 'Dom√≠nio',
                     'CompBy' => 'Calculado por',
                     'Table' => 'tabla',
                     'Column' => 'columna',
@@ -168,6 +165,7 @@ $tb_strings = array('Name' => 'Nombre',
                     'DispCNames' => 'constraint names',
                     'DispDef' => 'default values',
                     'DispComp' => 'computed values',
+                    'DispComm' => 'comments',
                     'DropPK' => 'Borrar Clave Primaria',
                     'DropFK' => 'Borrar Clave Foranea',
                     'DropUq' => 'Borrar Unique Constraint',
@@ -179,16 +177,16 @@ $tb_strings = array('Name' => 'Nombre',
                     );
 
 // strings on the accessories page
-$acc_strings = array('CreateIdx' => 'Crear Nuevo Õndice',
-                     'ModIdx' => 'Modificar Õndice %s',
+$acc_strings = array('CreateIdx' => 'Crear Nuevo √çndice',
+                     'ModIdx' => 'Modificar √çndice %s',
                      'Name' => 'Nombre',
                      'Active' => 'Activo',
-                     'Unique' => '⁄nico',
+                     'Unique' => '√önico',
                      'Sort' => 'Clasificar',
                      'Table' => 'Tabla',
                      'Columns' => 'Columnas',
-                     'SelIdxMod' => 'Selecione un Ìndice para modificar',
-                     'SelIdxDel' => 'Selecione un Ìndice para borrar',
+                     'SelIdxMod' => 'Selecione un √≠ndice para modificar',
+                     'SelIdxDel' => 'Selecione un √≠ndice para borrar',
                      'ColExpl' => 'Colunma(s), separadas por Comas',
                      'Value' => 'Valor',
                      'SetValue' => 'Definir Valor',
@@ -205,21 +203,21 @@ $acc_strings = array('CreateIdx' => 'Crear Nuevo Õndice',
                      'Status' => 'Estatus',
                      'Source' => 'Origen',
                      'ModTrig' => 'Modificar Disparador %s',
-                     'CreateDom' => 'Crear Nuevo DomÌnio',
-                     'SelDomDel' => 'Selecione domÌnio a borrar',
-                     'SelDomMod' => 'Selecione domÌnio a modificar',
-                     'Size' => 'TamaÒo',
+                     'CreateDom' => 'Crear Nuevo Dom√≠nio',
+                     'SelDomDel' => 'Selecione dom√≠nio a borrar',
+                     'SelDomMod' => 'Selecione dom√≠nio a modificar',
+                     'Size' => 'Tama√±o',
                      'Charset' => 'Charset',
                      'Collate' => 'Collate',
                      'PrecShort' => 'Prec',
                      'Scale' => 'Escala',
                      'Subtype' => 'Subtipo',
-                     'SegSiShort' => 'TamaÒo do Segmento',
-                     'ModDomain' => 'Modificar DomÌnio %s',
+                     'SegSiShort' => 'Tama√±o do Segmento',
+                     'ModDomain' => 'Modificar Dom√≠nio %s',
                      'Generator' => 'generador',
-                     'Index' => 'Ìndice',
+                     'Index' => '√≠ndice',
                      'Trigger' => 'Disparador',
-                     'Domain' => 'DomÌnio',
+                     'Domain' => 'Dom√≠nio',
                      'CreateProc' => 'Crear Nuevo Procedimiento',
                      'ModProc' => 'Modificar Procedimiento %s',
                      'SelProcMod' => 'Selecione un procedimiento para modificar',
@@ -266,7 +264,7 @@ $sql_strings = array('DisplBuf' => 'mostrando resultado del buffer',
                      'Desc' => 'Descendente',
                      'Restrict' => 'Condicion para restringir los resultado, ej. NOMBREDELCAMPO>=1000',
                      'Prev' => 'Anterior',
-                     'Next' => 'PrÛximo',
+                     'Next' => 'Pr√≥ximo',
                      'End' => 'Fin',
                      'Total' => 'Total',
                      'Edit' => 'Editar',
@@ -296,9 +294,7 @@ $dt_strings = array('SelTable' => 'Selecione uma Tabla',
                     'Drop' => 'drop',
                     'ExpOptCsv' => 'CSV-Data',
                     'ExpOptExt' => 'External Table',
-                    'ExpOptPhp' => 'PHP Code',
                     'ExpOptSql' => 'SQL',
-                    'ExpOptXml' => 'XML',
                     'ExpFmTbl' => 'Table',
                     'ExpFmDb' => 'Database',
                     'ExpFmQry' => 'Query',
@@ -313,32 +309,41 @@ $dt_strings = array('SelTable' => 'Selecione uma Tabla',
                     'FEncl' => 'Fields enclosed by',
                     'FTEncl' => 'Field types to enclose',
                     'All' => 'all',
-                    'Numeric' => 'numeric',
+                    'NonNum' => 'non numeric',
                     'FEsc' => 'Escape character',
                     'LTerm' => 'Lines terminated by',
                     'FNamesF' => 'Field names at first row',
+                    'SqlOpts' => 'SQL-Options',
+                    'SqlCNames' => 'include column names',
+                    'SqlQNames' => 'quote column names',
+                    'SqlCField' => 'include computed fields',
+                    'SqlInfo' => 'add export info',
+                    'SqlLE' => 'line ending',
+                    'SqlTTab' => 'target table name',
+                    'ExtOpts' => 'External table options',
+                    'PhpOpts' => 'PHP source options',
                     );
 
 // strings on the user page
-$usr_strings = array('CreateUsr' => 'Crear Usu·rio',
-                     'ModUser' => 'Modificar Usu·rio %s',
-                     'UName' => 'Nombre de Usu·rio',
+$usr_strings = array('CreateUsr' => 'Crear Usu√°rio',
+                     'ModUser' => 'Modificar Usu√°rio %s',
+                     'UName' => 'Nombre de Usu√°rio',
                      'FName' => 'Primer Nombre',
                      'MName' => 'Segundo Nombre',
                      'LName' => 'Apellido',
-                     'UserID' => 'ID del Usu·rio',
+                     'UserID' => 'ID del Usu√°rio',
                      'GroupID' => 'ID del Grupo',
-                     'SysdbaPW' => 'ContraseÒa',
+                     'SysdbaPW' => 'Contrase√±a',
                      'Required' => 'requerido para crear, modificar y borrar',
                      'USelMod' => 'Modificar Usuario',
                      'USelDel' => 'Borrar Usuario',
-                     'Password' => 'ContraseÒa',
-                     'RepeatPW' => 'Repetir ContraseÒa',
+                     'Password' => 'Contrase√±a',
+                     'RepeatPW' => 'Repetir Contrase√±a',
                      'Name' => 'Nombre',
-                     'Owner' => 'DueÒo',
+                     'Owner' => 'Due√±o',
                      'Members' => 'Miembros',
                      'Role' => 'Role',
-                     'User' => 'Usu·rio',
+                     'User' => 'Usu√°rio',
                      'CreateRole' => 'Crear role',
                      'RoleSelDel' => 'Borrar role',
                      'RoleAdd' => 'Agregar role',
@@ -370,8 +375,8 @@ $usr_strings = array('CreateUsr' => 'Crear Usu·rio',
                     );
 
 // strings on the admin page
-$adm_strings = array('SysdbaPW' => 'ContraseÒa del SYSDBA',
-                     'Required' => 'Es requerida si no eres el dueÒo de la Base de Datos',
+$adm_strings = array('SysdbaPW' => 'Contrase√±a del SYSDBA',
+                     'Required' => 'Es requerida si no eres el due√±o de la Base de Datos',
                      'Sweeping' => 'Sweeping',
                      'SetInterv' => 'Set sweep threshold (number transactions)',
                      'DBDialect' => 'Dialecto',
@@ -438,27 +443,26 @@ $info_strings = array('Connected' => 'Conectado a la base de datos',
                       'Warning' => 'Alerta',
                       'Message' => 'Mensaje',
                       'ComCall' => 'Llamada a un comando',
-                      'Debug' => 'SalÌda de Debug',
+                      'Debug' => 'Sal√≠da de Debug',
                       'PHPError' => 'Error de PHP',
+                      'SuccessLogin' => 'You have been successfully logged in!',
                       );
 
-$MESSAGES = array('BLOB_BROKEN_INFO' => "La version de PHP no soporta Campos Blob(pelo menos no php4.0.2 e php4.0.3).<br>\n"
-                                            ."Favor Actualizar la version de php.<br>\n",
-                  'SP_CREATE_INFO' => 'FirebirdWebAdmin crea un stored procedure "'.SP_LIMIT_NAME.'" que ser· utilizada por la funcion Ver Tabla '
+$MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin crea un stored procedure "'.SP_LIMIT_NAME.'" que ser√° utilizada por la funcion Ver Tabla '
                                             ."Este se guarda en su Base de Datos.<br>\n"
                                             .'Se varias personas van a usar FirebirdWebAdmin al mismo tiempo, por favor cambie el valor '
                                             ."de WATCHTABLE_METHOD en el archivo inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Necesita crear un campo como Llave Primaria, Esto es necesario para poder accesar la tabla.<br>\n"
                                             .'Los programas seleccionan la Llave Primaria para el acceso a Datos.',
-                  'CSV_IMPORT_COUNT' => "%1\$d lineas importadas para la tabla %2\$s<br>\n",
+                  'CSV_IMPORT_COUNT' => "%1\\$d lineas importadas para la tabla %2\\$s<br>\n",
                   'CONFIRM_TABLE_DELETE' => 'Realmente desea Borrar la tabla %s?',
                   'CONFIRM_COLUMN_DELETE' => 'Realmente desea Borrar la Columna %1$s da tabela %2$s?',
                   'CONFIRM_DB_DELETE' => 'Realmente desea Borrar la Base de Datos %s?',
                   'CONFIRM_TRIGGER_DELETE' => 'Realmente desea Borrar el trigger %s?',
-                  'CONFIRM_DOMAIN_DELETE' => 'Realmente desea Borrar el domÌnio %s?',
-                  'CONFIRM_INDEX_DELETE' => 'Realmente desea Borrar el Ìndice %s?',
+                  'CONFIRM_DOMAIN_DELETE' => 'Realmente desea Borrar el dom√≠nio %s?',
+                  'CONFIRM_INDEX_DELETE' => 'Realmente desea Borrar el √≠ndice %s?',
                   'CONFIRM_GEN_DELETE' => 'Realmente desea Borrar el generador %s?',
-                  'CONFIRM_USER_DELETE' => 'Realmente desea Borrar el usu·rio %s?',
+                  'CONFIRM_USER_DELETE' => 'Realmente desea Borrar el usu√°rio %s?',
                   'CONFIRM_ROW_DELETE' => 'Realmente desea Borrar la tabla %s %s?',
                   'CONFIRM_SP_DELETE' => 'Realmente desea Borrar el stored procedure %s?',
                   'CONFIRM_VIEW_DELETE' => 'Realmente desea Borrar la vista %s?',
@@ -476,8 +480,8 @@ $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Los campos Blob de la tabla que sel
                                             ."Solo esta soportado la importacion de blob tipo texto csv.<br>\n",
                   'SELECT_TABLE_FIRST' => "Por favor selecione una tabla primero<br>\n",
                   'SELECT_FILE_FIRST' => "Por favor selecione un archivo de importacion<br>\n",
-                  'CAN_NOT_ALTER_DOMAINS' => "En Firebird no es posible modificar Columnas basadas en DomÌnios.<br>\n"
-                                            ."Modifique el Dominio correspondiente desde la p·gina de AcessÛrios.<br>\n",
+                  'CAN_NOT_ALTER_DOMAINS' => "En Firebird no es posible modificar Columnas basadas en Dom√≠nios.<br>\n"
+                                            ."Modifique el Dominio correspondiente desde la p√°gina de Acess√≥rios.<br>\n",
                   'CAN_NOT_EDIT_TABLE' => "La tabla seleccionada no se puede editar.<br>\n"
                                             ."Solo las tablas con claves primarias pueden editarse.<br>\n",
                   'CAN_NOT_DEL_TABLE' => "Esta tabla no puede borrarse.<br>\n"
@@ -487,11 +491,11 @@ $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Los campos Blob de la tabla que sel
                   'CAN_NOT_ACCESS_DIR' => "No se puede accesar al directorio %s<br>\n",
                   'NAME_IS_KEYWORD' => "%s Es una palabra reservada de Firebird<br>\n",
                   'NAMES_ARE_KEYWORDS' => "%s Son palabras reservadas de Firebird<br>\n",
-                  'NEED_SYSDBA_PW' => "La contraseÒa de SYSDBA's es requerida para crear, modificar o Borrar usu·rios.<br>\n",
-                  'PW_REQUIRED' => "ContraseÒa Requerida<br>\n",
+                  'NEED_SYSDBA_PW' => "La contrase√±a de SYSDBA's es requerida para crear, modificar o Borrar usu√°rios.<br>\n",
+                  'PW_REQUIRED' => "Contrase√±a Requerida<br>\n",
                   'UN_REQUIRED' => "Se requiere un nombre de usuario<br>\n",
-                  'PW_WRONG_REPEAT' => "La confirmacion de la contraseÒa es Incorrecta<br>\n",
-                  'BAD_ISQLPATH' => "El ejecutable isql no est· instalado en %s!<br>\n"
+                  'PW_WRONG_REPEAT' => "La confirmacion de la contrase√±a es Incorrecta<br>\n",
+                  'BAD_ISQLPATH' => "El ejecutable isql no est√° instalado en %s!<br>\n"
                                             ."Por favor verifique el valor para BINPATH en inc/configuration.inc.php.<br>\n",
                   'BAD_TMPPATH' => "Your configured TMPPATH directory '%s' didn't exist or is not writeable for the webserver process!<br>\n"
                                             ."Please check the value for TMPPATH in inc/configuration.inc.php.<br>\n",
@@ -500,7 +504,7 @@ $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Los campos Blob de la tabla que sel
 $ERRORS = array('CREATE_DB_FAILED' => 'Error intentando crear Base de Datos <b>%s</b> falhou!',
                   'NO_DB_SELECTED' => 'Selecione un nombe de base de Datos primero!<br>',
                   'WRONG_DB_SUFFIX' => 'Un nombre de Base de Datos debe ser terminado con <b>%s</b>',
-                  'DB_NOT_ALLOWED' => 'Acesso ‡ <b>%s</b> no permitido.<br>'
+                  'DB_NOT_ALLOWED' => 'Acesso √† <b>%s</b> no permitido.<br>'
                                              .'(verifique $ALLOWED_FILES e $ALLOWED_DIRS en inc/configuration.php)',
                   'NO_IBASE_MODULE' => '<b>Su instalacion de php no suporta Firebird!</b><br>'
                                             .'Recompile el php y configure --with-interbase[=DIR]<br>'
@@ -511,4 +515,4 @@ $ERRORS = array('CREATE_DB_FAILED' => 'Error intentando crear Base de Datos <b>%
                   );
 
 // charset encoding  for html output
-$charset = 'iso-8859-1';
+$charset = 'UTF-8';

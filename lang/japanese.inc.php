@@ -1,13 +1,18 @@
 <?php
-// File           japanese.inc.php / FirebirdWebAdmin
-// Purpose        japanese strings definitions
-// Author         Shue Miula <shue@xdip.com>
-// Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
+// Purpose        Language strings definitions
+// Author         Lutz Brueckner <irie@gmx.de>
+// Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/08/08 06:03:00 lb>       
-//
-// $Id: japanese.inc.php,v 1.12 2005/10/05 19:51:58 lbrueckner Exp $
+
+//Initial authors
+// Dutch          			Michael van Canneyt <Michael.VanCanneyt@Wisa.be
+// Japanese       			Shue Miula <shue@xdip.com>
+// Polish         			Matthias Hryniszak <matthias@hryniszak.de>
+// Hungarian      			Zoltán Miklovicz <zmiklovicz@vivamail.hu>
+// Spanish        			Jose Pichardo <joel_pichardo@yahoo.com>
+// Russian        			Andrej Surkov <sura@mail.ru>
+// Portuguese, Brazilian	Paulo Vaz <paulo@multi-informatica.com.br>
 
 // strings used for the tabfolder menu
 $menu_strings = array('Database' => 'データベース',
@@ -18,16 +23,6 @@ $menu_strings = array('Database' => 'データベース',
                       'Users' => 'ユーザー',
                       'Admin' => '管理',
                       );
-
-// the coordinates for the image area used by the tabfolder menu
-$menu_coords = array('Database' => '8,0,89,31',
-                     'Tables' => '91,0,152,31',
-                     'Accessories' => '154,0,256,31',
-                     'SQL' => '258,0,297,31',
-                     'Data' => '299,0,344,31',
-                     'Users' => '346,0,398,31',
-                     'Admin' => '400,0,460,31',
-                     );
 
 // strings used as panel titles
 $ptitle_strings = array('info' => '情報',
@@ -105,6 +100,7 @@ $button_strings = array('Login' => 'ログイン',
                         'CloseAll' => 'すべて閉じる',
                         'Defaults' => 'Set Defaults',
                         'Load' => 'Load',
+                        'Unmark' => 'Unmark',
                         );
 
 // strings on the database page
@@ -169,6 +165,7 @@ $tb_strings = array('Name' => '名称',
                     'DispCNames' => 'constraint names',
                     'DispDef' => 'default values',
                     'DispComp' => 'computed values',
+                    'DispComm' => 'comments',
                     'DropPK' => 'Drop Primary Key',
                     'DropFK' => 'Drop Foreign Key',
                     'DropUq' => 'Drop Unique Constraint',
@@ -297,9 +294,7 @@ $dt_strings = array('SelTable' => 'テーブルの選択',
                     'Drop' => 'drop',
                     'ExpOptCsv' => 'CSV-Data',
                     'ExpOptExt' => 'External Table',
-                    'ExpOptPhp' => 'PHP Code',
                     'ExpOptSql' => 'SQL',
-                    'ExpOptXml' => 'XML',
                     'ExpFmTbl' => 'Table',
                     'ExpFmDb' => 'Database',
                     'ExpFmQry' => 'Query',
@@ -314,10 +309,19 @@ $dt_strings = array('SelTable' => 'テーブルの選択',
                     'FEncl' => 'Fields enclosed by',
                     'FTEncl' => 'Field types to enclose',
                     'All' => 'all',
-                    'Numeric' => 'numeric',
+                    'NonNum' => 'non numeric',
                     'FEsc' => 'Escape character',
                     'LTerm' => 'Lines terminated by',
                     'FNamesF' => 'Field names at first row',
+                    'SqlOpts' => 'SQL-Options',
+                    'SqlCNames' => 'include column names',
+                    'SqlQNames' => 'quote column names',
+                    'SqlCField' => 'include computed fields',
+                    'SqlInfo' => 'add export info',
+                    'SqlLE' => 'line ending',
+                    'SqlTTab' => 'target table name',
+                    'ExtOpts' => 'External table options',
+                    'PhpOpts' => 'PHP source options',
                     );
 
 // strings on the user page
@@ -441,17 +445,16 @@ $info_strings = array('Connected' => 'は次のデータベースに接続しま
                       'ComCall' => 'コマンド呼び出し：',
                       'Debug' => 'デバッグ出力：',
                       'PHPError' => 'PHP エラー',
+                      'SuccessLogin' => 'You have been successfully logged in!',
                       );
 
-$MESSAGES = array('BLOB_BROKEN_INFO' => "BLOBサポートは壊れています。 (php4.0.2 と php4.0.3)。<br>\n"
-                                            ."もしもBLOBサポートが必要ならPHPをアップデートして下さい。<br>\n",
-                  'SP_CREATE_INFO' => 'FirebirdWebAdminはストアドプロシージャを作成しました "'.SP_LIMIT_NAME.'" Watch Table 関数により使用され '
+$MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdminはストアドプロシージャを作成しました "'.SP_LIMIT_NAME.'" Watch Table 関数により使用され '
                                             ."データベース内に保存されます。<br>\n"
                                             .'もしも、数人がFirebirdWebAdminを同時に使用する場合 '
                                             ."右のファイルのWATCHTABLE_METHODの値を変更して下さい。 inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             .'プログラムは必要なプライマリーインデックスフィールドを自動選択します。',
-                  'CSV_IMPORT_COUNT' => "%1\$d 行が %2\$s からインポートれました。<br>\n",
+                  'CSV_IMPORT_COUNT' => "%1\\$d 行が %2\\$s からインポートれました。<br>\n",
                   'CONFIRM_TABLE_DELETE' => '本当に次のテーブルを削除して宜しいですか？： %s',
                   'CONFIRM_COLUMN_DELETE' => '本当に %2$sテーブルから %1$s を削除しても宜しいですか？',
                   'CONFIRM_DB_DELETE' => '本当に次のデータベースを削除して宜しいですか？： %s',

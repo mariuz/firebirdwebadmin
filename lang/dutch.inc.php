@@ -1,13 +1,18 @@
 <?php
-// File           dutch.inc.php / FirebirdWebAdmin
-// Purpose        dutch strings definitions
-// Author         Michael van Canneyt <Michael.VanCanneyt@Wisa.be
-// Copyright      (c) 2000, 2001, 2002, 2003, 2004, 2005 by Lutz Brueckner,
+// Purpose        Language strings definitions
+// Author         Lutz Brueckner <irie@gmx.de>
+// Copyright      (c) 2000-2006 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/06/18 21:06:00 >       
-//
-// $Id: dutch.inc.php,v 1.15 2005/10/05 18:32:10 lbrueckner Exp $
+
+//Initial authors
+// Dutch          			Michael van Canneyt <Michael.VanCanneyt@Wisa.be
+// Japanese       			Shue Miula <shue@xdip.com>
+// Polish         			Matthias Hryniszak <matthias@hryniszak.de>
+// Hungarian      			Zoltán Miklovicz <zmiklovicz@vivamail.hu>
+// Spanish        			Jose Pichardo <joel_pichardo@yahoo.com>
+// Russian        			Andrej Surkov <sura@mail.ru>
+// Portuguese, Brazilian	Paulo Vaz <paulo@multi-informatica.com.br>
 
 // strings used for the tabfolder menu
 $menu_strings = array('Database' => 'Databank',
@@ -18,16 +23,6 @@ $menu_strings = array('Database' => 'Databank',
                       'Users' => 'Gebruikers',
                       'Admin' => 'Admin',
                       );
-
-// the coordinates for the image area used by the tabfolder menu
-$menu_coords = array('Database' => '8,0,91,31',
-                     'Tables' => '93,0,170,31',
-                     'Accessories' => '172,0,275,31',
-                     'SQL' => '277,0,316,31',
-                     'Data' => '318,0,406,33',
-                     'Users' => '408,0,504,33',
-                     'Admin' => '506,0,563,33',
-                     );
 
 // strings used as panel titles
 $ptitle_strings = array('info' => 'Info',
@@ -105,6 +100,7 @@ $button_strings = array('Login' => 'Aanmelden',
                         'CloseAll' => 'Alles sluiten',
                         'Defaults' => 'Set Defaults',
                         'Load' => 'Load',
+                        'Unmark' => 'Unmark',
                         );
 
 // strings on the database page
@@ -169,6 +165,7 @@ $tb_strings = array('Name' => 'Naam',
                     'DispCNames' => 'constraint names',
                     'DispDef' => 'default values',
                     'DispComp' => 'computed values',
+                    'DispComm' => 'comments',
                     'DropPK' => 'Drop Primary Key',
                     'DropFK' => 'Drop Foreign Key',
                     'DropUq' => 'Drop Unique Constraint',
@@ -272,8 +269,6 @@ $sql_strings = array('DisplBuf' => 'Toon resultaat van buffer',
                      'Total' => 'totaal',
                      'Edit' => 'Bewerk',
                      'Delete' => 'Verwijder',
-                     'Yes' => 'Yes',
-                     'No' => 'No',
                      'Yes' => 'Ja',
                      'No' => 'Nee',
                      'TBInline' => 'Text Blobs Inline',
@@ -299,9 +294,7 @@ $dt_strings = array('SelTable' => 'Selecteer Tabel',
                     'Drop' => 'drop',
                     'ExpOptCsv' => 'CSV-Data',
                     'ExpOptExt' => 'External Table',
-                    'ExpOptPhp' => 'PHP Code',
                     'ExpOptSql' => 'SQL',
-                    'ExpOptXml' => 'XML',
                     'ExpFmTbl' => 'Table',
                     'ExpFmDb' => 'Database',
                     'ExpFmQry' => 'Query',
@@ -316,10 +309,19 @@ $dt_strings = array('SelTable' => 'Selecteer Tabel',
                     'FEncl' => 'Fields enclosed by',
                     'FTEncl' => 'Field types to enclose',
                     'All' => 'all',
-                    'Numeric' => 'numeric',
+                    'NonNum' => 'non numeric',
                     'FEsc' => 'Escape character',
                     'LTerm' => 'Lines terminated by',
                     'FNamesF' => 'Field names at first row',
+                    'SqlOpts' => 'SQL-Options',
+                    'SqlCNames' => 'include column names',
+                    'SqlQNames' => 'quote column names',
+                    'SqlCField' => 'include computed fields',
+                    'SqlInfo' => 'add export info',
+                    'SqlLE' => 'line ending',
+                    'SqlTTab' => 'target table name',
+                    'ExtOpts' => 'External table options',
+                    'PhpOpts' => 'PHP source options',
                     );
 
 // strings on the user page
@@ -368,8 +370,8 @@ $usr_strings = array('CreateUsr' => 'Nieuwe gebruiker aanmaken',
                      'IFHeight' => 'Iframe Height in Pixel',
                      'Attitude' => 'Attitude',
                      'AskDel' => 'Confirm deletion of objects and data',
-                     'No' => 'No',
                      'Yes' => 'Ja',
+                     'No' => 'No',
                     );
 
 // strings on the admin page
@@ -443,16 +445,16 @@ $info_strings = array('Connected' => 'Aangemeld aan databank',
                       'ComCall' => 'Commando:',
                       'Debug' => 'Debug weergave',
                       'PHPError' => 'PHP Error',
+                      'SuccessLogin' => 'You have been successfully logged in!',
                       );
 
-$MESSAGES = array('BLOB_BROKEN_INFO' => "Blob functionaliteir is defect (minstens php4.0.2 en php4.0.3).<br>\n"
-                                            ."Indien U blob functionaliteit nodig heeft, gelieve uw PHP installatie aan te passen.<br>\n",
-                  'SP_CREATE_INFO' => 'FirebirdWebAdmin heeft in uw databank een stored procedure "'.SP_LIMIT_NAME.'" aangemaakt, gebruikt door de functie tabel bekijken.<br>\n'
-                                            .'Indien meerdere mensen FirebirdWebAdmin tegelijkertijd gebruiken, gelieve de waarde van '
-                                            ."WATCHTABLE_METHOD in het bestand inc/configuration.inc.php aan te passen.<br>\n",
+$MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin heeft in uw databank een stored procedure "'.SP_LIMIT_NAME.'" aangemaakt, gebruikt door de functie tabel bekijken.<br>\n'
+                                            ."Indien meerdere mensen FirebirdWebAdmin tegelijkertijd gebruiken, gelieve de waarde van "
+                                            .'WATCHTABLE_METHOD in het bestand inc/configuration.inc.php aan te passen.<br>\n'
+                                            ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Indien bewerken toegestaan is, moeten velden van de primaire sleutel gekozen worden in the tabel bekijken configuratie.<br>\n"
                                             .'Het programma heeft zelf de nodige primaire index velden gekozen.',
-                  'CSV_IMPORT_COUNT' => "%1\$d rijen geimporteerd in tabel %2\$s<br>\n",
+                  'CSV_IMPORT_COUNT' => "%1\\$d rijen geimporteerd in tabel %2\\$s<br>\n",
                   'CONFIRM_TABLE_DELETE' => 'Tabel %s verwijderen, bent u zeker ?',
                   'CONFIRM_COLUMN_DELETE' => 'Kolom %1$s van tabel %2$s verwijderen, bent u zeker?',
                   'CONFIRM_DB_DELETE' => 'Databank %s verwijderen, bent u zeker?',
@@ -513,4 +515,4 @@ $ERRORS = array('CREATE_DB_FAILED' => 'Aanmaken van de databank <b>%s</b> is mis
                   );
 
 // charset encoding  for html output
-$charset = 'iso-8859-1';
+$charset = 'UTF-8';
