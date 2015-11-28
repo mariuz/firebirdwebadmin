@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin utworzy³ zapamiêtan¹ 
                                             ."WATCHTABLE_METHOD w pliku inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Je¿êli edycja jest w³¹czona pola klucza podstawowego musz¹ buæ zaznaczone do wybrania w konfiguracji monitorowania tabeli.<br>\n"
                                             .'Program automatycznie zaznaczy³ pola indeksu podstawowego.',
-                  'CSV_IMPORT_COUNT' => "%1\\$d wierszy zaimportowano do tabeli %2\\$s<br>\n",
+                  'CSV_IMPORT_COUNT' => "%1\$d wierszy zaimportowano do tabeli %2\$s<br>\n",
                   'CONFIRM_TABLE_DELETE' => 'Czy na pewno chcesz usun¹æ tabelê %s?',
                   'CONFIRM_COLUMN_DELETE' => 'Czy na pewno chcesz usun¹æ kolumnê %1$s z tabeli %2$s?',
                   'CONFIRM_DB_DELETE' => 'Czy na pewno chcesz usun¹æ bazê danych %s?',

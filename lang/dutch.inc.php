@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin heeft in uw databank een
                                             ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Indien bewerken toegestaan is, moeten velden van de primaire sleutel gekozen worden in the tabel bekijken configuratie.<br>\n"
                                             .'Het programma heeft zelf de nodige primaire index velden gekozen.',
-                  'CSV_IMPORT_COUNT' => "%1\\$d rijen geimporteerd in tabel %2\\$s<br>\n",
+                  'CSV_IMPORT_COUNT' => "%1\$d rijen geimporteerd in tabel %2\$s<br>\n",
                   'CONFIRM_TABLE_DELETE' => 'Tabel %s verwijderen, bent u zeker ?',
                   'CONFIRM_COLUMN_DELETE' => 'Kolom %1$s van tabel %2$s verwijderen, bent u zeker?',
                   'CONFIRM_DB_DELETE' => 'Databank %s verwijderen, bent u zeker?',
