@@ -309,7 +309,8 @@ function initialize_session()
               's_users_panels' => array(array('usr_user', $ptitle_strings['usr_user'],   'open'),
                                              array('usr_role', $ptitle_strings['usr_role'],   'close'),
 //                                              array('usr_grant',$ptitle_strings['usr_grant'],'close')),
-                                             array('usr_cust', $ptitle_strings['usr_cust'],   'close'), ),
+                                             //array('usr_cust', $ptitle_strings['usr_cust'],   'close'),
+                  ),
               // panels on the Admin page
               's_admin_panels' => array(array('adm_server',$ptitle_strings['adm_server'],'open'),
                                              array('adm_dbstat',$ptitle_strings['adm_dbstat'],'close'),
