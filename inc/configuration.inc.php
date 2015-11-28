@@ -32,6 +32,9 @@ define('DEFAULT_SERVER',  'FB_2.5');               // 'FB_2.1', 'FB_2.5' and 'ot
 
 define('PROTOCOL', 'http');                        // change to 'https' to use ssl
 
+// TODO: Review SP_LIMIT_NAME. Now is defined to avoid warnings.
+define('SP_LIMIT_NAME', '');
+
 
 // if $ALLOWED_DIRS is not empty, only database in this directories are allowed to open;
 // the webserver process must have read access to this directories (pathnames _with_ trailing slashes)
