@@ -15,22 +15,22 @@
 // Portuguese, Brazilian	Paulo Vaz <paulo@multi-informatica.com.br>
 
 // strings used for the tabfolder menu
-$menu_strings = array('Database' => 'Database',
-                      'Tables' => 'Tables',
-                      'Accessories' => 'Accessories',
+$menu_strings = array('Database' => 'Baza de date',
+                      'Tables' => 'Tabele',
+                      'Accessories' => 'Accesorii',
                       'SQL' => 'SQL',
-                      'Data' => 'Data',
-                      'Users' => 'Users',
-                      'Admin' => 'Admin',
+                      'Data' => 'Date',
+                      'Users' => 'Utilizatori',
+                      'Admin' => 'Administrare',
                       );
 
 // strings used as panel titles
 $ptitle_strings = array('info' => 'Info',
-                        'db_login' => 'Login to Database',
-                        'db_create' => 'Create Database',
-                        'db_delete' => 'Delete Database',
-                        'db_systable' => 'System Tables',
-                        'db_meta' => 'Metadata',
+                        'db_login' => 'Conectare la baza de date',
+                        'db_create' => 'Creare bază de date',
+                        'db_delete' => 'Şterge baza de date',
+                        'db_systable' => 'Tabelele de sistem',
+                        'db_meta' => 'Metadate',
                         'tb_show' => 'View Tables',
                         'tb_create' => 'Create New Table',
                         'tb_modify' => 'Modify Table',
@@ -67,8 +67,8 @@ $ptitle_strings = array('info' => 'Info',
                         );
 
 // strings to inscribe buttons
-$button_strings = array('Login' => 'Login',
-                        'Logout' => 'Logout',
+$button_strings = array('Login' => 'Autentificare',
+                        'Logout' => 'Deconectare',
                         'Create' => 'Create',
                         'Delete' => 'Delete',
                         'Select' => 'Select',
