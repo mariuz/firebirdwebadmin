@@ -138,30 +138,30 @@ function user_definition($udata, $title, $modify = false)
   </tr>
   <tr>
     <td>
-      <b>${usr_strings['UName']}</b><br>
-      <input type="text" size="20" maxlength="128" name="def_user_name" value="${udata['uname']}"$readonly_str>
+      <label for="def_user_name">${usr_strings['UName']}</label><br>
+      <input type="text" size="20" maxlength="128" class="form-control" id="def_user_name" name="def_user_name" value="${udata['uname']}"$readonly_str>
     </td>
     <td>
-      <b>${usr_strings['Password']}</b><br>
-      <input type="password" size="20" maxlength="31" name="def_user_pw" value="">
+      <label for="def_user_pw">${usr_strings['Password']}</label><br>
+      <input type="password" size="20" maxlength="31" class="form-control" id="def_user_pw" name="def_user_pw" value="">
     </td>
     <td>
-      <b>${usr_strings['RepeatPW']}</b><br>
-      <input type="password" size="20" maxlength="31" name="def_user_pwa" value="">
+      <label for="def_user_pwa">${usr_strings['RepeatPW']}</label><br>
+      <input type="password" size="20" maxlength="31" class="form-control" id="def_user_pwa" name="def_user_pwa" value="">
     </td>
   </tr>
   <tr>
     <td>
-      <b>${usr_strings['FName']}</b><br>
-      <input type="text" size="20" maxlength="128" name="def_user_fname" value="${udata['fname']}">
+      <label for="def_user_fname">${usr_strings['FName']}</label><br>
+      <input type="text" size="20" maxlength="128" class="form-control" id="def_user_fname" name="def_user_fname" value="${udata['fname']}">
     </td>
     <td>
-      <b>${usr_strings['MName']}</b><br>
-      <input type="text" size="20" maxlength="128" name="def_user_mname" value="${udata['mname']}">
+      <label for="def_user_mname">${usr_strings['MName']}</label><br>
+      <input type="text" size="20" maxlength="128" class="form-control" id="def_user_mname" name="def_user_mname" value="${udata['mname']}">
     </td>
     <td>
-      <b>${usr_strings['LName']}</b><br>
-      <input type="text" size="20" maxlength="128" name="def_user_lname" value="${udata['lname']}">
+      <label for="def_user_lname">${usr_strings['LName']}</label><br>
+      <input type="text" size="20" maxlength="128" class="form-control" id="def_user_lname" name="def_user_lname" value="${udata['lname']}">
     </td>
   </tr>
 </table>

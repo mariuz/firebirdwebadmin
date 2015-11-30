@@ -37,8 +37,8 @@ function get_exceptions_table($exceptions, $order, $dir)
 
     $heads = array('Name', 'Message');
 
-    $html = "<table>\n"
-           ."  <tr align=\"left\">\n";
+    $html = "<table class=\"table table-bordered table-hover\">\n"
+           ."  <thead><tr align=\"left\">\n";
 
     foreach ($heads as $idx => $head) {
         $url = url_session($_SERVER['PHP_SELF'].'?excorder=1&order='.($idx + 1));
@@ -50,7 +50,7 @@ function get_exceptions_table($exceptions, $order, $dir)
         $html .= '    <th class="detail"><a href="'.$url.'">'.$title."</a></th>\n";
     }
 
-    $html .= "  </tr>\n";
+    $html .= "  </tr></thead>\n";
 
     foreach ($exceptions as $ename => $msg) {
         $html .= "  <tr>\n"

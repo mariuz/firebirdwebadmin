@@ -11,17 +11,12 @@ if (isset($s_confirmations['table'])) {
     include './panels/confirm.php';
 } elseif ($s_connected) {
     ?>
-    <form method="post" action="<?php url_session($_SERVER['PHP_SELF']);
-    ?>" name="tb_delete_form" class="form-inline">
-		<div class="form-group">
-			<label for="tb_modify_name"><?php echo $tb_strings['SelTbDel'];
-    ?></label>
-			<?php echo get_table_selectlist('tb_delete_name', array('owner', 'noviews'), null, true) ?>
-		</div>
-		<input type="submit" class="btn btn-danger" name="tb_delete_doit" value="<?php echo $button_strings['Delete'];
-    ?>">
+    <form method="post" action="<?php url_session($_SERVER['PHP_SELF']); ?>" name="tb_delete_form" class="form-inline">
+        <div class="form-group">
+            <label for="tb_delete_name"><?php echo $tb_strings['SelTbDel']; ?></label>
+            <?php echo get_table_selectlist('tb_delete_name', array('owner', 'noviews'), null, true) ?>
+        </div>
+        <input type="submit" class="btn btn-danger" name="tb_delete_doit" value="<?php echo $button_strings['Delete'];
+        ?>">
     </form>
-<?php
-
-}
-?>
+<?php } ?>

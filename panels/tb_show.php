@@ -41,10 +41,10 @@ if ($s_connected == true && is_array($s_tables)):
        .' <label>'.get_checkbox('tb_show_def', '1', $s_tables_def).' '.$tb_strings['DispDef'].'</label>'
        .' <label>'.get_checkbox('tb_show_comp', '1', $s_tables_comp).' '.$tb_strings['DispComp'].'</label>'
        .' <label>'.get_checkbox('tb_show_comments', '1', $s_tables_comment).' '.$tb_strings['DispComm']."</label><br />\n"
-       .'  <input type="submit" name="tb_show_reload" value="'.$button_strings['Reload']."\" class=\"btn btn-default\">\n";
+       .'  <input type="submit" name="tb_show_reload" value="'.$button_strings['Reload']."\" class=\"btn btn-default btn-xs\">\n";
         if ($tcnt > 1) {
-            echo '  <input type="submit" name="tb_table_open" value="'.$button_strings['OpenAll']."\" class=\"btn btn-default\">\n"
-               .'  <input type="submit" name="tb_table_close" value="'.$button_strings['CloseAll']."\" class=\"btn btn-default\">\n";
+            echo '  <input type="submit" name="tb_table_open" value="'.$button_strings['OpenAll']."\" class=\"btn btn-default btn-xs\">\n"
+               .'  <input type="submit" name="tb_table_close" value="'.$button_strings['CloseAll']."\" class=\"btn btn-default btn-xs\">\n";
         }
     echo "</form>\n";
 

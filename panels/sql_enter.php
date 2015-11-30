@@ -15,7 +15,7 @@ $js_stack .= js_giveFocus('sql_enter_form', 'sql_script');
             <input class="btn btn-success" type="submit" name="sql_run" value="<?php echo $button_strings['DoQuery']; ?>">
          </td>
          <td>
-            <input class="btn btn-deafult" type="reset" name="sql_reset" value="<?php echo $button_strings['Reset']; ?>">
+            <input class="btn btn-default" type="reset" name="sql_reset" value="<?php echo $button_strings['Reset']; ?>">
          </td>
          <td>
             <input class="btn btn-link" type="button" name="sql_clear" value="<?php echo $button_strings['Clear']; ?>" onClick="document.sql_enter_form.sql_script.value=''">

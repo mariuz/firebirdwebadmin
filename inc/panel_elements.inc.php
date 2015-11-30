@@ -592,7 +592,7 @@ function get_closed_detail($title, $url, $curl = '', $cdiv = '')
 
     if (!empty($curl)) {
         $html .= '<a href="'.$curl.'" class="act" title="Edit comment">[C]</a>'."\n"
-               .'<div id="'.$cdiv."\" class=\"cmt\">\n"
+               .'<div id="'.$cdiv."\" class=\"margin-left-20px\">\n"
                ."</div>\n";
     }
 
@@ -633,7 +633,7 @@ function get_opened_table($name, $title, $url, $curl = '', $cdiv = '')
     $html = <<<EOT
           <a href="$url" class="dtitlex" title="${ptitle_strings['Close']}"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}" ></span> $title</a>
           <a href="$curl" class="act" title="Edit table comment">[C]</a>
-          <div id="$cdiv" class="cmt">
+          <div id="$cdiv" class="margin-left-20px">
           </div>
         <table class="table">
           <tr>

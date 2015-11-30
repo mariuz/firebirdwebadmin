@@ -90,75 +90,81 @@ if (isset($s_confirmations['role'])) {
         <?php
     } ?>
 
+    <div class="row">
+        <form class="form-horizontal" method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>"
+              name="usr_role_form">
 
-    <form class="form-horizontal" method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>"
-          name="usr_role_form">
-
-
-        <table class="table table-bordered">
-            <tr>
-                <th align="left"><strong><?php echo $usr_strings['RoleAdd']; ?></strong></th>
-                <td>
-                    <strong><?php echo $usr_strings['Role']; ?></strong><br>
-                    <select class="form-control" name="usr_role_addname">
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="3" align="left"><strong><?php echo $usr_strings['RoleAdd']; ?></strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="usr_role_addname"><?php echo $usr_strings['Role']; ?></label><br>
+                        <select class="form-control" id="usr_role_addname" name="usr_role_addname">
+                            <?php
+                            $selected = (isset($_POST['usr_role_addname'])) ? $_POST['usr_role_addname'] : '';
+                            build_roles_options($roles, $selected);
+                            ?>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="usr_role_adduser"><?php echo $usr_strings['User']; ?></label><br>
                         <?php
 
-                        $selected = (isset($_POST['usr_role_addname'])) ? $_POST['usr_role_addname'] : '';
-                        build_roles_options($roles, $selected);
+                        $pre = (isset($_POST['usr_role_adduser'])) ? $_POST['usr_role_adduser'] : NULL;
+                        if (!empty($users)) {
+                            $user_options = array_keys($users);
+                            array_push($user_options, 'PUBLIC');
+                            echo get_selectlist('usr_role_adduser', $user_options, $pre, TRUE);
+                        } else {
+                            echo get_textfield('usr_role_adduser', 20, 80, $pre);
+                        }
                         ?>
-                    </select>
-                </td>
-                <td>
-                    <strong><?php echo $usr_strings['User']; ?></strong><br>
-                    <?php
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-primary" name="usr_role_add"
+                               value="<?php echo $button_strings['Add']; ?>">
+                    </td>
+                </tr>
+            </table>
 
-                    $pre = (isset($_POST['usr_role_adduser'])) ? $_POST['usr_role_adduser'] : NULL;
-                    if (!empty($users)) {
-                        $user_options = array_keys($users);
-                        array_push($user_options, 'PUBLIC');
-                        echo get_selectlist('usr_role_adduser', $user_options, $pre, TRUE);
-                    } else {
-                        echo get_textfield('usr_role_adduser', 20, 80, $pre);
-                    }
-                    ?>
-                </td>
-                <td>
-                    <input type="submit" class="btn btn-success" name="usr_role_add"
-                           value="<?php echo $button_strings['Add']; ?>">
-                </td>
-            </tr>
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="3" align="left"><strong><?php echo $usr_strings['RoleRem']; ?></strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="usr_role_removename"><?php echo $usr_strings['Role']; ?></label><br>
+                        <select class="form-control" id="usr_role_removename" name="usr_role_removename">
+                            <?php
 
-            <tr>
-                <th align="left"><strong><?php echo $usr_strings['RoleRem']; ?></strong></th>
-                <td>
-                    <strong><?php echo $usr_strings['Role']; ?></strong><br>
-                    <select class="form-control" name="usr_role_removename">
+                            $selected = (isset($_POST['usr_role_removename'])) ? $_POST['usr_role_removename'] : '';
+                            build_roles_options($roles, $selected);
+                            ?>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="usr_role_removeuser"><?php echo $usr_strings['User']; ?></label><br>
                         <?php
 
-                        $selected = (isset($_POST['usr_role_removename'])) ? $_POST['usr_role_removename'] : '';
-                        build_roles_options($roles, $selected);
+                        $pre = (!empty($_POST['usr_role_removeuser'])) ? $_POST['usr_role_removeuser'] : NULL;
+                        if (!empty($users)) {
+                            echo get_selectlist('usr_role_removeuser', $user_options, $pre, TRUE);
+                        } else {
+                            echo get_textfield('usr_role_removeuser', 20, 80, $pre);
+                        }
                         ?>
-                    </select>
-                </td>
-                <td>
-                    <strong><?php echo $usr_strings['User']; ?></strong><br>
-                    <?php
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-danger" name="usr_role_remove"
+                               value="<?php echo $button_strings['Remove']; ?>">
+                    </td>
+                </tr>
+            </table>
+        </form>
 
-                    $pre = (!empty($_POST['usr_role_removeuser'])) ? $_POST['usr_role_removeuser'] : NULL;
-                    if (!empty($users)) {
-                        echo get_selectlist('usr_role_removeuser', $user_options, $pre, TRUE);
-                    } else {
-                        echo get_textfield('usr_role_removeuser', 20, 80, $pre);
-                    }
-                    ?>
-                </td>
-                <td>
-                    <input type="submit" class="btn btn-danger" name="usr_role_remove"
-                           value="<?php echo $button_strings['Remove']; ?>">
-                </td>
-            </tr>
-        </table>
-    </form>
+    </div>
     <?php
 }
 ?>

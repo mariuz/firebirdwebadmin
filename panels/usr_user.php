@@ -17,10 +17,10 @@ elseif (isset($user_add_flag)):
 
         echo user_definition($udata, $usr_strings['CreateUsr']);
         ?>
-        <input type="submit" name="usr_user_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
-        <input type="reset" name="usr_user_reset" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
+        <input type="submit" name="usr_user_create_doit" value="<?php echo $button_strings['Create']; ?>" class="btn btn-primary">
+        <input type="reset" name="usr_user_reset" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
         <input type="submit" name="usr_user_create_cancel" value="<?php echo $button_strings['Cancel']; ?>"
-               class="bgrp">
+               class="btn btn-default">
     </form>
     <?php
 
@@ -32,9 +32,9 @@ elseif (!empty($s_user_name)):
 
         echo user_definition($udata, sprintf($usr_strings['ModUser'], $s_user_name, true));
         ?>
-        <input type="submit" name="usr_user_mod_doit" value="<?php echo $button_strings['Modify']; ?>" class="bgrp">
-        <input type="reset" name="usr_user_mod_reset" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-        <input type="submit" name="usr_user_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+        <input type="submit" name="usr_user_mod_doit" value="<?php echo $button_strings['Modify']; ?>" class="btn btn-success">
+        <input type="reset" name="usr_user_mod_reset" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
+        <input type="submit" name="usr_user_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="btn btn-default">
     </form>
 
     <?php
@@ -77,27 +77,27 @@ elseif ($s_connected):
         <table class="table table-bordered">
             <tr>
                 <th align="left"><?php echo $usr_strings['CreateUsr']; ?></th>
-                <td><input type="submit" class="btn btn-success" name="usr_user_create"
+                <td><input type="submit" class="btn btn-primary" name="usr_user_create"
                            value="<?php echo $button_strings['Create']; ?>"></td>
             </tr>
 
             <tr>
                 <td>
-                    <b><?php echo $usr_strings['USelMod']; ?></b>
-                    <select class="form-control" name="usr_user_mname">
+                    <label for="usr_user_mname"><?php echo $usr_strings['USelMod']; ?></label>
+                    <select class="form-control" id="usr_user_mname" name="usr_user_mname">
                         <?php build_user_options(); ?>
                     </select>
                 </td>
                 <td align="left">
-                    <input type="submit" class="btn btn-primary" name="usr_user_mod"
+                    <input type="submit" class="btn btn-success" name="usr_user_mod"
                            value="<?php echo $button_strings['Modify']; ?>">
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <strong><?php echo $usr_strings['USelDel']; ?></strong>
-                    <select class="form-control" name="usr_user_dname">
+                    <label for="usr_user_dname"><?php echo $usr_strings['USelDel']; ?></label>
+                    <select class="form-control" id="usr_user_dname" name="usr_user_dname">
                         <?php build_user_options($with_sysdba = false); ?>
                     </select>
                 </td>
