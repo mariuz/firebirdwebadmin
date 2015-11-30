@@ -36,3 +36,9 @@ body {
 .margin-left-20px {
 	margin-left: 20px !important;
 }
+
+
+.CodeMirror {
+  border-top: 1px solid gainsboro;
+  border-right: 1px solid gainsboro;
+}

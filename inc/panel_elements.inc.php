@@ -383,38 +383,38 @@ function get_collation_select($name, $sel = null, $empty = false, $tags = array(
 //
 // return the html for a selectlist for the tables of the selected database
 //
-function get_table_selectlist($name, $restrictions = array(), $sel = null, $empty = false, $tags = array(), $size = 1)
+function get_tables_names($restrictions = array())
 {
     global $s_tables, $s_login;
 
     $rights = array('S' => 'select',
-                    'I' => 'insert',
-                    'U' => 'update',
-                    'D' => 'delete',
-                    'R' => 'reference', );
+        'I' => 'insert',
+        'U' => 'update',
+        'D' => 'delete',
+        'R' => 'reference', );
 
     $tables = array();
     foreach ($s_tables as $tablename => $tarr) {
         if (in_array('noviews', $restrictions)
-        &&  $tarr['is_view'] == true) {
+            &&  $tarr['is_view'] == true) {
             continue;
         }
 
         if (in_array('views', $restrictions)
-        &&  $tarr['is_view'] == false) {
+            &&  $tarr['is_view'] == false) {
             continue;
         }
 
         if ($s_login['user'] != 'SYSDBA') {
             if (in_array('owner', $restrictions)
-            &&  $s_login['user'] != $tarr['owner']) {
+                &&  $s_login['user'] != $tarr['owner']) {
                 continue;
             }
 
             foreach ($rights as $code => $val) {
                 if (in_array($val, $restrictions)
-                &&  !in_array($code, $tarr['privileges'])
-                &&  $s_login['user'] != $tarr['owner']) {
+                    &&  !in_array($code, $tarr['privileges'])
+                    &&  $s_login['user'] != $tarr['owner']) {
                     continue 2;
                 }
             }
@@ -422,6 +422,13 @@ function get_table_selectlist($name, $restrictions = array(), $sel = null, $empt
 
         $tables[] = $tablename;
     }
+
+    return $tables;
+}
+
+function get_table_selectlist($name, $restrictions = array(), $sel = null, $empty = false, $tags = array(), $size = 1)
+{
+    $tables = get_tables_names($restrictions);
 
     return get_selectlist($name, $tables, $sel, $empty, $tags, $size);
 }
