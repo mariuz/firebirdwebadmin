@@ -278,7 +278,7 @@ $sql_strings = array('DisplBuf' => 'displaying result from buffer',
 // strings on the data page
 $dt_strings = array('SelTable' => 'Select Table',
                     'Table' => 'Table',
-                    'EditFrom' => '%1$sEdit from table %2$s',
+                    'EditFrom' => '%1$s Edit from table %2$s',
                     'FileName' => 'File Name',
                     'EntName' => 'Enter Name',
                     'FileForm' => 'File Format',
@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin has created a stored pro
                                             ."for WATCHTABLE_METHOD in the file inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             .'The program has auto-selected the necessary primary index fields.',
-                  'CSV_IMPORT_COUNT' => "%1$d rows imported to table %2$s<br>\n",
+                  'CSV_IMPORT_COUNT' => '%1$d rows imported to table %2$s<br>\n',
                   'CONFIRM_TABLE_DELETE' => 'Do you really want to delete the table %s?',
                   'CONFIRM_COLUMN_DELETE' => 'Do you really want to delete the column %1$s from table %2$s?',
                   'CONFIRM_DB_DELETE' => 'Do you really want to delete the database %s?',

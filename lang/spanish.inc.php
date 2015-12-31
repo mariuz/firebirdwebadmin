@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin crea un stored procedure
                                             ."de WATCHTABLE_METHOD en el archivo inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Necesita crear un campo como Llave Primaria, Esto es necesario para poder accesar la tabla.<br>\n"
                                             .'Los programas seleccionan la Llave Primaria para el acceso a Datos.',
-                  'CSV_IMPORT_COUNT' => "%1\$d lineas importadas para la tabla %2\$s<br>\n",
+                  'CSV_IMPORT_COUNT' => '%1$d lineas importadas para la tabla %2$s<br>',
                   'CONFIRM_TABLE_DELETE' => 'Realmente desea Borrar la tabla %s?',
                   'CONFIRM_COLUMN_DELETE' => 'Realmente desea Borrar la Columna %1$s da tabela %2$s?',
                   'CONFIRM_DB_DELETE' => 'Realmente desea Borrar la Base de Datos %s?',

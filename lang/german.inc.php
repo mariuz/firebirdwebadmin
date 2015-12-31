@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin hat eine Stored Procedur
                                             ."in der Datei inc/configuration.in.php den Wert für WATCHTABLE_METHOD zu ändern.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Wenn das Bearbeiten erlaubt ist, müssen die Primärschlüssel-Felder für die Anzeige in der Tabelle ausgewählt sein.<br>\n"
                                             .'Die Primärschlüssel-Felder wurden deshalb der Auswahl hinzugefügt.<br>\n',
-                  'CSV_IMPORT_COUNT' => "%1$d Zeilen wurden in die Tabelle %2$s importiert.<br>\n",
+                  'CSV_IMPORT_COUNT' => '%1$d Zeilen wurden in die Tabelle %2$s importiert.<br>',
                   'CONFIRM_TABLE_DELETE' => 'Soll die Tabelle %s wirklich gelöscht werden?',
                   'CONFIRM_COLUMN_DELETE' => 'Soll das Feld %1$s wirklich aus der Tabelle %2$s gelöscht werden?',
                   'CONFIRM_DB_DELETE' => 'Soll die Datenbank %s wirklich gelöscht werden?',

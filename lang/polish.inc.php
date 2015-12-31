@@ -271,8 +271,8 @@ $sql_strings = array('DisplBuf' => 'wyświetlanie rezultatów z bufora',
                      'Delete' => 'usuń',
                      'Yes' => 'Tak',
                      'No' => 'Nie',
-                     'TBInline' => 'Nastêpny blob inline',
-                     'TBChars' => 'Iloœæ znaków w polach Blob',
+                     'TBInline' => 'Następny blob inline',
+                     'TBChars' => 'Ilość znaków w polach Blob',
                      );
 
 // strings on the data page
@@ -303,15 +303,15 @@ $dt_strings = array('SelTable' => 'Wybierz tabelę',
                     'GenOpts' => 'Ustawienia ogólne',
                     'ReplNull' => 'zastąp wartości <i>NULL</i> przez',
                     'DFormat' => 'format daty',
-                    'TFormat' => 'Time format',
-                    'CsvOpts' => 'CSV-Options',
-                    'FTerm' => 'Fields terminated by',
-                    'FEncl' => 'Fields enclosed by',
+                    'TFormat' => 'format czasu',
+                    'CsvOpts' => 'CSV-opcje',
+                    'FTerm' => 'pola zakończone przez',
+                    'FEncl' => 'pola otoczone przez',
                     'FTEncl' => 'Field types to enclose',
                     'All' => 'all',
                     'NonNum' => 'nie numeryczny',
                     'FEsc' => 'znak escape',
-                    'LTerm' => 'Lines terminated by',
+                    'LTerm' => 'linie zakończone przez',
                     'FNamesF' => 'Field names at first row',
                     'SqlOpts' => 'Opcje SQL',
                     'SqlCNames' => 'dołącz nazwy kolumn',
@@ -335,8 +335,8 @@ $usr_strings = array('CreateUsr' => 'Utwórz nowego u¿ytkownika',
                      'GroupID' => 'ID grupy',
                      'SysdbaPW' => 'Has³o SYSDBA',
                      'Required' => 'wymagane do operacji tworzenia, modyfikacji i usuniêcia',
-                     'USelMod' => 'Wybierz u¿ytkownika do zmodyfikowania',
-                     'USelDel' => 'Wybierz u¿ytkownika do usuniêcia',
+                     'USelMod' => 'Wybierz użytkownika do zmodyfikowania',
+                     'USelDel' => 'Wybierz użytkownika do usunięcia',
                      'Password' => 'Has³o',
                      'RepeatPW' => 'Has³o ponownie',
                      'Name' => 'Nazwa',
@@ -345,7 +345,7 @@ $usr_strings = array('CreateUsr' => 'Utwórz nowego u¿ytkownika',
                      'Role' => 'Rola',
                      'User' => 'U¿ytkownik',
                      'CreateRole' => 'Utwóz now¹ rolê',
-                     'RoleSelDel' => 'Wybierz rolê do usuniêcia',
+                     'RoleSelDel' => 'Wybierz rolę do usunięcia',
                      'RoleAdd' => 'Dodaj rolę',
                      'RoleRem' => 'Usuń z roli',
                      'ColSet' => 'Ustawienia kolorów',
@@ -453,8 +453,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin utworzy³ zapamiêtan¹ 
                                             .'Je¿eli wiele osób ko¿ysta z FirebirdWebAdmin w tym samym czasie, zmieñ wartoœæ '
                                             ."WATCHTABLE_METHOD w pliku inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "Jeśli edycja jest włączona, pola klucza podstawowego musi być zaznaczone do pokazywania w konfiguracji monitorowania tabeli.<br>\n"
-                                            .'Program automatycznie zaznaczy³ pola indeksu podstawowego.',
-                  'CSV_IMPORT_COUNT' => "%1\$d wierszy zaimportowano do tabeli %2\$s<br>\n",
+                                            .'Program automatycznie zaznaczył pola indeksu podstawowego.',
+                  'CSV_IMPORT_COUNT' => '%1$d wierszy zaimportowano do tabeli %2$s<br>',
                   'CONFIRM_TABLE_DELETE' => 'Czy na pewno chcesz usun¹æ tabelê %s?',
                   'CONFIRM_COLUMN_DELETE' => 'Czy na pewno chcesz usun¹æ kolumnê %1$s z tabeli %2$s?',
                   'CONFIRM_DB_DELETE' => 'Czy na pewno chcesz usun¹æ bazê danych %s?',
@@ -474,17 +474,17 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin utworzy³ zapamiêtan¹ 
                   'COOKIES_NEEDED' => 'Musisz włączyć obsługę plików cookie w ustawieniach przeglądarki, jeśli chcesz korzystać z funkcji dostosowywania!',
                   );
 
-$WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Pola Blob, które zosta³y przez ciebie zaznaczone zosta³y pominiête.<br>\n"
+$WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Pola Blob, które zostały przez ciebie zaznaczone zostały pominięte.<br>\n"
                                             ."Eksport Blobów jest wspierany tylko do tekstowego formatu CSV.<br>\n",
-                  'CAN_NOT_IMPORT_BLOBS' => "Pola Blob, które zosta³y przez ciebie zaznaczone zosta³y pominiête.<br>\n"
+                  'CAN_NOT_IMPORT_BLOBS' => "Pola Blob, które zostały przez ciebie zaznaczone zostały pominięte.<br>\n"
                                             ."Import Blobów jest wspierany tylko z tekstowego formatu CSV.<br>\n",
-                  'SELECT_TABLE_FIRST' => "Najpierw wybierz tabelê<br>\n",
+                  'SELECT_TABLE_FIRST' => "Najpierw wybierz tabelę<br>\n",
                   'SELECT_FILE_FIRST' => "Najpierw wybierz plik importu<br>\n",
                   'CAN_NOT_ALTER_DOMAINS' => "zmiana kolumn bazuj¹cych na domenach nie jest wspierana przez InterBase.<br>\n"
                                             ."W zamian za to zmieñ definicjê domeny na zak³adce 'Akcesoria'.<br>\n",
                   'CAN_NOT_EDIT_TABLE' => "Edycja wybranej tabeli nie jest możliwa.<br>\n"
                                             ."Tylko tabele z kluczem g³ównym s¹ edytowalne.<br>\n",
-                  'CAN_NOT_DEL_TABLE' => "Usuwanie z wybranej tabeli nie jest mo¿liwe.<br>\n"
+                  'CAN_NOT_DEL_TABLE' => "Usuwanie z wybranej tabeli nie jest możliwe.<br>\n"
                                             ."Usuwaæ wiersze mo¿na tylko z tabel, które posiadaj¹ podstawowy indeks.<br>\n",
                   'DEL_NO_PERMISSON' => "Nie masz uprawnieñ do usuwania/zapisu tabeli %s<br>\n",
                   'EDIT_NO_PERMISSON' => "Nie masz uprawnieñ do aktualizacji/zapisu tabeli %s<br>\n",

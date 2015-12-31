@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin létrehozta a "'.SP_LIMI
                                             ."a WATCHTABLE_METHOD változót az inc/configuration.inc.php állományban.<br>\n",
                   'EDIT_ADD_PRIMARY' => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             .'The program has auto-selected the necessary primary index fields.',
-                  'CSV_IMPORT_COUNT' => "%1\$d sorok importálásra kerültek a %2\$s táblába.<br>\n",
+                  'CSV_IMPORT_COUNT' => '%1$d sorok importálásra kerültek a %2$s táblába.<br>',
                   'CONFIRM_TABLE_DELETE' => 'Valóban törölni akarja a %s táblát?',
                   'CONFIRM_COLUMN_DELETE' => 'Valóban törölni akarja a(z) %1$s oszlopot a(z) %2$s táblából?',
                   'CONFIRM_DB_DELETE' => 'Valóban törölni akarja a(z) %s adatbázist?',

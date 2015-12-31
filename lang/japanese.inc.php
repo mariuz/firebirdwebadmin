@@ -454,7 +454,7 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdminはストアドプロシ�
                                             ."右のファイルのWATCHTABLE_METHODの値を変更して下さい。 inc/configuration.inc.php.<br>\n",
                   'EDIT_ADD_PRIMARY' => "If editing is enabled the primary key fields must be selected for showing in the watch table configuration.<br>\n"
                                             .'プログラムは必要なプライマリーインデックスフィールドを自動選択します。',
-                  'CSV_IMPORT_COUNT' => "%1\$d 行が %2\$s からインポートれました。<br>\n",
+                  'CSV_IMPORT_COUNT' => '%1$d 行が %2$s からインポートれました。<br>',
                   'CONFIRM_TABLE_DELETE' => '本当に次のテーブルを削除して宜しいですか？： %s',
                   'CONFIRM_COLUMN_DELETE' => '本当に %2$sテーブルから %1$s を削除しても宜しいですか？',
                   'CONFIRM_DB_DELETE' => '本当に次のデータベースを削除して宜しいですか？： %s',
