@@ -16,24 +16,27 @@ if ($subject == 'row') {
 }
 
 ?>
-<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="confirm_<?php echo $subject.$instance; ?>">
-<input type="hidden" name="confirm_subject" value="<?php echo $subject.$instance; ?>">
-<table cellpadding="3" cellspacing="0">
-<tr>
-   <td>
-      <b><?php echo $question; ?></b><br>
-   </td>
-</tr>
-<tr>
-   <td>
-      &nbsp;
-   </td>
-</tr>
-<tr>
-   <td valign="bottom">
-      <input type="submit" name="confirm_no" value="<?php echo $button_strings['No']; ?>" class="btn btn-default">&nbsp;&nbsp;&nbsp;
-      <input type="submit" name="confirm_yes" value="<?php echo $button_strings['Yes']; ?>"  class="btn btn-default">
-   </td>
-</tr>
-</table>
+<form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>"
+      name="confirm_<?php echo $subject . $instance; ?>">
+    <input type="hidden" name="confirm_subject" value="<?php echo $subject . $instance; ?>">
+    <table>
+        <tr>
+            <td>
+                <b><?php echo $question; ?></b><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="confirm_no" value="<?php echo $button_strings['No']; ?>"
+                       class="btn btn-default">
+                <input type="submit" name="confirm_yes" value="<?php echo $button_strings['Yes']; ?>"
+                       class="btn btn-danger margin-left-10px">
+            </td>
+        </tr>
+    </table>
 </form>

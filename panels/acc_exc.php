@@ -13,47 +13,34 @@ if (isset($s_confirmations['exc'])) {
 } elseif (isset($exc_add_flag)) {
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="create_exc_form">
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th align="left"><?php echo $acc_strings['CreateExc']; ?></th>
-            </tr>
-            <tr>
-                <td>
-                    <b><?php echo $acc_strings['Name']; ?></b><br>
-                    <input type="text" size="20" maxlength="31" name="def_exc_name" value="<?php echo htmlspecialchars($s_exception_defs['name']); ?>">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b><?php echo $acc_strings['Message']; ?></b><br>
-                    <input type="text" size="78" maxlength="78" name="def_exc_msg" value="<?php echo htmlspecialchars($s_exception_defs['msg']); ?>">
-                </td>
-            </tr>
-        </table>
-        <input type="submit" name="acc_exc_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
-        <input type="reset" name="acc_exc_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-        <input type="submit" name="acc_exc_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+        <h4> <?php echo $acc_strings['CreateExc']; ?> </h4>
+
+        <div class="form-group">
+            <label for="def_exc_name"><?php echo $acc_strings['Name']; ?></label>
+            <input type="text" size="20" maxlength="31" name="def_exc_name" id="def_exc_name" value="<?php echo htmlspecialchars($s_exception_defs['name']); ?>" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="def_exc_msg"><?php echo $acc_strings['Message']; ?></label>
+            <input type="text" size="78" maxlength="78" name="def_exc_msg" id="def_exc_msg" value="<?php echo htmlspecialchars($s_exception_defs['msg']); ?>" class="form-control">
+        </div>
+        <input type="submit" name="acc_exc_create_doit" value="<?php echo $button_strings['Create']; ?>" class="btn btn-success">
+        <input type="reset" name="acc_exc_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
+        <input type="submit" name="acc_exc_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="btn btn-default">
     </form>
     <?php
 
 } elseif (isset($exc_mod_flag)) {
     ?>
-    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']);
-    ?>" name="modify_exc_form">
-        <table class="table table-bordered table-hover">
-            <tr>
-                <th align="left"><?php echo sprintf($acc_strings['ModExc'], $s_exception_defs['name']); ?></th>
-            </tr>
-            <tr>
-                <td>
-                    <b><?php echo $acc_strings['Message']; ?></b><br>
-                    <input type="text" size="78" maxlength="78" name="def_exc_msg" value="<?php echo htmlspecialchars($s_exception_defs['msg']); ?>">
-                </td>
-            </tr>
-        </table>
-        <input type="submit" name="acc_exc_mod_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
-        <input type="reset" name="acc_exc_mod_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-        <input type="submit" name="acc_exc_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="modify_exc_form">
+        <h4><?php echo sprintf($acc_strings['ModExc'], $s_exception_defs['name']); ?></h4>
+
+        <div class="form-group">
+            <label for="def_exc_msg"><?php echo $acc_strings['Message']; ?></label>
+            <input type="text" size="78" maxlength="78" name="def_exc_msg" value="<?php echo htmlspecialchars($s_exception_defs['msg']); ?>" class="form-control">
+        </div>
+        <input type="submit" name="acc_exc_mod_doit" value="<?php echo $button_strings['Save']; ?>" class="btn btn-success">
+        <input type="reset" name="acc_exc_mod_clear" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
+        <input type="submit" name="acc_exc_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="btn btn-default">
     </form>
     <?php
 
@@ -72,8 +59,9 @@ if (isset($s_confirmations['exc'])) {
         <br><br>
         <table class="table table-bordered">
             <tr>
-                <th colspan="2" align="left"><?php echo $acc_strings['CreateExc']; ?></th>
-                <td><input type="submit" name="acc_exc_create" value="<?php echo $button_strings['Create']; ?>" class="btn btn-primary"></td>
+                <td align="left" colspan="2"><label><?php echo $acc_strings['CreateExc']; ?></label></td>
+                <td><input type="submit" name="acc_exc_create" value="<?php echo $button_strings['Create']; ?>"
+                           class="btn btn-primary"></td>
             </tr>
             <tr>
                 <td>
@@ -95,7 +83,7 @@ if (isset($s_confirmations['exc'])) {
                     ?>
                 </td>
                 <td align="left">
-                    <input type="submit" name="acc_exc_del" value="<?php echo $button_strings['Delete'];?>" class="btn btn-danger">
+                    <input type="submit" name="acc_exc_del" value="<?php echo $button_strings['Delete']; ?>" class="btn btn-danger">
                 </td>
             </tr>
 

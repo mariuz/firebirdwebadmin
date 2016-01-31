@@ -233,53 +233,42 @@ function index_definition($indexname, $title)
     }
 
     ?>
-<table>
+    <h5>
+        <?php echo $title; ?>
+    </h5>
+<table class="table">
+    <thead>
   <tr>
-    <th colspan="6" align="left"><?php echo $title;
-    ?></th>
+    <th ><label for="def_index_name"><?php echo $acc_strings['Name'];  ?></label>     </th>
+    <th ><label for="def_index_table"><?php echo $acc_strings['Table'];    ?></label>    </th>
+    <th align="center" ><label for="def_index_activ"><?php echo $acc_strings['Active'];    ?></label>    </th>
+    <th align="center" ><label for="def_index_uniq"><?php echo $acc_strings['Unique'];    ?></label>    </th>
+    <th align="center" ><label for="def_index_dir"><?php echo $acc_strings['Sort'];    ?></label>    </th>
+    <th ><label for="def_index_segs"><?php echo $acc_strings['ColExpl']; ?></label>    </th>
   </tr>
-  <tr>
-    <td valign="top"><b><?php echo $acc_strings['Name'];
-    ?></b><br>
-        <input type="text" size="20" maxlength="31" name="def_index_name" value="<?php echo $name;
-    ?>">
+    </thead>
+
+    <tr>
+    <td >
+        <input type="text" size="20" maxlength="31" name="def_index_name" id="def_index_name" value="<?php echo $name; ?>" class="form-control">
     </td>
-    <td valign="top"><b><?php echo $acc_strings['Table'];
-    ?></b><br>
-      <?php echo get_table_selectlist('def_index_table', array('noviews', 'owner'), $table, true);
-    ?>
+    <td >
+      <?php echo get_table_selectlist('def_index_table', array('noviews', 'owner'), $table, true);    ?>
     </td>
-    <td align="center" valign="top"><b><?php echo $acc_strings['Active'];
-    ?></b><br>
-      <input type="checkbox" name="def_index_activ" <?php if ($active) {
-    echo 'checked';
-}
-    ?>>
+    <td align="center" >
+      <input type="checkbox" name="def_index_activ" id="def_index_activ" <?php if ($active) {    echo 'checked';}    ?>>
     </td>
-    <td align="center" valign="top"><b><?php echo $acc_strings['Unique'];
-    ?></b><br>
-      <input type="checkbox" name="def_index_uniq" <?php if ($uniq) {
-    echo 'checked';
-}
-    ?>>
+    <td align="center" >
+      <input type="checkbox" name="def_index_uniq" id="def_index_uniq" <?php if ($uniq) { echo 'checked'; } ?> >
     </td>
-    <td align="center" valign="top"><b><?php echo $acc_strings['Sort'];
-    ?></b><br>
-      <select name="def_index_dir">
-        <option<?php if ($dir == 'ASC') {
-    echo ' selected';
-}
-    ?>> ASC
-        <option<?php if ($dir == 'DESC') {
-    echo ' selected';
-}
-    ?>> DESC
+    <td align="center" >
+      <select name="def_index_dir" id="def_index_dir" class="form-control">
+        <option<?php if ($dir == 'ASC') {    echo ' selected';}    ?>> ASC
+        <option<?php if ($dir == 'DESC') {    echo ' selected';}    ?>> DESC
       </select>
     </td>
-    <td valign="top"><b><?php echo $acc_strings['ColExpl'];
-    ?></b><br>
-        <input type="text" size="30" maxlength="128" name="def_index_segs" value="<?php echo $segs;
-    ?>">
+    <td >
+        <input type="text" size="30" maxlength="128" name="def_index_segs" id="def_index_segs" value="<?php echo $segs; ?>" class="form-control">
     </td>
   </tr>
 </table>

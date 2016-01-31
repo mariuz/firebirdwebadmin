@@ -32,8 +32,8 @@ elseif (!empty($s_mod_index)):
 
         index_definition($s_mod_index, sprintf($acc_strings['ModIdx'], $s_mod_index));
         ?>
-        <input type="submit" class="btn btn-primary" name="acc_modind_doit" value="<?php echo $button_strings['Modify']; ?>" class="bgrp">
-        <input type="submit" class="btn btn-danger" name="acc_modind_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+        <input type="submit" class="btn btn-danger" name="acc_modind_doit" value="<?php echo $button_strings['Modify']; ?>" class="bgrp">
+        <input type="submit" class="btn btn-default" name="acc_modind_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
     </form>
 
 <?php

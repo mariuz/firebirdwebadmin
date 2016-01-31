@@ -52,7 +52,7 @@ $ALLOWED_DIRS = array();
 //                      );
 $ALLOWED_FILES = array();
 
-$DATABASE_SUFFIXES = array('fdb','gdb','GDB');    // login into databases, creating and dropping of databases
+$DATABASE_SUFFIXES = array('fdb','gdb');    // login into databases, creating and dropping of databases
                                                    // is restricted to database files with this file extensions
 
 

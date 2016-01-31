@@ -15,9 +15,9 @@ function get_exceptions($order = 1, $dir = 'ASC')
     global $dbhandle;
 
     $sql = 'SELECT E.RDB$EXCEPTION_NAME AS ENAME,'
-                .' E.RDB$MESSAGE AS MSG'
-           .' FROM RDB$EXCEPTIONS E'
-          .' ORDER BY '.$order.' '.$dir;
+        . ' E.RDB$MESSAGE AS MSG'
+        . ' FROM RDB$EXCEPTIONS E'
+        . ' ORDER BY ' . $order . ' ' . $dir;
     $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
 
     $exceptions = array();
@@ -38,25 +38,25 @@ function get_exceptions_table($exceptions, $order, $dir)
     $heads = array('Name', 'Message');
 
     $html = "<table class=\"table table-bordered table-hover\">\n"
-           ."  <thead><tr align=\"left\">\n";
+        . "  <thead><tr align=\"left\">\n";
 
     foreach ($heads as $idx => $head) {
-        $url = url_session($_SERVER['PHP_SELF'].'?excorder=1&order='.($idx + 1));
+        $url = url_session($_SERVER['PHP_SELF'] . '?excorder=1&order=' . ($idx + 1));
         $title = $acc_strings[$head];
         if ($order == $idx + 1) {
-            $title = $dir == 'ASC' ? '*&nbsp;'.$title : $title.'&nbsp;*';
+            $title = $dir == 'ASC' ? '*&nbsp;' . $title : $title . '&nbsp;*';
         }
 
-        $html .= '    <th class="detail"><a href="'.$url.'">'.$title."</a></th>\n";
+        $html .= '    <th class="detail"><a href="' . $url . '">' . $title . "</a></th>\n";
     }
 
     $html .= "  </tr></thead>\n";
 
     foreach ($exceptions as $ename => $msg) {
         $html .= "  <tr>\n"
-                .'    <td class="detail">'.$ename."</td>\n"
-                .'    <td class="detail">'.$msg."</td>\n"
-                ."  </tr>\n";
+            . '    <td class="detail">' . $ename . "</td>\n"
+            . '    <td class="detail">' . $msg . "</td>\n"
+            . "  </tr>\n";
     }
 
     $html .= "</table>\n";
@@ -84,7 +84,7 @@ function create_exception($exception_defs)
 {
     global $dbhandle, $ib_error, $lsql;
 
-    $lsql = 'CREATE EXCEPTION '.$exception_defs['name']." '".str_replace("'", "''", $exception_defs['msg'])."'";
+    $lsql = 'CREATE EXCEPTION ' . $exception_defs['name'] . " '" . str_replace("'", "''", $exception_defs['msg']) . "'";
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
@@ -103,7 +103,7 @@ function modify_exception($exception_defs)
 {
     global $dbhandle, $ib_error, $lsql;
 
-    $lsql = 'ALTER EXCEPTION '.$exception_defs['name']." '".str_replace("'", "''", $exception_defs['msg'])."'";
+    $lsql = 'ALTER EXCEPTION ' . $exception_defs['name'] . " '" . str_replace("'", "''", $exception_defs['msg']) . "'";
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
@@ -123,7 +123,7 @@ function drop_exception($name)
     global $s_exceptions, $dbhandle;
     global $ib_error, $lsql;
 
-    $lsql = 'DROP EXCEPTION '.$name;
+    $lsql = 'DROP EXCEPTION ' . $name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }

@@ -678,6 +678,9 @@ function db_connect()
 //
 function have_db_suffix($filename)
 {
+    $filename = strtolower($filename);
+    $filename = trim($filename);
+
     global $DATABASE_SUFFIXES;
 
     if (is_array($DATABASE_SUFFIXES) && count($DATABASE_SUFFIXES) > 0) {
