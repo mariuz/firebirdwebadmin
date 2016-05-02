@@ -279,9 +279,7 @@ if (have_panel_permissions($s_login['user'], 'adm_restore')) {
     if (isset($_POST['adm_restore_doit'])  &&  !empty($s_restore['source'])  &&  !empty($s_restore['target'])) {
         $s_sysdba_pw = get_sysdba_pw();
 
-        if (!have_db_suffix($s_restore['target'])) {
-            $error = sprintf($ERRORS['WRONG_DB_SUFFIX'], "'".implode("', '", $DATABASE_SUFFIXES)."'");
-        } elseif (!is_allowed_db($s_restore['target'])) {
+        if (!is_allowed_db($s_restore['target'])) {
             $error = sprintf($ERRORS['DB_NOT_ALLOWED'], $s_restore['target']);
         }
 

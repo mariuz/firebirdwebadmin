@@ -52,16 +52,9 @@ $ALLOWED_DIRS = array();
 //                      );
 $ALLOWED_FILES = array();
 
-$DATABASE_SUFFIXES = array('fdb','gdb');    // login into databases, creating and dropping of databases
-                                                   // is restricted to database files with this file extensions
-
-
 define('BACKUP_DIR', '/var/lib/firebird/2.5'); // define this to restrict the location for backup files
 
-
-define('LANGUAGE', 'english');       // set the language to use; 'english', 'brazilian_portuguese', 'dutch',
-                                     // 'japanese', 'russian-win1251', 'spanish' and 'german' are valid options
-
+define('LANGUAGE', 'english');       // set the default language to use;
 
 // uncomment the corresponding line for every panel
 // you want to not appear in the application

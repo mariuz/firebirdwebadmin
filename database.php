@@ -38,8 +38,6 @@ if (isset($_POST['db_login_doit'])) {
 
     if ($s_login['database'] == '') {
         $error = $ERRORS['NO_DB_SELECTED'];
-    } elseif (!have_db_suffix($s_login['database'])) {
-        $error = sprintf($ERRORS['WRONG_DB_SUFFIX'], "'".implode("', '", $DATABASE_SUFFIXES)."'");
     } elseif (!is_allowed_db($s_login['database'])) {
         $error = sprintf($ERRORS['DB_NOT_ALLOWED'], $s_login['database']);
     }
@@ -97,9 +95,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
     $s_create_pagesize = $_POST['db_create_pagesize'];
     $s_create_charset = $_POST['db_create_charset'];
 
-    if (!have_db_suffix($s_create_db)) {
-        $error = sprintf($ERRORS['WRONG_DB_SUFFIX'], "'".implode("', '", $DATABASE_SUFFIXES)."'");
-    } elseif (!is_allowed_db($s_create_db)) {
+    if (!is_allowed_db($s_create_db)) {
         $error = sprintf($ERRORS['DB_NOT_ALLOWED'], $s_create_db);
     }
 
@@ -180,9 +176,7 @@ if (have_panel_permissions($s_login['user'], 'db_delete')
         cleanup_session();
     }
 
-    if (!have_db_suffix($s_delete_db['database'])) {
-        $error = sprintf($ERRORS['WRONG_DB_SUFFIX'], implode("', '", "'".$DATABASE_SUFFIXES)."'");
-    } elseif (!is_allowed_db($s_delete_db['database'])) {
+    if (!is_allowed_db($s_delete_db['database'])) {
         $error = sprintf($ERRORS['DB_NOT_ALLOWED'], $s_delete_db['database']);
     } elseif ($s_cust['askdel'] == true) {
         $s_confirmations['database'] =
@@ -292,7 +286,7 @@ $dbfiles = array();
 if (isset($ALLOWED_FILES)  && count($ALLOWED_FILES) > 0) {
     foreach ($ALLOWED_FILES as $file) {
         if ((strpos($file, '/') === false  &&  strpos($file, '\\') === false)  ||
-            (is_file($file)  &&  have_db_suffix($file))) {
+            is_file($file)) {
             $dbfiles[] = $file;
         }
     }
@@ -303,9 +297,7 @@ if (isset($ALLOWED_FILES)  && count($ALLOWED_FILES) > 0) {
         } else {
             $dirhandle = opendir($dir);
             while ($filename = readdir($dirhandle)) {
-                if (have_db_suffix($filename)) {
                     $dbfiles[] = $dir.$filename;
-                }
             }
             closedir($dirhandle);
         }

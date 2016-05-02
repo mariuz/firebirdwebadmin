@@ -672,33 +672,6 @@ function db_connect()
     return false;
 }
 
-
-//
-// check if $filename have the extension DATABASE_SUFFIX
-//
-function have_db_suffix($filename)
-{
-    $filename = strtolower($filename);
-    $filename = trim($filename);
-
-    global $DATABASE_SUFFIXES;
-
-    if (is_array($DATABASE_SUFFIXES) && count($DATABASE_SUFFIXES) > 0) {
-        $fileend = strtoupper(substr(strrchr($filename, '.'), 1));
-        foreach ($DATABASE_SUFFIXES as $suffix) {
-            if ($fileend == strtoupper($suffix)) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    return true;
-}
-
-
 //
 // check if $filename is allowed by $ALLOWED_FILES OR $ALLOWED_DIRS
 //
