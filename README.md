@@ -15,6 +15,12 @@ By now it has the functionalities for
 
 Some of the features are only available if the database- and the web-server are running on the same machine. The reason is that php   have to call the Firebird tools (isql, gsec, gstat, etc.) to perform certain actions.
 
+## Overview
+1. [Documentation](#documentation)
+2. [Requirements](#requirements)
+3. [Contributing](#contributing)
+4. [Copyright notice](#copyright-notice)
+
 ## Documentation
 
 There is no documentation available yet, but if you are familiar with Firebird  you will have no troubles using FirebirdWebAdmin.
@@ -34,6 +40,14 @@ php5.x with compiled in support for Firebird/InterBase and pcre (but any version
 Firebird 2.x.x for Linux
         
 Apache 2.x or lighttpd or nginx
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ## Copyright notice
 
