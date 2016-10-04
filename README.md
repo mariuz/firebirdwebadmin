@@ -1,4 +1,6 @@
-#  FirebirdWebAdmin is a web frontend for the Firebird database server.
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/firebirdwebadmin/localized.svg)](https://crowdin.com/project/firebirdwebadmin)
+
+# FirebirdWebAdmin is a web frontend for the Firebird database server.
 
 By now it has the functionalities for
   
