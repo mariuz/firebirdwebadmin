@@ -55,9 +55,8 @@ Apache 2.x or lighttpd or nginx
                               Kapellenstr. 1A
                               22117 Hamburg, Germany
 
-  FirebirdWebAdmin is published under the terms of the GNU GPL v.2,
-  please read the file LICENCE for details.
+FirebirdWebAdmin is published under the terms of the [GNU GPL v.2][gnu_gpl_v2_license], please read the file LICENCE for details.
 
-  This software is provided 'as-is', without any expressed or implied
-  warranty.  In no event will the author be held liable for any 
-  damages arising from the use of this software.
+This software is provided 'as-is', without any expressed or implied warranty.  In no event will the author be held liable for any damages arising from the use of this software.
+
+[gnu_gpl_v2_license]: https://opensource.org/licenses/GPL-2.0
