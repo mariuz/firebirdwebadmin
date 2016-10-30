@@ -467,9 +467,9 @@ function replace_escape_sequences($string)
 function export_filename($export)
 {
     if ($export['source']['option'] == 'query') {
-        $filename = 'query';
+        $filename = 'query.csv';
     } else {
-        $filename = export_replace_placeholders($export['target']['filename'], $GLOBALS['s_login']['database'], $export['source']['table']);
+        $filename = export_replace_placeholders($export['target']['filename'], $GLOBALS['s_login']['database'], $export['source']['table']) . '.csv';
     }
 
     return $filename;
