@@ -19,8 +19,9 @@ Some of the features are only available if the database- and the web-server are 
 ## Overview
 1. [Documentation](#documentation)
 2. [Requirements](#requirements)
-3. [Contributing](#contributing)
-4. [Copyright notice](#copyright-notice)
+3. [ChangeLog](#requirements)
+4. [Contributing](#contributing)
+5. [Copyright notice](#copyright-notice)
 
 ## Documentation
 
@@ -41,6 +42,19 @@ php5.x with compiled in support for Firebird/InterBase and pcre (but any version
 Firebird 2.x.x for Linux
         
 Apache 2.x or lighttpd or nginx
+
+## ChangeLog
+#### Version 3.3.0 (06.01.2016)
+- [enhancement:] Review User Page. Modal popup for Role creation. Delete role button for each role.
+- [enhancement:] Users: Remove "Customizing" panel. Is not database/server related. 
+- [enhancement:] Initial integration with Crowdin. Convert all files to UTF-8.
+- [enhancement:] Update Romanian & Russian translations.
+- [enhancement:] UI improvements: Roles, Users, Exceptions, UDF, Table comments.
+- [enhancement:] Integration with CodeMirror.
+- [enhancement:] In-browser code editor http://codemirror.net/
+
+#### Further informations
+- See [CHANGELOG.md][changelog] to get the full changelog.
 
 ## Contributing
 
