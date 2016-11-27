@@ -1,4 +1,14 @@
 ## ChangeLog
+
+#### Version 3.4.0 (27.11.2016)
+- [enhancement:] Published on npm
+- [enhancement:] Introduce CHANGELOG.md
+- [enhancement:] Rename README to README.md (alse updated structure, markdown, info badges)
+- [enhancement:] Update translations
+- [bugfix:] Update export.inc.php (.csv)
+- [bugfix:] Suffixes GDB etc should be off by default
+- [enhancement:] Review Exceptions & indices from Accessories.
+
 #### Version 3.3.0 (06.01.2016)
 - [enhancement:] Review User Page. Modal popup for Role creation. Delete role button for each role.
 - [enhancement:] Users: Remove "Customizing" panel. Is not database/server related. 

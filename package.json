@@ -1,6 +1,6 @@
 {
   "name": "firebird-web-admin",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "FirebirdWebAdmin is a web frontend for the Firebird database server.",
   "main": "index.js",
   "scripts": {
@@ -18,16 +18,18 @@
     "admin"
   ],
   "author": "Lutz Brueckner (irie@gmx.de)",
-  "contributors": [{
-    "name": "Popa Marius Adrian",
-    "email": "mapopa@gmail.com",
-    "url": "http://mapopa.blogspot.com"
-  },
-  {
-    "name": "Dumitru Condrea",
-    "email": "dumitru.condrea@gmail.com",
-    "url": "https://about.me/dumitru.condrea"
-  }],
+  "contributors": [
+    {
+      "name": "Popa Marius Adrian",
+      "email": "mapopa@gmail.com",
+      "url": "http://mapopa.blogspot.com"
+    },
+    {
+      "name": "Dumitru Condrea",
+      "email": "dumitru.condrea@gmail.com",
+      "url": "https://about.me/dumitru.condrea"
+    }
+  ],
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/mariuz/firebirdwebadmin/issues"
