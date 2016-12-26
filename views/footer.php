@@ -20,8 +20,7 @@
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             <?php echo $ptitle_strings["usr_cust"]; ?>
                         </button>
-
-                        <a class="margin-left-10px" target="_blank" href="https://crowdin.com/project/firebirdwebadmin"><img src="https://d322cqt584bo4o.cloudfront.net/firebirdwebadmin/localized.svg"></a>
+                        
                     </p>
                 </td>
                 <?php
