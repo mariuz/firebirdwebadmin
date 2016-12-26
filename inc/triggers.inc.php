@@ -267,13 +267,13 @@ function get_trigger_definition($title)
 
     $trigger_source = htmlspecialchars($s_triggerdefs['source']);
 
-    $html = "<table border cellpadding=\"3\" cellspacing=\"0\">\n"
+    $html = "<table class=\"table\">\n"
           ."  <tr>\n"
           .'    <th colspan="6" align="left">'.$title."</th>\n"
           ."  </tr>\n"
           ."  <tr>\n"
           .'    <td valign="top"><b>'.$acc_strings['Name']."</b><br>\n"
-          .'      <input type="text" size="20" maxlength="31" name="def_trigger_name" value="'.ifsetor($s_triggerdefs['name'])."\">\n"
+          .'      <input class="form-control" type="text" size="20" maxlength="31" name="def_trigger_name" value="'.ifsetor($s_triggerdefs['name'])."\">\n"
           ."    </td>\n"
           ."    <td valign=\"top\">\n"
           .'      <b>'.$acc_strings['Table']."</b><br>\n"
@@ -289,7 +289,7 @@ function get_trigger_definition($title)
           ."    </td>\n"
           ."    <td valign=\"top\">\n"
           .'      <b>'.$acc_strings['Position']."</b><br>\n"
-          .'      <input type="text" size="2" maxlength="2" name="def_trigger_pos" value="'.ifsetor($s_triggerdefs['pos'])."\">\n"
+          .'      <input class="form-control" type="text" size="2" maxlength="2" name="def_trigger_pos" value="'.ifsetor($s_triggerdefs['pos'])."\">\n"
           ."    </td>\n"
           ."    <td valign=\"top\">\n"
           .'      <b>'.$acc_strings['Status']."</b><br>\n"
@@ -299,7 +299,7 @@ function get_trigger_definition($title)
           ."  <tr>\n"
           ."    <td colspan=\"6\">\n"
           .'      <b>'.$acc_strings['Source']."</b><br>\n"
-          .'      <textarea name="def_trigger_source" rows="'.$s_cust['textarea']['rows'].'" cols="'.$s_cust['textarea']['cols'].'" wrap="virtual">'.$trigger_source."</textarea>\n"
+          .'      <textarea class="form-control" name="def_trigger_source" rows="'.$s_cust['textarea']['rows'].'" cols="'.$s_cust['textarea']['cols'].'" wrap="virtual">'.$trigger_source."</textarea>\n"
           ."    </td>\n"
           ."  </tr>\n"
           ."</table>\n";
@@ -318,7 +318,7 @@ function get_triggertype_selectlist($name, $sel = null, $empty = false)
         if (!is_array($sel)) {
             $sel = array($sel);
         }
-        $html = '<select name="'.$name."[]\" size=\"3\" multiple>\n";
+        $html = '<select class="form-control" name="'.$name."[]\" size=\"3\" multiple>\n";
         foreach ($types as $type) {
             $html .= '<option value="'.$type.'"';
             if (in_array($type, $sel)) {

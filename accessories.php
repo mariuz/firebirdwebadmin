@@ -100,7 +100,7 @@ if (have_panel_permissions($s_login['user'], 'acc_gen', true)) {
     $res = fbird_query($dbhandle, $lsql) or ib_error();
 
     while ($row = fbird_fetch_object($res)) {
-        $lsql = 'SELECT gen_id('.$quote.fb_escape_string($row->GNAME).$quote.', 0) AS VAL FROM RDB$DATABASE';
+        $lsql = 'SELECT gen_id('.$quote.fb_escape_string(trim($row->GNAME)).$quote.', 0) AS VAL FROM RDB$DATABASE';
         $res1 = fbird_query($dbhandle, $lsql) or ib_error();
         $row1 = fbird_fetch_object($res1);
         $generators[] = array('name' => trim($row->GNAME),

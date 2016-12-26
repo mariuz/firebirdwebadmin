@@ -53,11 +53,11 @@ if (isset($s_confirmations['exc'])) {
             echo get_exceptions_table($s_exceptions, $s_exceptions_order, $s_exceptions_dir);
         }
 
-        echo '<input type="submit" class="btn btn-default" name="acc_exc_reload" value="' . $button_strings['Reload'] . "\">\n";
+        echo '<input type="submit" class="btn btn-default btn-xs" name="acc_exc_reload" value="' . $button_strings['Reload'] . "\">\n";
 
         ?>
         <br><br>
-        <table class="table table-bordered">
+        <table>
             <tr>
                 <td align="left" colspan="2"><label><?php echo $acc_strings['CreateExc']; ?></label></td>
                 <td><input type="submit" name="acc_exc_create" value="<?php echo $button_strings['Create']; ?>"

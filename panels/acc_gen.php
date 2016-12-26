@@ -18,7 +18,7 @@ if (isset($s_confirmations['generator'])) {
 
 if (!empty($generators)) {
     ?>
-<table border cellpadding="3" cellspacing="0">
+<table class="table table-bordered table-hover">
 <tr>
    <th><?php echo $acc_strings['Name'];
     ?></th>
@@ -40,16 +40,13 @@ if (!empty($generators)) {
    <td align="right"><?php echo $gen['value'];
         ?></td>
    <td>
-      <input type="text" size="8" maxlength="24" name="acc_gen_val_<?php echo $idx;
-        ?>">&nbsp;&nbsp;
-      <input type="submit" name="acc_gen_set_<?php echo $idx;
-        ?>" value="<?php echo $button_strings['Set'];
-        ?>">
+   <div class="form-inline">
+      <input type="text" class="form-control" size="8" maxlength="24" name="acc_gen_val_<?php echo $idx; ?>">
+      <input type="submit" class="btn btn-success" name="acc_gen_set_<?php echo $idx; ?>" value="<?php echo $button_strings['Set']; ?>">
+	  </div>
    </td>
    <td align="center">
-      <input type="submit" name="acc_gen_drop_<?php echo $idx;
-        ?>" value="<?php echo $button_strings['Drop'];
-        ?>">
+      <input type="submit" class="btn btn-danger" name="acc_gen_drop_<?php echo $idx; ?>" value="<?php echo $button_strings['Drop']; ?>">
    </td>
 </tr>
 <?php
@@ -60,23 +57,23 @@ if (!empty($generators)) {
 
     ?>
 <p>
-<table border cellpadding="3" cellspacing="0">
+<table>
 <tr>
    <th colspan="3" align="left"><b><?php echo $acc_strings['CreateGen'];
     ?></b></th>
 </tr>
 <tr>
-   <td><b><?php echo $acc_strings['Name'];
-    ?></b><br>
-      <input type="text" size="15" maxlength="31" name="acc_gen_name">
-   </td>
-   <td><b><?php echo $acc_strings['StartVal'];
-    ?></b><br>
-      <input type="text" size="8" maxlength="24" name="acc_gen_start">
-   </td>
    <td>
-      <input type="submit" name="acc_gen_create" value="<?php echo $button_strings['Create'];
-    ?>">
+   <div class="form-inline">
+    <label for="acc_gen_name"><?php echo $acc_strings['Name'];?></label>
+	<input type="text" size="15" maxlength="31" id="acc_gen_name" name="acc_gen_name" class="form-control">
+   <label for="acc_gen_name"><?php echo $acc_strings['StartVal'];?></label>
+   <input type="text" size="8" maxlength="24" name="acc_gen_start" class="form-control">
+   <input type="submit" name="acc_gen_create" class="btn btn-success" value="<?php echo $button_strings['Create']; ?>">
+   </div>
+   
+   
+      
    </td>
 </tr>
 </table>

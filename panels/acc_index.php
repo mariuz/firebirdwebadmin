@@ -45,7 +45,7 @@ elseif ($s_connected):
     }
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="acc_index_form">
-        <table class="table table-bordered">
+        <table>
             <tr>
                 <th colspan="2" align="left"><?php echo $acc_strings['CreateIdx']; ?></th>
                 <td><input type="submit" class="btn btn-success" name="acc_index_create" value="<?php echo $button_strings['Create']; ?>"></td>

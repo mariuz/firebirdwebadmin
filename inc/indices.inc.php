@@ -236,7 +236,7 @@ function index_definition($indexname, $title)
     <h5>
         <?php echo $title; ?>
     </h5>
-<table class="table">
+<table class="table table-bordered table-hover">
     <thead>
   <tr>
     <th ><label for="def_index_name"><?php echo $acc_strings['Name'];  ?></label>     </th>
@@ -294,7 +294,7 @@ function get_index_table($indices, $order, $dir)
         $table_title = ($dir == 'ASC') ? '*&nbsp;'.$acc_strings['Table'] : $acc_strings['Table'].'&nbsp;*';
     }
 
-    $html = "<table class=\"table table-bordered\">\n"
+    $html = "<table class=\"table table-bordered table-hover\">\n"
            ."  <tr align=\"left\">\n"
            .'    <th class="detail"><a href="'.$name_url.'">'.$name_title."</a></th>\n"
            .'    <th class="detail">'.$acc_strings['Active']."</th>\n"

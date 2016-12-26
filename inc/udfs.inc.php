@@ -73,7 +73,7 @@ function get_udf_table($udfs, $order, $dir)
 
     $heads = array('Name', 'Module', 'EPoint', 'IParams', 'Returns');
 
-    $html = "<table>\n"
+    $html = "<table class=\"table table-bordered table-hover\">\n"
            ."  <tr align=\"left\">\n";
 
     foreach ($heads as $idx => $head) {

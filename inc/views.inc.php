@@ -111,12 +111,12 @@ function get_opened_view($name, $title, $url)
           <a href="$url" class="dtitle"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true" alt="${ptitle_strings['Close']}" title="${ptitle_strings['Close']}"></span> $title</a>
         </nobr>
         <nobr>
-        <table class="table table-hover">
+        <table class="table">
           <tr>
             <td width="26">
             </td>
             <td valign="top">
-              <table class="table table-bordered">
+              <table class="table table-bordered table-hover">
 EOT;
 
     $cols = array('Name', 'Type', 'Length', 'Prec', 'Scale', 'Charset', 'Collate');
@@ -147,7 +147,7 @@ EOT;
 
     $html .= "         <td>&nbsp;</td>\n"
         ."          <td valign=\"top\">\n"
-        ."            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\n"
+        ."            <table >\n"
         ."              <tr align=\"left\">\n"
         .'                <th class="detail">'.$acc_strings['Source']."</th>\n"
         ."              </tr>\n"

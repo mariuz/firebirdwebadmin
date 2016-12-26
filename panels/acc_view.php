@@ -16,11 +16,11 @@ if (isset($s_confirmations['view'])) {
 <?php echo view_definition($acc_strings['CreateView'], $s_viewdefs);
     ?>
 <input type="submit" name="acc_view_create_doit" value="<?php echo $button_strings['Create'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-primary">
 <input type="reset" name="acc_view_create_clear" value="<?php echo $button_strings['Reset'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-deafult">
 <input type="submit" name="acc_view_create_cancel" value="<?php echo $button_strings['Cancel'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-deafult">
 </form>
 <?php
 
@@ -31,11 +31,11 @@ if (isset($s_confirmations['view'])) {
 <?php echo view_definition(sprintf($acc_strings['ModView'], $s_viewdefs['name']), $viewdefs);
     ?>
 <input type="submit" name="acc_modview_doit" value="<?php echo $button_strings['Modify'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-primary">
 <input type="reset" name="acc_view_mod_clear" value="<?php echo $button_strings['Reset'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-deafult">
 <input type="submit" name="acc_modview_cancel" value="<?php echo $button_strings['Cancel'];
-    ?>" class="bgrp">
+    ?>" class="btn btn-deafult">
 </form>
 
 <?php
@@ -74,21 +74,21 @@ if (isset($s_confirmations['view'])) {
         ?>>
 <?php echo $tb_strings['DispCounts'];
         ?><br />
-<input type="submit" name="acc_show_reload" value="<?php echo $button_strings['Reload'];
+<input type="submit" name="acc_show_reload" class="btn btn-default btn-xs" value="<?php echo $button_strings['Reload'];
         ?>">&nbsp;&nbsp;&nbsp;
 <?php
      if ($vcnt > 1) {
-         echo '<input type="submit" name="acc_view_open" value="'.$button_strings['OpenAll']."\" class=\"bgrp\">\n";
-         echo '<input type="submit" name="acc_view_close" value="'.$button_strings['CloseAll']."\" class=\"bgrp\">\n";
+         echo '<input type="submit" name="acc_view_open" value="'.$button_strings['OpenAll']."\" class=\"btn btn-default\">\n";
+         echo '<input type="submit" name="acc_view_close" value="'.$button_strings['CloseAll']."\" class=\"btn btn-default\">\n";
      }
         echo "<br><br>\n";
     }
     ?>
-<table border="1" cellpadding="3" cellspacing="0">
+<table>
 <tr>
   <th colspan="2" align="left"><?php echo $acc_strings['CreateView'];
     ?></th>
-  <td><input type="submit" name="acc_view_create" value="<?php echo $button_strings['Create'];
+  <td><input type="submit" name="acc_view_create" class="btn btn-primary" value="<?php echo $button_strings['Create'];
     ?>"></td>
 </tr>
 <tr>
@@ -101,7 +101,7 @@ if (isset($s_confirmations['view'])) {
     ?>
   </td>
   <td align="left">
-    <input type="submit" name="acc_view_mod" value="<?php echo $button_strings['Modify'];
+    <input type="submit" name="acc_view_mod" class="btn btn-success" value="<?php echo $button_strings['Modify'];
     ?>">
   </td>
 </tr>
@@ -115,7 +115,7 @@ if (isset($s_confirmations['view'])) {
     ?>
   </td>
   <td align="left">
-    <input type="submit" name="acc_view_del" value="<?php echo $button_strings['Delete'];
+    <input type="submit" name="acc_view_del" class="btn btn-danger" value="<?php echo $button_strings['Delete'];
     ?>">
   </td>
 </tr>

@@ -18,7 +18,7 @@ if (isset($s_confirmations['udf'])) {
         if (!empty($s_udfs)) {
             echo get_udf_table($s_udfs, $s_udfs_order, $s_udfs_dir);
         }
-        echo '<input type="submit" class="btn btn-default" name="acc_udf_reload" value="' . $button_strings['Reload'] . "\">\n";
+        echo '<input type="submit" class="btn btn-default btn-xs" name="acc_udf_reload" value="' . $button_strings['Reload'] . "\">\n";
 
         ?>
         <br><br>

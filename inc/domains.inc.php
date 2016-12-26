@@ -198,7 +198,7 @@ function get_domain_table($domains)
 {
     global $acc_strings, $tb_strings;
 
-    $html = "<table>\n"
+    $html = "<table class=\"table table-bordered table-hover\">\n"
            ."  <tr align=\"left\">\n"
            .'    <th class="detail">'.$acc_strings['Name']."</th>\n"
            .'    <th class="detail">'.$acc_strings['Type']."</a></th>\n"
@@ -254,11 +254,11 @@ function get_domain_constraint($domdefs, $notnull = true)
     return "  <tr>\n"
           ."    <td colspan=\"3\">\n"
           .'      <b>'.$tb_strings['Default']."</b><br>\n"
-          .'      <input type="text" size="45" maxlength="256" name="cd_def_default" value ="'.$domdefs['default']."\">\n"
+          .'      <input type="text" class="form-control" size="45" maxlength="256" name="cd_def_default" value ="'.$domdefs['default']."\">\n"
           ."    </td>\n"
           ."    <td colspan=\"5\">\n"
           .'      <b>'.$tb_strings['Check']."</b><br>\n"
-          .'      <input type="text" size="55" maxlength="256" name="cd_def_check" value ="'.$domdefs['check']."\">\n"
+          .'      <input type="text" class="form-control" size="55" maxlength="256" name="cd_def_check" value ="'.$domdefs['check']."\">\n"
           ."    </td>\n"
           ."    <td align=\"center\">\n"
           .$nn_checkbox

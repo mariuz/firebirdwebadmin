@@ -17,9 +17,9 @@ elseif (isset($proc_add_flag)):
 <?php
       echo get_procedure_definition($acc_strings['CreateProc'], $s_proceduredefs['source']);
  ?>
-<input type="submit" name="acc_proc_create_doit" value="<?php echo $button_strings['Create']; ?>" class="bgrp">
-<input type="reset" name="acc_proc_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-<input type="submit" name="acc_proc_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+<input type="submit" name="acc_proc_create_doit" value="<?php echo $button_strings['Create']; ?>" class="btn btn-success">
+<input type="reset" name="acc_proc_create_clear" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
+<input type="submit" name="acc_proc_create_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="btn btn-default">
 </form>
 <?php
 
@@ -32,9 +32,9 @@ elseif (isset($proc_mod_flag)):
                                     $s_proceduredefs['source']
                                     );
 ?>
-<input type="submit" name="acc_proc_mod_doit" value="<?php echo $button_strings['Save']; ?>" class="bgrp">
-<input type="reset" name="acc_proc_mod_clear" value="<?php echo $button_strings['Reset']; ?>" class="bgrp">
-<input type="submit" name="acc_proc_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="bgrp">
+<input type="submit" name="acc_proc_mod_doit" value="<?php echo $button_strings['Save']; ?>" class="btn btn-success">
+<input type="reset" name="acc_proc_mod_clear" value="<?php echo $button_strings['Reset']; ?>" class="btn btn-default">
+<input type="submit" name="acc_proc_mod_cancel" value="<?php echo $button_strings['Cancel']; ?>" class="btn btn-default">
 </form>
 <?php
 
@@ -59,19 +59,19 @@ elseif ($s_connected == true):
     echo '<form method="post" action="'.url_session($_SERVER['PHP_SELF'])."\" name=\"acc_proc_form\">\n";
 
     if (count($s_procedures) > 0) {
-        echo '<input type="submit" name="acc_proc_reload" value="'.$button_strings['Reload']."\" class=\"bgrp\">\n";
+        echo '<input type="submit" name="acc_proc_reload" value="'.$button_strings['Reload']."\" class=\"btn btn-default btn-xs\">\n";
 
         if (count($s_procedures) > 1) {
-            echo '<input type="submit" name="acc_proc_open" value="'.$button_strings['OpenAll']."\" class=\"bgrp\">\n";
-            echo '<input type="submit" name="acc_proc_close" value="'.$button_strings['CloseAll']."\" class=\"bgrp\">\n";
+            echo '<input type="submit" name="acc_proc_open" value="'.$button_strings['OpenAll']."\" class=\"btn btn-default btn-xs\">\n";
+            echo '<input type="submit" name="acc_proc_close" value="'.$button_strings['CloseAll']."\" class=\"btn btn-default btn-xs\">\n";
         }
         echo "<br><br>\n";
     }
 ?>
-<table border cellpadding="3" cellspacing="0">
+<table>
 <tr>
   <th  colspan="2" align="left"><?php echo $acc_strings['CreateProc']; ?></th>
-  <td><input type="submit" name="acc_proc_create" value="<?php echo $button_strings['Create']; ?>"></td>
+  <td><input type="submit" name="acc_proc_create" class="btn btn-primary" value="<?php echo $button_strings['Create']; ?>"></td>
 </tr>
 <tr>
   <td>
@@ -81,7 +81,7 @@ elseif ($s_connected == true):
     <?php echo get_selectlist('acc_proc_mod_name', array_keys($s_procedures), null, true); ?>
   </td>
   <td align="left">
-    <input type="submit" name="acc_proc_mod" value="<?php echo $button_strings['Modify']; ?>">
+    <input type="submit" name="acc_proc_mod" class="btn btn-success" value="<?php echo $button_strings['Modify']; ?>">
   </td>
 </tr>
 <tr>
@@ -92,7 +92,7 @@ elseif ($s_connected == true):
     <?php echo get_selectlist('acc_proc_del_name', array_keys($s_procedures), null, true); ?>
   </td>
   <td align="left">
-    <input type="submit" name="acc_proc_del" value="<?php echo $button_strings['Delete']; ?>">
+    <input type="submit" name="acc_proc_del" class="btn btn-danger" value="<?php echo $button_strings['Delete']; ?>">
   </td>
 </tr>
 </table>

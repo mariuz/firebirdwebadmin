@@ -240,7 +240,7 @@ function get_procedure_definition($title, $source)
   <tr>
     <td>
         <b>${acc_strings['Source']}</b><br>
-      <textarea name="def_proc_source" rows="$rows" cols="$cols" wrap="virtual">$source</textarea>
+      <textarea class="form-control" name="def_proc_source" rows="$rows" cols="$cols" wrap="virtual">$source</textarea>
     </td>
 </table>
 
