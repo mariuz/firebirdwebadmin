@@ -161,7 +161,6 @@ function get_reserved_words($server_family, $server_version)
                );
 
     return $reserved_words;
-}
 
 //
 // return an array containing the valid dsql context variables
@@ -171,7 +170,6 @@ function get_context_variables($server_family, $server_version)
     $context_variables = array('USER', 'CURRENT_DATE', 'CURRENT_CONNECTION' , 'CURRENT_ROLE' , 'CURRENT_TIME' ,'CURRENT_TIMESTAMP','CURRENT_TRANSACTION','CURRENT_USER');
 
     return $context_variables;
-}
 
 //
 // return an array containing the system tables names
