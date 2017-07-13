@@ -24,8 +24,8 @@ function write_output_buffer($fname)
 //
 function show_time_consumption($start, $end)
 {
-    list($sm, $ss) = split(' ', $start);
-    list($em, $es) = split(' ', $end);
+    list($sm, $ss) = explode(' ', $start);
+    list($em, $es) = explode(' ', $end);
     $elapsed = $es - $ss + $em - $sm;
     echo 'time consumption: '.$elapsed."<br>\n";
 }
