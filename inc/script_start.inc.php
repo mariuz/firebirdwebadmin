@@ -89,7 +89,7 @@ if ($s_binpath != BINPATH) {
 
     // check the availabillity of the isql binary
     if (!is_dir(BINPATH)
-        || (!is_file(BINPATH.'isql') && !is_file(BINPATH.'isql.exe'))
+        || (!is_file(BINPATH.'isql') && !is_file(BINPATH.'isql-fb') && !is_file(BINPATH.'isql.exe'))
     ) {
         $warning = sprintf($WARNINGS['BAD_ISQLPATH'], BINPATH);
     }
