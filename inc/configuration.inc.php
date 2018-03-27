@@ -9,7 +9,7 @@
 
 //
 // For the defines of paths you have to use slashes, even in a windows environment!
-// i.e define('BINPATH', 'c:/firebirid/bin/');
+// i.e define('BINPATH', 'c:/firebird/bin/');
 //
 
 define('VERSION', '3.4.0');
