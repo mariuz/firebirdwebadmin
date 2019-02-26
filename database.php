@@ -109,11 +109,11 @@ if (have_panel_permissions($s_login['user'], 'db_create')
     if (empty($error)) {
         $db_str = (!empty($s_create_host)) ? $s_create_host.':'.$s_create_db : $s_create_db;
 
-        $sql = 'CREATE DATABASE "'.$db_str.'"';
+        $sql = 'CREATE DATABASE \''.$db_str.'\'';
         if (strlen($s_create_user) > 0) {
-            $sql .= ' USER "'.$s_create_user.'"';
+            $sql .= ' USER \''.$s_create_user.'\'';
             if (strlen($s_create_pw) > 0) {
-                $sql .= ' PASSWORD "'.$s_create_pw.'"';
+                $sql .= ' PASSWORD \''.$s_create_pw.'\'';
             }
         }
         if ($s_create_pagesize !=   4096) {
