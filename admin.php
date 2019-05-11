@@ -149,7 +149,7 @@ if (have_panel_permissions($s_login['user'], 'adm_dbstat', true)) {
     if (!empty($s_dbstat_option)) {
 
         // remove pending dbstat-jobs from session
-        $s_iframejobs = array_filter($s_iframejobs, create_function('$a', '$a["job"]!="dbstat";'));
+        $s_iframejobs = array_filter($s_iframejobs, function($a) {return '$a["job"]!="dbstat";';});
 
         $iframekey_dbstat = md5(uniqid('dbstat'));
         $s_iframejobs[$iframekey_dbstat] = array('job' => 'dbstat',
