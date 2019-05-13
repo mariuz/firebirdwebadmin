@@ -236,7 +236,7 @@ if (have_panel_permissions($s_login['user'], 'adm_backup')) {
 
         if ($s_backup['verbose']) {
             // remove pending backup-jobs from session
-            $s_iframejobs = array_filter($s_iframejobs, create_function('$a', '$a["job"]!="backup";'));
+            $s_iframejobs = array_filter($s_iframejobs, function($a) {return '$a["job"]!="backup";';});
 
             $iframekey_backup = md5(uniqid('backup'));
             $s_iframejobs[$iframekey_backup] = array('job' => 'backup',
@@ -306,7 +306,7 @@ if (have_panel_permissions($s_login['user'], 'adm_restore')) {
 
             if ($s_restore['verbose']) {
                 // remove pending backup-jobs from session
-                $s_iframejobs = array_filter($s_iframejobs, create_function('$a', '$a["job"]!="restore";'));
+                $s_iframejobs = array_filter($s_iframejobs, function($a) {return '$a["job"]!="restore";';});
 
                 $iframekey_restore = md5(uniqid('restore'));
                 $s_iframejobs[$iframekey_restore] = array('job' => 'restore',
