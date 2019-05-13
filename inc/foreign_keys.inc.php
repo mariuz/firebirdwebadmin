@@ -45,7 +45,7 @@ function get_foreignkeys($tablename, $privilege = null)
 //
 function have_fk($tablename)
 {
-    return count(array_filter($GLOBALS['s_fields'][$tablename], create_function('$a', 'return isset($a["foreign"]);'))) > 0;
+    return count(array_filter($GLOBALS['s_fields'][$tablename], function($a) {return isset($a["foreign"]);} )) > 0;
 }
 
 //
