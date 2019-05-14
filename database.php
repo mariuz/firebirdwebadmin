@@ -214,7 +214,7 @@ if (isset($_POST['confirm_no'])) {
 if (have_panel_permissions($s_login['user'], 'db_meta', true)) {
 
     // remove pending metadata-jobs from session
-    $s_iframejobs = array_filter($s_iframejobs, create_function('$a', '$a["job"]!="metadata";'));
+    $s_iframejobs = array_filter($s_iframejobs, function($a) {return '$a["job"]!="metadata";';} );
 
     $iframekey_meta = md5(uniqid('meta'));
     $s_iframejobs[$iframekey_meta] = array('job' => 'metadata',

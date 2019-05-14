@@ -371,11 +371,11 @@ function toggle_all_triggers($triggers, $status)
 //
 function have_active_trigger($triggers, $table, $phase, $type = null)
 {
-    $func = 'return $a["table"]=="'.$table.'"  && $a["status"] == "Active" && $a["phase"]=="'.$phase.'"'
+    $func = '$a["table"]=="'.$table.'"  && $a["status"] == "Active" && $a["phase"]=="'.$phase.'"'
           .($type != null ? ' && in_array("'.$type.'", $a["type"])' : '')
           .';';
 
-    $trigger = array_filter($triggers, create_function('$a', $func));
+    $trigger = array_filter($triggers, function($a) {return $func;});
 
     return !empty($trigger);
 }

@@ -43,7 +43,7 @@ if (isset($_POST['dt_column_config_save'])) {
 // 
 // handle the customize cookie settings
 // when 'dt_(enter|edit)_(insert|ready|save|cancel)'-button was pushed
-if (array_filter(array_keys($_POST), create_function('$a', 'return preg_match("/dt_(enter|edit)_(insert|ready|save|cancel)/", $a);'))) {
+if (array_filter(array_keys($_POST), function($a) {return preg_match("/dt_(enter|edit)_(insert|ready|save|cancel)/", $a);} )) {
     if ((isset($_POST['dt_config_fk_lookup'])  &&  $s_cust['enter']['fk_lookup'] == false)  ||
         (!isset($_POST['dt_config_fk_lookup'])  &&  $s_cust['enter']['fk_lookup'] == true)) {
 
@@ -227,7 +227,7 @@ if (have_panel_permissions($s_login['user'], 'dt_export', true)) {
             if ($s_export['target']['option'] == 'screen') {
 
                 // remove pending dbstat-jobs from session
-                $s_iframejobs = array_filter($s_iframejobs, create_function('$a', '$a["job"]!="export";'));
+                $s_iframejobs = array_filter($s_iframejobs, function($a) {return '$a["job"]!="export";';});
 
                 $iframekey_export = md5(uniqid('export'));
                 $s_iframejobs[$iframekey_export] = array('job' => 'export',
