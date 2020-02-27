@@ -185,7 +185,7 @@ class DataForm
                 $size = ($field['size'] + 1  > DATA_MAXWIDTH) ? DATA_MAXWIDTH : $field['size'] + 1;
             }
 
-            $html .= '            <input type="text" size="'.$size.'" maxlength="'.$maxlen.'" name="'.$element_name.'" value="'.$value."\">\n";
+            $html .= '            <input type="text" size="'.$size.'" maxlength="'.$maxlen.'" name="'.$element_name.'" value="'.$value."\" class=\"form-control\">\n";
         }
 
         $html .= "          </td>\n"
@@ -227,7 +227,7 @@ class DataForm
     {
         $html = '';
         foreach ($this->buttons as $button) {
-            $html .= sprintf('<input type="%s" name="%s" value="%s" class="bgrp">'."\n", $button['type'], $this->_name($button['name']), $button['value']);
+            $html .= sprintf('<input type="%s" name="%s" value="%s" class="btn btn-default">'."\n", $button['type'], $this->_name($button['name']), $button['value']);
         }
 
         return $html;
