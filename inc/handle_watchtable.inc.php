@@ -204,7 +204,6 @@ if (isset($_POST['confirm_no'])) {
 }
 
 if (!empty($s_wt['table'])) {
-    $js_stack .= js_markable_table();
 
     if (!empty($s_wt['fks'])) {
         $js_stack .= js_request_fk();

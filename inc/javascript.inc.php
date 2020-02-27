@@ -167,18 +167,6 @@ function js_xml_http_request_client()
     return js_javascript_file('js/XMLHttpRequestClient.js');
 }
 
-function js_markable_table()
-{
-    static $done = false;
-
-    if ($done == true) {
-        return '';
-    }
-    $done = true;
-
-    return js_javascript_file('js/markableTable.js');
-}
-
 //
 // return the URL of the server-script for the XMLHttpRequests
 //

@@ -189,9 +189,6 @@ if (isset($_POST['sql_run'])  ||
             }
             fbird_commit($trans);
         }
-        if (!empty($results)) {
-            $js_stack .= js_markable_table();
-        }
     }
 
     // cleanup the watchtable output buffer
@@ -257,8 +254,7 @@ function get_result_table($result, $fieldinfo, $idx)
         $table .= "   </tr>\n";
     }
 
-    $table .= "</table>\n"
-            .js_javascript("new markableFbwaTable('resulttable_".$idx."')");
+    $table .= "</table>\n";
 
     return $table;
 }

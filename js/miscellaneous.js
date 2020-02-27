@@ -4,7 +4,6 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
-
 function hide(id) {
     $('#'+id).hide();
 }
@@ -24,17 +23,16 @@ function selectedElement(source) {
     return source.options[source.selectedIndex].value;
 }
 
-
 // request and display the accociated values for a foreign key from the watchtable panel
 function requestFKValues(table, column, value) {
     var req = new XMLHttpRequestClient(php_xml_http_request_server_url);
     req.Request("fk_values", new Array(table, column, value), "setInnerHtml", new Array());
 }
+
 function displayFKValues(html) {
     setInnerHtml(html, 'fk');
     display('fk');
 }
-
 
 function detailPrefix(type) {
     switch (type) {

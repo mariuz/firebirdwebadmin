@@ -275,7 +275,6 @@ if (have_panel_permissions($s_login['user'], 'db_systable', true)) {
         include './inc/system_table.inc.php';
 
         $systable = get_systable($s_systable);
-        $js_stack .= js_markable_table();
     }
 }
 

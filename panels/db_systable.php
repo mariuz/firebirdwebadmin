@@ -108,8 +108,7 @@ if ($s_connected === true) {
     <?php
 
     if (isset($systable)) {
-        echo get_systable_html($systable, $s_systable)
-            .js_javascript("new markableFbwaTable('systable')");
+        echo get_systable_html($systable, $s_systable);
     }
 }
     ?>
