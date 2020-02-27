@@ -140,7 +140,7 @@ define('TRANS_WRITE', IBASE_COMMITTED | IBASE_NOWAIT | IBASE_WRITE);
 define('META_REDIRECT', false);         // use server (FALSE) or client (TRUE) side redirection
 
 
-define('DEBUG', true);                 // if TRUE print the $debug[] to the info-panel
+define('DEBUG', false);                 // if TRUE print the $debug[] to the info-panel
 define('DEBUG_HTML', false);            // if TRUE write the output_buffer to TMPPATH/{scriptname}.html before
                                         // sending it to the client
 define('DEBUG_COMMANDS', false);        // if TRUE all calls of external commands are diplayed on the info-panel
