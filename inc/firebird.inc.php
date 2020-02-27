@@ -29,13 +29,16 @@ function get_preset_charsets($server_family = null, $server_version = null)
                       'WIN1254', );
 
     $charsets = array_merge($charsets,
-                                array('DOS737',
+                                array('CP943C',
+                                      'DOS737',
                                       'DOS775',
                                       'DOS858',
                                       'DOS862',
                                       'DOS864',
                                       'DOS866',
                                       'DOS869',
+                                      'GB18030',
+                                      'GBK',
                                       'WIN1255',
                                       'WIN1256',
                                       'WIN1257',
@@ -47,7 +50,12 @@ function get_preset_charsets($server_family = null, $server_version = null)
                                       'ISO8859_7',
                                       'ISO8859_8',
                                       'ISO8859_9',
-                                      'ISO8859_13', )
+                                      'ISO8859_13',
+                                      'KOI8R',
+                                      'KOI8U',
+                                      'TIS620',
+                                      'UTF8',
+                                      'WIN1258', )
                                 );
     asort($charsets);
 
