@@ -28,7 +28,7 @@ Some of the features are only available if the database- and the web-server are 
 
 There is no documentation available yet, but if you are familiar with Firebird  you will have no troubles using FirebirdWebAdmin.
 
-For some basic configuration settings have a look to the file `./inc/configuration.inc.php` befor you start the programm.
+For some basic configuration settings have a look to the file `./inc/configuration.inc.php` before you start the programm.
 
 Here is how to use and install on Ubuntu https://help.ubuntu.com/community/Firebird2.5
 
