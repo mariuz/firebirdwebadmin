@@ -12,7 +12,7 @@
 // i.e define('BINPATH', 'c:/firebird/bin/');
 //
 
-define('VERSION', '3.4.0');
+define('VERSION', '3.4.1');
 
 define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 

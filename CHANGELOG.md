@@ -1,5 +1,18 @@
 ## ChangeLog
 
+#### Version 3.4.1 (27.02.2020)
+- [enhancement:] Adjust "Accessories" page UI.
+- [enhancement:] Remove Crowdin badge from footer.
+- [enhancement:] Update debug_funcs.inc.php
+- [bugfix:] Don't warn if "isql" is "isql-fb" on Linux
+- [typo:] Correct typo: firebirid -> firebird
+- [bugfix] fix sql create database
+- [enhancement:] Add Character Sets
+- [enhancement:] Quiet PHP7.2 deprecation warning …
+- [enhancement:] Further create_function refactor
+- [enhancement:] Remove unused/outdated markableFbwaTable.
+- [enhancement:] cosmetics
+
 #### Version 3.4.0 (27.11.2016)
 - [enhancement:] Published on npm
 - [enhancement:] Introduce CHANGELOG.md

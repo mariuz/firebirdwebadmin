@@ -1,6 +1,6 @@
 {
   "name": "firebird-web-admin",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "FirebirdWebAdmin is a web frontend for the Firebird database server.",
   "main": "index.js",
   "scripts": {
