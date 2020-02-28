@@ -30,19 +30,19 @@ There is no documentation available yet, but if you are familiar with Firebird  
 
 For some basic configuration settings have a look to the file `./inc/configuration.inc.php` before you start the programm.
 
-Here is how to use and install on Ubuntu https://help.ubuntu.com/community/Firebird2.5
+Here is how to use and install on Ubuntu https://help.ubuntu.com/community/Firebird3.0
 
-Firebird documentation is located on this page http://www.firebirdsql.org/en/documentation/
+Firebird documentation is located on this page https://www.firebirdsql.org/en/documentation/
 
 ## Requirements
 
 This is the environment I'm using for the development. Other components are not or less tested. So if you got problems make sure you are not using older software components.
 
-php5.x with compiled in support for Firebird/InterBase and pcre (but any version >= 5.3.x should work)
+php with compiled in support for Firebird/InterBase and pcre (but any version >= 5.5 should work)
 
 Firebird 2.x.x for Linux
         
-Apache 2.x or lighttpd or nginx
+Apache 2.x or any server with php support 
 
 ## ChangeLog
 #### Version 3.4.1 (27.02.2020)
