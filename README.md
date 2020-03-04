@@ -1,4 +1,4 @@
-# FirebirdWebAdmin is a web frontend for the Firebird database server.
+# FirebirdWebAdmin is a web frontend for the Firebird database server
 
 [![npm version](https://badge.fury.io/js/firebird-web-admin.svg)](https://badge.fury.io/js/firebird-web-admin)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/firebirdwebadmin/localized.svg)](https://crowdin.com/project/firebirdwebadmin)
@@ -48,21 +48,21 @@ Apache 2.x or any server with php support
 
 ### Version 3.4.1 (27.02.2020)
 
-- [enhancement:] Adjust "Accessories" page UI.
-- [enhancement:] Remove Crowdin badge from footer.
-- [enhancement:] Update debug_funcs.inc.php
-- [bugfix:] Don't warn if "isql" is "isql-fb" on Linux
-- [typo:] Correct typo: firebirid -> firebird
-- [bugfix] fix sql create database
-- [enhancement:] Add Character Sets
-- [enhancement:] Quiet PHP7.2 deprecation warning …
-- [enhancement:] Further create_function refactor
-- [enhancement:] Remove unused/outdated markableFbwaTable.
-- [enhancement:] cosmetics
+* [enhancement:] Adjust "Accessories" page UI.
+* [enhancement:] Remove Crowdin badge from footer.
+* [enhancement:] Update debug_funcs.inc.php
+* [bugfix:] Don't warn if "isql" is "isql-fb" on Linux
+* [typo:] Correct typo: firebirid -> firebird
+* [bugfix] fix sql create database
+* [enhancement:] Add Character Sets
+* [enhancement:] Quiet PHP7.2 deprecation warning …
+* [enhancement:] Further create_function refactor
+* [enhancement:] Remove unused/outdated markableFbwaTable.
+* [enhancement:] cosmetics
 
 #### Further informations
 
-- See [CHANGELOG.md][changelog] to get the full changelog.
+* See [CHANGELOG.md][changelog] to get the full changelog.
 
 ## Contributing
 
