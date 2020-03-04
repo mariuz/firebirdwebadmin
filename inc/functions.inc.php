@@ -1235,7 +1235,7 @@ function get_customize_cookie_version()
 
 
 //
-// return the name for customiize cookie
+// return the name for customize cookie
 //
 function get_customize_cookie_name()
 {
