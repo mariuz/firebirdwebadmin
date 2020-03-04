@@ -1,8 +1,8 @@
+# FirebirdWebAdmin is a web frontend for the Firebird database server.
+
 [![npm version](https://badge.fury.io/js/firebird-web-admin.svg)](https://badge.fury.io/js/firebird-web-admin)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/firebirdwebadmin/localized.svg)](https://crowdin.com/project/firebirdwebadmin)
 [![Code Climate](https://codeclimate.com/github/mariuz/firebirdwebadmin/badges/gpa.svg)](https://codeclimate.com/github/mariuz/firebirdwebadmin)
-
-# FirebirdWebAdmin is a web frontend for the Firebird database server.
 
 By now it has the functionalities for
   
@@ -18,6 +18,7 @@ By now it has the functionalities for
 Some of the features are only available if the database- and the web-server are running on the same machine. The reason is that php   have to call the Firebird tools (isql, gsec, gstat, etc.) to perform certain actions.
 
 ## Overview
+
 1. [Documentation](#documentation)
 2. [Requirements](#requirements)
 3. [ChangeLog](#requirements)
@@ -30,22 +31,23 @@ There is no documentation available yet, but if you are familiar with Firebird  
 
 For some basic configuration settings have a look to the file `./inc/configuration.inc.php` before you start the programm.
 
-Here is how to use and install on Ubuntu https://help.ubuntu.com/community/Firebird3.0
+Here is how to use and install on Ubuntu <https://help.ubuntu.com/community/Firebird3.0>
 
-Firebird documentation is located on this page https://www.firebirdsql.org/en/documentation/
+Firebird documentation is located on this page <https://www.firebirdsql.org/en/documentation/>
 
 ## Requirements
 
 This is the environment I'm using for the development. Other components are not or less tested. So if you got problems make sure you are not using older software components.
 
-php with compiled in support for Firebird/InterBase and pcre (but any version >= 5.5 should work)
+PHP with compiled in support for Firebird/InterBase and pcre (but any version >= 5.5 should work)
 
-Firebird 2.x.x for Linux
-        
-Apache 2.x or any server with php support 
+Firebird 2.x.x for Linux,
+Apache 2.x or any server with php support
 
 ## ChangeLog
-#### Version 3.4.1 (27.02.2020)
+
+### Version 3.4.1 (27.02.2020)
+
 - [enhancement:] Adjust "Accessories" page UI.
 - [enhancement:] Remove Crowdin badge from footer.
 - [enhancement:] Update debug_funcs.inc.php
@@ -59,6 +61,7 @@ Apache 2.x or any server with php support
 - [enhancement:] cosmetics
 
 #### Further informations
+
 - See [CHANGELOG.md][changelog] to get the full changelog.
 
 ## Contributing
