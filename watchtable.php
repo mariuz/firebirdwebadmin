@@ -15,7 +15,7 @@ require './inc/array_functions.inc.php';
 
 if ($s_connected) {
     $dbhandle = db_connect()
-         or ib_error();
+         or fb_error();
 }
 
 // handle the paging navigation
@@ -85,7 +85,7 @@ elseif (isset($_GET['del'])) {
                    'sql' => $sql, );
     } else {
         fbird_query($dbhandle, $sql)
-            or $ib_error = fbird_errmsg();
+            or $fb_error = fbird_errmsg();
 
         // cleanup the watchtable output buffer
         $s_watch_buffer = '';
@@ -120,7 +120,7 @@ function init_edit_values($edit_where, $fields)
 
     $quote = identifier_quote($GLOBALS['s_login']['dialect']);
     $sql = 'SELECT * FROM '.$quote.$edit_where['table'].$quote.' '.$edit_where['where'];
-    $res = fbird_query($GLOBALS['dbhandle'], $sql) or ib_error();
+    $res = fbird_query($GLOBALS['dbhandle'], $sql) or fb_error();
     if ($row = fbird_fetch_assoc($res, IBASE_TEXT)) {
         fbird_free_result($res);
         foreach ($fields as $field) {
@@ -131,7 +131,7 @@ function init_edit_values($edit_where, $fields)
             }
         }
     } else {
-        $GLOBALS['ib_error'] = "Query didn't return a result: ".$sql;
+        $GLOBALS['fb_error'] = "Query didn't return a result: ".$sql;
     }
 
     return $values;

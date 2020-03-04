@@ -50,7 +50,7 @@ send_http_headers();
 $message = '';
 $warning = '';
 $error = '';
-$ib_error = '';
+$fb_error = '';
 $php_error = '';
 $debug = array();
 $externcmd = '';
@@ -69,7 +69,7 @@ if ($s_connected == true && !isset($_GET['unconnected'])) {
     $dbhandle = db_connect();
 
     if ($dbhandle === false) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
         $s_connected = false;
         $s_tables_valid = false;
         $s_wt['table'] = '';

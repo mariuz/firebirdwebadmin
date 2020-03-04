@@ -26,7 +26,7 @@ function get_user()
             );
         }
     } else {
-        $GLOBALS['ib_error'] = fbird_errmsg();
+        $GLOBALS['fb_error'] = fbird_errmsg();
 
         return false;
     }
@@ -39,7 +39,7 @@ function get_user()
 //
 function create_user($udata, $s_sysdba_pw)
 {
-    global $s_login, $ib_error, $warning, $WARNINGS;
+    global $s_login, $fb_error, $warning, $WARNINGS;
 
     if (empty($udata['uname'])) {
         $warning = $WARNINGS['UN_REQUIRED'];
@@ -62,14 +62,14 @@ function create_user($udata, $s_sysdba_pw)
     }
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == false) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } elseif (false == fbird_add_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
-        $ib_error = 'Creating user failed!';
+        $fb_error = 'Creating user failed!';
     } else {
         fbird_service_detach($service);
     }
 
-    return empty($ib_error);
+    return empty($fb_error);
 }
 
 //
@@ -77,7 +77,7 @@ function create_user($udata, $s_sysdba_pw)
 //
 function modify_user($udata, $s_sysdba_pw)
 {
-    global $s_login, $ib_error, $WARNINGS, $warning;
+    global $s_login, $fb_error, $WARNINGS, $warning;
 
     if (!empty($udata['password'])) {
         if (empty($udata['pw_repeat'])
@@ -92,14 +92,14 @@ function modify_user($udata, $s_sysdba_pw)
     }
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == false) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } elseif (false == fbird_modify_user($service, $udata['uname'], $udata['password'], $udata['fname'], $udata['mname'], $udata['lname'])) {
-        $ib_error = 'Modifying user failed!';
+        $fb_error = 'Modifying user failed!';
     } else {
         fbird_service_detach($service);
     }
 
-    return empty($ib_error);
+    return empty($fb_error);
 }
 
 //
@@ -107,17 +107,17 @@ function modify_user($udata, $s_sysdba_pw)
 //
 function drop_user($uname, $s_sysdba_pw)
 {
-    global $s_login, $ib_error;
+    global $s_login, $fb_error;
 
     if (($service = fbird_service_attach($s_login['host'], 'SYSDBA', $s_sysdba_pw)) == false) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } elseif (fbird_delete_user($service, $uname) == false) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } else {
         fbird_service_detach($service);
     }
 
-    return empty($ib_error);
+    return empty($fb_error);
 }
 
 //

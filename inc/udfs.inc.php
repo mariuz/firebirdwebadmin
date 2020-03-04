@@ -28,7 +28,7 @@ function get_udfs($order = 1, $dir = 'ASC')
      .' INNER JOIN RDB$FUNCTION_ARGUMENTS A'
              .' ON F.RDB$FUNCTION_NAME=A.RDB$FUNCTION_NAME'
           .' ORDER BY '.$order.' '.$dir;
-    $res = fbird_query($dbhandle, $sql) or ib_error($sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error($sql);
 
     $udfs = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -128,14 +128,14 @@ function get_udf_select($name, $sel = null, $empty = true, $tags = array())
 function drop_udf($name)
 {
     global $s_udfs, $dbhandle;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $lsql = 'DROP EXTERNAL FUNCTION '.$name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     } else {

@@ -92,11 +92,11 @@ foreach ($_POST as $name => $value) {
             }
 
             if (count($bindargs) > 0) {
-                $ib_error = $s_cust['enter']['as_new'] == true
+                $fb_error = $s_cust['enter']['as_new'] == true
                     ? insert_row($table, $cols, $bindargs)
                     : update_row($table, $cols, $bindargs, substr($s_edit_where[$instance]['where'], 6));
 
-                if (empty($ib_error)) {
+                if (empty($fb_error)) {
                     $success = true;
                     $s_enter_values = array();
                     $s_watch_buffer = '';

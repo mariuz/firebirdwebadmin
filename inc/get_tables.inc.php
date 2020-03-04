@@ -12,7 +12,7 @@
 //
 function get_tables()
 {
-    global $dbhandle, $ib_error, $s_tables, $s_fields, $s_foreigns, $s_primaries, $s_uniques, $s_login;
+    global $dbhandle, $fb_error, $s_tables, $s_fields, $s_foreigns, $s_primaries, $s_uniques, $s_login;
     global $s_charsets, $s_tables_counts, $s_views_counts, $s_tables_def, $s_tables_comp;
 
     $previous = $s_tables;
@@ -26,7 +26,7 @@ function get_tables()
             .' FROM RDB$RELATIONS'
            .' WHERE RDB$SYSTEM_FLAG=0'
         .' ORDER BY RDB$RELATION_NAME';
-    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
     if (!is_resource($res)) {
         return false;
     }
@@ -63,7 +63,7 @@ function get_tables()
                  ." AND P1.RDB\$RELATION_NAME='".$s_login['role']."'"
                  ." AND (P1.RDB\$USER='".$s_login['user']."' OR P1.RDB\$USER='PUBLIC')";
     }
-    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     while ($row = fbird_fetch_object($res)) {
         $s_tables[trim($row->RNAME)]['privileges'][] = trim($row->PRIV);
@@ -88,7 +88,7 @@ function get_tables()
      .' LEFT JOIN RDB$DEPENDENCIES DP'
             .' ON CC.RDB$TRIGGER_NAME=DP.RDB$DEPENDENT_NAME'
          .' ORDER BY RC.RDB$RELATION_NAME';
-    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     // reset the index infos
     $s_foreigns = array();
@@ -149,7 +149,7 @@ function get_tables()
        .' LEFT JOIN RDB$FIELD_DIMENSIONS D ON R.RDB$FIELD_SOURCE=D.RDB$FIELD_NAME'
            .' WHERE F.RDB$SYSTEM_FLAG=0'
        .' ORDER BY R.RDB$FIELD_POSITION';
-    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     //initialize $s_fields[]
     $idx = 0;
@@ -232,7 +232,7 @@ function get_tables()
         ||  ($properties['is_view'] == true   &&  $s_views_counts  == true)) {
             $sql = 'SELECT COUNT(*) AS CNT FROM '.$quote.$name.$quote;
             $res = fbird_query($dbhandle, $sql)
-                or $ib_error .= fbird_errmsg()."<br>\n";
+                or $fb_error .= fbird_errmsg()."<br>\n";
             if (is_resource($res)) {
                 $row = fbird_fetch_object($res);
                 $s_tables[$name]['count'] = $row->CNT;

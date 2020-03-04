@@ -371,7 +371,7 @@ if ($sql != '') {
         $s_coldefs = array();
         $s_modify_col = '';
     } else {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
         fbird_rollback($trans);
         if (isset($mod_flag)  &&  $mod_flag == true) {
             $col_mod_flag = true;
@@ -461,7 +461,7 @@ function get_column_fk_defs($cname, $iname)
                 .' RDB$DELETE_RULE'
            .' FROM RDB$REF_CONSTRAINTS'
           ." WHERE RDB\$CONSTRAINT_NAME='".$cname."'";
-    $res = @fbird_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($trans, $sql) or fb_error(__FILE__, __LINE__, $sql);
     if ($res  && $row = fbird_fetch_row($res)) {
         fbird_free_result($res);
     }
@@ -474,7 +474,7 @@ function get_column_fk_defs($cname, $iname)
      .' INNER JOIN RDB$INDICES I2 ON I1.RDB$FOREIGN_KEY=I2.RDB$INDEX_NAME'
      .' INNER JOIN RDB$INDEX_SEGMENTS SE ON I2.RDB$INDEX_NAME=SE.RDB$INDEX_NAME'
           ." WHERE I1.RDB\$INDEX_NAME='".$iname."'";
-    $res = @fbird_query($trans, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($trans, $sql) or fb_error(__FILE__, __LINE__, $sql);
     if ($res  && $row = fbird_fetch_row($res)) {
         fbird_free_result($res);
     }

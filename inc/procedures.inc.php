@@ -35,11 +35,11 @@ function create_procedure($proceduredefs)
 //
 function drop_procedure($name)
 {
-    global $dbhandle, $ib_error, $s_procedures;
+    global $dbhandle, $fb_error, $s_procedures;
 
     $lsql = 'DROP PROCEDURE '.$name;
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } else {
         unset($s_procedures[$name]);
     }
@@ -58,7 +58,7 @@ function get_procedures($oldprocedures)
          .'  WHERE P.RDB$SYSTEM_FLAG IS NULL'
              .' OR P.RDB$SYSTEM_FLAG=0'
           .' ORDER BY RDB$PROCEDURE_NAME';
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $procs = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -96,7 +96,7 @@ function get_procedure_source($name)
     $sql = 'SELECT P.RDB$PROCEDURE_SOURCE PSOURCE'
            .' FROM RDB$PROCEDURES P'
           ." WHERE P.RDB\$PROCEDURE_NAME='".$name."'";
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
     $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {
@@ -135,7 +135,7 @@ function get_procedure_parameters($name)
           .' INNER JOIN RDB$FIELDS F ON P.RDB$FIELD_SOURCE=F.RDB$FIELD_NAME'
           ." WHERE P.RDB\$PROCEDURE_NAME='".$name."'";
 
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
     $in = $out = array();
     while ($obj = fbird_fetch_object($res)) {
         $ptype = ($obj->PTYPE == 0) ? 'in' : 'out';

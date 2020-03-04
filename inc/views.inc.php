@@ -12,7 +12,7 @@
 function create_view($viewdefs)
 {
     global $dbhandle;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $lsql = $viewdefs['source'];
     if ($viewdefs['check'] == 'yes') {
@@ -24,10 +24,10 @@ function create_view($viewdefs)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    return (empty($ib_error)) ? get_viewname($viewdefs['source']) : false;
+    return (empty($fb_error)) ? get_viewname($viewdefs['source']) : false;
 }
 
 //
@@ -36,14 +36,14 @@ function create_view($viewdefs)
 function drop_view($name)
 {
     global $dbhandle, $s_tables;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $lsql = 'DROP VIEW '.$name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     } else {
@@ -174,7 +174,7 @@ function get_view_source($name)
     $sql = 'SELECT R.RDB$VIEW_SOURCE VSOURCE'
         .' FROM RDB$RELATIONS R'
         ." WHERE R.RDB\$RELATION_NAME='".$name."'";
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
     $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {

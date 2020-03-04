@@ -24,7 +24,7 @@ function get_systable($s_systable)
              .' AND RDB$FIELD_SOURCE=RDB$FIELDS.RDB$FIELD_NAME'
        .' ORDER BY RDB$FIELD_POSITION';
 
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $table = array();
     while ($row = fbird_fetch_object($res)) {
@@ -63,7 +63,7 @@ function get_systable($s_systable)
     if (!empty($s_systable['order'])) {
         $sql .= ' ORDER BY '.$s_systable['order'].' '.$s_systable['dir'];
     }
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     while ($row = fbird_fetch_object($res)) {
         foreach (array_keys($table) as $fname) {
@@ -224,7 +224,7 @@ function systable_value_select($table, $field, $value = null)
     global $dbhandle, $db_strings;
 
     $sql = 'SELECT DISTINCT '.$field.' AS FNAME FROM '.$table;
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $values = array();
     while ($row = fbird_fetch_object($res)) {

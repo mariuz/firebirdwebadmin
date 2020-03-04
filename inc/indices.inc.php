@@ -11,7 +11,7 @@
 //
 function create_index()
 {
-    global $dbhandle, $indices, $ib_error, $lsql;
+    global $dbhandle, $indices, $fb_error, $lsql;
 
     $lsql = 'CREATE ';
     if (isset($_POST['def_index_uniq'])) {
@@ -25,15 +25,15 @@ function create_index()
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
     if ((!isset($_POST['def_index_activ']) ||  $_POST['def_index_activ'] == false)  &&
-        (empty($ib_error))) {
+        (empty($fb_error))) {
         alter_index($_POST['def_index_name'], 'INACTIVE');
     }
 
-    if (empty($ib_error)) {
+    if (empty($fb_error)) {
         $iname = strtoupper($_POST['def_index_name']);
         $indices[$iname]['table'] = $_POST['def_index_table'];
         $indices[$iname]['dir'] = $_POST['def_index_dir'];
@@ -56,7 +56,7 @@ function create_index()
 //
 function modify_index($iname)
 {
-    global $dbhandle, $indices, $ib_error, $lsql;
+    global $dbhandle, $indices, $fb_error, $lsql;
 
     // alter the active/inactive status if the change was selected
     if (isset($_POST['def_index_activ'])  && $indices[$iname]['active'] == false) {
@@ -89,7 +89,7 @@ function modify_index($iname)
             add_debug('lsql', __FILE__, __LINE__);
         }
         if (!@fbird_query($dbhandle, $lsql)) {
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
 
             return false;
         }
@@ -112,7 +112,7 @@ function modify_index($iname)
             }
             if (!@fbird_query($trans, $lsql)) {
                 fbird_rollback($trans);
-                $ib_error = fbird_errmsg();
+                $fb_error = fbird_errmsg();
             }
 
             return false;
@@ -127,14 +127,14 @@ function modify_index($iname)
 //
 function alter_index($iname, $state)
 {
-    global $dbhandle, $ib_error, $lsql;
+    global $dbhandle, $fb_error, $lsql;
 
     $lsql = "ALTER INDEX $iname $state";
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     }
@@ -147,14 +147,14 @@ function alter_index($iname, $state)
 //
 function drop_index($name)
 {
-    global $indices, $dbhandle, $ib_error, $lsql;
+    global $indices, $dbhandle, $fb_error, $lsql;
 
     $lsql = 'DROP INDEX '.$name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return true;
     } else {
@@ -188,7 +188,7 @@ function get_indices($order, $dir)
              ."AND I.RDB\$INDEX_NAME NOT STARTING WITH 'RDB\$' "
            .'ORDER BY '.$order_field.' '.$dir;
     $trans = fbird_trans(TRANS_READ, $dbhandle);
-    $res = fbird_query($trans, $sql) or ib_error();
+    $res = fbird_query($trans, $sql) or fb_error();
 
     $indices = array();
     while ($obj = fbird_fetch_object($res)) {

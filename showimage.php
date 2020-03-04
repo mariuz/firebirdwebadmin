@@ -22,7 +22,7 @@ require './lang/'.(isset($s_cust) ? $s_cust['language'] : LANGUAGE).'.inc.php';
 require './inc/functions.inc.php';
 
 $dbhandle = db_connect()
-     or ib_error();
+     or fb_error();
 
 $table = $_GET['table'];
 $col = $_GET['col'];

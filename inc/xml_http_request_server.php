@@ -222,7 +222,7 @@ function fk_values($table, $column, $value)
 {
     $sql = sprintf("SELECT * FROM %s WHERE %s='%s'", $table, $column, $value);
     $res = fbird_query($GLOBALS['dbhandle'], $sql)
-        or ib_error(__FILE__, __LINE__, $sql);
+        or fb_error(__FILE__, __LINE__, $sql);
 
     if ($row = fbird_fetch_object($res)) {
         $close = "<a href='javascript:hide(\"fk\");'>[C]</a>";

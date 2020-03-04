@@ -214,7 +214,7 @@ function export_data($export)
         $trans = fbird_trans(TRANS_READ, $dbhandle);
         $res = @fbird_query($trans, $query);
         if ($res === false) {
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
             $warning = '';
 
             return false;
@@ -313,7 +313,7 @@ function export_table_query($table, $export)
 //
 function export_csv_data($export)
 {
-    global $ib_error, $warning, $dbhandle;
+    global $fb_error, $warning, $dbhandle;
 
     $fields_terminator = replace_escape_sequences($export['csv']['fterm']);
     $enclose_type = $export['csv']['ftencl'];
@@ -384,7 +384,7 @@ function csv_line($line, $fields_terminator, $line_terminator)
 //
 function export_sql_data($export, $table)
 {
-    global $ib_error, $warning, $dbhandle;
+    global $fb_error, $warning, $dbhandle;
 
     $line_ending = replace_escape_sequences($export['sql']['lineend']);
     $replace_null = $export['general']['replnull'];

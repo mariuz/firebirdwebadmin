@@ -53,7 +53,7 @@ if (isset($_POST['db_login_doit'])) {
             $message = $info_strings['SuccessLogin'];
         } else {
             // connect failed
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
             $s_login['password'] = '';
             $s_connected = false;
         }
@@ -144,7 +144,7 @@ if (have_panel_permissions($s_login['user'], 'db_create')
                 cleanup_session();
                 $message = sprintf($MESSAGES['CREATE_DB_SUCCESS'], $s_create_db);
             } else {
-                $ib_error = fbird_errmsg();
+                $fb_error = fbird_errmsg();
             }
         }
     }
@@ -187,10 +187,10 @@ if (have_panel_permissions($s_login['user'], 'db_delete')
 // deleting a database is confirmed
 if (isset($_POST['confirm_yes'])  ||
     (isset($_POST['db_delete_doit'])  &&  $s_cust['askdel'] == false  &&  empty($error))) {
-    $ib_error = drop_database($s_delete_db, $s_login);
+    $fb_error = drop_database($s_delete_db, $s_login);
     unset($s_confirmations['database']);
 
-    if (empty($ib_error)) {
+    if (empty($fb_error)) {
         if ($s_login['database'] == $s_delete_db['database']) {
             $s_login['database'] = '';
             $s_connected = false;

@@ -124,10 +124,10 @@ if (have_panel_permissions($s_login['user'], 'adm_gfix')) {
             }
             fbird_service_detach($service);
             if (!$result) {
-                $ib_error = fbird_errmsg();
+                $fb_error = fbird_errmsg();
             }
         } else {
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
         }
 
         if ($logout == true) {
@@ -192,7 +192,7 @@ if (have_panel_permissions($s_login['user'], 'adm_server')) {
                       .fbird_server_info($service, IBASE_SVC_IMPLEMENTATION);
         fbird_service_detach($service);
     } else {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 }
 
@@ -249,7 +249,7 @@ if (have_panel_permissions($s_login['user'], 'adm_backup')) {
             $message = nl2br(str_replace(array(chr(0x01).chr(0x0a), 'gbak: '), '', $result));
             fbird_service_detach($service);
         } else {
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
         }
     }
 }
@@ -320,7 +320,7 @@ if (have_panel_permissions($s_login['user'], 'adm_restore')) {
                 $message = 'restore started';
                 fbird_service_detach($service);
             } else {
-                $ib_error = fbird_errmsg();
+                $fb_error = fbird_errmsg();
             }
         }
     }

@@ -165,7 +165,7 @@ if (isset($_POST['sql_run'])  ||
             $cnt = 0;
             $trans = fbird_trans(TRANS_WRITE, $dbhandle);
             $res = @fbird_query($trans, $cmd)
-                or $ib_error = fbird_errmsg();
+                or $fb_error = fbird_errmsg();
 
             // if sql_output-panel is open         
             $idx = get_panel_index($s_sql_panels, 'sql_output');

@@ -12,7 +12,7 @@
 function create_role($name)
 {
     global $dbhandle, $roles, $s_login;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $name = strtoupper($name);
 
@@ -23,10 +23,10 @@ function create_role($name)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    if (empty($ib_error)) {
+    if (empty($fb_error)) {
         $roles[$name]['owner'] = $s_login['user'];
         $roles[$name]['members'] = array();
 
@@ -42,14 +42,14 @@ function create_role($name)
 function drop_role($name)
 {
     global $roles, $dbhandle;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $lsql = 'DROP ROLE '.$name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     } else {
@@ -65,7 +65,7 @@ function drop_role($name)
 function grant_role_to_user($role, $user)
 {
     global $dbhandle, $roles;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $user = strtoupper($user);
 
@@ -76,10 +76,10 @@ function grant_role_to_user($role, $user)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    if (empty($ib_error)) {
+    if (empty($fb_error)) {
         $roles[$role]['members'][] = $user;
 
         return true;
@@ -94,7 +94,7 @@ function grant_role_to_user($role, $user)
 function revoke_role_from_user($role, $user)
 {
     global $dbhandle, $roles;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $user = strtoupper($user);
 
@@ -105,10 +105,10 @@ function revoke_role_from_user($role, $user)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    if (empty($ib_error)  &&
+    if (empty($fb_error)  &&
         ($idx = array_search($user, $roles[$role]['members'])) !== false) {
         unset($roles[$role]['members'][$idx]);
 
@@ -133,7 +133,7 @@ function get_roles()
              .' ON R.RDB$ROLE_NAME=P.RDB$RELATION_NAME'
             ." AND P.RDB\$PRIVILEGE='M'"
            .'ORDER BY R.RDB$ROLE_NAME';
-    $res = fbird_query($dbhandle, $sql) or ib_error();
+    $res = fbird_query($dbhandle, $sql) or fb_error();
 
     $roles = array();
     $lastone = '';

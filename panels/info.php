@@ -14,10 +14,10 @@ if (isset($binary_output)  &&  count($binary_output) > 0  &&  $s_page != 'SQL'
     echo '</table></div>';
 }
 
-if ($ib_error != '') {
+if ($fb_error != '') {
     echo '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><table>';
     echo '<tr><td><strong>'.$info_strings['FBError'].":</strong></td></tr>\n";
-    echo '<tr><td>'.$ib_error."</td></tr>\n";
+    echo '<tr><td>'.$fb_error."</td></tr>\n";
     echo '</table></div>';
 }
 

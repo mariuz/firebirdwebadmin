@@ -86,7 +86,7 @@ globalize_session_vars();
 function critical_error()
 {
     return !empty($GLOBALS['error'])  ||
-           !empty($GLOBALS['ib_error'])  ||
+           !empty($GLOBALS['fb_error'])  ||
            !empty($GLOBALS['php_error'])  ||
            !empty($GLOBALS['externcmd']);
 }

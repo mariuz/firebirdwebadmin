@@ -575,7 +575,7 @@ function get_charsets()
         . ' INNER JOIN RDB$COLLATIONS CO'
         . ' ON CS.RDB$CHARACTER_SET_ID=CO.RDB$CHARACTER_SET_ID'
         . ' ORDER BY CS.RDB$CHARACTER_SET_NAME, CO.RDB$COLLATION_NAME';
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $charsets = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -626,7 +626,7 @@ function get_dependencies($type, $name, $fname = null)
         . ' FROM RDB$CHECK_CONSTRAINTS C'
         . ' WHERE C.RDB$TRIGGER_NAME=D.RDB$DEPENDENT_NAME)';
     $res = fbird_query($dbhandle, $sql)
-    or ib_error(__FILE__, __LINE__, $sql);
+    or fb_error(__FILE__, __LINE__, $sql);
     $dependencies = array();
     while ($row = fbird_fetch_object($res)) {
         $dependencies[] = array('type' => $row->DTYPE,
@@ -713,7 +713,7 @@ function get_blob_content($sql)
 {
     global $dbhandle;
 
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
     $row = fbird_fetch_row($res);
     if ($blob_handle = @fbird_blob_open($row[0])) {
         $blob_info = fbird_blob_info($row[0]);
@@ -809,7 +809,7 @@ function get_table_fields($name)
         . ' WHERE RDB$RELATION_NAME=\'' . $name . '\''
         . ' ORDER BY RDB$FIELD_NAME';
 
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $columns = array();
     while ($row = fbird_fetch_object($res)) {
@@ -831,7 +831,7 @@ function get_table_count($tablename)
 
     $sql = 'SELECT COUNT(*) AS CNT FROM ' . $quote . $tablename . $quote;
     $res = fbird_query($GLOBALS['dbhandle'], $sql)
-    or $ib_error .= fbird_errmsg() . "<br>\n";
+    or $fb_error .= fbird_errmsg() . "<br>\n";
     $count = false;
     if (is_resource($res)) {
         $row = fbird_fetch_row($res);
@@ -856,13 +856,13 @@ function update_row($table, $cols, $values, $condition)
         . ' WHERE ' . $condition;
     if (DEBUG) add_debug('$sql: ' . $sql, __FILE__, __LINE__);
 
-    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
-    $ib_error = '';
+    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or fb_error(__FILE__, __LINE__, $sql);
+    $fb_error = '';
     call_user_func_array('fbird_execute', array_merge(array($query), $values))
-    or $ib_error = fbird_errmsg();
+    or $fb_error = fbird_errmsg();
     fbird_free_query($query);
 
-    return $ib_error;
+    return $fb_error;
 }
 
 
@@ -878,13 +878,13 @@ function insert_row($table, $cols, $values)
         . ' VALUES (' . substr(str_repeat('?, ', count($values)), 0, -2) . ')';
     if (DEBUG) add_debug('$sql: ' . $sql, __FILE__, __LINE__);
 
-    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
-    $ib_error = '';
+    $query = fbird_prepare($GLOBALS['dbhandle'], $sql) or fb_error(__FILE__, __LINE__, $sql);
+    $fb_error = '';
     call_user_func_array('fbird_execute', array_merge(array($query), $values))
-    or $ib_error = fbird_errmsg();
+    or $fb_error = fbird_errmsg();
     fbird_free_query($query);
 
-    return $ib_error;
+    return $fb_error;
 }
 
 
@@ -1039,7 +1039,7 @@ function redirect($url)
 //
 // print fbird_errmsg() and stop the script
 //
-function ib_error($file = '', $line = '', $sql = '')
+function fb_error($file = '', $line = '', $sql = '')
 {
 
     echo '<pre><b>Firebird Error</b><br>'

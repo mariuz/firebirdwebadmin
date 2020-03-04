@@ -29,7 +29,7 @@ function get_domain_definitions($olddomains)
            .' WHERE  (RDB$SYSTEM_FLAG=0 OR RDB$SYSTEM_FLAG IS NULL)'
              ." AND  RDB\$FIELD_NAME NOT STARTING WITH 'RDB\$'"
            .' ORDER  BY F.RDB$FIELD_NAME';
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $domains = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -98,7 +98,7 @@ function get_domain_check($dname)
 //
 function create_domain($domdefs)
 {
-    global $dbhandle, $lsql, $ib_error;
+    global $dbhandle, $lsql, $fb_error;
 
     $check_str = '';
     if (!empty($domdefs['check'])) {
@@ -116,7 +116,7 @@ function create_domain($domdefs)
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     }
@@ -129,14 +129,14 @@ function create_domain($domdefs)
 //
 function drop_domain($name)
 {
-    global $s_domains, $dbhandle, $ib_error;
+    global $s_domains, $dbhandle, $fb_error;
 
     $lsql = 'DROP DOMAIN '.$name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } else {
         unset($s_domains[$name]);
     }
@@ -147,7 +147,7 @@ function drop_domain($name)
 //
 function modify_domain($olddef, $domdef)
 {
-    global $dbhandle, $ib_error;
+    global $dbhandle, $fb_error;
 
     $lsql = array();
 
@@ -182,7 +182,7 @@ function modify_domain($olddef, $domdef)
             add_debug($sql, __FILE__, __LINE__);
         }
         if (!@fbird_query($dbhandle, $sql)) {
-            $ib_error = fbird_errmsg()."<br>\n>";
+            $fb_error = fbird_errmsg()."<br>\n>";
 
             return false;
         }

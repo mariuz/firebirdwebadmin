@@ -24,7 +24,7 @@ function get_triggers($oldtriggers)
            .' WHERE (RDB$SYSTEM_FLAG IS NULL  OR  RDB$SYSTEM_FLAG=0)'
              .' AND RDB$TRIGGER_NAME NOT IN (SELECT RDB$TRIGGER_NAME FROM RDB$CHECK_CONSTRAINTS)'
            .' ORDER BY RDB$TRIGGER_NAME';
-    $res = fbird_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
+    $res = fbird_query($dbhandle, $lsql) or fb_error(__FILE__, __LINE__, $lsql);
 
     $triggers = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -112,7 +112,7 @@ function modify_trigger($name, $triggerdefs)
 //
 function drop_trigger($name)
 {
-    global $s_triggers, $dbhandle, $ib_error;
+    global $s_triggers, $dbhandle, $fb_error;
     global $lsql;
 
     $lsql = 'DROP TRIGGER '.$name;
@@ -120,7 +120,7 @@ function drop_trigger($name)
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } else {
         unset($s_triggers[$name]);
     }
@@ -184,7 +184,7 @@ function get_trigger_source($name)
     $lsql = 'SELECT RDB$TRIGGER_SOURCE AS TSOURCE'
             .' FROM RDB$TRIGGERS'
            ." WHERE RDB\$TRIGGER_NAME='".$name."'";
-    $res = fbird_query($dbhandle, $lsql) or ib_error(__FILE__, __LINE__, $lsql);
+    $res = fbird_query($dbhandle, $lsql) or fb_error(__FILE__, __LINE__, $lsql);
     $obj = fbird_fetch_object($res);
 
     if (is_object($obj)) {

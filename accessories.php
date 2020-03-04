@@ -97,11 +97,11 @@ if (have_panel_permissions($s_login['user'], 'acc_gen', true)) {
     // init array generators[]
     $lsql = 'SELECT RDB$GENERATOR_NAME AS GNAME FROM RDB$GENERATORS '
             .'WHERE RDB$SYSTEM_FLAG IS NULL OR RDB$SYSTEM_FLAG = 0';
-    $res = fbird_query($dbhandle, $lsql) or ib_error();
+    $res = fbird_query($dbhandle, $lsql) or fb_error();
 
     while ($row = fbird_fetch_object($res)) {
         $lsql = 'SELECT gen_id('.$quote.fb_escape_string(trim($row->GNAME)).$quote.', 0) AS VAL FROM RDB$DATABASE';
-        $res1 = fbird_query($dbhandle, $lsql) or ib_error();
+        $res1 = fbird_query($dbhandle, $lsql) or fb_error();
         $row1 = fbird_fetch_object($res1);
         $generators[] = array('name' => trim($row->GNAME),
                               'value' => (int) $row1->VAL, );
@@ -747,16 +747,16 @@ if (isset($_POST['confirm_no'])) {
 // 
 // perform the sql-statement in $sql
 //
-if ($sql != ''  &&  empty($ib_error)) {
+if ($sql != ''  &&  empty($fb_error)) {
     if (is_array($sql)) {
         foreach ($sql as $idx => $cmd) {
             if (!@fbird_query($dbhandle, $sql[$idx])) {
-                $ib_error .= fbird_errmsg()."<br>\n>";
+                $fb_error .= fbird_errmsg()."<br>\n>";
             }
         }
     } else {
         if (!@fbird_query($dbhandle, $sql)) {
-            $ib_error = fbird_errmsg();
+            $fb_error = fbird_errmsg();
         }
     }
 }
@@ -831,11 +831,11 @@ function get_generator_idx($name)
 
 function drop_generator($name)
 {
-    global $generators, $dbhandle, $ib_error;
+    global $generators, $dbhandle, $fb_error;
 
     $lsql = 'DELETE FROM RDB$GENERATORS WHERE RDB$GENERATOR_NAME=\''.fb_escape_string($name)."'";
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     } else {
         // remove the dropped generator from the array
         $idx = get_generator_idx($name);

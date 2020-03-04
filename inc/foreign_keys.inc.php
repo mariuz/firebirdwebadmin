@@ -24,7 +24,7 @@ function get_foreignkeys($tablename, $privilege = null)
             ." AND RC.RDB\$CONSTRAINT_TYPE='FOREIGN KEY'"
             .' AND I1.RDB$SEGMENT_COUNT=1';
 
-    $res = @fbird_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($GLOBALS['dbhandle'], $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $fk = array();
     while ($row = fbird_fetch_object($res)) {
@@ -71,7 +71,7 @@ function get_fk_lookups_data($tablename, $fk_lookups)
         }
 
         $sql = 'SELECT '.$defs['column'].', '.$value_field.' FROM '.$defs['table'].' ORDER BY '.$value_field.' ASC';
-        $res = fbird_query($GLOBALS['dbhandle'], $sql) or ib_error(__FILE__, __LINE__, $sql);
+        $res = fbird_query($GLOBALS['dbhandle'], $sql) or fb_error(__FILE__, __LINE__, $sql);
 
         $data = array();
         while ($row = fbird_fetch_row($res)) {

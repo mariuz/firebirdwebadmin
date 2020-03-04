@@ -182,9 +182,9 @@ if (have_panel_permissions($s_login['user'], 'dt_enter', true)
     }
 
     if (count($cols) > 0) {
-        $ib_error = insert_row($s_enter_name, $cols, $bindargs);
+        $fb_error = insert_row($s_enter_name, $cols, $bindargs);
 
-        if (empty($ib_error)) {
+        if (empty($fb_error)) {
             $s_watch_buffer = '';
             $s_enter_values = $s_cust['enter']['another_row'] == false
                 ? array()
@@ -197,7 +197,7 @@ if (have_panel_permissions($s_login['user'], 'dt_enter', true)
 // the Ready button on the dt_enter-panel was pushed
 //
 if (isset($_POST['dt_enter_ready'])  ||
-    (isset($_POST['dt_enter_insert'])  &&  $s_cust['enter']['another_row'] == false  &&  empty($ib_error))) {
+    (isset($_POST['dt_enter_insert'])  &&  $s_cust['enter']['another_row'] == false  &&  empty($fb_error))) {
     $s_enter_name = '';
     $s_enter_values = array();
 }
@@ -286,7 +286,7 @@ if (have_panel_permissions($s_login['user'], 'dt_import', true)
 
         $sql = 'INSERT INTO '.$itable.'('.implode(', ', $col_names).')'
                               .' VALUES ('.implode(', ', array_fill(0, count($col_names), '?')).')';
-        $query = fbird_prepare($sql) or ib_error(__FILE__, __LINE__, $sql);
+        $query = fbird_prepare($sql) or fb_error(__FILE__, __LINE__, $sql);
 
         // string of variablenames needed for fbird_execute()
         $var_string = '';
@@ -331,18 +331,18 @@ if (have_panel_permissions($s_login['user'], 'dt_import', true)
                     if (empty($data[$idx])) {
                         $data[$idx] = null;
                     } else {
-                        $blob_handle = fbird_blob_create($dbhandle) or ib_error(__FILE__, __LINE__);
+                        $blob_handle = fbird_blob_create($dbhandle) or fb_error(__FILE__, __LINE__);
                         fbird_blob_add($blob_handle, $data[$idx]);
-                        $data[$idx] = fbird_blob_close($blob_handle) or ib_error(__FILE__, __LINE__);
+                        $data[$idx] = fbird_blob_close($blob_handle) or fb_error(__FILE__, __LINE__);
                     }
                 }
             }
 
             call_user_func_array('fbird_execute', array_merge(array($query), $data))
-                or $ib_error = ib_error(__FILE__, __LINE__, $query);
+                or $fb_error = fb_error(__FILE__, __LINE__, $query);
 
             // an error occurs during the import
-            if (!empty($ib_error)) {
+            if (!empty($fb_error)) {
                 break;
             }
             ++$csv_cnt;

@@ -18,7 +18,7 @@ function get_exceptions($order = 1, $dir = 'ASC')
         . ' E.RDB$MESSAGE AS MSG'
         . ' FROM RDB$EXCEPTIONS E'
         . ' ORDER BY ' . $order . ' ' . $dir;
-    $res = fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $exceptions = array();
     while ($obj = fbird_fetch_object($res)) {
@@ -82,7 +82,7 @@ function get_exception_select($name, $sel = null, $empty = true, $tags = array()
 //
 function create_exception($exception_defs)
 {
-    global $dbhandle, $ib_error, $lsql;
+    global $dbhandle, $fb_error, $lsql;
 
     $lsql = 'CREATE EXCEPTION ' . $exception_defs['name'] . " '" . str_replace("'", "''", $exception_defs['msg']) . "'";
     if (DEBUG) {
@@ -90,10 +90,10 @@ function create_exception($exception_defs)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    return empty($ib_error);
+    return empty($fb_error);
 }
 
 //
@@ -101,7 +101,7 @@ function create_exception($exception_defs)
 //
 function modify_exception($exception_defs)
 {
-    global $dbhandle, $ib_error, $lsql;
+    global $dbhandle, $fb_error, $lsql;
 
     $lsql = 'ALTER EXCEPTION ' . $exception_defs['name'] . " '" . str_replace("'", "''", $exception_defs['msg']) . "'";
     if (DEBUG) {
@@ -109,10 +109,10 @@ function modify_exception($exception_defs)
     }
 
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
     }
 
-    return empty($ib_error);
+    return empty($fb_error);
 }
 
 //
@@ -121,14 +121,14 @@ function modify_exception($exception_defs)
 function drop_exception($name)
 {
     global $s_exceptions, $dbhandle;
-    global $ib_error, $lsql;
+    global $fb_error, $lsql;
 
     $lsql = 'DROP EXCEPTION ' . $name;
     if (DEBUG) {
         add_debug('lsql', __FILE__, __LINE__);
     }
     if (!@fbird_query($dbhandle, $lsql)) {
-        $ib_error = fbird_errmsg();
+        $fb_error = fbird_errmsg();
 
         return false;
     } else {

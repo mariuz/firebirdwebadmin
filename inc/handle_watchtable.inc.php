@@ -187,7 +187,7 @@ if (isset($_POST['confirm_yes'])) {
         $instance = $matches[1];
         $sql = $s_confirmations['row'][$instance]['sql'];
         @fbird_query($dbhandle, $sql)
-        or $ib_error = fbird_errmsg();
+        or $fb_error = fbird_errmsg();
         remove_confirm($instance);
 
         // cleanup the watchtable output buffer
@@ -389,7 +389,7 @@ function wt_leave_columns($wt)
 //
 function print_rows_sp($wt)
 {
-    global $dbhandle, $ib_error;
+    global $dbhandle, $fb_error;
 
     $types = get_column_types($wt['table'], $wt['columns']);
     $col_count = count($wt['columns']);
@@ -397,7 +397,7 @@ function print_rows_sp($wt)
 
     $sql = 'SELECT * FROM '.SP_LIMIT_NAME;
     $res = fbird_query($dbhandle, $sql)
-    or $ib_error = fbird_errmsg();
+    or $fb_error = fbird_errmsg();
 
     while ($row = fbird_fetch_row($res)) {
         unset($obj);
@@ -447,7 +447,7 @@ function print_rows_nosp($wt)
 
     $sql .= ' ROWS '.$wt['start'].' TO '.($wt['start'] + $wt['rows'] - 1);
 
-    $res = @fbird_query($dbhandle, $sql) or ib_error(__FILE__, __LINE__, $sql);
+    $res = @fbird_query($dbhandle, $sql) or fb_error(__FILE__, __LINE__, $sql);
 
     $col_count = count($wt['columns']);
     echo "  <tbody>\n";
