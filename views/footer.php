@@ -112,7 +112,7 @@
 </footer>
 <!--Scripts-->
 <script src="//code.jquery.com/jquery.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/addon/hint/show-hint.min.js"></script>
