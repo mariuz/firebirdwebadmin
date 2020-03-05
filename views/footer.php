@@ -113,11 +113,11 @@
 <!--Scripts-->
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/codemirror.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/addon/hint/show-hint.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/addon/hint/sql-hint.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/mode/sql/sql.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/hint/show-hint.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/hint/sql-hint.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/mode/sql/sql.min.js"></script>
 
 <script src="./js/miscellaneous.js" type="text/javascript"></script>
 <?= js_global_variables()
