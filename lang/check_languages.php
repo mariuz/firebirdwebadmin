@@ -5,9 +5,6 @@
 // Copyright      (c) 2000, 2001, 2002, 2003, 2004 by Lutz Brueckner,
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
-// Created        <03/10/02 17:13:55 lb>
-//
-// $Id: check_languages.php,v 1.2 2004/01/13 21:12:17 lbrueckner Exp $
 
 include '../inc/functions.inc.php';
 include '../inc/debug_funcs.inc.php';
