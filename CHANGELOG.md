@@ -27,7 +27,7 @@
 ## Version 3.3.0 (06.01.2016)
 
 * [enhancement:] Review User Page. Modal popup for Role creation. Delete role button for each role.
-* [enhancement:] Users: Remove "Customizing" panel. Is not database/server related. 
+* [enhancement:] Users: Remove "Customizing" panel. Is not database/server related.
 * [enhancement:] Initial integration with Crowdin. Convert all files to UTF-8.
 * [enhancement:] Update Romanian & Russian translations.
 * [enhancement:] UI improvements: Roles, Users, Exceptions, UDF, Table comments.
