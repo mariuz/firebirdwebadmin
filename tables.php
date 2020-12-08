@@ -91,7 +91,8 @@ if (isset($_POST['tb_modify_doit'])) {
 //
 if ((!have_panel_permissions($s_login['user'], 'tb_modify'))
 &&  (isset($_POST['tb_modify_del'])  ||  isset($_POST['tb_modadd_doit'])  ||  isset($_POST['tb_modcol_doit']))) {
-    die('bad boy');
+    die('bad boy = ' . isset($_POST['tb_modify_del']) . ' / ' .
+            isset($_POST['tb_modadd_doit']) .' / '.  isset($_POST['tb_modcol_doit']));
 }
 
 //
@@ -109,6 +110,8 @@ if (isset($_POST['tb_modify_add'])) {
     $s_coldefs['add'] = array();
     $col_add_flag = true;
 }
+
+
 
 //
 // add the new column to the table
@@ -332,6 +335,48 @@ if (have_panel_permissions($s_login['user'], 'tb_delete')) {
     }
 }
 
+//
+// drop multi-fields from table (tb_dropfields)
+// author: valmor flores (https://github.com/valmorflores/)
+//
+if (isset($_POST['tb_dropfields_doit'])) {
+    save_coldef('dropfields');    
+    
+    // Data from confirmation form
+    $fields = $_POST['tb_checked_fields'];
+    $tablename = $_POST['tb_table_name'];
+
+    // Command
+    $sql = "ALTER TABLE $tablename \n";
+    $sql .= " ";
+    $i = 0;
+    foreach ($fields as $row_field) {
+       $sql .= ++$i>1?  ',' : ' ';
+       $sql .=  " DROP " . $row_field . "\n";
+    }
+    $sql .= ';';
+    $add_flag = true;
+
+}
+
+//
+// drop multi-tables from table (tb_droptables)
+// author: valmor flores (https://github.com/valmorflores/)
+//
+if (isset($_POST['tb_droptables_doit'])) {
+    save_coldef('droptables');        
+    // Data from confirmation form
+    $tables = $_POST['tb_checked_tables'];
+    // Command
+    $sql = "";
+    foreach ($tables as $tablename) {
+        $sql .= "DROP TABLE $tablename;\n";
+    }    
+    //echo 'Debug:' . $sql;
+    $add_flag = true;
+}
+
+
 // 'Open All' button
 if (isset($_POST['tb_table_open'])) {
     $s_tables = toggle_all_tables($s_tables, 'open');
@@ -427,12 +472,19 @@ if (($s_connected) && ($s_tables_valid == false)) {
         $s_tables_valid = true;
     }
 }
-
+ 
 //
 // print out all the panels
 //
 $s_page = 'Tables';
 $panels = $s_tables_panels;
+
+// Input extra panel
+// Open selectable tables
+if (isset($_POST['btn_viewselectable'])) {
+   require "./panels/tb_showselectable.php";
+ }
+ 
 
 require './inc/script_end.inc.php';
 

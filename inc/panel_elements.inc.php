@@ -642,6 +642,8 @@ function get_opened_table($name, $title, $url, $curl = '', $cdiv = '')
           <a href="$curl" class="act" title="Edit table comment">[C]</a>
           <div id="$cdiv" class="margin-left-20px">
           </div>
+        <form method="post" action="" name="tb_dropcols_form">
+        <input type="hidden" id="drop_cols" name="drop_cols" value="$name">
         <table class="table">
           <tr>
             <td width="26">
@@ -652,6 +654,7 @@ function get_opened_table($name, $title, $url, $curl = '', $cdiv = '')
 EOT;
     $cols = array('Name', 'Type', 'Charset', 'Collate', 'Computed', 'Default', 'NotNull', 'Check', 'Unique', 'Primary', 'Foreign');
     $html .= " <thead><tr>\n";
+    $html .= "<th></th>";
     foreach ($cols as $idx) {
         $html .= ' <th>'.$tb_strings[$idx]."</th>\n";
     }
@@ -671,7 +674,8 @@ EOT;
         $fk_str = table_detail_constraint_string(ifsetor($field['foreign']), $GLOBALS['s_tables_cnames']);
 
         $html .= " <tr>
-                  <td>${field['name']}</td>
+        <td>".get_checkbox('tb_selected_fields[]', "${field['name']}", '')."</td>
+        <td>${field['name']}</td>
 	          <td>$type_str</td>
     	          <td>$char_str</td>
                   <td align=\"right\" >$coll_str</td>
@@ -684,11 +688,19 @@ EOT;
                   <td align=\"center\">$fk_str</td>
                 </tr>\n";
     }
+   
+    $html .= '<tr><td></td><td><row>
+         <input type="submit" class="btn btn-danger" name="tb_dropfields" value="Drop selected fields"></row>
+         <td></tr>';
 
     $html .= "              </table>\n"
             ."            </td>\n"
             ."          </tr>\n"
-            ."        </table>\n";
+            ."        </table>\n"
+            ."    </form>\n";
+
+    
+
 
     return $html;
 }
