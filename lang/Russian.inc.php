@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Информация',
                         'Top' => 'верх',
                         'Bottom' => 'низ',
                         'Down' => 'ниже',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Подключиться',
                         'Defaults' => 'Восстановить значения по умолчанию',
                         'Load' => 'Загрузить',
                         'Unmark' => 'Снять отметку',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Название',
                     'OnDelete' => 'При удалении',
                     'Table1' => 'Таблица',
                     'Column1' => 'Столбец',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin создал храни�
                   'CREATE_DB_SUCCESS' => "База Данных %s была успешно создана.\n",
                   'HAVE_DEPENDENCIES' => 'Вы должны удалить следующие объекты прежде чем вы сможете удалить %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'Если вы хотите использовать возможности личной настройки нужно разрешить использование cookies в настройках вашего браузера.',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "В выбранной вами таблице опущены blob-поля.<br>\n"

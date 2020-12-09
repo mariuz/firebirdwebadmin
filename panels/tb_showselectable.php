@@ -10,7 +10,7 @@
 $tcnt = 0;
 if ($s_connected == true && is_array($s_tables)):
    
-    $title = 'Tables selector';
+    $title = $ptitle_strings['tb_selector'];
     $url = url_session($_SERVER['PHP_SELF'] . "?default");
 
 ?>
@@ -21,18 +21,20 @@ if ($s_connected == true && is_array($s_tables)):
 
    <?php require 'panels/tb_droptables.php'; ?>
 
+   <?php if ( !isset($message) || strlen($message)<=0 ) { ?>   
+
    <form method="post" action="" name="tb_droptables_form">
 
    <input type="hidden" name="drop_tables" value="drop_tables">
    <div class="panel panel-default">
-      <div class="panel-heading">Panel with selectable table list</div>
+      <div class="panel-heading"><?=$tb_strings['FormTableSelector']?></div>
       <div class="panel-body">
       
       <?php if (!isset($_POST['drop_tables'])){ ?>
-            <h4>Functions selector</h4>
+            <h4><?=$tb_strings['TablesActionsTitle']?></h4>
           <input type="hidden" name="btn_viewselectable" />
-          <p>The selected data and tables will be deleted. Make a backup before running this feature.</p>
-          <p><input type="submit" class="btn btn-danger" name="tb_droptables" value="Drop selected tables"></row></p>
+          <p><?=$tb_strings['WarningManyTables']?></p>
+          <p><input type="submit" class="btn btn-danger" name="tb_droptables" value="<?=$button_strings['DropSelectedTables']?>"></row></p>
       <?php } ?>
     <div class="row">
         <div class="col-sm">
@@ -41,8 +43,8 @@ if ($s_connected == true && is_array($s_tables)):
         
     <tr>
             <th></th>
-            <th>Table name</th>
-            <th>Records</th>
+            <th><?=$tb_strings['TbName']?></th>
+            <th><?=$tb_strings['Records']?></th>
         </tr>
 </thead>
 <tbody>
@@ -78,6 +80,9 @@ if ($s_connected == true && is_array($s_tables)):
     </div>
     </div>
     </form>
+
+    <?php } ?>
+
 </div>
 
 

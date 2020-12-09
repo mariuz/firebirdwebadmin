@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Info',
                         'Top' => 'top',
                         'Bottom' => 'bottom',
                         'Down' => 'down',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Login',
                         'Defaults' => 'Set Defaults',
                         'Load' => 'Load',
                         'Unmark' => 'Unmark',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Name',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Table',
                     'Column1' => 'Column',
+                    'DropManyColTitle' => 'Drop columns from table',                   
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -471,7 +482,9 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin has created a stored pro
                   'NO_VIEW_SUPPORT' => "Editing and deleting from views is not supported up to now.<br>\n",
                   'CREATE_DB_SUCCESS' => "Database %s is successfully created.\n",
                   'HAVE_DEPENDENCIES' => 'You have to delete the following objects before you can delete the %1$s %2$s: %3$s',
-                  'COOKIES_NEEDED' => 'You have to enable cookies in your browser settings if you want to use the customizing feature!',
+                  'COOKIES_NEEDED' => 'You have to enable cooies in your browser settings if you want to use the customizing feature!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "The blob fields in the table you have selected are omitted.<br>\n"

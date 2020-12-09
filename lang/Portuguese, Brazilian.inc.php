@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Informações',
                         'Top' => 'topo',
                         'Bottom' => 'rodapé',
                         'Down' => 'para baixo',
+                        'tb_selector' => 'Seletor de tabelas',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Acesso',
                         'Defaults' => 'Definir padrões',
                         'Load' => 'Carregar',
                         'Unmark' => 'Desmarcar',
+                        'DropSelectedFields' => 'Apagar campos selecionados',
+                        'OpenSelectableMode' => 'Abrir modo de seleção de tabelas',
+                        'DropSelectedTables' => 'Apagar tabelas selecionadas',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Nome',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Table',
                     'Column1' => 'Column',
+                    'DropManyColTitle' => 'Remover colunas da tabela',
+                    'TablesActionsTitle' => 'Ações',
+                    'WarningManyTables' => 'As ações disponíveis aqui afetam várias tabelas. Faça um backup antes de realizar alguma ação.',
+                    'Records' => 'Registros',
+                    'FormTableSelector' => 'Tabelas selecionáveis',
+                    'DropManyTables' => 'Remover as tabelas do banco de dados',
+                    'SQLCommand' => 'Comando SQL:',
                     );
 
 // strings on the accessories page
@@ -467,18 +478,20 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin criou uma stored procedu
                   'CONFIRM_SP_DELETE' => 'Você realmente deseja apagar a stored procedure %s?',
                   'CONFIRM_VIEW_DELETE' => 'Do you really want to delete the view %s?',
                   'CONFIRM_UDF_DELETE' => 'Do you really want to delete the function %s?',
-                  'CONFIRM_EXC_DELETE' => 'Do you really want to delete the exception %s?',
+                  'CONFIRM_EXC_DELETE' => 'Do you really want to delete the exception %s?',                  
                   'NO_VIEW_SUPPORT' => "Editar ou apagar a partir de Views não é atualmente possível.<br>\n",
                   'CREATE_DB_SUCCESS' => "Banco de Dados %s criado com sucesso.\n",
                   'HAVE_DEPENDENCIES' => 'Você precisa apagar os seguintes objetos antes de apagar %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'You have to enable cookies in your browser settings if you want to use the customizing feature!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Você deseja remover permanentemente estas tabelas do banco de dados?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Você deseja remover permanentemente estas colunas da tabela?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Os campos Blob na tabela que você selecionou estão omitidos.<br>\n"
                                             ."Somente exportação de Blobs do tipo texto são suportados na exportação csv.<br>\n",
                   'CAN_NOT_IMPORT_BLOBS' => "The blob fields in the table you have selected are omitted.<br>\n"
                                             ."Somente a importação de Blobs texto é possível no csv.<br>\n",
-                  'SELECT_TABLE_FIRST' => "Por favor selecione uma tablea primeiro<br>\n",
+                  'SELECT_TABLE_FIRST' => "Por favor selecione uma tabela primeiro<br>\n",
                   'SELECT_FILE_FIRST' => "Por favor selecione um arquivo de importação primeiro<br>\n",
                   'CAN_NOT_ALTER_DOMAINS' => "Alteração de colunas baseadas em domínios não é possível com o Firebird.<br>\n"
                                             ."Ao invés disto mude a definição do domínio na página Acessórios.<br>\n",

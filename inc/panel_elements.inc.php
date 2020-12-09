@@ -690,7 +690,7 @@ EOT;
     }
    
     $html .= '<tr><td></td><td><row>
-         <input type="submit" class="btn btn-danger" name="tb_dropfields" value="Drop selected fields"></row>
+         <input type="submit" class="btn btn-danger" name="tb_dropfields" value="'.$GLOBALS['button_strings']['DropSelectedFields'].'"></row>
          <td></tr>';
 
     $html .= "              </table>\n"

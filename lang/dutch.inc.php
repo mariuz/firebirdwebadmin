@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Info',
                         'Top' => 'Top',
                         'Bottom' => 'Bodem',
                         'Down' => 'Neer',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Aanmelden',
                         'Defaults' => 'Als standaard zetten',
                         'Load' => 'Laden',
                         'Unmark' => 'Markering verwijderen',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Naam',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Table',
                     'Column1' => 'Column',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',                   
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin heeft in uw databank een
                   'CREATE_DB_SUCCESS' => "Databank %s met succes aangemaakt.\n",
                   'HAVE_DEPENDENCIES' => 'U moet de volgende objecten verwijdern alvorens u %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'You have to enable cookies in your browser settings if you want to use the customizing feature!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "De blob velden die u geselecteerd hebt werden genegeerd.<br>\n"

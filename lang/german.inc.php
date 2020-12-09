@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Info',
                         'Top' => 'nach oben',
                         'Bottom' => 'nach unten',
                         'Down' => 'runter',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Anmelden',
                         'Defaults' => 'Voreinstellungen setzen',
                         'Load' => 'Laden',
                         'Unmark' => 'Demarkieren',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Name',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Tabelle',
                     'Column1' => 'Feld',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin hat eine Stored Procedur
                   'CREATE_DB_SUCCESS' => "Die Datenbank %s wurde erfolgreich erstellt.\n",
                   'HAVE_DEPENDENCIES' => 'Die folgenden Datenbankobjekte müssen gelöscht werden, bevor %1$s %2$s gelöscht werden kann: %3$s',
                   'COOKIES_NEEDED' => 'Die Benutzereinstellungen können nur verwendet werden, wenn in den Browser-Einstellungen die Annahme von Cookies erlaubt ist!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Ein oder mehrere Blob-Felder in der ausgewählten Tabelle werden übergangen.<br>\n"
