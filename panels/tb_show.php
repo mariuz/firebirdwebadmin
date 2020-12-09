@@ -6,9 +6,17 @@
 //                published under the terms of the GNU General Public Licence v.2,
 //                see file LICENCE for details
 
+require 'panels/tb_dropfields.php';
 
 $tcnt = 0;
 if ($s_connected == true && is_array($s_tables)):
+
+    ?>
+    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>#tb_show_selectableform" name="tb_show_selectableform" class="form-horizontal">
+    <input type="submit" name="btn_viewselectable" value="Open selectable mode" class="btn btn-default btn-xs">
+    </form>
+    <?php
+
     foreach ($s_tables as $tablename => $properties) {
         if ($properties['is_view'] == true) {
             continue;
