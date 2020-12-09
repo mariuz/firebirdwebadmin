@@ -481,10 +481,9 @@ $panels = $s_tables_panels;
 
 // Input extra panel
 // Open selectable tables
-if (isset($_POST['btn_viewselectable'])) {
-   require "./panels/tb_showselectable.php";
- }
- 
+if (isset($_POST['btn_viewselectable'])) {  
+    require "./panels/tb_showselectable.php";
+}
 
 require './inc/script_end.inc.php';
 

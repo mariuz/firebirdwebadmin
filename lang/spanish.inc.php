@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Infomacion',
                         'Top' => 'Al Tope',
                         'Bottom' => 'Al Pie',
                         'Down' => 'Bajar',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Conectar',
                         'Defaults' => 'Por Defecto',
                         'Load' => 'Calgar',
                         'Unmark' => 'Desmarcar',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Nombre',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Tabla',
                     'Column1' => 'Columna',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin crea un stored procedure
                   'CREATE_DB_SUCCESS' => "Base de Datos %s creada con suceso.\n",
                   'HAVE_DEPENDENCIES' => 'Desea borrar los objetos secundarios antes de Borrar %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'Necesita habilitar los cookies en su navegador Para utilizar esta opcion!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Los campos Blob de la tabla que seleciono estan omitidos.<br>\n"

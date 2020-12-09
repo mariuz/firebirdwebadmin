@@ -16,7 +16,7 @@ require './inc/functions.inc.php';
 session_start();
 set_error_handler('error_handler');
 
-require './lang/'.(isset($_SESSION['s_cust']['language']) && !empty($_SESSION['s_cust']['language']) && ($_SESSION['s_cust']['language'] != 1) ? $_SESSION['s_cust']['language'] : LANGUAGE).'.inc.php';
+require get_language_file('./lang/');
 require './inc/session.inc.php';
 require './inc/firebird.inc.php';
 require './inc/panel_elements.inc.php';

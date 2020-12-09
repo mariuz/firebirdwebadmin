@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Informacje',
                         'Top' => 'początek',
                         'Bottom' => 'koniec',
                         'Down' => 'dół',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Użytkownik',
                         'Defaults' => 'Ustaw domyślne',
                         'Load' => 'Załaduj',
                         'Unmark' => 'Usuń zaznaczenie',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,7 +178,14 @@ $tb_strings = array('Name' => 'Nazwa',
                     'OnDelete' => 'Przy usuwaniu',
                     'Table1' => 'Tabela',
                     'Column1' => 'Kolumna',
-                    );
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
+                );
 
 // strings on the accessories page
 $acc_strings = array('CreateIdx' => 'Utwórz nowy indeks',
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin utworzy³ zapamiêtan¹ 
                   'CREATE_DB_SUCCESS' => "Baza danych %s Zosta³a poprawnie utworzona.\n",
                   'HAVE_DEPENDENCIES' => 'Musisz najpierw usun¹æ nastêpuj¹ce obiekty zanim bêdziesz móg³ usun¹æ %1$(y) %2$(y): %3$(y)',
                   'COOKIES_NEEDED' => 'Musisz włączyć obsługę plików cookie w ustawieniach przeglądarki, jeśli chcesz korzystać z funkcji dostosowywania!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Pola Blob, które zostały przez ciebie zaznaczone zostały pominięte.<br>\n"

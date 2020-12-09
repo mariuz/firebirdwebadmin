@@ -1288,6 +1288,21 @@ function get_customize_languages()
                     'Russian', 'Spanish');
 }
 
+// to prevent file not found or case sensitive SO errors
+function get_language_file($path = '.' . DIRECTORY_SEPARATOR . 'lang')
+{
+    $fileLang = $path. DIRECTORY_SEPARATOR . (isset($_SESSION['s_cust']['language']) && !empty($_SESSION['s_cust']['language']) && ($_SESSION['s_cust']['language'] != 1) ? $_SESSION['s_cust']['language'] : LANGUAGE).'.inc.php';
+    if (file_exists($fileLang)){
+        return $fileLang;
+    } else {
+        if (file_exists(strtolower($fileLang))) {
+            return strtolower($fileLang);
+        } else {
+            return $path . DIRECTORY_SEPARATOR . LANGUAGE.'.inc.php';
+        }
+    }
+}
+
 
 // this replacement for php's escapeshellarg() is also working on windows
 function ibwa_escapeshellarg($str)

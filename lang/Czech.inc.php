@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Informace',
                         'Top' => 'nahoru',
                         'Bottom' => 'konec',
                         'Down' => 'dolů',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Přihlášení',
                         'Defaults' => 'Nastavit výchozí hodnoty',
                         'Load' => 'Nahrát',
                         'Unmark' => 'Zrušit označení',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',    
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Jméno',
                     'OnDelete' => 'Při odstranění',
                     'Table1' => 'Tabulka',
                     'Column1' => 'Sloupec',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin vytvořil uloženou proc
                   'CREATE_DB_SUCCESS' => "Úspěšně vytvořena databáze %s. \n",
                   'HAVE_DEPENDENCIES' => 'Budete muset odstranit následující objekty, chcete-li odstranit %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'Musíte povolit soubory cookies v nastavení vašeho prohlížeče, pokud chcete používat uživatelská nastavení!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "Pole typu blob jsou v tabulce, kterou jste vybrali, vynechána. <br>\n"

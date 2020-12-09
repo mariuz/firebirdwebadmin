@@ -13,7 +13,7 @@ if ($s_connected == true && is_array($s_tables)):
 
     ?>
     <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>#tb_show_selectableform" name="tb_show_selectableform" class="form-horizontal">
-    <input type="submit" name="btn_viewselectable" value="Open selectable mode" class="btn btn-default btn-xs">
+    <input type="submit" name="btn_viewselectable" value="<?=$button_strings['OpenSelectableMode']?>" class="btn btn-default btn-xs">
     </form>
     <?php
 

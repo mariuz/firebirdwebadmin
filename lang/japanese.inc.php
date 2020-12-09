@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => '情報',
                         'Top' => 'トップ',
                         'Bottom' => '一番下',
                         'Down' => '下へ',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'ログイン',
                         'Defaults' => 'Set Defaults',
                         'Load' => 'Load',
                         'Unmark' => 'Unmark',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => '名称',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Table',
                     'Column1' => 'Column',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdminはストアドプロシ�
                   'CREATE_DB_SUCCESS' => "%s データベースの作成に成功しました。\n",
                   'HAVE_DEPENDENCIES' => ' %1$s %2$s: を削除する前に %3$s を削除して下さい。',
                   'COOKIES_NEEDED' => 'You have to enable cookies in your browser settings if you want to use the customizing feature!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "あなたが選択したテーブルのBLOBフィールドは除外されました。<br>\n"

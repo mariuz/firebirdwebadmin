@@ -64,6 +64,7 @@ $ptitle_strings = array('info' => 'Info',
                         'Top' => 'elsõ',
                         'Bottom' => 'utolsó',
                         'Down' => 'le',
+                        'tb_selector' => 'Tables selector',
                         );
 
 // strings to inscribe buttons
@@ -101,6 +102,9 @@ $button_strings = array('Login' => 'Belépés',
                         'Defaults' => 'Alapállapot',
                         'Load' => 'Betöltés',
                         'Unmark' => 'Unmark',
+                        'DropSelectedFields' => 'Drop selected fields',
+                        'OpenSelectableMode' => 'Open selectable mode',
+                        'DropSelectedTables' => 'Drop selected tables',
                         );
 
 // strings on the database page
@@ -174,6 +178,13 @@ $tb_strings = array('Name' => 'Név',
                     'OnDelete' => 'On Delete',
                     'Table1' => 'Tábla',
                     'Column1' => 'Oszlop',
+                    'DropManyColTitle' => 'Drop columns from table',
+                    'TablesActionsTitle' => 'Actions',
+                    'WarningManyTables' => 'The actions selected here affects many tables. Make a backup before running this feature.',
+                    'Records' => 'Records',
+                    'FormTableSelector' => 'Table Selector',
+                    'DropManyTables' => 'Drop tables from database',
+                    'SQLCommand' => 'SQL Command:',
                     );
 
 // strings on the accessories page
@@ -472,6 +483,8 @@ $MESSAGES = array('SP_CREATE_INFO' => 'FirebirdWebAdmin létrehozta a "'.SP_LIMI
                   'CREATE_DB_SUCCESS' => "A(z) %s adatbázis sikeresen létrejött.\n",
                   'HAVE_DEPENDENCIES' => 'A következõ objektumokat elõbb törölni kell %1$s %2$s: %3$s',
                   'COOKIES_NEEDED' => 'A sütiketet engedélyezni kell, ha használni kívánja a testreszabás funkciót!',
+                  'CONFIRM_MANY_TABLES_DELETE' => 'Do you want to permanently remove these tables?',
+                  'CONFIRM_MANY_COLUMNS_DELETE' => 'Do you want to permanently remove these columns from the table?',
                   );
 
 $WARNINGS = array('CAN_NOT_EXPORT_BLOBS' => "The blob fields in the table you have selected are omitted.<br>\n"
