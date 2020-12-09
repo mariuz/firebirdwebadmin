@@ -14,17 +14,14 @@
 
 define('VERSION', '3.4.1');
 
-//define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
-define('BINPATH', '/usr/bin/');           // path to the interbase tools (isql, etc.)
+define('BINPATH', '/usr/sbin/');           // path to the interbase tools (isql, etc.)
 
 define('TMPPATH', '/tmp/');                        // write temporary files here,
                                                    // must be writeable for the webserver, must be an absolute path
 
 define('DEFAULT_USER',    'SYSDBA');               // default settings for database login
-define('DEFAULT_DB',      'ei.fdb');
-//define('DEFAULT_PATH',    '/var/lib/firebird/2.5/data/');
-define('DEFAULT_PATH',    '/home/valmor/dados/ei/');
-//ei.fdb
+define('DEFAULT_DB',      'employee.fdb');
+define('DEFAULT_PATH',    '/var/lib/firebird/2.5/data/');
 define('DEFAULT_HOST',    'localhost');
 define('DEFAULT_ROLE',    '');
 define('DEFAULT_CACHE',   75);
