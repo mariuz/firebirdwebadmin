@@ -1,6 +1,5 @@
 # FirebirdWebAdmin is a web frontend for the Firebird database server
 
-[![npm version](https://badge.fury.io/js/firebird-web-admin.svg)](https://badge.fury.io/js/firebird-web-admin)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/firebirdwebadmin/localized.svg)](https://crowdin.com/project/firebirdwebadmin)
 [![Code Climate](https://codeclimate.com/github/mariuz/firebirdwebadmin/badges/gpa.svg)](https://codeclimate.com/github/mariuz/firebirdwebadmin)
 
