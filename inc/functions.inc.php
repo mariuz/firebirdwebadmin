@@ -1289,8 +1289,10 @@ function get_customize_languages()
 }
 
 // to prevent file not found or case sensitive SO errors
-function get_language_file($path = '.' . DIRECTORY_SEPARATOR . 'lang')
-{
+function get_language_file($path) {
+    if ($path == null) {
+        $path = '.' . DIRECTORY_SEPARATOR . 'lang';
+    }	
     $fileLang = $path. DIRECTORY_SEPARATOR . (isset($_SESSION['s_cust']['language']) && !empty($_SESSION['s_cust']['language']) && ($_SESSION['s_cust']['language'] != 1) ? $_SESSION['s_cust']['language'] : LANGUAGE).'.inc.php';
     if (file_exists($fileLang)){
         return $fileLang;
