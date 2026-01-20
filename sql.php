@@ -99,6 +99,12 @@ if (isset($_POST['sql_run'])  ||
     // remove empty lines from userinput and put the statements into $lines[]
     if (isset($_POST['sql_run'])  ||
         isset($_POST['sql_execute'])) {
+        
+        // check if script contains SET TERM command - must use isql
+        if (preg_match('/SET\s+TERM/i', $sql_script)) {
+            $isql_flag = true;
+        }
+        
         $lines = explode(';', $sql_script);
 
         //remove whitespace and empty lines
@@ -114,7 +120,7 @@ if (isset($_POST['sql_run'])  ||
             if (preg_match('/^CREATE(\s)+(DATABASE|SCHEMA|PROCEDURE|TRIGGER)/i', $cmd)) {
                 $isql_flag = true;
 
-                if ($cmd{(strlen($cmd) - 1)} != ';') {
+                if ($cmd[strlen($cmd) - 1] != ';') {
                     $lines[$idx] .= ';';
                 }
             }
