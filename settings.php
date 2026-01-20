@@ -34,7 +34,16 @@ if ($settings_changed = true && isset($old_settings)) {
     $s_stylesheet_etag = '';
 }
 
-header("Location: " . $_SERVER["HTTP_REFERER"]);
+// Redirect back to referer, but validate it first to prevent header injection
+$referer = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : 'index.php';
+// Validate referer to prevent header injection - only allow same-origin URLs
+if (filter_var($referer, FILTER_VALIDATE_URL) && 
+    (parse_url($referer, PHP_URL_HOST) === $_SERVER['HTTP_HOST'] || 
+     parse_url($referer, PHP_URL_HOST) === null)) {
+    header("Location: " . $referer);
+} else {
+    header("Location: index.php");
+}
 
 require('./inc/script_end.inc.php');
 
