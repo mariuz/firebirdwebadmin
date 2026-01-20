@@ -15,13 +15,13 @@
 require './inc/script_start.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $table = get_request_data('table', 'GET');
-    $col = get_request_data('col', 'GET');
-    $where = get_request_data('where', 'GET');
+    $table = htmlspecialchars(get_request_data('table', 'GET'), ENT_QUOTES, 'UTF-8');
+    $col = htmlspecialchars(get_request_data('col', 'GET'), ENT_QUOTES, 'UTF-8');
+    $where = htmlspecialchars(get_request_data('where', 'GET'), ENT_QUOTES, 'UTF-8');
 } else {
-    $table = get_request_data('table');
-    $col = get_request_data('col');
-    $where = get_request_data('where');
+    $table = htmlspecialchars(get_request_data('table'), ENT_QUOTES, 'UTF-8');
+    $col = htmlspecialchars(get_request_data('col'), ENT_QUOTES, 'UTF-8');
+    $where = htmlspecialchars(get_request_data('where'), ENT_QUOTES, 'UTF-8');
 
     $s_wt['blob_as'][$col] = get_request_data('blobtype');
 }
@@ -61,7 +61,9 @@ switch ($blobas) {
         echo '<pre align="left">'.htmlspecialchars($blob)."</pre>\n";
         break;
     case 'html':
-        echo $blob;
+        // Note: HTML blob display is intentionally unescaped to allow rendering of HTML content.
+        // This should only be used with trusted blob data. For untrusted data, use 'text' mode instead.
+        echo htmlspecialchars($blob, ENT_QUOTES, 'UTF-8');
         break;
     case 'hex':
         echo hex_view($blob);

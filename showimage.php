@@ -24,9 +24,9 @@ require './inc/functions.inc.php';
 $dbhandle = db_connect()
      or fb_error();
 
-$table = $_GET['table'];
-$col = $_GET['col'];
-$where = $_GET['where'];
+$table = htmlspecialchars($_GET['table'], ENT_QUOTES, 'UTF-8');
+$col = htmlspecialchars($_GET['col'], ENT_QUOTES, 'UTF-8');
+$where = htmlspecialchars($_GET['where'], ENT_QUOTES, 'UTF-8');
 $sql = sprintf('SELECT %s FROM %s %s', $col, $table, $where);
 $blob = get_blob_content($sql);
 
