@@ -100,13 +100,16 @@ if (isset($_POST['sql_run'])  ||
     if (isset($_POST['sql_run'])  ||
         isset($_POST['sql_execute'])) {
         
+        $isql_flag = false;
+        
         // check if script contains SET TERM command - must use isql
-        if (preg_match('/SET\s+TERM/i', $sql_script)) {
+        if (preg_match('/\bSET\s+TERM\s+/i', $sql_script)) {
             $isql_flag = true;
+            $lines = array($sql_script);
         }
         
         // If SET TERM is detected, don't split - execute the whole script via isql
-        if (!isset($isql_flag)) {
+        if (!$isql_flag) {
             $lines = explode(';', $sql_script);
 
             //remove whitespace and empty lines
@@ -147,7 +150,7 @@ if (isset($_POST['sql_run'])  ||
                 }
             }
         }
-        $s_sql['queries'] = isset($lines) ? $lines : array($sql_script);
+        $s_sql['queries'] = $lines;
     }
 
     // 'display all'
