@@ -18,18 +18,18 @@ if (isset($_POST['drop_cols'])):
   } else {
   ?>
    <form method="post" action="<?php echo url_session($_SERVER['PHP_SELF']); ?>" name="tb_dropfields">
-        <h4><?=$tb_strings['DropManyColTitle']?> <?php echo $_POST['drop_cols']; ?></h4>
+        <h4><?=$tb_strings['DropManyColTitle']?> <?php echo htmlspecialchars($_POST['drop_cols'], ENT_QUOTES, 'UTF-8'); ?></h4>
         <table class="table table-bordered">
             <?php
             // from tb_dropcols_form
             $columns = ($_POST['tb_selected_fields']);
             ?>
-            <input type="hidden" name="tb_table_name" value="<?php echo $_POST['drop_cols'];?>">
+            <input type="hidden" name="tb_table_name" value="<?php echo htmlspecialchars($_POST['drop_cols'], ENT_QUOTES, 'UTF-8');?>">
             <?php
             foreach($columns as $col){
                ?>                                            
                <div class="input-group">               
-               <input name="tb_checked_fields[]" value="<?php echo $col ?>"readonly/> </br>
+               <input name="tb_checked_fields[]" value="<?php echo htmlspecialchars($col, ENT_QUOTES, 'UTF-8'); ?>"readonly/> </br>
                <?php
             }
             ?>

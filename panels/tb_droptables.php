@@ -23,11 +23,11 @@ if (isset($_POST['drop_tables'])):
             <?php
             
             ?>
-            <input type="hidden" name="tb_table_name" value="<?php echo $_POST['drop_tables'];?>">
+            <input type="hidden" name="tb_table_name" value="<?php echo htmlspecialchars($_POST['drop_tables'], ENT_QUOTES, 'UTF-8');?>">
             <?php
             foreach($tableList as $table){
                ?>
-               <input name="tb_checked_tables[]" value="<?php echo $table ?>" readonly/></br>
+               <input name="tb_checked_tables[]" value="<?php echo htmlspecialchars($table, ENT_QUOTES, 'UTF-8'); ?>" readonly/></br>
                <?php
             }
             ?>
@@ -35,7 +35,7 @@ if (isset($_POST['drop_tables'])):
         <p><?=$tb_strings['SQLCommand']?></p>
 <pre>
 <?php foreach($tableList as $table){ ?>
-<?php echo 'DROP TABLE ' . $table . ';'; ?>
+<?php echo 'DROP TABLE ' . htmlspecialchars($table, ENT_QUOTES, 'UTF-8') . ';'; ?>
 
         <?php } ?></pre>
         <?=$MESSAGES['CONFIRM_MANY_TABLES_DELETE']?>
