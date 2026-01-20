@@ -34,7 +34,27 @@ if ($settings_changed = true && isset($old_settings)) {
     $s_stylesheet_etag = '';
 }
 
-header("Location: " . $_SERVER["HTTP_REFERER"]);
+// Redirect back to referer, but validate it first to prevent header injection
+$referer = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : 'index.php';
+// Validate referer to prevent header injection - only allow same-origin URLs
+$referer_host = parse_url($referer, PHP_URL_HOST);
+$current_host = $_SERVER['HTTP_HOST'];
+
+// Allow same-origin absolute URLs or relative URLs
+if (filter_var($referer, FILTER_VALIDATE_URL)) {
+    // Absolute URL - must be same origin
+    if ($referer_host === $current_host) {
+        header("Location: " . $referer);
+    } else {
+        header("Location: index.php");
+    }
+} elseif (strpos($referer, '/') === 0) {
+    // Relative URL starting with / - safe to use
+    header("Location: " . $referer);
+} else {
+    // Not a valid URL - use default
+    header("Location: index.php");
+}
 
 require('./inc/script_end.inc.php');
 

@@ -26,7 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $s_wt['blob_as'][$col] = get_request_data('blobtype');
 }
 
-$imageurl = 'showimage.php?where='.urlencode($where).'&table='.$table.'&col='.$col;
+// Validate SQL identifiers to prevent SQL injection
+// Table and column names should only contain alphanumeric characters and underscores
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
+    die('Invalid table name');
+}
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
+    die('Invalid column name');
+}
+// WARNING: WHERE clause validation is complex and not implemented here
+// The WHERE parameter remains a potential SQL injection vector
+// This should use parameterized queries in production
+
+$imageurl = 'showimage.php?where='.urlencode($where).'&table='.urlencode($table).'&col='.urlencode($col);
 $imageurl .= '&'.uniqid('UNIQ_');
 
 $blob = get_blob_content(sprintf('SELECT %s FROM %s %s', $col, $table, $where));
@@ -61,7 +73,10 @@ switch ($blobas) {
         echo '<pre align="left">'.htmlspecialchars($blob)."</pre>\n";
         break;
     case 'html':
-        echo $blob;
+        // Note: Displaying HTML blob content with escaping to prevent XSS attacks.
+        // The HTML will be shown as plain text. To render actual HTML, this feature
+        // should only be used with trusted blob data in a controlled environment.
+        echo htmlspecialchars($blob, ENT_QUOTES, 'UTF-8');
         break;
     case 'hex':
         echo hex_view($blob);

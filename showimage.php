@@ -27,6 +27,19 @@ $dbhandle = db_connect()
 $table = $_GET['table'];
 $col = $_GET['col'];
 $where = $_GET['where'];
+
+// Validate SQL identifiers to prevent SQL injection
+// Table and column names should only contain alphanumeric characters and underscores
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
+    die('Invalid table name');
+}
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
+    die('Invalid column name');
+}
+// WARNING: WHERE clause validation is complex and not implemented here
+// The WHERE parameter remains a potential SQL injection vector
+// This should use parameterized queries in production
+
 $sql = sprintf('SELECT %s FROM %s %s', $col, $table, $where);
 $blob = get_blob_content($sql);
 
