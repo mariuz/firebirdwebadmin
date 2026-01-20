@@ -168,7 +168,7 @@ if (have_panel_permissions($s_login['user'], 'adm_server')) {
     $db_path = !empty($s_login['host']) ? $s_login['host'].':'.$s_login['database'] : $s_login['database'];
 
     // get the LOCK_HEADER BLOCK 
-    list($iblockpr_output, $binary_error) = exec_command($exe, ' -d ' . escapeshellarg($db_path) . ' -o');
+    list($iblockpr_output, $binary_error) = exec_command($exe, ' -d ' . ibwa_escapeshellarg($db_path) . ' -o');
 
     $lock_header = '';
     unset($iblockpr_output[0]);
@@ -180,7 +180,7 @@ if (have_panel_permissions($s_login['user'], 'adm_server')) {
     }
 
     // get the server statistics
-    list($iblockpr_output, $binray_error) = exec_command($exe, ' -d ' . escapeshellarg($db_path) . ' -i');
+    list($iblockpr_output, $binary_error) = exec_command($exe, ' -d ' . ibwa_escapeshellarg($db_path) . ' -i');
 
     if (count($iblockpr_output) > 3) {
         $iblock['names'] = preg_split('/[\s,]+/', $iblockpr_output[0]);
