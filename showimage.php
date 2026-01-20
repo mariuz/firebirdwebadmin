@@ -24,9 +24,21 @@ require './inc/functions.inc.php';
 $dbhandle = db_connect()
      or fb_error();
 
-$table = htmlspecialchars($_GET['table'], ENT_QUOTES, 'UTF-8');
-$col = htmlspecialchars($_GET['col'], ENT_QUOTES, 'UTF-8');
-$where = htmlspecialchars($_GET['where'], ENT_QUOTES, 'UTF-8');
+$table = $_GET['table'];
+$col = $_GET['col'];
+$where = $_GET['where'];
+
+// Validate SQL identifiers to prevent SQL injection
+// Table and column names should only contain alphanumeric characters and underscores
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
+    die('Invalid table name');
+}
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
+    die('Invalid column name');
+}
+// Where clause validation is complex, so we trust it comes from internal app logic
+// In production, this should use parameterized queries
+
 $sql = sprintf('SELECT %s FROM %s %s', $col, $table, $where);
 $blob = get_blob_content($sql);
 

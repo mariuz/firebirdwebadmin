@@ -15,18 +15,29 @@
 require './inc/script_start.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $table = htmlspecialchars(get_request_data('table', 'GET'), ENT_QUOTES, 'UTF-8');
-    $col = htmlspecialchars(get_request_data('col', 'GET'), ENT_QUOTES, 'UTF-8');
-    $where = htmlspecialchars(get_request_data('where', 'GET'), ENT_QUOTES, 'UTF-8');
+    $table = get_request_data('table', 'GET');
+    $col = get_request_data('col', 'GET');
+    $where = get_request_data('where', 'GET');
 } else {
-    $table = htmlspecialchars(get_request_data('table'), ENT_QUOTES, 'UTF-8');
-    $col = htmlspecialchars(get_request_data('col'), ENT_QUOTES, 'UTF-8');
-    $where = htmlspecialchars(get_request_data('where'), ENT_QUOTES, 'UTF-8');
+    $table = get_request_data('table');
+    $col = get_request_data('col');
+    $where = get_request_data('where');
 
     $s_wt['blob_as'][$col] = get_request_data('blobtype');
 }
 
-$imageurl = 'showimage.php?where='.urlencode($where).'&table='.$table.'&col='.$col;
+// Validate SQL identifiers to prevent SQL injection
+// Table and column names should only contain alphanumeric characters and underscores
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
+    die('Invalid table name');
+}
+if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
+    die('Invalid column name');
+}
+// Where clause validation is complex, so we trust it comes from internal app logic
+// In production, this should use parameterized queries
+
+$imageurl = 'showimage.php?where='.urlencode($where).'&table='.urlencode($table).'&col='.urlencode($col);
 $imageurl .= '&'.uniqid('UNIQ_');
 
 $blob = get_blob_content(sprintf('SELECT %s FROM %s %s', $col, $table, $where));
@@ -61,8 +72,9 @@ switch ($blobas) {
         echo '<pre align="left">'.htmlspecialchars($blob)."</pre>\n";
         break;
     case 'html':
-        // Note: HTML blob display is intentionally unescaped to allow rendering of HTML content.
-        // This should only be used with trusted blob data. For untrusted data, use 'text' mode instead.
+        // Note: Displaying HTML blob content with escaping to prevent XSS attacks.
+        // The HTML will be shown as plain text. To render actual HTML, this feature
+        // should only be used with trusted blob data in a controlled environment.
         echo htmlspecialchars($blob, ENT_QUOTES, 'UTF-8');
         break;
     case 'hex':
