@@ -1328,10 +1328,7 @@ function get_request_data($name, $source = 'POST')
         if ($source == 'GET') {
             $data = urldecode($data);
         }
-        if (get_magic_quotes_gpc() ||
-            ini_get('magic_quotes_sybase') == 1
-        ) {
-
+        if (ini_get('magic_quotes_sybase') == 1) {
             $data = stripslashes($data);
         }
 

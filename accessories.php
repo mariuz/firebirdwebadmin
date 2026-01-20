@@ -506,9 +506,7 @@ if (have_panel_permissions($s_login['user'], 'acc_view', true)) {
 
     // modify the View
     if (isset($_POST['acc_modview_doit'])) {
-        $viewdefs['source'] = get_magic_quotes_gpc()
-            ? stripslashes(trim($_POST['def_view_source']))
-            : $_POST['def_view_source'];
+        $viewdefs['source'] = $_POST['def_view_source'];
         $viewdefs['check'] = (isset($_POST['def_view_check'])) ? 'yes' : 'no';
 
         if (drop_view($s_viewdefs['name'])) {
