@@ -40,8 +40,7 @@ $referer = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : 'index.p
 $referer_host = parse_url($referer, PHP_URL_HOST);
 $current_host = $_SERVER['HTTP_HOST'];
 
-// Allow only same-origin URLs (when host matches) or relative URLs (when host is null)
-// Reject external URLs and malformed URLs
+// Allow same-origin absolute URLs or relative URLs
 if (filter_var($referer, FILTER_VALIDATE_URL)) {
     // Absolute URL - must be same origin
     if ($referer_host === $current_host) {
@@ -49,8 +48,11 @@ if (filter_var($referer, FILTER_VALIDATE_URL)) {
     } else {
         header("Location: index.php");
     }
+} elseif (strpos($referer, '/') === 0) {
+    // Relative URL starting with / - safe to use
+    header("Location: " . $referer);
 } else {
-    // Not a valid absolute URL - use default
+    // Not a valid URL - use default
     header("Location: index.php");
 }
 

@@ -34,8 +34,9 @@ if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
 if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
     die('Invalid column name');
 }
-// Where clause validation is complex, so we trust it comes from internal app logic
-// In production, this should use parameterized queries
+// WARNING: WHERE clause validation is complex and not implemented here
+// The WHERE parameter remains a potential SQL injection vector
+// This should use parameterized queries in production
 
 $imageurl = 'showimage.php?where='.urlencode($where).'&table='.urlencode($table).'&col='.urlencode($col);
 $imageurl .= '&'.uniqid('UNIQ_');

@@ -36,8 +36,9 @@ if (!preg_match('/^[a-zA-Z0-9_$]+$/', $table)) {
 if (!preg_match('/^[a-zA-Z0-9_$]+$/', $col)) {
     die('Invalid column name');
 }
-// Where clause validation is complex, so we trust it comes from internal app logic
-// In production, this should use parameterized queries
+// WARNING: WHERE clause validation is complex and not implemented here
+// The WHERE parameter remains a potential SQL injection vector
+// This should use parameterized queries in production
 
 $sql = sprintf('SELECT %s FROM %s %s', $col, $table, $where);
 $blob = get_blob_content($sql);
