@@ -99,41 +99,53 @@ if (isset($_POST['sql_run'])  ||
     // remove empty lines from userinput and put the statements into $lines[]
     if (isset($_POST['sql_run'])  ||
         isset($_POST['sql_execute'])) {
-        $lines = explode(';', $sql_script);
+        
+        $isql_flag = false;
+        
+        // check if script contains SET TERM command - must use isql
+        if (preg_match('/\bSET\s+TERM\s+/i', $sql_script)) {
+            $isql_flag = true;
+            $lines = array($sql_script);
+        }
+        
+        // If SET TERM is detected, don't split - execute the whole script via isql
+        if (!$isql_flag) {
+            $lines = explode(';', $sql_script);
 
-        //remove whitespace and empty lines
-        foreach ($lines as $idx => $cmd) {
-            $cmd = trim($cmd);
-            if ($cmd == '') {
-                array_splice($lines, $idx, 1);
-                continue;
-            }
-            $lines[$idx] = $cmd;
+            //remove whitespace and empty lines
+            foreach ($lines as $idx => $cmd) {
+                $cmd = trim($cmd);
+                if ($cmd == '') {
+                    array_splice($lines, $idx, 1);
+                    continue;
+                }
+                $lines[$idx] = $cmd;
 
-            // execute the whole script through isql, if it contains a CREATE DATABASE, PROCEDURE or TRIGGER
-            if (preg_match('/^CREATE(\s)+(DATABASE|SCHEMA|PROCEDURE|TRIGGER)/i', $cmd)) {
-                $isql_flag = true;
+                // execute the whole script through isql, if it contains a CREATE DATABASE, PROCEDURE or TRIGGER
+                if (preg_match('/^CREATE(\s)+(DATABASE|SCHEMA|PROCEDURE|TRIGGER)/i', $cmd)) {
+                    $isql_flag = true;
 
-                if ($cmd{(strlen($cmd) - 1)} != ';') {
-                    $lines[$idx] .= ';';
+                    if ($cmd[strlen($cmd) - 1] != ';') {
+                        $lines[$idx] .= ';';
+                    }
+                }
+
+                // empty the sql buffer if the script contains one or more select statements
+                if (strncasecmp('select', $cmd, 6) == 0) {
+                    $s_sql['buffer'] = '';
                 }
             }
 
-            // empty the sql buffer if the script contains one or more select statements
-            if (strncasecmp('select', $cmd, 6) == 0) {
-                $s_sql['buffer'] = '';
-            }
-        }
-
-        // make sure that there are no disabled commands in the script
-        if (is_array($SQL_DISABLE)  &&  count($SQL_DISABLE) > 0
-        &&  ($s_login['user'] != 'SYSDBA'  || SYSDBA_GET_ALL === false)) {
-            foreach ($SQL_DISABLE as $disable) {
-                $len = strlen($disable);
-                foreach ($lines as $line) {
-                    if (strncasecmp($disable, $line, $len) == 0) {
-                        $error = sprintf($ERRORS['DISABLED_CMD'], $disable);
-                        break 2;
+            // make sure that there are no disabled commands in the script
+            if (is_array($SQL_DISABLE)  &&  count($SQL_DISABLE) > 0
+            &&  ($s_login['user'] != 'SYSDBA'  || SYSDBA_GET_ALL === false)) {
+                foreach ($SQL_DISABLE as $disable) {
+                    $len = strlen($disable);
+                    foreach ($lines as $line) {
+                        if (strncasecmp($disable, $line, $len) == 0) {
+                            $error = sprintf($ERRORS['DISABLED_CMD'], $disable);
+                            break 2;
+                        }
                     }
                 }
             }
